@@ -20,11 +20,20 @@ if ([string]::IsNullOrWhiteSpace($GeneratorRoot)) {
 }
 
 dotnet build (Join-Path $RepoRoot "Hosihikari.Bindings.Endstone.slnx") -c Release --nologo -v:q
+if ($LASTEXITCODE -ne 0) {
+    throw "dotnet build failed with exit code $LASTEXITCODE."
+}
 & (Join-Path $RepoRoot "native\BindingShim\build.ps1") -EndstoneRoot $EndstoneRoot -GeneratorRoot $GeneratorRoot
+if ($LASTEXITCODE -ne 0) {
+    throw "the shim build failed with exit code $LASTEXITCODE."
+}
 
 $PluginDirectory = Join-Path $RepoRoot "artifacts\runtime-smoke"
 $PluginDll = Join-Path $PluginDirectory "shim_smoke.dll"
 & (Join-Path $PSScriptRoot "..\tests\runtime-smoke\build.ps1") -EndstoneRoot $EndstoneRoot -OutputDll $PluginDll
+if ($LASTEXITCODE -ne 0) {
+    throw "the smoke plugin build failed with exit code $LASTEXITCODE."
+}
 
 $ShimDll = Join-Path $RepoRoot "artifacts\native\Hosihikari.Bindings.Endstone.Shim.dll"
 $PluginsTarget = Join-Path $ServerRoot "plugins"
