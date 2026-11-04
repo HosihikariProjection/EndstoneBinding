@@ -39,6 +39,9 @@ if (-not (Test-Path $AbiHeader)) {
 
 $GeneratorProject = Join-Path $GeneratorRoot "src\Hosihikari.Bindings.Generator\Hosihikari.Bindings.Generator.csproj"
 dotnet run --project $GeneratorProject -c Release -- emit $Manifest $IrDirectory $Output --native-root $EndstoneRoot --virtual-dispatch --abi-header $AbiHeader
+if ($LASTEXITCODE -ne 0) {
+    throw "The generator exited with $LASTEXITCODE."
+}
 
 $InteropGenerated = Join-Path $RepoRoot "src\Hosihikari.Bindings.Endstone.Interop\Generated"
 $ShimTarget = Join-Path $RepoRoot "native\BindingShim\generated\win-x64-server\endstone"
