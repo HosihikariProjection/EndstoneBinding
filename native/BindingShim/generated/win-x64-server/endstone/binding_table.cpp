@@ -1166,7 +1166,7 @@ catch (...)
 
 static void* hs_get_6558493f() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorDamageEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorDamageEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -1318,7 +1318,7 @@ catch (...)
 
 static void* hs_get_e04f0f07() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorDeathEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorDeathEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -1650,7 +1650,7 @@ catch (...)
 
 static void* hs_get_c597e7fd() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorExplodeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorExplodeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -1817,7 +1817,7 @@ catch (...)
 
 static void* hs_get_153427e7() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorKnockbackEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorKnockbackEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -1939,7 +1939,7 @@ catch (...)
 
 static void* hs_get_2f7506b5() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorRemoveEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorRemoveEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -2061,7 +2061,7 @@ catch (...)
 
 static void* hs_get_6f6cab33() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorSpawnEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorSpawnEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -2183,7 +2183,7 @@ catch (...)
 
 static void* hs_get_a8b96773() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ActorTeleportEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ActorTeleportEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -3479,7 +3479,7 @@ catch (...)
 
 static void* hs_get_9b024e34() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockBreakEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockBreakEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -3662,7 +3662,7 @@ catch (...)
 
 static void* hs_get_b09a94a0() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockCookEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockCookEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -3923,7 +3923,7 @@ catch (...)
 
 static void* hs_get_d0bf76b1() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockExplodeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockExplodeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4075,7 +4075,7 @@ catch (...)
 
 static void* hs_get_7048e210() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockFormEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockFormEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4197,7 +4197,7 @@ catch (...)
 
 static void* hs_get_a76524aa() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockFromToEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockFromToEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4349,7 +4349,7 @@ catch (...)
 
 static void* hs_get_966cb35c() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockGrowEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockGrowEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4561,7 +4561,7 @@ catch (...)
 
 static void* hs_get_4a327ab8() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockPistonExtendEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockPistonExtendEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4683,7 +4683,7 @@ catch (...)
 
 static void* hs_get_1040cf70() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockPistonRetractEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockPistonRetractEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -4805,7 +4805,7 @@ catch (...)
 
 static void* hs_get_c6e39b87() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockPlaceEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockPlaceEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -5141,7 +5141,7 @@ catch (...)
 
 static void* hs_get_2ff5bc98() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BlockType::RegistryType));
+    return const_cast<void*>(static_cast<void const*>(endstone::BlockType::RegistryType));
 }
 catch (std::exception const& hs_error)
 {
@@ -5727,7 +5727,7 @@ catch (...)
 
 static void* hs_get_f24197ce() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::BroadcastMessageEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::BroadcastMessageEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -7379,7 +7379,7 @@ catch (...)
 
 static void* hs_get_c5f2ed6b() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ChunkLoadEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ChunkLoadEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -7501,7 +7501,7 @@ catch (...)
 
 static void* hs_get_178f4963() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ChunkUnloadEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ChunkUnloadEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -11269,7 +11269,7 @@ catch (...)
 
 static void* hs_get_1033e670() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::RegistryType));
+    return const_cast<void*>(static_cast<void const*>(endstone::Enchantment::RegistryType));
 }
 catch (std::exception const& hs_error)
 {
@@ -17026,7 +17026,7 @@ catch (...)
 
 static void* hs_get_83ae15ec() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ItemType::RegistryType));
+    return const_cast<void*>(static_cast<void const*>(endstone::ItemType::RegistryType));
 }
 catch (std::exception const& hs_error)
 {
@@ -17404,7 +17404,7 @@ catch (...)
 
 static void* hs_get_5da12fe5() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::LeavesDecayEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::LeavesDecayEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -18672,7 +18672,7 @@ catch (...)
 
 static void* hs_get_448d8f46() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::MapInitializeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::MapInitializeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -20092,7 +20092,7 @@ catch (...)
 
 static void* hs_get_23676d63() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PacketReceiveEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PacketReceiveEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -20311,7 +20311,7 @@ catch (...)
 
 static void* hs_get_8a66849e() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PacketSendEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PacketSendEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -22604,7 +22604,7 @@ catch (...)
 
 static void* hs_get_d7045c4e() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerBedEnterEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerBedEnterEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -22711,7 +22711,7 @@ catch (...)
 
 static void* hs_get_e7991111() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerBedLeaveEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerBedLeaveEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -22848,7 +22848,7 @@ catch (...)
 
 static void* hs_get_4a1a45ea() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerChatEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerChatEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -23054,7 +23054,7 @@ catch (...)
 
 static void* hs_get_c3418bc9() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerCommandEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerCommandEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -23193,7 +23193,7 @@ catch (...)
 
 static void* hs_get_6c21fa68() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerDeathEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerDeathEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -23335,7 +23335,7 @@ catch (...)
 
 static void* hs_get_da0bdd12() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerDimensionChangeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerDimensionChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -23487,7 +23487,7 @@ catch (...)
 
 static void* hs_get_cc5d87d8() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerDropItemEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerDropItemEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -23624,7 +23624,7 @@ catch (...)
 
 static void* hs_get_8e71f75c() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerEmoteEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerEmoteEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -24183,7 +24183,7 @@ catch (...)
 
 static void* hs_get_42d3d34a() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerGameModeChangeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerGameModeChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -24320,7 +24320,7 @@ catch (...)
 
 static void* hs_get_a26b7c31() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerInteractActorEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerInteractActorEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -24457,7 +24457,7 @@ catch (...)
 
 static void* hs_get_dc89b525() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerInteractEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerInteractEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -24944,7 +24944,7 @@ catch (...)
 
 static void* hs_get_77e0d86d() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerItemConsumeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerItemConsumeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25096,7 +25096,7 @@ catch (...)
 
 static void* hs_get_dc32f986() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerItemHeldEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerItemHeldEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25218,7 +25218,7 @@ catch (...)
 
 static void* hs_get_0935792e() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerJoinEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerJoinEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25390,7 +25390,7 @@ catch (...)
 
 static void* hs_get_80302a8e() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerJumpEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerJumpEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25497,7 +25497,7 @@ catch (...)
 
 static void* hs_get_e1c18cb7() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerKickEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerKickEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25651,7 +25651,7 @@ catch (...)
 
 static void* hs_get_39ac7edc() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerLoginEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerLoginEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -25850,7 +25850,7 @@ catch (...)
 
 static void* hs_get_4223d5c1() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerMoveEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerMoveEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26092,7 +26092,7 @@ catch (...)
 
 static void* hs_get_ee377252() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerPickupItemEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerPickupItemEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26259,7 +26259,7 @@ catch (...)
 
 static void* hs_get_91479d0d() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerPortalEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerPortalEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26336,7 +26336,7 @@ catch (...)
 
 static void* hs_get_6dd8ba88() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerQuitEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerQuitEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26463,7 +26463,7 @@ catch (...)
 
 static void* hs_get_88e469cd() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerRespawnEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerRespawnEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26585,7 +26585,7 @@ catch (...)
 
 static void* hs_get_9305609b() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerSkinChangeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerSkinChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -26787,7 +26787,7 @@ catch (...)
 
 static void* hs_get_6c5522fa() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PlayerTeleportEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PlayerTeleportEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -27531,7 +27531,7 @@ catch (...)
 
 static void* hs_get_b59aead7() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PluginDisableEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PluginDisableEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -27638,7 +27638,7 @@ catch (...)
 
 static void* hs_get_2efd4212() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::PluginEnableEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::PluginEnableEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -30415,7 +30415,7 @@ catch (...)
 
 static void* hs_get_02d83831() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ScriptMessageEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ScriptMessageEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -31333,7 +31333,7 @@ catch (...)
 
 static void* hs_get_53078c88() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ServerCommandEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ServerCommandEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -31517,7 +31517,7 @@ catch (...)
 
 static void* hs_get_68525df2() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ServerListPingEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ServerListPingEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -31917,7 +31917,7 @@ catch (...)
 
 static void* hs_get_99eb7c30() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ServerLoadEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ServerLoadEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -32772,7 +32772,7 @@ catch (...)
 
 static void* hs_get_5463cf9d() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::ThunderChangeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::ThunderChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
@@ -33918,7 +33918,7 @@ catch (...)
 
 static void* hs_get_145d2e9a() try
 {
-    return const_cast<void*>(static_cast<void const*>(&endstone::WeatherChangeEvent::NAME));
+    return const_cast<void*>(static_cast<void const*>(endstone::WeatherChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
 {
