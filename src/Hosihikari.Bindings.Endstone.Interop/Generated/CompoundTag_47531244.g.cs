@@ -38,89 +38,177 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         return __hs_handle;
     }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the class has no accessible destructor.", false)]
-    public static CompoundTag Create() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the class has no accessible destructor.");
+    public static CompoundTag Create()
+    {
+        var handle = NativeMethods.TablePtr->C0.hs_create_8acc024d();
+        if (handle == null)
+        {
+            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+        }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the constructor requires linking against the carrier.", false)]
+        return new CompoundTag((nint)handle);
+    }
+
+    [global::System.Obsolete("BindingShim cannot project this member: by-value record parameter 'std::initializer_list<std::pair<std::basic_string<char>, endstone::nbt::Tag>>' is not a known bindable declaration.", false)]
     public static CompoundTag Create(nint init) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the constructor requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value record parameter 'std::initializer_list<std::pair<std::basic_string<char>, endstone::nbt::Tag>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public nint at_8c20061d(nint key) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_8c20061d(string key)
+    {
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
+        scoped global::System.Span<byte> __hs_stringBytes0;
+        if (__hs_stringByteCount0 <= 256)
+        {
+            __hs_stringBytes0 = stackalloc byte[__hs_stringByteCount0 == 0 ? 1 : __hs_stringByteCount0];
+        }
+        else
+        {
+            __hs_stringBytes0 = new byte[__hs_stringByteCount0];
+        }
+        global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
+        fixed (byte* __hs_stringData0 = __hs_stringBytes0)
+        {
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_8c20061d((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+        }
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public nint at_7dcad8a1(nint key) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_7dcad8a1(string key)
+    {
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
+        scoped global::System.Span<byte> __hs_stringBytes0;
+        if (__hs_stringByteCount0 <= 256)
+        {
+            __hs_stringBytes0 = stackalloc byte[__hs_stringByteCount0 == 0 ? 1 : __hs_stringByteCount0];
+        }
+        else
+        {
+            __hs_stringBytes0 = new byte[__hs_stringByteCount0];
+        }
+        global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
+        fixed (byte* __hs_stringData0 = __hs_stringBytes0)
+        {
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_7dcad8a1((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+        }
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint begin_3461ad24() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint begin_1bdef002() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint cbegin() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint cend() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public void clear() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public void clear()
+    {
+        NativeMethods.TablePtr->C0.hs_method_3b3991bf((void*)__hosihikari_shim_handle);
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public bool contains(nint key) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public bool contains(string key)
+    {
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
+        scoped global::System.Span<byte> __hs_stringBytes0;
+        if (__hs_stringByteCount0 <= 256)
+        {
+            __hs_stringBytes0 = stackalloc byte[__hs_stringByteCount0 == 0 ? 1 : __hs_stringByteCount0];
+        }
+        else
+        {
+            __hs_stringBytes0 = new byte[__hs_stringByteCount0];
+        }
+        global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
+        fixed (byte* __hs_stringData0 = __hs_stringBytes0)
+        {
+            return NativeMethods.TablePtr->C0.hs_method_de544d3b((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0) != 0;
+        }
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public bool empty() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public bool empty()
+    {
+        return NativeMethods.TablePtr->C0.hs_method_0cd11854((void*)__hosihikari_shim_handle) != 0;
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint end_bb03da3c() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_const_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint end_1b606230() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public nint erase_ea08cafc(nint pos) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
+    public nint erase(nint pos) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.", false)]
     public nint erase(nint first, nint last) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::basic_string<char>, endstone::nbt::Tag>>>>' is not a known bindable declaration.");
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public ulong erase_b1b84138(nint key) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public ulong erase(string key)
+    {
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
+        scoped global::System.Span<byte> __hs_stringBytes0;
+        if (__hs_stringByteCount0 <= 256)
+        {
+            __hs_stringBytes0 = stackalloc byte[__hs_stringByteCount0 == 0 ? 1 : __hs_stringByteCount0];
+        }
+        else
+        {
+            __hs_stringBytes0 = new byte[__hs_stringByteCount0];
+        }
+        global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
+        fixed (byte* __hs_stringData0 = __hs_stringBytes0)
+        {
+            return NativeMethods.TablePtr->C0.hs_method_b1b84138((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+        }
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public void merge_16fdd585(nint source) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public void merge_16fdd585(global::Hosihikari.Bindings.Endstone.Interop.endstone.CompoundTag source)
+    {
+        NativeMethods.TablePtr->C0.hs_method_16fdd585((void*)__hosihikari_shim_handle, (void*)source.Handle);
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public void merge_1459df00(nint source) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public void merge_1459df00(global::Hosihikari.Bindings.Endstone.Interop.endstone.CompoundTag source)
+    {
+        NativeMethods.TablePtr->C0.hs_method_1459df00((void*)__hosihikari_shim_handle, (void*)source.Handle);
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public nint operator_index(nint key) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag operator_index(string key)
+    {
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
+        scoped global::System.Span<byte> __hs_stringBytes0;
+        if (__hs_stringByteCount0 <= 256)
+        {
+            __hs_stringBytes0 = stackalloc byte[__hs_stringByteCount0 == 0 ? 1 : __hs_stringByteCount0];
+        }
+        else
+        {
+            __hs_stringBytes0 = new byte[__hs_stringByteCount0];
+        }
+        global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
+        fixed (byte* __hs_stringData0 = __hs_stringBytes0)
+        {
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_1a717656((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+        }
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public ulong size() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public ulong size()
+    {
+        return NativeMethods.TablePtr->C0.hs_method_c0127409((void*)__hosihikari_shim_handle);
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public void swap(nint other) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public void swap(global::Hosihikari.Bindings.Endstone.Interop.endstone.CompoundTag other)
+    {
+        NativeMethods.TablePtr->C0.hs_method_d9d14a48((void*)__hosihikari_shim_handle, (void*)other.Handle);
+    }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
     {

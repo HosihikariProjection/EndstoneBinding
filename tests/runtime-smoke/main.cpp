@@ -36,6 +36,21 @@
 #ifndef HS_ARRAYTAG_INT_DESTROY_INDEX
 #error "HS_ARRAYTAG_INT_DESTROY_INDEX must be defined by build.ps1"
 #endif
+#ifndef HS_COMPOUND_CREATE_INDEX
+#error "HS_COMPOUND_CREATE_INDEX must be defined by build.ps1"
+#endif
+#ifndef HS_COMPOUND_EMPTY_INDEX
+#error "HS_COMPOUND_EMPTY_INDEX must be defined by build.ps1"
+#endif
+#ifndef HS_COMPOUND_CONTAINS_INDEX
+#error "HS_COMPOUND_CONTAINS_INDEX must be defined by build.ps1"
+#endif
+#ifndef HS_COMPOUND_CLEAR_INDEX
+#error "HS_COMPOUND_CLEAR_INDEX must be defined by build.ps1"
+#endif
+#ifndef HS_COMPOUND_DESTROY_INDEX
+#error "HS_COMPOUND_DESTROY_INDEX must be defined by build.ps1"
+#endif
 #ifndef HS_SERVER_PLUGIN_MANAGER_INDEX
 #error "HS_SERVER_PLUGIN_MANAGER_INDEX must be defined by build.ps1"
 #endif
@@ -390,6 +405,26 @@ public:
                 out << "arraytag.int_vector=failed\n";
                 vectorsOk = false;
             }
+
+            // CompoundTag methods are declared in one header and defined inline in another;
+            // this exercises the members the shim now calls through those inline bodies.
+            using CompoundCreateFn = void *(*)();
+            using CompoundContainsFn = bool (*)(void *, const char *, std::size_t);
+            bool compoundOk = false;
+            if (auto *compound = reinterpret_cast<CompoundCreateFn>(slots[HS_COMPOUND_CREATE_INDEX])()) {
+                const auto emptyBefore = reinterpret_cast<BoolMethodFn>(slots[HS_COMPOUND_EMPTY_INDEX])(compound);
+                const auto hasKey = reinterpret_cast<CompoundContainsFn>(slots[HS_COMPOUND_CONTAINS_INDEX])(
+                    compound,
+                    "hosihikari",
+                    10
+                );
+                reinterpret_cast<void (*)(void *)>(slots[HS_COMPOUND_CLEAR_INDEX])(compound);
+                const auto emptyAfter = reinterpret_cast<BoolMethodFn>(slots[HS_COMPOUND_EMPTY_INDEX])(compound);
+                compoundOk = emptyBefore && !hasKey && emptyAfter;
+                reinterpret_cast<DestroyFn>(slots[HS_COMPOUND_DESTROY_INDEX])(compound);
+            }
+
+            out << "nbt.compound=" << (compoundOk ? "ok" : "FAIL") << "\n";
 
             using GetPluginManagerFn = void *(*)(void *);
             using GetPluginsFn = HosihikariArrayView (*)(void *);
@@ -844,8 +879,8 @@ public:
 
             out << "result="
                 << (actualName == server.getName() && actualVersion == server.getVersion() && vectorsOk
-                            && pluginsOk && sharedOk && objectivesOk && containersOk && banRoundTripOk
-                            && variantOk && callableOk
+                            && compoundOk && pluginsOk && sharedOk && objectivesOk && containersOk
+                            && banRoundTripOk && variantOk && callableOk
                         ? "OK"
                         : "FAIL")
                 << "\n";

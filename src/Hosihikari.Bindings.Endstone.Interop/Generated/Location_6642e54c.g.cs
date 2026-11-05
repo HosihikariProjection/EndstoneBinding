@@ -43,13 +43,16 @@ public sealed unsafe partial class Location : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_8831f6a1((void*)__hosihikari_shim_handle, (void*)other.Handle);
     }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public float distanceSquared(nint other) =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public float distanceSquared(global::Hosihikari.Bindings.Endstone.Interop.endstone.Location other)
+    {
+        return NativeMethods.TablePtr->C0.hs_method_0622d069((void*)__hosihikari_shim_handle, (void*)other.Handle);
+    }
 
-    [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
-    public nint getBlock() =>
-        throw new global::System.NotSupportedException("BindingShim cannot project this member: the member requires linking against the carrier.");
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Block? getBlock()
+    {
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_649e1ae4((void*)__hosihikari_shim_handle);
+        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Block((nint)__hs_handle) : null;
+    }
 
     public int getBlockX()
     {
