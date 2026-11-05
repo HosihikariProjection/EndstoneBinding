@@ -325,4 +325,40 @@ public static unsafe partial class Functions
     {
         return NativeMethods.TablePtr->C0.hs_function_f4ec86ec((void*)a, (void*)b.Handle) != 0;
     }
+
+    [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'endstone::nbt::escape_view' requires --link-carrier or --virtual-dispatch.", false)]
+    public static nint escaped(nint value) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'endstone::nbt::escape_view' requires --link-carrier or --virtual-dispatch.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_equal_34296224(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_equal_5b09902b(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_equal_8da019ab(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_equal_f13da4e1(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_not_equal_20dae79e(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_not_equal_392a6ca0(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_not_equal_55721ada(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the parameter type is not supported by a free function.", false)]
+    public static bool operator_not_equal_b9212a01(nint a, nint b) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the parameter type is not supported by a free function.");
 }

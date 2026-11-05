@@ -30,4 +30,20 @@ public static unsafe partial class Functions
             return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
         }
     }
+
+    [global::System.Obsolete("BindingShim cannot project this member: the function is not exported by the carrier.", false)]
+    public static nint join_2958f03a(nint begin, nint end, nint sep) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the function is not exported by the carrier.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the function is not exported by the carrier.", false)]
+    public static nint join_7a1852a2(nint begin, nint end, nint sep) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the function is not exported by the carrier.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the function is not exported by the carrier.", false)]
+    public static nint join_ba0a5771(nint begin, nint end, nint sep) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the function is not exported by the carrier.");
+
+    [global::System.Obsolete("BindingShim cannot project this member: the function is not exported by the carrier.", false)]
+    public static nint join_bbf31f61(nint begin, nint end, nint sep) =>
+        throw new global::System.NotSupportedException("BindingShim cannot project this member: the function is not exported by the carrier.");
 }
