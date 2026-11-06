@@ -1,7 +1,7 @@
 param(
     [string]$EndstoneRoot = "",
     [string]$GeneratorRoot = "",
-    [string]$LlvmRoot = "$env:LOCALAPPDATA\Temp\hosihikari-llvm\clang+llvm-23.1.3-x86_64-pc-windows-msvc",
+    [string]$LlvmRoot = "$env:LOCALAPPDATA\Temp\hosihikari-llvm\clang+llvm-23.1.0-x86_64-pc-windows-msvc",
     [string]$Output = "artifacts/native"
 )
 if ([string]::IsNullOrWhiteSpace($EndstoneRoot)) {
