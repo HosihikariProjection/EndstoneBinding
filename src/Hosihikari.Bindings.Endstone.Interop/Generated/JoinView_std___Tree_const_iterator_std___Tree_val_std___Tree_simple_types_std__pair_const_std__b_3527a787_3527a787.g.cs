@@ -22,6 +22,8 @@ public sealed partial class JoinView_std___Tree_const_iterator_std___Tree_val_st
 
     public nint Handle => __hosihikari_shim_handle;
 
+    internal bool OwnsHandle => _ownsHandle;
+
     internal nint ReleaseHandle()
     {
         if (__hosihikari_shim_handle == 0)
