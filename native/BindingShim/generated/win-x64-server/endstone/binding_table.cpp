@@ -194,6 +194,27 @@ inline std::vector<std::basic_string_view<char>> hs_make_string_view_vector(Hosi
     return result;
 }
 
+template <class T>
+void hs_release_game_ref_handle(void* holder)
+{
+    delete static_cast<T*>(holder);
+}
+
+template <class T>
+HosihikariSharedHandle hs_make_game_ref_handle(T const& value)
+{
+    if (!static_cast<bool>(value)) { return HosihikariSharedHandle{nullptr, nullptr, nullptr}; }
+    auto* holder = new T(value);
+    return HosihikariSharedHandle{holder, const_cast<void*>(static_cast<void const*>(&*holder)), &hs_release_game_ref_handle<T>};
+}
+
+template <class T>
+T const& hs_game_ref_from_handle(HosihikariSharedHandle handle)
+{
+    if (handle.holder == nullptr) { throw std::invalid_argument("empty game reference handle"); }
+    return *static_cast<T const*>(handle.holder);
+}
+
 static void hs_callable_7a4e965f_destroy(void* hs_self) try
 {
     delete static_cast<std::function<void (const endstone::PermissionAttachment &)>*>(hs_self);
@@ -441,7 +462,7 @@ catch (...)
 
 static void* hs_method_9d857e16(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::ActionForm*>(hs_self)->getContent()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::ActionForm const*>(hs_self)->getContent()));
 }
 catch (std::exception const& hs_error)
 {
@@ -456,7 +477,7 @@ catch (...)
 
 static void* hs_method_d5090347(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->getControls()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm const*>(hs_self)->getControls()));
 }
 catch (std::exception const& hs_error)
 {
@@ -471,7 +492,7 @@ catch (...)
 
 static void* hs_method_fd0890fa(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::ActionForm*>(hs_self)->getOnSubmit()));
+    return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::ActionForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
 {
@@ -626,7 +647,7 @@ catch (...)
 
 static bool hs_method_96acbd59(void* hs_self, const char* tag_data, std::size_t tag_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->addScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->addScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -641,7 +662,7 @@ catch (...)
 
 static void* hs_method_47bed08e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor*>(hs_self)->asItem()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor const*>(hs_self)->asItem()));
 }
 catch (std::exception const& hs_error)
 {
@@ -656,7 +677,7 @@ catch (...)
 
 static void* hs_method_cbd9f7e3(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor*>(hs_self)->asMob()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor const*>(hs_self)->asMob()));
 }
 catch (std::exception const& hs_error)
 {
@@ -671,7 +692,7 @@ catch (...)
 
 static void* hs_method_90c185c9(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -686,7 +707,7 @@ catch (...)
 
 static std::int64_t hs_method_e75fec06(void* hs_self) try
 {
-    return static_cast<std::int64_t>(static_cast<endstone::Actor*>(hs_self)->getId());
+    return static_cast<std::int64_t>(static_cast<endstone::Actor const*>(hs_self)->getId());
 }
 catch (std::exception const& hs_error)
 {
@@ -701,7 +722,7 @@ catch (...)
 
 static void* hs_method_2c4264aa(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -716,7 +737,7 @@ catch (...)
 
 static void* hs_method_a3a383ab(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Actor*>(hs_self)->getLocation()));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Actor const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
 {
@@ -731,7 +752,7 @@ catch (...)
 
 static HosihikariStringView hs_method_52274c94(void* hs_self) try
 {
-    auto result = static_cast<endstone::Actor*>(hs_self)->getNameTag();
+    auto result = static_cast<endstone::Actor const*>(hs_self)->getNameTag();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -748,7 +769,7 @@ catch (...)
 
 static std::uint64_t hs_method_421c8c76(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::Actor*>(hs_self)->getRuntimeId());
+    return static_cast<std::uint64_t>(static_cast<endstone::Actor const*>(hs_self)->getRuntimeId());
 }
 catch (std::exception const& hs_error)
 {
@@ -763,7 +784,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f1586fb(void* hs_self) try
 {
-    auto result = static_cast<endstone::Actor*>(hs_self)->getScoreTag();
+    auto result = static_cast<endstone::Actor const*>(hs_self)->getScoreTag();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -782,7 +803,7 @@ static HosihikariArrayView hs_method_f4fc1248(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::Actor*>(hs_self)->getScoreboardTags();
+    auto result = static_cast<endstone::Actor const*>(hs_self)->getScoreboardTags();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -804,7 +825,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a25bf094(void* hs_self) try
 {
-    auto result = static_cast<endstone::Actor*>(hs_self)->getType();
+    auto result = static_cast<endstone::Actor const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -821,7 +842,7 @@ catch (...)
 
 static void* hs_method_66649264(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Actor*>(hs_self)->getVelocity()));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Actor const*>(hs_self)->getVelocity()));
 }
 catch (std::exception const& hs_error)
 {
@@ -836,7 +857,7 @@ catch (...)
 
 static bool hs_method_bd047ad0(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isDead());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isDead());
 }
 catch (std::exception const& hs_error)
 {
@@ -851,7 +872,7 @@ catch (...)
 
 static bool hs_method_ead096dd(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isInLava());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isInLava());
 }
 catch (std::exception const& hs_error)
 {
@@ -866,7 +887,7 @@ catch (...)
 
 static bool hs_method_80040a41(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isInWater());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isInWater());
 }
 catch (std::exception const& hs_error)
 {
@@ -881,7 +902,7 @@ catch (...)
 
 static bool hs_method_43e8d43c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isNameTagAlwaysVisible());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isNameTagAlwaysVisible());
 }
 catch (std::exception const& hs_error)
 {
@@ -896,7 +917,7 @@ catch (...)
 
 static bool hs_method_110331fd(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isNameTagVisible());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isNameTagVisible());
 }
 catch (std::exception const& hs_error)
 {
@@ -911,7 +932,7 @@ catch (...)
 
 static bool hs_method_1a019155(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isOnGround());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isOnGround());
 }
 catch (std::exception const& hs_error)
 {
@@ -926,7 +947,7 @@ catch (...)
 
 static bool hs_method_4566329b(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->isValid());
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isValid());
 }
 catch (std::exception const& hs_error)
 {
@@ -956,7 +977,7 @@ catch (...)
 
 static bool hs_method_157784ca(void* hs_self, const char* tag_data, std::size_t tag_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->removeScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
+    return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->removeScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -1181,7 +1202,7 @@ catch (...)
 
 static float hs_method_9c13068e(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::ActorDamageEvent*>(hs_self)->getDamage());
+    return static_cast<float>(static_cast<endstone::ActorDamageEvent const*>(hs_self)->getDamage());
 }
 catch (std::exception const& hs_error)
 {
@@ -1196,7 +1217,7 @@ catch (...)
 
 static void* hs_method_cb6b8ac2(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDamageEvent*>(hs_self)->getDamageSource()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDamageEvent const*>(hs_self)->getDamageSource()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1211,7 +1232,7 @@ catch (...)
 
 static HosihikariStringView hs_method_68e835a4(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorDamageEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorDamageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -1333,7 +1354,7 @@ catch (...)
 
 static void* hs_method_a099264e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDeathEvent*>(hs_self)->getDamageSource()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDeathEvent const*>(hs_self)->getDamageSource()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1348,7 +1369,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3767e45d(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorDeathEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorDeathEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -1455,7 +1476,7 @@ catch (...)
 
 static void* hs_method_8cff3adf(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self)->getActor()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Actor> const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1560,7 +1581,7 @@ catch (...)
 
 static void* hs_method_42208d88(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self)->getActor()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Mob> const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1665,7 +1686,7 @@ catch (...)
 
 static void* hs_method_8f4da3d9(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent*>(hs_self)->getBlockList()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1695,7 +1716,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f00b792d(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorExplodeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -1712,7 +1733,7 @@ catch (...)
 
 static void* hs_method_7039c3d9(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent*>(hs_self)->getLocation()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1832,7 +1853,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7da699f1(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorKnockbackEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -1849,7 +1870,7 @@ catch (...)
 
 static void* hs_method_9ffe5f0b(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::ActorKnockbackEvent*>(hs_self)->getKnockback()));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getKnockback()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1864,7 +1885,7 @@ catch (...)
 
 static void* hs_method_825022fe(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::ActorKnockbackEvent*>(hs_self)->getSource()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getSource()));
 }
 catch (std::exception const& hs_error)
 {
@@ -1954,7 +1975,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c194c101(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorRemoveEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorRemoveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2076,7 +2097,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e43e08f7(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorSpawnEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorSpawnEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2198,7 +2219,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a55acdca(void* hs_self) try
 {
-    auto result = static_cast<endstone::ActorTeleportEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2215,7 +2236,7 @@ catch (...)
 
 static void* hs_method_eb5fe6a7(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent*>(hs_self)->getFrom()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
 {
@@ -2230,7 +2251,7 @@ catch (...)
 
 static void* hs_method_bdc1a24d(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent*>(hs_self)->getTo()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
 {
@@ -2545,7 +2566,7 @@ catch (...)
 
 static float hs_method_cf3e205f(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::AttributeInstance*>(hs_self)->getBaseValue());
+    return static_cast<float>(static_cast<endstone::AttributeInstance const*>(hs_self)->getBaseValue());
 }
 catch (std::exception const& hs_error)
 {
@@ -2561,7 +2582,7 @@ catch (...)
 static HosihikariArrayView hs_method_71e01c4c(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::AttributeInstance*>(hs_self)->getModifiers();
+    auto result = static_cast<endstone::AttributeInstance const*>(hs_self)->getModifiers();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new endstone::AttributeModifier(item))); }
@@ -2580,7 +2601,7 @@ catch (...)
 
 static void* hs_method_755320b4(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::Attribute>(static_cast<endstone::AttributeInstance*>(hs_self)->getType()));
+    return static_cast<void*>(new endstone::Identifier<endstone::Attribute>(static_cast<endstone::AttributeInstance const*>(hs_self)->getType()));
 }
 catch (std::exception const& hs_error)
 {
@@ -2595,7 +2616,7 @@ catch (...)
 
 static float hs_method_8f965183(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::AttributeInstance*>(hs_self)->getValue());
+    return static_cast<float>(static_cast<endstone::AttributeInstance const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
 {
@@ -2685,7 +2706,7 @@ catch (...)
 
 static float hs_method_7195aeb9(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::AttributeModifier*>(hs_self)->getAmount());
+    return static_cast<float>(static_cast<endstone::AttributeModifier const*>(hs_self)->getAmount());
 }
 catch (std::exception const& hs_error)
 {
@@ -2700,7 +2721,7 @@ catch (...)
 
 static HosihikariStringView hs_method_da791c2e(void* hs_self) try
 {
-    auto result = static_cast<endstone::AttributeModifier*>(hs_self)->getName();
+    auto result = static_cast<endstone::AttributeModifier const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2717,7 +2738,7 @@ catch (...)
 
 static std::int32_t hs_method_7086e74a(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::AttributeModifier*>(hs_self)->getOperation());
+    return static_cast<std::int32_t>(static_cast<endstone::AttributeModifier const*>(hs_self)->getOperation());
 }
 catch (std::exception const& hs_error)
 {
@@ -2732,7 +2753,7 @@ catch (...)
 
 static void* hs_method_8a078c40(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::UUID(static_cast<endstone::AttributeModifier*>(hs_self)->getUniqueId()));
+    return static_cast<void*>(new endstone::UUID(static_cast<endstone::AttributeModifier const*>(hs_self)->getUniqueId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -2778,7 +2799,7 @@ catch (...)
 
 static std::int64_t hs_method_ca474207(void* hs_self) try
 {
-    return static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((static_cast<endstone::BanEntry*>(hs_self)->getCreated()).time_since_epoch()).count());
+    return static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((static_cast<endstone::BanEntry const*>(hs_self)->getCreated()).time_since_epoch()).count());
 }
 catch (std::exception const& hs_error)
 {
@@ -2793,7 +2814,7 @@ catch (...)
 
 static std::int64_t hs_method_9931b4a6(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::BanEntry*>(hs_self)->getExpiration();
+    auto result = static_cast<endstone::BanEntry const*>(hs_self)->getExpiration();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((*result).time_since_epoch()).count()) : std::int64_t{0};
 }
@@ -2812,7 +2833,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c99f83bc(void* hs_self) try
 {
-    auto result = static_cast<endstone::BanEntry*>(hs_self)->getReason();
+    auto result = static_cast<endstone::BanEntry const*>(hs_self)->getReason();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2829,7 +2850,7 @@ catch (...)
 
 static HosihikariStringView hs_method_10758bad(void* hs_self) try
 {
-    auto result = static_cast<endstone::BanEntry*>(hs_self)->getSource();
+    auto result = static_cast<endstone::BanEntry const*>(hs_self)->getSource();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -2951,7 +2972,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_9c067d7e(void* hs_self, const char* target_data, std::size_t target_size) try
 {
-    return hs_make_shared_handle((static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
+    return hs_make_shared_handle((static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
 }
 catch (std::exception const& hs_error)
 {
@@ -2967,7 +2988,7 @@ catch (...)
 static HosihikariArrayView hs_method_744f42c5(void* hs_self) try
 {
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
-    auto result = static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->getEntries();
+    auto result = static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
     hs_arrayShared.reserve(result.size());
     for (auto const& item : result) { hs_arrayShared.push_back(hs_make_shared_handle(item.get())); }
@@ -2986,7 +3007,7 @@ catch (...)
 
 static bool hs_method_2b4b4759(void* hs_self, const char* target_data, std::size_t target_size) try
 {
-    return static_cast<bool>(static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
+    return static_cast<bool>(static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -3061,7 +3082,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_b75217ef(void* hs_self, const char* target_data, std::size_t target_size) try
 {
-    return hs_make_shared_handle((static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
+    return hs_make_shared_handle((static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
 }
 catch (std::exception const& hs_error)
 {
@@ -3077,7 +3098,7 @@ catch (...)
 static HosihikariArrayView hs_method_9156ed58(void* hs_self) try
 {
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
-    auto result = static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->getEntries();
+    auto result = static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
     hs_arrayShared.reserve(result.size());
     for (auto const& item : result) { hs_arrayShared.push_back(hs_make_shared_handle(item.get())); }
@@ -3096,7 +3117,7 @@ catch (...)
 
 static bool hs_method_5b738ea9(void* hs_self, const char* target_data, std::size_t target_size) try
 {
-    return static_cast<bool>(static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
+    return static_cast<bool>(static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -3141,7 +3162,7 @@ catch (...)
 
 static void* hs_method_809bcc46(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::Block*>(hs_self)->captureState();
+    auto hs_result = static_cast<endstone::Block const*>(hs_self)->captureState();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -3157,7 +3178,7 @@ catch (...)
 
 static void* hs_method_e21e21fc(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::Block*>(hs_self)->clone();
+    auto hs_result = static_cast<endstone::Block const*>(hs_self)->clone();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -3173,7 +3194,7 @@ catch (...)
 
 static void* hs_method_3b999d50(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::Block*>(hs_self)->getData();
+    auto hs_result = static_cast<endstone::Block const*>(hs_self)->getData();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -3189,7 +3210,7 @@ catch (...)
 
 static void* hs_method_89761637(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Block*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Block const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3204,7 +3225,7 @@ catch (...)
 
 static void* hs_method_4dca9f70(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Block*>(hs_self)->getLocation()));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Block const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3267,7 +3288,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d894e3eb(void* hs_self) try
 {
-    auto result = static_cast<endstone::Block*>(hs_self)->getType();
+    auto result = static_cast<endstone::Block const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -3284,7 +3305,7 @@ catch (...)
 
 static std::int32_t hs_method_cbcdda48(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Block*>(hs_self)->getX());
+    return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -3299,7 +3320,7 @@ catch (...)
 
 static std::int32_t hs_method_f89dfd25(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Block*>(hs_self)->getY());
+    return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
 {
@@ -3314,7 +3335,7 @@ catch (...)
 
 static std::int32_t hs_method_c5bb5933(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Block*>(hs_self)->getZ());
+    return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -3494,7 +3515,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f99f9261(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockBreakEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockBreakEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -3511,7 +3532,7 @@ catch (...)
 
 static void* hs_method_24767f40(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockBreakEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockBreakEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3556,7 +3577,7 @@ catch (...)
 
 static void* hs_method_b1c439de(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::BlockCommandSender*>(hs_self)->getBlock();
+    auto hs_result = static_cast<endstone::BlockCommandSender const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -3677,7 +3698,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5825985b(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockCookEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockCookEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -3694,7 +3715,7 @@ catch (...)
 
 static void* hs_method_0689da9d(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent*>(hs_self)->getResult()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent const*>(hs_self)->getResult()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3709,7 +3730,7 @@ catch (...)
 
 static void* hs_method_6cf59d58(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent*>(hs_self)->getSource()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent const*>(hs_self)->getSource()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3756,7 +3777,7 @@ static HosihikariArrayView hs_method_96f1d991(void* hs_self) try
 {
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
-    auto result = static_cast<endstone::BlockData*>(hs_self)->getBlockStates();
+    auto result = static_cast<endstone::BlockData const*>(hs_self)->getBlockStates();
     hs_mapEntries.clear();
     hs_mapEntries.reserve(result.size());
     hs_mapStrings.clear();
@@ -3786,7 +3807,7 @@ catch (...)
 
 static std::uint32_t hs_method_e9f183e7(void* hs_self) try
 {
-    return static_cast<std::uint32_t>(static_cast<endstone::BlockData*>(hs_self)->getRuntimeId());
+    return static_cast<std::uint32_t>(static_cast<endstone::BlockData const*>(hs_self)->getRuntimeId());
 }
 catch (std::exception const& hs_error)
 {
@@ -3801,7 +3822,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e9b5ba69(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockData*>(hs_self)->getType();
+    auto result = static_cast<endstone::BlockData const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -3833,7 +3854,7 @@ catch (...)
 
 static void* hs_method_bfa4698d(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockEvent*>(hs_self)->getBlock()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockEvent const*>(hs_self)->getBlock()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3938,7 +3959,7 @@ catch (...)
 
 static void* hs_method_0b36dd73(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockExplodeEvent*>(hs_self)->getBlockList()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockExplodeEvent const*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
 {
@@ -3968,7 +3989,7 @@ catch (...)
 
 static HosihikariStringView hs_method_311d3f55(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockExplodeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockExplodeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4090,7 +4111,7 @@ catch (...)
 
 static HosihikariStringView hs_method_fb399834(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockFormEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockFormEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4212,7 +4233,7 @@ catch (...)
 
 static HosihikariStringView hs_method_54b34f20(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockFromToEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockFromToEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4229,7 +4250,7 @@ catch (...)
 
 static void* hs_method_2b60a963(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockFromToEvent*>(hs_self)->getToBlock()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockFromToEvent const*>(hs_self)->getToBlock()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4364,7 +4385,7 @@ catch (...)
 
 static HosihikariStringView hs_method_fab7e267(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockGrowEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockGrowEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4381,7 +4402,7 @@ catch (...)
 
 static void* hs_method_5f72ffd4(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockGrowEvent*>(hs_self)->getNewState()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockGrowEvent const*>(hs_self)->getNewState()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4456,7 +4477,7 @@ catch (...)
 
 static std::int32_t hs_method_6b2d2c9f(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BlockPistonEvent*>(hs_self)->getDirection());
+    return static_cast<std::int32_t>(static_cast<endstone::BlockPistonEvent const*>(hs_self)->getDirection());
 }
 catch (std::exception const& hs_error)
 {
@@ -4576,7 +4597,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e6a080b1(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockPistonExtendEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockPistonExtendEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4698,7 +4719,7 @@ catch (...)
 
 static HosihikariStringView hs_method_110c8164(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockPistonRetractEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockPistonRetractEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4820,7 +4841,7 @@ catch (...)
 
 static void* hs_method_64f7e745(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent*>(hs_self)->getBlockAgainst()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockAgainst()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4835,7 +4856,7 @@ catch (...)
 
 static void* hs_method_5683151f(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent*>(hs_self)->getBlockPlacedState()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockPlacedState()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4850,7 +4871,7 @@ catch (...)
 
 static void* hs_method_98b47dc7(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent*>(hs_self)->getBlockReplaced()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockReplaced()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4865,7 +4886,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a8c10a60(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockPlaceEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4882,7 +4903,7 @@ catch (...)
 
 static void* hs_method_2c710588(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4912,7 +4933,7 @@ catch (...)
 
 static void* hs_method_7aec47b6(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::BlockState*>(hs_self)->getBlock();
+    auto hs_result = static_cast<endstone::BlockState const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -4928,7 +4949,7 @@ catch (...)
 
 static void* hs_method_ea3eebb2(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::BlockState*>(hs_self)->getData();
+    auto hs_result = static_cast<endstone::BlockState const*>(hs_self)->getData();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -4944,7 +4965,7 @@ catch (...)
 
 static void* hs_method_364f3508(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockState*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockState const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4959,7 +4980,7 @@ catch (...)
 
 static void* hs_method_d65dc0f8(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::BlockState*>(hs_self)->getLocation()));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::BlockState const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
 {
@@ -4974,7 +4995,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8783cb22(void* hs_self) try
 {
-    auto result = static_cast<endstone::BlockState*>(hs_self)->getType();
+    auto result = static_cast<endstone::BlockState const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -4991,7 +5012,7 @@ catch (...)
 
 static std::int32_t hs_method_b7396a05(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BlockState*>(hs_self)->getX());
+    return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -5006,7 +5027,7 @@ catch (...)
 
 static std::int32_t hs_method_f6c69285(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BlockState*>(hs_self)->getY());
+    return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
 {
@@ -5021,7 +5042,7 @@ catch (...)
 
 static std::int32_t hs_method_23140121(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BlockState*>(hs_self)->getZ());
+    return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -5156,7 +5177,7 @@ catch (...)
 
 static void* hs_method_37b94a7d(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::BlockType*>(hs_self)->createBlockData();
+    auto hs_result = static_cast<endstone::BlockType const*>(hs_self)->createBlockData();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -5172,7 +5193,7 @@ catch (...)
 
 static bool hs_method_9375ea5f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::BlockType*>(hs_self)->hasItemType());
+    return static_cast<bool>(static_cast<endstone::BlockType const*>(hs_self)->hasItemType());
 }
 catch (std::exception const& hs_error)
 {
@@ -5232,7 +5253,7 @@ catch (...)
 
 static HosihikariStringView hs_method_bc9be099(void* hs_self) try
 {
-    auto result = static_cast<endstone::BookMeta*>(hs_self)->getAuthor();
+    auto result = static_cast<endstone::BookMeta const*>(hs_self)->getAuthor();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -5249,7 +5270,7 @@ catch (...)
 
 static std::int32_t hs_method_ed1b4877(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::BookMeta*>(hs_self)->getGeneration();
+    auto result = static_cast<endstone::BookMeta const*>(hs_self)->getGeneration();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
 }
@@ -5268,7 +5289,7 @@ catch (...)
 
 static HosihikariStringView hs_method_414649b7(void* hs_self) try
 {
-    auto result = static_cast<endstone::BookMeta*>(hs_self)->getTitle();
+    auto result = static_cast<endstone::BookMeta const*>(hs_self)->getTitle();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -5285,7 +5306,7 @@ catch (...)
 
 static bool hs_method_a6474ca8(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::BookMeta*>(hs_self)->hasAuthor());
+    return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasAuthor());
 }
 catch (std::exception const& hs_error)
 {
@@ -5300,7 +5321,7 @@ catch (...)
 
 static bool hs_method_9b523c2c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::BookMeta*>(hs_self)->hasGeneration());
+    return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasGeneration());
 }
 catch (std::exception const& hs_error)
 {
@@ -5315,7 +5336,7 @@ catch (...)
 
 static bool hs_method_8a9362cc(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::BookMeta*>(hs_self)->hasTitle());
+    return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasTitle());
 }
 catch (std::exception const& hs_error)
 {
@@ -5420,7 +5441,7 @@ catch (...)
 
 static std::int32_t hs_method_88d1b0e9(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BossBar*>(hs_self)->getColor());
+    return static_cast<std::int32_t>(static_cast<endstone::BossBar const*>(hs_self)->getColor());
 }
 catch (std::exception const& hs_error)
 {
@@ -5436,7 +5457,7 @@ catch (...)
 static HosihikariArrayView hs_method_5d17cef2(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::BossBar*>(hs_self)->getPlayers();
+    auto result = static_cast<endstone::BossBar const*>(hs_self)->getPlayers();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -5455,7 +5476,7 @@ catch (...)
 
 static float hs_method_dfb0f633(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::BossBar*>(hs_self)->getProgress());
+    return static_cast<float>(static_cast<endstone::BossBar const*>(hs_self)->getProgress());
 }
 catch (std::exception const& hs_error)
 {
@@ -5470,7 +5491,7 @@ catch (...)
 
 static std::int32_t hs_method_269db81f(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::BossBar*>(hs_self)->getStyle());
+    return static_cast<std::int32_t>(static_cast<endstone::BossBar const*>(hs_self)->getStyle());
 }
 catch (std::exception const& hs_error)
 {
@@ -5485,7 +5506,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3df48de6(void* hs_self) try
 {
-    auto result = static_cast<endstone::BossBar*>(hs_self)->getTitle();
+    auto result = static_cast<endstone::BossBar const*>(hs_self)->getTitle();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -5502,7 +5523,7 @@ catch (...)
 
 static bool hs_method_67f21c42(void* hs_self, std::int32_t flag) try
 {
-    return static_cast<bool>(static_cast<endstone::BossBar*>(hs_self)->hasFlag(static_cast<endstone::BarFlag>(flag)));
+    return static_cast<bool>(static_cast<endstone::BossBar const*>(hs_self)->hasFlag(static_cast<endstone::BarFlag>(flag)));
 }
 catch (std::exception const& hs_error)
 {
@@ -5517,7 +5538,7 @@ catch (...)
 
 static bool hs_method_a7098d5e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::BossBar*>(hs_self)->isVisible());
+    return static_cast<bool>(static_cast<endstone::BossBar const*>(hs_self)->isVisible());
 }
 catch (std::exception const& hs_error)
 {
@@ -5742,7 +5763,7 @@ catch (...)
 
 static HosihikariStringView hs_method_403b3efd(void* hs_self) try
 {
-    auto result = static_cast<endstone::BroadcastMessageEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -5759,7 +5780,7 @@ catch (...)
 
 static void* hs_method_e5bc84d3(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::BroadcastMessageEvent*>(hs_self)->getMessage()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getMessage()));
 }
 catch (std::exception const& hs_error)
 {
@@ -5774,7 +5795,7 @@ catch (...)
 
 static void* hs_method_ed51ea87(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BroadcastMessageEvent*>(hs_self)->getRecipients()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getRecipients()));
 }
 catch (std::exception const& hs_error)
 {
@@ -5869,7 +5890,7 @@ catch (...)
 
 static HosihikariStringView hs_method_694a6369(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Button*>(hs_self)->getIcon();
+    auto result = static_cast<endstone::Button const*>(hs_self)->getIcon();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5889,7 +5910,7 @@ catch (...)
 
 static void* hs_method_b6343190(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Button*>(hs_self)->getOnClick()));
+    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Button const*>(hs_self)->getOnClick()));
 }
 catch (std::exception const& hs_error)
 {
@@ -5904,7 +5925,7 @@ catch (...)
 
 static void* hs_method_b2627229(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Button*>(hs_self)->getText()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Button const*>(hs_self)->getText()));
 }
 catch (std::exception const& hs_error)
 {
@@ -6089,7 +6110,7 @@ catch (...)
 
 static bool hs_method_625b3e48(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -6209,7 +6230,7 @@ catch (...)
 
 static bool hs_method_3708f584(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -6464,7 +6485,7 @@ catch (...)
 
 static bool hs_method_1e85b26f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::BlockEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -6824,7 +6845,7 @@ catch (...)
 
 static bool hs_method_7f1b7aaf(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::PlayerEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -7004,7 +7025,7 @@ catch (...)
 
 static bool hs_method_087f3d74(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ServerEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -7124,7 +7145,7 @@ catch (...)
 
 static bool hs_method_6db9fa6c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Cancellable<endstone::WeatherEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -7169,7 +7190,7 @@ catch (...)
 
 static void* hs_method_23a6e21d(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -7184,7 +7205,7 @@ catch (...)
 
 static void* hs_method_45353431(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -7199,7 +7220,7 @@ catch (...)
 
 static std::int32_t hs_method_5dd743e3(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Chunk*>(hs_self)->getX());
+    return static_cast<std::int32_t>(static_cast<endstone::Chunk const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -7214,7 +7235,7 @@ catch (...)
 
 static std::int32_t hs_method_88e69e6d(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Chunk*>(hs_self)->getZ());
+    return static_cast<std::int32_t>(static_cast<endstone::Chunk const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -7274,7 +7295,7 @@ catch (...)
 
 static void* hs_method_c7604b5b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ChunkEvent*>(hs_self)->getChunk()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ChunkEvent const*>(hs_self)->getChunk()));
 }
 catch (std::exception const& hs_error)
 {
@@ -7394,7 +7415,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd219c55(void* hs_self) try
 {
-    auto result = static_cast<endstone::ChunkLoadEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ChunkLoadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -7516,7 +7537,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a8e1a5dd(void* hs_self) try
 {
-    auto result = static_cast<endstone::ChunkUnloadEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ChunkUnloadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -7563,7 +7584,7 @@ catch (...)
 
 static std::int32_t hs_method_c6e20247(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->asABGR());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asABGR());
 }
 catch (std::exception const& hs_error)
 {
@@ -7578,7 +7599,7 @@ catch (...)
 
 static std::int32_t hs_method_3a6d50d8(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->asBGR());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asBGR());
 }
 catch (std::exception const& hs_error)
 {
@@ -7593,7 +7614,7 @@ catch (...)
 
 static std::int32_t hs_method_fe1bd8a8(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->asRGB());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asRGB());
 }
 catch (std::exception const& hs_error)
 {
@@ -7608,7 +7629,7 @@ catch (...)
 
 static std::int32_t hs_method_5f9b09ba(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->asRGBA());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asRGBA());
 }
 catch (std::exception const& hs_error)
 {
@@ -7728,7 +7749,7 @@ catch (...)
 
 static std::int32_t hs_method_ec53d5b8(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->getAlpha());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getAlpha());
 }
 catch (std::exception const& hs_error)
 {
@@ -7743,7 +7764,7 @@ catch (...)
 
 static std::int32_t hs_method_868e3c39(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->getBlue());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getBlue());
 }
 catch (std::exception const& hs_error)
 {
@@ -7758,7 +7779,7 @@ catch (...)
 
 static std::int32_t hs_method_42c0196e(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->getGreen());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getGreen());
 }
 catch (std::exception const& hs_error)
 {
@@ -7773,7 +7794,7 @@ catch (...)
 
 static std::int32_t hs_method_1a1f9a7c(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Color*>(hs_self)->getRed());
+    return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getRed());
 }
 catch (std::exception const& hs_error)
 {
@@ -7788,7 +7809,7 @@ catch (...)
 
 static bool hs_method_88cb059a(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Color*>(hs_self)->operator!=(*static_cast<const endstone::Color*>(other)));
+    return static_cast<bool>(static_cast<endstone::Color const*>(hs_self)->operator!=(*static_cast<const endstone::Color*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -7803,7 +7824,7 @@ catch (...)
 
 static bool hs_method_61844f16(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Color*>(hs_self)->operator==(*static_cast<const endstone::Color*>(other)));
+    return static_cast<bool>(static_cast<endstone::Color const*>(hs_self)->operator==(*static_cast<const endstone::Color*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -7818,7 +7839,7 @@ catch (...)
 
 static void* hs_method_bc8aa569(void* hs_self, std::int32_t alpha) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color*>(hs_self)->setAlpha(static_cast<const int>(alpha))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setAlpha(static_cast<const int>(alpha))));
 }
 catch (std::exception const& hs_error)
 {
@@ -7833,7 +7854,7 @@ catch (...)
 
 static void* hs_method_d6a9db7c(void* hs_self, std::int32_t blue) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color*>(hs_self)->setBlue(static_cast<const int>(blue))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setBlue(static_cast<const int>(blue))));
 }
 catch (std::exception const& hs_error)
 {
@@ -7848,7 +7869,7 @@ catch (...)
 
 static void* hs_method_02ff922e(void* hs_self, std::int32_t green) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color*>(hs_self)->setGreen(static_cast<const int>(green))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setGreen(static_cast<const int>(green))));
 }
 catch (std::exception const& hs_error)
 {
@@ -7863,7 +7884,7 @@ catch (...)
 
 static void* hs_method_b6ae91e5(void* hs_self, std::int32_t red) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color*>(hs_self)->setRed(static_cast<const int>(red))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setRed(static_cast<const int>(red))));
 }
 catch (std::exception const& hs_error)
 {
@@ -8511,7 +8532,7 @@ catch (...)
 
 static void* hs_method_258d436e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Command*>(hs_self)->asPluginCommand()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Command const*>(hs_self)->asPluginCommand()));
 }
 catch (std::exception const& hs_error)
 {
@@ -8526,7 +8547,7 @@ catch (...)
 
 static bool hs_method_843e3c70(void* hs_self, void* sender, const HosihikariStringView* args_data, std::size_t args_count) try
 {
-    return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
+    return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
 }
 catch (std::exception const& hs_error)
 {
@@ -8543,7 +8564,7 @@ static HosihikariArrayView hs_method_8bdb7033(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::Command*>(hs_self)->getAliases();
+    auto result = static_cast<endstone::Command const*>(hs_self)->getAliases();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -8565,7 +8586,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a98b3f00(void* hs_self) try
 {
-    auto result = static_cast<endstone::Command*>(hs_self)->getDescription();
+    auto result = static_cast<endstone::Command const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -8582,7 +8603,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d90fc989(void* hs_self) try
 {
-    auto result = static_cast<endstone::Command*>(hs_self)->getName();
+    auto result = static_cast<endstone::Command const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -8601,7 +8622,7 @@ static HosihikariArrayView hs_method_44e86fef(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::Command*>(hs_self)->getPermissions();
+    auto result = static_cast<endstone::Command const*>(hs_self)->getPermissions();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -8625,7 +8646,7 @@ static HosihikariArrayView hs_method_2139fcb8(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::Command*>(hs_self)->getUsages();
+    auto result = static_cast<endstone::Command const*>(hs_self)->getUsages();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -8647,7 +8668,7 @@ catch (...)
 
 static bool hs_method_a8c29d42(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->isRegistered());
+    return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->isRegistered());
 }
 catch (std::exception const& hs_error)
 {
@@ -8707,7 +8728,7 @@ catch (...)
 
 static bool hs_method_df3ee941(void* hs_self, void* target) try
 {
-    return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->testPermission(*static_cast<const endstone::CommandSender*>(target)));
+    return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->testPermission(*static_cast<const endstone::CommandSender*>(target)));
 }
 catch (std::exception const& hs_error)
 {
@@ -8722,7 +8743,7 @@ catch (...)
 
 static bool hs_method_76dd5767(void* hs_self, void* target) try
 {
-    return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->testPermissionSilently(*static_cast<const endstone::CommandSender*>(target)));
+    return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->testPermissionSilently(*static_cast<const endstone::CommandSender*>(target)));
 }
 catch (std::exception const& hs_error)
 {
@@ -8812,7 +8833,7 @@ catch (...)
 
 static bool hs_method_40f031d6(void* hs_self, void* sender, const char* command_line_data, std::size_t command_line_size) try
 {
-    return static_cast<bool>(static_cast<endstone::CommandMap*>(hs_self)->dispatch(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
+    return static_cast<bool>(static_cast<endstone::CommandMap const*>(hs_self)->dispatch(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -8827,7 +8848,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_f9a885bb(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return hs_make_shared_handle(static_cast<endstone::CommandMap*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size)));
+    return hs_make_shared_handle(static_cast<endstone::CommandMap const*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -8992,7 +9013,7 @@ catch (...)
 
 static void* hs_method_92d89af7(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender*>(hs_self)->asActor()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9007,7 +9028,7 @@ catch (...)
 
 static void* hs_method_e3076cf4(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender*>(hs_self)->asBlock()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asBlock()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9022,7 +9043,7 @@ catch (...)
 
 static void* hs_method_5cb0ae2a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender*>(hs_self)->asCommandSender()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asCommandSender()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9037,7 +9058,7 @@ catch (...)
 
 static void* hs_method_397dcadc(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender*>(hs_self)->asConsole()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asConsole()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9052,7 +9073,7 @@ catch (...)
 
 static void* hs_method_b645d8d4(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender*>(hs_self)->asPlayer()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9067,7 +9088,7 @@ catch (...)
 
 static HosihikariStringView hs_method_37a0b111(void* hs_self) try
 {
-    auto result = static_cast<endstone::CommandSender*>(hs_self)->getName();
+    auto result = static_cast<endstone::CommandSender const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -9084,7 +9105,7 @@ catch (...)
 
 static void* hs_method_b41b201e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSender*>(hs_self)->getServer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSender const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9099,7 +9120,7 @@ catch (...)
 
 static void hs_method_dad2680f(void* hs_self, void* message) try
 {
-    static_cast<endstone::CommandSender*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
+    static_cast<endstone::CommandSender const*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
 {
@@ -9114,7 +9135,7 @@ catch (...)
 
 static void hs_method_0d00119e(void* hs_self, void* message) try
 {
-    static_cast<endstone::CommandSender*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
+    static_cast<endstone::CommandSender const*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
 {
@@ -9259,7 +9280,7 @@ catch (...)
 
 static void* hs_method_3ae68602(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->asActor()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9274,7 +9295,7 @@ catch (...)
 
 static void* hs_method_04ff5a20(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->asBlock()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asBlock()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9289,7 +9310,7 @@ catch (...)
 
 static void* hs_method_9ab0c102(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->asConsole()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asConsole()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9304,7 +9325,7 @@ catch (...)
 
 static void* hs_method_943bfeca(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->asPlayer()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9320,7 +9341,7 @@ catch (...)
 static HosihikariArrayView hs_method_44433c6b(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::CommandSenderWrapper*>(hs_self)->getEffectivePermissions();
+    auto result = static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getEffectivePermissions();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -9339,7 +9360,7 @@ catch (...)
 
 static HosihikariStringView hs_method_94271ffc(void* hs_self) try
 {
-    auto result = static_cast<endstone::CommandSenderWrapper*>(hs_self)->getName();
+    auto result = static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -9356,7 +9377,7 @@ catch (...)
 
 static std::int32_t hs_method_66bba67b(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->getPermissionLevel());
+    return static_cast<std::int32_t>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getPermissionLevel());
 }
 catch (std::exception const& hs_error)
 {
@@ -9371,7 +9392,7 @@ catch (...)
 
 static void* hs_method_b32b1bb7(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSenderWrapper*>(hs_self)->getServer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9386,7 +9407,7 @@ catch (...)
 
 static bool hs_method_0112bd82(void* hs_self, void* perm) try
 {
-    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
+    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
 {
@@ -9401,7 +9422,7 @@ catch (...)
 
 static bool hs_method_7413ddc4(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -9416,7 +9437,7 @@ catch (...)
 
 static bool hs_method_0cbfe3a8(void* hs_self, void* perm) try
 {
-    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
+    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
 {
@@ -9431,7 +9452,7 @@ catch (...)
 
 static bool hs_method_29f6249e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -9476,7 +9497,7 @@ catch (...)
 
 static void hs_method_387e1e29(void* hs_self, void* message) try
 {
-    static_cast<endstone::CommandSenderWrapper*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
+    static_cast<endstone::CommandSenderWrapper const*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
 {
@@ -9491,7 +9512,7 @@ catch (...)
 
 static void hs_method_11f99321(void* hs_self, void* message) try
 {
-    static_cast<endstone::CommandSenderWrapper*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
+    static_cast<endstone::CommandSenderWrapper const*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
 {
@@ -9551,7 +9572,7 @@ catch (...)
 
 static void* hs_method_8c20061d(void* hs_self, const char* key_data, std::size_t key_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CompoundTag*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CompoundTag const*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -9596,7 +9617,7 @@ catch (...)
 
 static bool hs_method_de544d3b(void* hs_self, const char* key_data, std::size_t key_size) try
 {
-    return static_cast<bool>(static_cast<endstone::CompoundTag*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
+    return static_cast<bool>(static_cast<endstone::CompoundTag const*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -9611,7 +9632,7 @@ catch (...)
 
 static bool hs_method_0cd11854(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::CompoundTag*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::CompoundTag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -9686,7 +9707,7 @@ catch (...)
 
 static std::uint64_t hs_method_c0127409(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::CompoundTag*>(hs_self)->size());
+    return static_cast<std::uint64_t>(static_cast<endstone::CompoundTag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
 {
@@ -9746,7 +9767,7 @@ catch (...)
 
 static std::uint8_t hs_method_10edaf71(void* hs_self) try
 {
-    return static_cast<std::uint8_t>(static_cast<endstone::Criteria*>(hs_self)->getDefaultRenderType());
+    return static_cast<std::uint8_t>(static_cast<endstone::Criteria const*>(hs_self)->getDefaultRenderType());
 }
 catch (std::exception const& hs_error)
 {
@@ -9761,7 +9782,7 @@ catch (...)
 
 static HosihikariStringView hs_method_db8d9b6c(void* hs_self) try
 {
-    auto result = static_cast<endstone::Criteria*>(hs_self)->getName();
+    auto result = static_cast<endstone::Criteria const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -9778,7 +9799,7 @@ catch (...)
 
 static bool hs_method_b898ebc7(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Criteria*>(hs_self)->isReadOnly());
+    return static_cast<bool>(static_cast<endstone::Criteria const*>(hs_self)->isReadOnly());
 }
 catch (std::exception const& hs_error)
 {
@@ -9839,7 +9860,7 @@ catch (...)
 static HosihikariArrayView hs_method_1b51daa8(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::CrossbowMeta*>(hs_self)->getChargedProjectiles();
+    auto result = static_cast<endstone::CrossbowMeta const*>(hs_self)->getChargedProjectiles();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new endstone::ItemStack(item))); }
@@ -9858,7 +9879,7 @@ catch (...)
 
 static bool hs_method_abce5a3b(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::CrossbowMeta*>(hs_self)->hasChargedProjectiles());
+    return static_cast<bool>(static_cast<endstone::CrossbowMeta const*>(hs_self)->hasChargedProjectiles());
 }
 catch (std::exception const& hs_error)
 {
@@ -9888,7 +9909,7 @@ catch (...)
 
 static void* hs_method_545ff876(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource*>(hs_self)->getActor()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9903,7 +9924,7 @@ catch (...)
 
 static void* hs_method_b1c82064(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource*>(hs_self)->getDamagingActor()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource const*>(hs_self)->getDamagingActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -9918,7 +9939,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f28cf75b(void* hs_self) try
 {
-    auto result = static_cast<endstone::DamageSource*>(hs_self)->getType();
+    auto result = static_cast<endstone::DamageSource const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -9935,7 +9956,7 @@ catch (...)
 
 static bool hs_method_a0e5d51d(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::DamageSource*>(hs_self)->isIndirect());
+    return static_cast<bool>(static_cast<endstone::DamageSource const*>(hs_self)->isIndirect());
 }
 catch (std::exception const& hs_error)
 {
@@ -9966,7 +9987,7 @@ catch (...)
 static HosihikariArrayView hs_method_c360259f(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Dimension*>(hs_self)->getActors();
+    auto result = static_cast<endstone::Dimension const*>(hs_self)->getActors();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -9985,7 +10006,7 @@ catch (...)
 
 static void* hs_method_cb9e0c86(void* hs_self, void* location) try
 {
-    auto hs_result = static_cast<endstone::Dimension*>(hs_self)->getBlockAt(*static_cast<const endstone::Location*>(location));
+    auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getBlockAt(*static_cast<const endstone::Location*>(location));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -10001,7 +10022,7 @@ catch (...)
 
 static void* hs_method_b99df6a6(void* hs_self, std::int32_t x, std::int32_t y, std::int32_t z) try
 {
-    auto hs_result = static_cast<endstone::Dimension*>(hs_self)->getBlockAt(static_cast<int>(x), static_cast<int>(y), static_cast<int>(z));
+    auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getBlockAt(static_cast<int>(x), static_cast<int>(y), static_cast<int>(z));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -10017,7 +10038,7 @@ catch (...)
 
 static void* hs_method_ede9be19(void* hs_self, void* location) try
 {
-    auto hs_result = static_cast<endstone::Dimension*>(hs_self)->getHighestBlockAt(*static_cast<const endstone::Location*>(location));
+    auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockAt(*static_cast<const endstone::Location*>(location));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -10033,7 +10054,7 @@ catch (...)
 
 static void* hs_method_ece60b3e(void* hs_self, std::int32_t x, std::int32_t z) try
 {
-    auto hs_result = static_cast<endstone::Dimension*>(hs_self)->getHighestBlockAt(static_cast<int>(x), static_cast<int>(z));
+    auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockAt(static_cast<int>(x), static_cast<int>(z));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -10049,7 +10070,7 @@ catch (...)
 
 static std::int32_t hs_method_b7112c55(void* hs_self, std::int32_t x, std::int32_t z) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Dimension*>(hs_self)->getHighestBlockYAt(static_cast<int>(x), static_cast<int>(z)));
+    return static_cast<std::int32_t>(static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockYAt(static_cast<int>(x), static_cast<int>(z)));
 }
 catch (std::exception const& hs_error)
 {
@@ -10064,7 +10085,7 @@ catch (...)
 
 static void* hs_method_a8f62076(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dimension*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dimension const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -10099,7 +10120,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a0c42bbe(void* hs_self) try
 {
-    auto result = static_cast<endstone::Dimension*>(hs_self)->getName();
+    auto result = static_cast<endstone::Dimension const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -10116,7 +10137,7 @@ catch (...)
 
 static std::int32_t hs_method_d9a230b4(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Dimension*>(hs_self)->getType());
+    return static_cast<std::int32_t>(static_cast<endstone::Dimension const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
 {
@@ -10176,7 +10197,7 @@ catch (...)
 
 static void* hs_method_c99ca150(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::DimensionEvent*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::DimensionEvent const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -10281,7 +10302,7 @@ catch (...)
 
 static std::int32_t hs_method_06d835d9(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Dropdown*>(hs_self)->getDefaultIndex();
+    auto result = static_cast<endstone::Dropdown const*>(hs_self)->getDefaultIndex();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
 }
@@ -10300,7 +10321,7 @@ catch (...)
 
 static void* hs_method_adf3c2be(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Dropdown*>(hs_self)->getLabel()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Dropdown const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -10317,7 +10338,7 @@ static HosihikariArrayView hs_method_6c265d10(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::Dropdown*>(hs_self)->getOptions();
+    auto result = static_cast<endstone::Dropdown const*>(hs_self)->getOptions();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -11614,7 +11635,7 @@ catch (...)
 
 static bool hs_method_e509f229(void* hs_self, void* item) try
 {
-    return static_cast<bool>(static_cast<endstone::Enchantment*>(hs_self)->canEnchantItem(*static_cast<const endstone::ItemStack*>(item)));
+    return static_cast<bool>(static_cast<endstone::Enchantment const*>(hs_self)->canEnchantItem(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
 {
@@ -11629,7 +11650,7 @@ catch (...)
 
 static bool hs_method_b77af417(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Enchantment*>(hs_self)->conflictsWith(*static_cast<const endstone::Enchantment*>(other)));
+    return static_cast<bool>(static_cast<endstone::Enchantment const*>(hs_self)->conflictsWith(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -11644,7 +11665,7 @@ catch (...)
 
 static std::int32_t hs_method_f4b98c86(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Enchantment*>(hs_self)->getMaxLevel());
+    return static_cast<std::int32_t>(static_cast<endstone::Enchantment const*>(hs_self)->getMaxLevel());
 }
 catch (std::exception const& hs_error)
 {
@@ -11659,7 +11680,7 @@ catch (...)
 
 static std::int32_t hs_method_51220b54(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Enchantment*>(hs_self)->getStartLevel());
+    return static_cast<std::int32_t>(static_cast<endstone::Enchantment const*>(hs_self)->getStartLevel());
 }
 catch (std::exception const& hs_error)
 {
@@ -12739,7 +12760,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5521cc7d(void* hs_self) try
 {
-    auto result = static_cast<endstone::Event*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::Event const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -12756,7 +12777,7 @@ catch (...)
 
 static bool hs_method_828d94d9(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Event*>(hs_self)->isAsynchronous());
+    return static_cast<bool>(static_cast<endstone::Event const*>(hs_self)->isAsynchronous());
 }
 catch (std::exception const& hs_error)
 {
@@ -12836,7 +12857,7 @@ catch (...)
 
 static void hs_method_9a78ce22(void* hs_self, void* event) try
 {
-    static_cast<endstone::EventHandler*>(hs_self)->callEvent(*static_cast<endstone::Event*>(event));
+    static_cast<endstone::EventHandler const*>(hs_self)->callEvent(*static_cast<endstone::Event*>(event));
 }
 catch (std::exception const& hs_error)
 {
@@ -12851,7 +12872,7 @@ catch (...)
 
 static HosihikariStringView hs_method_90b375e3(void* hs_self) try
 {
-    auto result = static_cast<endstone::EventHandler*>(hs_self)->getEventType();
+    auto result = static_cast<endstone::EventHandler const*>(hs_self)->getEventType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -12868,7 +12889,7 @@ catch (...)
 
 static void* hs_method_856d4bae(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::EventHandler*>(hs_self)->getPlugin()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::EventHandler const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -12883,7 +12904,7 @@ catch (...)
 
 static std::int32_t hs_method_4a2a82af(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::EventHandler*>(hs_self)->getPriority());
+    return static_cast<std::int32_t>(static_cast<endstone::EventHandler const*>(hs_self)->getPriority());
 }
 catch (std::exception const& hs_error)
 {
@@ -12898,7 +12919,7 @@ catch (...)
 
 static bool hs_method_f53a20bc(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::EventHandler*>(hs_self)->isIgnoreCancelled());
+    return static_cast<bool>(static_cast<endstone::EventHandler const*>(hs_self)->isIgnoreCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -12943,7 +12964,7 @@ catch (...)
 
 static void* hs_method_f3d0d576(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ActionForm>*>(hs_self)->getOnClose()));
+    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ActionForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
 {
@@ -12958,7 +12979,7 @@ catch (...)
 
 static void* hs_method_3eb60709(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ActionForm>*>(hs_self)->getTitle()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ActionForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
 {
@@ -13053,7 +13074,7 @@ catch (...)
 
 static void* hs_method_c1218e7f(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::MessageForm>*>(hs_self)->getOnClose()));
+    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::MessageForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
 {
@@ -13068,7 +13089,7 @@ catch (...)
 
 static void* hs_method_200d5e7a(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::MessageForm>*>(hs_self)->getTitle()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::MessageForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
 {
@@ -13163,7 +13184,7 @@ catch (...)
 
 static void* hs_method_88a5abf6(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ModalForm>*>(hs_self)->getOnClose()));
+    return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ModalForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
 {
@@ -13178,7 +13199,7 @@ catch (...)
 
 static void* hs_method_ffd54804(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ModalForm>*>(hs_self)->getTitle()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ModalForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
 {
@@ -13274,7 +13295,7 @@ catch (...)
 static HosihikariArrayView hs_method_afbf70d8(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::HandlerList*>(hs_self)->getHandlers();
+    auto result = static_cast<endstone::HandlerList const*>(hs_self)->getHandlers();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -13383,7 +13404,7 @@ catch (...)
 
 static void* hs_method_94ba2884(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Header*>(hs_self)->getLabel()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Header const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -14148,7 +14169,7 @@ catch (...)
 
 static bool hs_method_297a2019(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ICancellable*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::ICancellable const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -14330,7 +14351,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8fbdaacf(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Attribute>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14347,7 +14368,7 @@ catch (...)
 
 static HosihikariStringView hs_method_de387ceb(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Attribute>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14379,7 +14400,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1aacf4c7(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Attribute>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14396,7 +14417,7 @@ catch (...)
 
 static bool hs_method_e93a0167(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14411,7 +14432,7 @@ catch (...)
 
 static bool hs_method_99905309(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14518,7 +14539,7 @@ catch (...)
 
 static HosihikariStringView hs_method_368d2e5c(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::BlockType>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14535,7 +14556,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d826ab39(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::BlockType>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14567,7 +14588,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7ec2a60b(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::BlockType>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14584,7 +14605,7 @@ catch (...)
 
 static bool hs_method_f9895e58(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14599,7 +14620,7 @@ catch (...)
 
 static bool hs_method_ff363f9a(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14706,7 +14727,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d86c10f1(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::EffectType>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14723,7 +14744,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c82873c6(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::EffectType>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14755,7 +14776,7 @@ catch (...)
 
 static HosihikariStringView hs_method_921eaed1(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::EffectType>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14772,7 +14793,7 @@ catch (...)
 
 static bool hs_method_04eb2c33(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14787,7 +14808,7 @@ catch (...)
 
 static bool hs_method_231f561c(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14894,7 +14915,7 @@ catch (...)
 
 static HosihikariStringView hs_method_15da8200(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Enchantment>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14911,7 +14932,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1580c7b3(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Enchantment>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14943,7 +14964,7 @@ catch (...)
 
 static HosihikariStringView hs_method_069ca5ec(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::Enchantment>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -14960,7 +14981,7 @@ catch (...)
 
 static bool hs_method_2569d99d(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -14975,7 +14996,7 @@ catch (...)
 
 static bool hs_method_6f15e1ca(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15082,7 +15103,7 @@ catch (...)
 
 static HosihikariStringView hs_method_95fc5d09(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::ItemType>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15099,7 +15120,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b025d694(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::ItemType>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15131,7 +15152,7 @@ catch (...)
 
 static HosihikariStringView hs_method_432fbdeb(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::ItemType>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15148,7 +15169,7 @@ catch (...)
 
 static bool hs_method_bc33017e(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15163,7 +15184,7 @@ catch (...)
 
 static bool hs_method_1d49e2cf(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15270,7 +15291,7 @@ catch (...)
 
 static HosihikariStringView hs_method_726772db(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::PotionType>*>(hs_self)->getKey();
+    auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15287,7 +15308,7 @@ catch (...)
 
 static HosihikariStringView hs_method_53469ec5(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::PotionType>*>(hs_self)->getNamespace();
+    auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15319,7 +15340,7 @@ catch (...)
 
 static HosihikariStringView hs_method_72228dbe(void* hs_self) try
 {
-    auto result = static_cast<endstone::Identifier<endstone::PotionType>*>(hs_self)->operator std::basic_string<char>();
+    auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15336,7 +15357,7 @@ catch (...)
 
 static bool hs_method_8995c2b6(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType>*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15351,7 +15372,7 @@ catch (...)
 
 static bool hs_method_6a05846e(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType>*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15446,7 +15467,7 @@ catch (...)
 
 static void* hs_method_88dd3b47(void* hs_self, std::int32_t x, std::int32_t y) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::Image*>(hs_self)->getColor(static_cast<const int>(x), static_cast<const int>(y))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::Image const*>(hs_self)->getColor(static_cast<const int>(x), static_cast<const int>(y))));
 }
 catch (std::exception const& hs_error)
 {
@@ -15461,7 +15482,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1a3d1eec(void* hs_self) try
 {
-    auto result = static_cast<endstone::Image*>(hs_self)->getData();
+    auto result = static_cast<endstone::Image const*>(hs_self)->getData();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -15478,7 +15499,7 @@ catch (...)
 
 static std::int32_t hs_method_a3155781(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Image*>(hs_self)->getDepth());
+    return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getDepth());
 }
 catch (std::exception const& hs_error)
 {
@@ -15493,7 +15514,7 @@ catch (...)
 
 static std::int32_t hs_method_fb8c5d13(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Image*>(hs_self)->getHeight());
+    return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getHeight());
 }
 catch (std::exception const& hs_error)
 {
@@ -15508,7 +15529,7 @@ catch (...)
 
 static std::int32_t hs_method_e57a6d79(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Image*>(hs_self)->getWidth());
+    return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getWidth());
 }
 catch (std::exception const& hs_error)
 {
@@ -15584,7 +15605,7 @@ static HosihikariArrayView hs_method_360446fb(void* hs_self, void* item) try
 {
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
-    auto result = static_cast<endstone::Inventory*>(hs_self)->all(*static_cast<const endstone::ItemStack*>(item));
+    auto result = static_cast<endstone::Inventory const*>(hs_self)->all(*static_cast<const endstone::ItemStack*>(item));
     hs_mapEntries.clear();
     hs_mapEntries.reserve(result.size());
     hs_mapStrings.clear();
@@ -15613,7 +15634,7 @@ static HosihikariArrayView hs_method_ca0ae1bc(void* hs_self, const char* type_da
 {
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
-    auto result = static_cast<endstone::Inventory*>(hs_self)->all(std::basic_string<char>(type_data, type_size));
+    auto result = static_cast<endstone::Inventory const*>(hs_self)->all(std::basic_string<char>(type_data, type_size));
     hs_mapEntries.clear();
     hs_mapEntries.reserve(result.size());
     hs_mapStrings.clear();
@@ -15670,7 +15691,7 @@ catch (...)
 
 static bool hs_method_7f00f8a3(void* hs_self, void* item) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item)));
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15685,7 +15706,7 @@ catch (...)
 
 static bool hs_method_5c31ac2b(void* hs_self, void* item, std::int32_t amount) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15700,7 +15721,7 @@ catch (...)
 
 static bool hs_method_376fa141(void* hs_self, const char* type_data, std::size_t type_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->contains(std::basic_string<char>(type_data, type_size)));
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(std::basic_string<char>(type_data, type_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15715,7 +15736,7 @@ catch (...)
 
 static bool hs_method_66a561ae(void* hs_self, void* item, std::int32_t amount) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->containsAtLeast(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->containsAtLeast(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15730,7 +15751,7 @@ catch (...)
 
 static bool hs_method_6b032e11(void* hs_self, const char* type_data, std::size_t type_size, std::int32_t amount) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->containsAtLeast(std::basic_string<char>(type_data, type_size), static_cast<int>(amount)));
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->containsAtLeast(std::basic_string<char>(type_data, type_size), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15745,7 +15766,7 @@ catch (...)
 
 static std::int32_t hs_method_1c4f2943(void* hs_self, void* item) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Inventory*>(hs_self)->first(*static_cast<const endstone::ItemStack*>(item)));
+    return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->first(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15760,7 +15781,7 @@ catch (...)
 
 static std::int32_t hs_method_efaa5e3c(void* hs_self, const char* type_data, std::size_t type_size) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Inventory*>(hs_self)->first(std::basic_string<char>(type_data, type_size)));
+    return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->first(std::basic_string<char>(type_data, type_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -15775,7 +15796,7 @@ catch (...)
 
 static std::int32_t hs_method_16338ae0(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Inventory*>(hs_self)->firstEmpty());
+    return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->firstEmpty());
 }
 catch (std::exception const& hs_error)
 {
@@ -15791,7 +15812,7 @@ catch (...)
 static HosihikariArrayView hs_method_9b2201c9(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Inventory*>(hs_self)->getContents();
+    auto result = static_cast<endstone::Inventory const*>(hs_self)->getContents();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(item ? static_cast<void*>(new endstone::ItemStack(*item)) : nullptr); }
@@ -15810,7 +15831,7 @@ catch (...)
 
 static void* hs_method_917b3412(void* hs_self, std::int32_t index, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Inventory*>(hs_self)->getItem(static_cast<int>(index));
+    auto result = static_cast<endstone::Inventory const*>(hs_self)->getItem(static_cast<int>(index));
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -15830,7 +15851,7 @@ catch (...)
 
 static std::int32_t hs_method_7666f5f7(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Inventory*>(hs_self)->getMaxStackSize());
+    return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
 {
@@ -15845,7 +15866,7 @@ catch (...)
 
 static std::int32_t hs_method_03536d24(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Inventory*>(hs_self)->getSize());
+    return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->getSize());
 }
 catch (std::exception const& hs_error)
 {
@@ -15860,7 +15881,7 @@ catch (...)
 
 static bool hs_method_54f1a207(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Inventory*>(hs_self)->isEmpty());
+    return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->isEmpty());
 }
 catch (std::exception const& hs_error)
 {
@@ -16009,7 +16030,7 @@ catch (...)
 
 static HosihikariStringView hs_method_38cbbb5a(void* hs_self) try
 {
-    auto result = static_cast<endstone::IpBanEntry*>(hs_self)->getAddress();
+    auto result = static_cast<endstone::IpBanEntry const*>(hs_self)->getAddress();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -16071,7 +16092,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_81765192(void* hs_self, const char* address_data, std::size_t address_size) try
 {
-    return hs_make_shared_handle((static_cast<endstone::IpBanList*>(hs_self)->getBanEntry(std::basic_string<char>(address_data, address_size))).get());
+    return hs_make_shared_handle((static_cast<endstone::IpBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(address_data, address_size))).get());
 }
 catch (std::exception const& hs_error)
 {
@@ -16087,7 +16108,7 @@ catch (...)
 static HosihikariArrayView hs_method_bd6469d4(void* hs_self) try
 {
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
-    auto result = static_cast<endstone::IpBanList*>(hs_self)->getEntries();
+    auto result = static_cast<endstone::IpBanList const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
     hs_arrayShared.reserve(result.size());
     for (auto const& item : result) { hs_arrayShared.push_back(hs_make_shared_handle(item.get())); }
@@ -16106,7 +16127,7 @@ catch (...)
 
 static bool hs_method_bc2fd375(void* hs_self, const char* address_data, std::size_t address_size) try
 {
-    return static_cast<bool>(static_cast<endstone::IpBanList*>(hs_self)->isBanned(std::basic_string<char>(address_data, address_size)));
+    return static_cast<bool>(static_cast<endstone::IpBanList const*>(hs_self)->isBanned(std::basic_string<char>(address_data, address_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16181,7 +16202,7 @@ catch (...)
 
 static void* hs_method_e67805b3(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Item*>(hs_self)->getItemStack()));
+    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Item const*>(hs_self)->getItemStack()));
 }
 catch (std::exception const& hs_error)
 {
@@ -16196,7 +16217,7 @@ catch (...)
 
 static std::int32_t hs_method_cb924d86(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Item*>(hs_self)->getPickupDelay());
+    return static_cast<std::int32_t>(static_cast<endstone::Item const*>(hs_self)->getPickupDelay());
 }
 catch (std::exception const& hs_error)
 {
@@ -16211,7 +16232,7 @@ catch (...)
 
 static std::int64_t hs_method_f43096ca(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Item*>(hs_self)->getThrower();
+    auto result = static_cast<endstone::Item const*>(hs_self)->getThrower();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int64_t>(*result) : std::int64_t{};
 }
@@ -16230,7 +16251,7 @@ catch (...)
 
 static bool hs_method_c38c6e29(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Item*>(hs_self)->isUnlimitedLifetime());
+    return static_cast<bool>(static_cast<endstone::Item const*>(hs_self)->isUnlimitedLifetime());
 }
 catch (std::exception const& hs_error)
 {
@@ -16305,7 +16326,7 @@ catch (...)
 
 static void* hs_method_d6415600(void* hs_self, void* meta, void* type) try
 {
-    auto hs_result = static_cast<endstone::ItemFactory*>(hs_self)->asMetaFor(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
+    auto hs_result = static_cast<endstone::ItemFactory const*>(hs_self)->asMetaFor(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -16321,7 +16342,7 @@ catch (...)
 
 static bool hs_method_c6d96d56(void* hs_self, void* meta1, void* meta2) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemFactory*>(hs_self)->equals(static_cast<const endstone::ItemMeta*>(meta1), static_cast<const endstone::ItemMeta*>(meta2)));
+    return static_cast<bool>(static_cast<endstone::ItemFactory const*>(hs_self)->equals(static_cast<const endstone::ItemMeta*>(meta1), static_cast<const endstone::ItemMeta*>(meta2)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16336,7 +16357,7 @@ catch (...)
 
 static void* hs_method_c3966973(void* hs_self, void* type) try
 {
-    auto hs_result = static_cast<endstone::ItemFactory*>(hs_self)->getItemMeta(*static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
+    auto hs_result = static_cast<endstone::ItemFactory const*>(hs_self)->getItemMeta(*static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -16352,7 +16373,7 @@ catch (...)
 
 static bool hs_method_7f7364e4(void* hs_self, void* meta, void* type) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemFactory*>(hs_self)->isApplicable(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type)));
+    return static_cast<bool>(static_cast<endstone::ItemFactory const*>(hs_self)->isApplicable(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16472,7 +16493,7 @@ catch (...)
 
 static void* hs_method_684deaf6(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::ItemMeta*>(hs_self)->clone();
+    auto hs_result = static_cast<endstone::ItemMeta const*>(hs_self)->clone();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -16488,7 +16509,7 @@ catch (...)
 
 static std::int32_t hs_method_7f56ac29(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta*>(hs_self)->getDamage());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getDamage());
 }
 catch (std::exception const& hs_error)
 {
@@ -16503,7 +16524,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f9913330(void* hs_self) try
 {
-    auto result = static_cast<endstone::ItemMeta*>(hs_self)->getDisplayName();
+    auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getDisplayName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -16520,7 +16541,7 @@ catch (...)
 
 static std::int32_t hs_method_0c8148f2(void* hs_self, void* id) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta*>(hs_self)->getEnchantLevel(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
+    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getEnchantLevel(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16537,7 +16558,7 @@ static HosihikariArrayView hs_method_477df617(void* hs_self) try
 {
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
-    auto result = static_cast<endstone::ItemMeta*>(hs_self)->getEnchants();
+    auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getEnchants();
     hs_mapEntries.clear();
     hs_mapEntries.reserve(result.size());
     hs_mapStrings.clear();
@@ -16564,7 +16585,7 @@ catch (...)
 
 static void* hs_method_cd47d8f2(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemMeta*>(hs_self)->getExtras()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemMeta const*>(hs_self)->getExtras()));
 }
 catch (std::exception const& hs_error)
 {
@@ -16581,7 +16602,7 @@ static HosihikariArrayView hs_method_c11da252(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::ItemMeta*>(hs_self)->getLore();
+    auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getLore();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -16603,7 +16624,7 @@ catch (...)
 
 static std::int32_t hs_method_c6bdbd15(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta*>(hs_self)->getRepairCost());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getRepairCost());
 }
 catch (std::exception const& hs_error)
 {
@@ -16618,7 +16639,7 @@ catch (...)
 
 static std::int32_t hs_method_daac4a2d(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta*>(hs_self)->getType());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
 {
@@ -16633,7 +16654,7 @@ catch (...)
 
 static bool hs_method_e4906b2d(void* hs_self, void* id) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasConflictingEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasConflictingEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16648,7 +16669,7 @@ catch (...)
 
 static bool hs_method_d9ef803c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasDamage());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasDamage());
 }
 catch (std::exception const& hs_error)
 {
@@ -16663,7 +16684,7 @@ catch (...)
 
 static bool hs_method_49583d1c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasDisplayName());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasDisplayName());
 }
 catch (std::exception const& hs_error)
 {
@@ -16678,7 +16699,7 @@ catch (...)
 
 static bool hs_method_ca72dfec(void* hs_self, void* id) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
 {
@@ -16693,7 +16714,7 @@ catch (...)
 
 static bool hs_method_d8a3a51a(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasEnchants());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasEnchants());
 }
 catch (std::exception const& hs_error)
 {
@@ -16708,7 +16729,7 @@ catch (...)
 
 static bool hs_method_25e37ea5(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasLore());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasLore());
 }
 catch (std::exception const& hs_error)
 {
@@ -16723,7 +16744,7 @@ catch (...)
 
 static bool hs_method_93c57639(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->hasRepairCost());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasRepairCost());
 }
 catch (std::exception const& hs_error)
 {
@@ -16738,7 +16759,7 @@ catch (...)
 
 static bool hs_method_1706707c(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->isUnbreakable());
+    return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->isUnbreakable());
 }
 catch (std::exception const& hs_error)
 {
@@ -16903,7 +16924,7 @@ catch (...)
 
 static std::int32_t hs_method_3072a761(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemStack*>(hs_self)->getAmount());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getAmount());
 }
 catch (std::exception const& hs_error)
 {
@@ -16918,7 +16939,7 @@ catch (...)
 
 static std::int32_t hs_method_25f9d71e(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemStack*>(hs_self)->getData());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getData());
 }
 catch (std::exception const& hs_error)
 {
@@ -16933,7 +16954,7 @@ catch (...)
 
 static void* hs_method_230881aa(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::ItemStack*>(hs_self)->getItemMeta();
+    auto hs_result = static_cast<endstone::ItemStack const*>(hs_self)->getItemMeta();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -16949,7 +16970,7 @@ catch (...)
 
 static std::int32_t hs_method_880ca943(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemStack*>(hs_self)->getMaxStackSize());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
 {
@@ -16964,7 +16985,7 @@ catch (...)
 
 static void* hs_method_45b5bc75(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::CompoundTag(static_cast<endstone::ItemStack*>(hs_self)->getNbt()));
+    return static_cast<void*>(new endstone::CompoundTag(static_cast<endstone::ItemStack const*>(hs_self)->getNbt()));
 }
 catch (std::exception const& hs_error)
 {
@@ -16979,7 +17000,7 @@ catch (...)
 
 static HosihikariStringView hs_method_efe5df22(void* hs_self) try
 {
-    auto result = static_cast<endstone::ItemStack*>(hs_self)->getTranslationKey();
+    auto result = static_cast<endstone::ItemStack const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -16996,7 +17017,7 @@ catch (...)
 
 static void* hs_method_3d4ba86e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemStack*>(hs_self)->getType()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemStack const*>(hs_self)->getType()));
 }
 catch (std::exception const& hs_error)
 {
@@ -17011,7 +17032,7 @@ catch (...)
 
 static bool hs_method_833a1664(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemStack*>(hs_self)->hasItemMeta());
+    return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->hasItemMeta());
 }
 catch (std::exception const& hs_error)
 {
@@ -17026,7 +17047,7 @@ catch (...)
 
 static bool hs_method_7caee6c3(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemStack*>(hs_self)->isSimilar(*static_cast<const endstone::ItemStack*>(other)));
+    return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->isSimilar(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -17041,7 +17062,7 @@ catch (...)
 
 static bool hs_method_6d85c46f(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemStack*>(hs_self)->operator!=(*static_cast<const endstone::ItemStack*>(other)));
+    return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->operator!=(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -17086,7 +17107,7 @@ catch (...)
 
 static bool hs_method_3f763bcf(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::ItemStack*>(hs_self)->operator==(*static_cast<const endstone::ItemStack*>(other)));
+    return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->operator==(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -17221,7 +17242,7 @@ catch (...)
 
 static void* hs_method_efd88a4c(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType*>(hs_self)->createItemStack()));
+    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType const*>(hs_self)->createItemStack()));
 }
 catch (std::exception const& hs_error)
 {
@@ -17236,7 +17257,7 @@ catch (...)
 
 static void* hs_method_64d1e9b9(void* hs_self, std::int32_t amount) try
 {
-    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType*>(hs_self)->createItemStack(static_cast<int>(amount))));
+    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType const*>(hs_self)->createItemStack(static_cast<int>(amount))));
 }
 catch (std::exception const& hs_error)
 {
@@ -17251,7 +17272,7 @@ catch (...)
 
 static std::int32_t hs_method_99c63aca(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemType*>(hs_self)->getMaxDurability());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemType const*>(hs_self)->getMaxDurability());
 }
 catch (std::exception const& hs_error)
 {
@@ -17266,7 +17287,7 @@ catch (...)
 
 static std::int32_t hs_method_8541145d(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ItemType*>(hs_self)->getMaxStackSize());
+    return static_cast<std::int32_t>(static_cast<endstone::ItemType const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
 {
@@ -17281,7 +17302,7 @@ catch (...)
 
 static HosihikariStringView hs_method_04596f49(void* hs_self) try
 {
-    auto result = static_cast<endstone::ItemType*>(hs_self)->getTranslationKey();
+    auto result = static_cast<endstone::ItemType const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17298,7 +17319,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d6685e73(void* hs_self, std::int32_t data) try
 {
-    auto result = static_cast<endstone::ItemType*>(hs_self)->getTranslationKey(static_cast<int>(data));
+    auto result = static_cast<endstone::ItemType const*>(hs_self)->getTranslationKey(static_cast<int>(data));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17360,7 +17381,7 @@ catch (...)
 
 static void* hs_method_6dbcb5f6(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Label*>(hs_self)->getText()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Label const*>(hs_self)->getText()));
 }
 catch (std::exception const& hs_error)
 {
@@ -17390,7 +17411,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7013216f(void* hs_self) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->getLocale();
+    auto result = static_cast<endstone::Language const*>(hs_self)->getLocale();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17407,7 +17428,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ac56f932(void* hs_self, void* translatable) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17424,7 +17445,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0b444435(void* hs_self, void* translatable, const char* locale_data, std::size_t locale_size) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable), std::basic_string<char>(locale_data, locale_size));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17441,7 +17462,7 @@ catch (...)
 
 static HosihikariStringView hs_method_52cb81ab(void* hs_self, const char* text_data, std::size_t text_size) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(std::basic_string<char>(text_data, text_size));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17458,7 +17479,7 @@ catch (...)
 
 static HosihikariStringView hs_method_99591aec(void* hs_self, const char* text_data, std::size_t text_size, const char* locale_data, std::size_t locale_size) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), std::basic_string<char>(locale_data, locale_size));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17475,7 +17496,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6b6b40f7(void* hs_self, const char* text_data, std::size_t text_size, const HosihikariStringView* params_data, std::size_t params_count) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17492,7 +17513,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e22d8019(void* hs_self, const char* text_data, std::size_t text_size, const char* locale_data, std::size_t locale_size, const HosihikariStringView* params_data, std::size_t params_count) try
 {
-    auto result = static_cast<endstone::Language*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count), std::basic_string<char>(locale_data, locale_size));
+    auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17599,7 +17620,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c129abd1(void* hs_self) try
 {
-    auto result = static_cast<endstone::LeavesDecayEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::LeavesDecayEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17617,7 +17638,7 @@ catch (...)
 static HosihikariArrayView hs_method_270292cc(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Level*>(hs_self)->getActors();
+    auto result = static_cast<endstone::Level const*>(hs_self)->getActors();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -17636,7 +17657,7 @@ catch (...)
 
 static void* hs_method_08076e18(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Level*>(hs_self)->getDimension(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Level const*>(hs_self)->getDimension(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -17652,7 +17673,7 @@ catch (...)
 static HosihikariArrayView hs_method_454cbadf(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Level*>(hs_self)->getDimensions();
+    auto result = static_cast<endstone::Level const*>(hs_self)->getDimensions();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -17671,7 +17692,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3aa0a1c5(void* hs_self) try
 {
-    auto result = static_cast<endstone::Level*>(hs_self)->getName();
+    auto result = static_cast<endstone::Level const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -17688,7 +17709,7 @@ catch (...)
 
 static std::int64_t hs_method_68956a20(void* hs_self) try
 {
-    return static_cast<std::int64_t>(static_cast<endstone::Level*>(hs_self)->getSeed());
+    return static_cast<std::int64_t>(static_cast<endstone::Level const*>(hs_self)->getSeed());
 }
 catch (std::exception const& hs_error)
 {
@@ -17703,7 +17724,7 @@ catch (...)
 
 static std::int32_t hs_method_00cfe7f2(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Level*>(hs_self)->getTime());
+    return static_cast<std::int32_t>(static_cast<endstone::Level const*>(hs_self)->getTime());
 }
 catch (std::exception const& hs_error)
 {
@@ -17748,7 +17769,7 @@ catch (...)
 
 static void* hs_method_7f8aabca(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::LevelEvent*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::LevelEvent const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -17793,7 +17814,7 @@ catch (...)
 
 static void* hs_method_32c719f8(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag*>(hs_self)->at(static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -17838,7 +17859,7 @@ catch (...)
 
 static bool hs_method_8a81070e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ListTag*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::ListTag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -17853,7 +17874,7 @@ catch (...)
 
 static void* hs_method_59464a3a(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -17883,7 +17904,7 @@ catch (...)
 
 static std::uint64_t hs_method_e3e53cbe(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::ListTag*>(hs_self)->size());
+    return static_cast<std::uint64_t>(static_cast<endstone::ListTag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
 {
@@ -17898,7 +17919,7 @@ catch (...)
 
 static std::uint8_t hs_method_75608914(void* hs_self) try
 {
-    return static_cast<std::uint8_t>(static_cast<endstone::ListTag*>(hs_self)->type());
+    return static_cast<std::uint8_t>(static_cast<endstone::ListTag const*>(hs_self)->type());
 }
 catch (std::exception const& hs_error)
 {
@@ -17928,7 +17949,7 @@ catch (...)
 
 static float hs_method_8831f6a1(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->distance(*static_cast<const endstone::Location*>(other)));
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->distance(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -17943,7 +17964,7 @@ catch (...)
 
 static float hs_method_0622d069(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->distanceSquared(*static_cast<const endstone::Location*>(other)));
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->distanceSquared(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -17958,7 +17979,7 @@ catch (...)
 
 static void* hs_method_649e1ae4(void* hs_self) try
 {
-    auto hs_result = static_cast<endstone::Location*>(hs_self)->getBlock();
+    auto hs_result = static_cast<endstone::Location const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -17974,7 +17995,7 @@ catch (...)
 
 static std::int32_t hs_method_f8bbc4e1(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Location*>(hs_self)->getBlockX());
+    return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockX());
 }
 catch (std::exception const& hs_error)
 {
@@ -17989,7 +18010,7 @@ catch (...)
 
 static std::int32_t hs_method_554a1f23(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Location*>(hs_self)->getBlockY());
+    return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockY());
 }
 catch (std::exception const& hs_error)
 {
@@ -18004,7 +18025,7 @@ catch (...)
 
 static std::int32_t hs_method_e9f07d2b(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Location*>(hs_self)->getBlockZ());
+    return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -18019,7 +18040,7 @@ catch (...)
 
 static void* hs_method_5ecb0a21(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -18034,7 +18055,7 @@ catch (...)
 
 static void* hs_method_9cdb71dc(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location*>(hs_self)->getDirection()));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location const*>(hs_self)->getDirection()));
 }
 catch (std::exception const& hs_error)
 {
@@ -18049,7 +18070,7 @@ catch (...)
 
 static float hs_method_b8b34fa8(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->getPitch());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getPitch());
 }
 catch (std::exception const& hs_error)
 {
@@ -18064,7 +18085,7 @@ catch (...)
 
 static float hs_method_a1d9947a(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->getX());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -18079,7 +18100,7 @@ catch (...)
 
 static float hs_method_fb2e70e8(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->getY());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
 {
@@ -18094,7 +18115,7 @@ catch (...)
 
 static float hs_method_43129c10(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->getYaw());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getYaw());
 }
 catch (std::exception const& hs_error)
 {
@@ -18109,7 +18130,7 @@ catch (...)
 
 static float hs_method_32fa8b3e(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->getZ());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -18124,7 +18145,7 @@ catch (...)
 
 static float hs_method_4bdfc918(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->length());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->length());
 }
 catch (std::exception const& hs_error)
 {
@@ -18139,7 +18160,7 @@ catch (...)
 
 static float hs_method_c850923b(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Location*>(hs_self)->lengthSquared());
+    return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->lengthSquared());
 }
 catch (std::exception const& hs_error)
 {
@@ -18184,7 +18205,7 @@ catch (...)
 
 static void* hs_method_e4d6c405(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location*>(hs_self)->operator endstone::Vector()));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location const*>(hs_self)->operator endstone::Vector()));
 }
 catch (std::exception const& hs_error)
 {
@@ -18199,7 +18220,7 @@ catch (...)
 
 static bool hs_method_72db90df(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Location*>(hs_self)->operator!=(*static_cast<const endstone::Location*>(other)));
+    return static_cast<bool>(static_cast<endstone::Location const*>(hs_self)->operator!=(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -18214,7 +18235,7 @@ catch (...)
 
 static void* hs_method_f3d61120(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location*>(hs_self)->operator+(*static_cast<const endstone::Location*>(other))));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator+(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18229,7 +18250,7 @@ catch (...)
 
 static void* hs_method_e49ec4d5(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18274,7 +18295,7 @@ catch (...)
 
 static void* hs_method_f44ea418(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location*>(hs_self)->operator-(*static_cast<const endstone::Location*>(other))));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator-(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18289,7 +18310,7 @@ catch (...)
 
 static void* hs_method_5353323f(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18334,7 +18355,7 @@ catch (...)
 
 static bool hs_method_6639e422(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Location*>(hs_self)->operator==(*static_cast<const endstone::Location*>(other)));
+    return static_cast<bool>(static_cast<endstone::Location const*>(hs_self)->operator==(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -18424,7 +18445,7 @@ catch (...)
 
 static void hs_method_930a76c1(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->critical(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->critical(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18439,7 +18460,7 @@ catch (...)
 
 static void hs_method_ffcad596(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->debug(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->debug(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18454,7 +18475,7 @@ catch (...)
 
 static void hs_method_788fde20(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->error(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->error(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18469,7 +18490,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c7c832ab(void* hs_self) try
 {
-    auto result = static_cast<endstone::Logger*>(hs_self)->getName();
+    auto result = static_cast<endstone::Logger const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -18486,7 +18507,7 @@ catch (...)
 
 static void hs_method_046652ba(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->info(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->info(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18501,7 +18522,7 @@ catch (...)
 
 static bool hs_method_fa5a7e03(void* hs_self, std::uint8_t level) try
 {
-    return static_cast<bool>(static_cast<endstone::Logger*>(hs_self)->isEnabledFor(static_cast<endstone::Logger::Level>(level)));
+    return static_cast<bool>(static_cast<endstone::Logger const*>(hs_self)->isEnabledFor(static_cast<endstone::Logger::Level>(level)));
 }
 catch (std::exception const& hs_error)
 {
@@ -18516,7 +18537,7 @@ catch (...)
 
 static void hs_method_976ee1e7(void* hs_self, std::uint8_t level, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->log(static_cast<endstone::Logger::Level>(level), std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->log(static_cast<endstone::Logger::Level>(level), std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18546,7 +18567,7 @@ catch (...)
 
 static void hs_method_033cc665(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->trace(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->trace(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18561,7 +18582,7 @@ catch (...)
 
 static void hs_method_2ffebdc2(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Logger*>(hs_self)->warning(std::basic_string_view<char>(message_data, message_size));
+    static_cast<endstone::Logger const*>(hs_self)->warning(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -18591,7 +18612,7 @@ catch (...)
 
 static std::uint32_t hs_method_fcf827c1(void* hs_self, std::int32_t x, std::int32_t y) try
 {
-    return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas*>(hs_self)->getBasePixel(static_cast<int>(x), static_cast<int>(y)));
+    return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas const*>(hs_self)->getBasePixel(static_cast<int>(x), static_cast<int>(y)));
 }
 catch (std::exception const& hs_error)
 {
@@ -18606,7 +18627,7 @@ catch (...)
 
 static void* hs_method_9a8bcddf(void* hs_self, std::int32_t x, std::int32_t y) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas*>(hs_self)->getBasePixelColor(static_cast<int>(x), static_cast<int>(y))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas const*>(hs_self)->getBasePixelColor(static_cast<int>(x), static_cast<int>(y))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18622,7 +18643,7 @@ catch (...)
 static HosihikariArrayView hs_method_1548e67e(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::MapCanvas*>(hs_self)->getCursors();
+    auto result = static_cast<endstone::MapCanvas const*>(hs_self)->getCursors();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new endstone::MapCursor(item))); }
@@ -18641,7 +18662,7 @@ catch (...)
 
 static void* hs_method_e50e956b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapCanvas*>(hs_self)->getMapView()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapCanvas const*>(hs_self)->getMapView()));
 }
 catch (std::exception const& hs_error)
 {
@@ -18656,7 +18677,7 @@ catch (...)
 
 static std::uint32_t hs_method_dc4744ef(void* hs_self, std::int32_t x, std::int32_t y) try
 {
-    return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas*>(hs_self)->getPixel(static_cast<int>(x), static_cast<int>(y)));
+    return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas const*>(hs_self)->getPixel(static_cast<int>(x), static_cast<int>(y)));
 }
 catch (std::exception const& hs_error)
 {
@@ -18671,7 +18692,7 @@ catch (...)
 
 static void* hs_method_1b0673af(void* hs_self, std::int32_t x, std::int32_t y) try
 {
-    return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas*>(hs_self)->getPixelColor(static_cast<int>(x), static_cast<int>(y))));
+    return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas const*>(hs_self)->getPixelColor(static_cast<int>(x), static_cast<int>(y))));
 }
 catch (std::exception const& hs_error)
 {
@@ -18761,7 +18782,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3e1bc8bb(void* hs_self) try
 {
-    auto result = static_cast<endstone::MapCursor*>(hs_self)->getCaption();
+    auto result = static_cast<endstone::MapCursor const*>(hs_self)->getCaption();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -18778,7 +18799,7 @@ catch (...)
 
 static std::int8_t hs_method_28d5480a(void* hs_self) try
 {
-    return static_cast<std::int8_t>(static_cast<endstone::MapCursor*>(hs_self)->getDirection());
+    return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getDirection());
 }
 catch (std::exception const& hs_error)
 {
@@ -18793,7 +18814,7 @@ catch (...)
 
 static std::int32_t hs_method_67d6c003(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::MapCursor*>(hs_self)->getType());
+    return static_cast<std::int32_t>(static_cast<endstone::MapCursor const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
 {
@@ -18808,7 +18829,7 @@ catch (...)
 
 static std::int8_t hs_method_f9b6e643(void* hs_self) try
 {
-    return static_cast<std::int8_t>(static_cast<endstone::MapCursor*>(hs_self)->getX());
+    return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -18823,7 +18844,7 @@ catch (...)
 
 static std::int8_t hs_method_6c40daae(void* hs_self) try
 {
-    return static_cast<std::int8_t>(static_cast<endstone::MapCursor*>(hs_self)->getY());
+    return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
 {
@@ -18838,7 +18859,7 @@ catch (...)
 
 static bool hs_method_b8f3469f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapCursor*>(hs_self)->isVisible());
+    return static_cast<bool>(static_cast<endstone::MapCursor const*>(hs_self)->isVisible());
 }
 catch (std::exception const& hs_error)
 {
@@ -19018,7 +19039,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a75b8b71(void* hs_self) try
 {
-    auto result = static_cast<endstone::MapInitializeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::MapInitializeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -19035,7 +19056,7 @@ catch (...)
 
 static void* hs_method_faa396d6(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapInitializeEvent*>(hs_self)->getMap()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapInitializeEvent const*>(hs_self)->getMap()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19080,7 +19101,7 @@ catch (...)
 
 static std::int64_t hs_method_ef46ef88(void* hs_self) try
 {
-    return static_cast<std::int64_t>(static_cast<endstone::MapMeta*>(hs_self)->getMapId());
+    return static_cast<std::int64_t>(static_cast<endstone::MapMeta const*>(hs_self)->getMapId());
 }
 catch (std::exception const& hs_error)
 {
@@ -19095,7 +19116,7 @@ catch (...)
 
 static void* hs_method_53bc778b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapMeta*>(hs_self)->getMapView()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapMeta const*>(hs_self)->getMapView()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19110,7 +19131,7 @@ catch (...)
 
 static bool hs_method_06b88344(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapMeta*>(hs_self)->hasMapId());
+    return static_cast<bool>(static_cast<endstone::MapMeta const*>(hs_self)->hasMapId());
 }
 catch (std::exception const& hs_error)
 {
@@ -19125,7 +19146,7 @@ catch (...)
 
 static bool hs_method_a04ea49e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapMeta*>(hs_self)->hasMapView());
+    return static_cast<bool>(static_cast<endstone::MapMeta const*>(hs_self)->hasMapView());
 }
 catch (std::exception const& hs_error)
 {
@@ -19222,7 +19243,7 @@ catch (...)
 
 static bool hs_method_adda0eac(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapRenderer*>(hs_self)->isContextual());
+    return static_cast<bool>(static_cast<endstone::MapRenderer const*>(hs_self)->isContextual());
 }
 catch (std::exception const& hs_error)
 {
@@ -19267,7 +19288,7 @@ catch (...)
 
 static std::int32_t hs_method_3c3ee09a(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::MapView*>(hs_self)->getCenterX());
+    return static_cast<std::int32_t>(static_cast<endstone::MapView const*>(hs_self)->getCenterX());
 }
 catch (std::exception const& hs_error)
 {
@@ -19282,7 +19303,7 @@ catch (...)
 
 static std::int32_t hs_method_90396455(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::MapView*>(hs_self)->getCenterZ());
+    return static_cast<std::int32_t>(static_cast<endstone::MapView const*>(hs_self)->getCenterZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -19297,7 +19318,7 @@ catch (...)
 
 static void* hs_method_2816961f(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapView*>(hs_self)->getDimension()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapView const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19312,7 +19333,7 @@ catch (...)
 
 static std::int64_t hs_method_e5c3bdc1(void* hs_self) try
 {
-    return static_cast<std::int64_t>(static_cast<endstone::MapView*>(hs_self)->getId());
+    return static_cast<std::int64_t>(static_cast<endstone::MapView const*>(hs_self)->getId());
 }
 catch (std::exception const& hs_error)
 {
@@ -19328,7 +19349,7 @@ catch (...)
 static HosihikariArrayView hs_method_668e6cb1(void* hs_self) try
 {
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
-    auto result = static_cast<endstone::MapView*>(hs_self)->getRenderers();
+    auto result = static_cast<endstone::MapView const*>(hs_self)->getRenderers();
     hs_arrayShared.clear();
     hs_arrayShared.reserve(result.size());
     for (auto const& item : result) { hs_arrayShared.push_back(hs_make_shared_handle(item)); }
@@ -19347,7 +19368,7 @@ catch (...)
 
 static std::uint8_t hs_method_7a4e3be8(void* hs_self) try
 {
-    return static_cast<std::uint8_t>(static_cast<endstone::MapView*>(hs_self)->getScale());
+    return static_cast<std::uint8_t>(static_cast<endstone::MapView const*>(hs_self)->getScale());
 }
 catch (std::exception const& hs_error)
 {
@@ -19362,7 +19383,7 @@ catch (...)
 
 static bool hs_method_dfced9b6(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapView*>(hs_self)->isLocked());
+    return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isLocked());
 }
 catch (std::exception const& hs_error)
 {
@@ -19377,7 +19398,7 @@ catch (...)
 
 static bool hs_method_d2219fdf(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapView*>(hs_self)->isUnlimitedTracking());
+    return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isUnlimitedTracking());
 }
 catch (std::exception const& hs_error)
 {
@@ -19392,7 +19413,7 @@ catch (...)
 
 static bool hs_method_df1c121e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::MapView*>(hs_self)->isVirtual());
+    return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isVirtual());
 }
 catch (std::exception const& hs_error)
 {
@@ -19542,7 +19563,7 @@ catch (...)
 
 static void* hs_method_b37b9bbb(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm*>(hs_self)->getButton1()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getButton1()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19557,7 +19578,7 @@ catch (...)
 
 static void* hs_method_2db27c2d(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm*>(hs_self)->getButton2()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getButton2()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19572,7 +19593,7 @@ catch (...)
 
 static void* hs_method_e035040a(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm*>(hs_self)->getContent()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getContent()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19587,7 +19608,7 @@ catch (...)
 
 static void* hs_method_9826e082(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::MessageForm*>(hs_self)->getOnSubmit()));
+    return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::MessageForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19742,7 +19763,7 @@ catch (...)
 
 static std::int32_t hs_method_fcf492e7(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Mob*>(hs_self)->getHealth());
+    return static_cast<std::int32_t>(static_cast<endstone::Mob const*>(hs_self)->getHealth());
 }
 catch (std::exception const& hs_error)
 {
@@ -19757,7 +19778,7 @@ catch (...)
 
 static std::int32_t hs_method_480f4712(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Mob*>(hs_self)->getMaxHealth());
+    return static_cast<std::int32_t>(static_cast<endstone::Mob const*>(hs_self)->getMaxHealth());
 }
 catch (std::exception const& hs_error)
 {
@@ -19772,7 +19793,7 @@ catch (...)
 
 static bool hs_method_6a0ca04e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Mob*>(hs_self)->isGliding());
+    return static_cast<bool>(static_cast<endstone::Mob const*>(hs_self)->isGliding());
 }
 catch (std::exception const& hs_error)
 {
@@ -19787,7 +19808,7 @@ catch (...)
 
 static void hs_method_eca6ecbb(void* hs_self, std::int32_t health) try
 {
-    static_cast<endstone::Mob*>(hs_self)->setHealth(static_cast<int>(health));
+    static_cast<endstone::Mob const*>(hs_self)->setHealth(static_cast<int>(health));
 }
 catch (std::exception const& hs_error)
 {
@@ -19802,7 +19823,7 @@ catch (...)
 
 static void hs_method_3cecb4b6(void* hs_self, std::int32_t health) try
 {
-    static_cast<endstone::Mob*>(hs_self)->setMaxHealth(static_cast<int>(health));
+    static_cast<endstone::Mob const*>(hs_self)->setMaxHealth(static_cast<int>(health));
 }
 catch (std::exception const& hs_error)
 {
@@ -19863,7 +19884,7 @@ catch (...)
 static HosihikariArrayView hs_method_e6901603(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::ModalForm*>(hs_self)->getControls();
+    auto result = static_cast<endstone::ModalForm const*>(hs_self)->getControls();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(item))); }
@@ -19882,7 +19903,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e533f412(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::ModalForm*>(hs_self)->getIcon();
+    auto result = static_cast<endstone::ModalForm const*>(hs_self)->getIcon();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -19902,7 +19923,7 @@ catch (...)
 
 static void* hs_method_738959a6(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (endstone::Player *, std::basic_string<char>)>(static_cast<endstone::ModalForm*>(hs_self)->getOnSubmit()));
+    return static_cast<void*>(new std::function<void (endstone::Player *, std::basic_string<char>)>(static_cast<endstone::ModalForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
 {
@@ -19917,7 +19938,7 @@ catch (...)
 
 static void* hs_method_87da21ad(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::ModalForm*>(hs_self)->getSubmitButton();
+    auto result = static_cast<endstone::ModalForm const*>(hs_self)->getSubmitButton();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::move(*result)));
@@ -20033,7 +20054,7 @@ catch (...)
 
 static void* hs_method_84b58b4c(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective*>(hs_self)->getCriteria()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective const*>(hs_self)->getCriteria()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20048,7 +20069,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9d527bb5(void* hs_self) try
 {
-    auto result = static_cast<endstone::Objective*>(hs_self)->getDisplayName();
+    auto result = static_cast<endstone::Objective const*>(hs_self)->getDisplayName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20065,7 +20086,7 @@ catch (...)
 
 static std::int32_t hs_method_6fabf6ef(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Objective*>(hs_self)->getDisplaySlot();
+    auto result = static_cast<endstone::Objective const*>(hs_self)->getDisplaySlot();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
 }
@@ -20084,7 +20105,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f699330(void* hs_self) try
 {
-    auto result = static_cast<endstone::Objective*>(hs_self)->getName();
+    auto result = static_cast<endstone::Objective const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20101,7 +20122,7 @@ catch (...)
 
 static std::uint8_t hs_method_a38ef899(void* hs_self) try
 {
-    return static_cast<std::uint8_t>(static_cast<endstone::Objective*>(hs_self)->getRenderType());
+    return static_cast<std::uint8_t>(static_cast<endstone::Objective const*>(hs_self)->getRenderType());
 }
 catch (std::exception const& hs_error)
 {
@@ -20116,7 +20137,7 @@ catch (...)
 
 static void* hs_method_6d50e0da(void* hs_self, void* entry) try
 {
-    auto hs_result = static_cast<endstone::Objective*>(hs_self)->getScore(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
+    auto hs_result = static_cast<endstone::Objective const*>(hs_self)->getScore(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -20132,7 +20153,7 @@ catch (...)
 
 static void* hs_method_f4a5b3b4(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective*>(hs_self)->getScoreboard()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20147,7 +20168,7 @@ catch (...)
 
 static std::int32_t hs_method_654c0623(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Objective*>(hs_self)->getSortOrder();
+    auto result = static_cast<endstone::Objective const*>(hs_self)->getSortOrder();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
 }
@@ -20166,7 +20187,7 @@ catch (...)
 
 static bool hs_method_cabc5bde(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Objective*>(hs_self)->isDisplayed());
+    return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->isDisplayed());
 }
 catch (std::exception const& hs_error)
 {
@@ -20181,7 +20202,7 @@ catch (...)
 
 static bool hs_method_ae3a847e(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Objective*>(hs_self)->isModifiable());
+    return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->isModifiable());
 }
 catch (std::exception const& hs_error)
 {
@@ -20196,7 +20217,7 @@ catch (...)
 
 static bool hs_method_57030bb9(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Objective*>(hs_self)->operator!=(*static_cast<const endstone::Objective*>(other)));
+    return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->operator!=(*static_cast<const endstone::Objective*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -20211,7 +20232,7 @@ catch (...)
 
 static bool hs_method_bb751e05(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Objective*>(hs_self)->operator==(*static_cast<const endstone::Objective*>(other)));
+    return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->operator==(*static_cast<const endstone::Objective*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -20286,7 +20307,7 @@ catch (...)
 
 static void hs_method_9fe08cbd(void* hs_self) try
 {
-    static_cast<endstone::Objective*>(hs_self)->unregister();
+    static_cast<endstone::Objective const*>(hs_self)->unregister();
 }
 catch (std::exception const& hs_error)
 {
@@ -20316,7 +20337,7 @@ catch (...)
 
 static HosihikariStringView hs_method_08805458(void* hs_self) try
 {
-    auto result = static_cast<endstone::OfflinePlayer*>(hs_self)->getName();
+    auto result = static_cast<endstone::OfflinePlayer const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20333,7 +20354,7 @@ catch (...)
 
 static void* hs_method_4b50ef7b(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::UUID(static_cast<endstone::OfflinePlayer*>(hs_self)->getUniqueId()));
+    return static_cast<void*>(new endstone::UUID(static_cast<endstone::OfflinePlayer const*>(hs_self)->getUniqueId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20458,7 +20479,7 @@ catch (...)
 
 static void* hs_method_919f586b(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketReceiveEvent*>(hs_self)->getAddress()));
+    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20473,7 +20494,7 @@ catch (...)
 
 static HosihikariStringView hs_method_87ccf1c7(void* hs_self) try
 {
-    auto result = static_cast<endstone::PacketReceiveEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20490,7 +20511,7 @@ catch (...)
 
 static std::int32_t hs_method_97a7e348(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent*>(hs_self)->getPacketId());
+    return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPacketId());
 }
 catch (std::exception const& hs_error)
 {
@@ -20505,7 +20526,7 @@ catch (...)
 
 static HosihikariStringView hs_method_2e177bbc(void* hs_self) try
 {
-    auto result = static_cast<endstone::PacketReceiveEvent*>(hs_self)->getPayload();
+    auto result = static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPayload();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20522,7 +20543,7 @@ catch (...)
 
 static void* hs_method_627bbdd2(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketReceiveEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20537,7 +20558,7 @@ catch (...)
 
 static std::int32_t hs_method_e27885bf(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent*>(hs_self)->getSubClientId());
+    return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getSubClientId());
 }
 catch (std::exception const& hs_error)
 {
@@ -20677,7 +20698,7 @@ catch (...)
 
 static void* hs_method_53132e9f(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketSendEvent*>(hs_self)->getAddress()));
+    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketSendEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20692,7 +20713,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e4c67418(void* hs_self) try
 {
-    auto result = static_cast<endstone::PacketSendEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PacketSendEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20709,7 +20730,7 @@ catch (...)
 
 static std::int32_t hs_method_20d62971(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent*>(hs_self)->getPacketId());
+    return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getPacketId());
 }
 catch (std::exception const& hs_error)
 {
@@ -20724,7 +20745,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7e4406c6(void* hs_self) try
 {
-    auto result = static_cast<endstone::PacketSendEvent*>(hs_self)->getPayload();
+    auto result = static_cast<endstone::PacketSendEvent const*>(hs_self)->getPayload();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -20741,7 +20762,7 @@ catch (...)
 
 static void* hs_method_19c260f4(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketSendEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20756,7 +20777,7 @@ catch (...)
 
 static std::int32_t hs_method_419bf171(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent*>(hs_self)->getSubClientId());
+    return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getSubClientId());
 }
 catch (std::exception const& hs_error)
 {
@@ -20936,7 +20957,7 @@ catch (...)
 
 static void* hs_method_258edc33(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permissible*>(hs_self)->asCommandSender()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permissible const*>(hs_self)->asCommandSender()));
 }
 catch (std::exception const& hs_error)
 {
@@ -20952,7 +20973,7 @@ catch (...)
 static HosihikariArrayView hs_method_445e9e34(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Permissible*>(hs_self)->getEffectivePermissions();
+    auto result = static_cast<endstone::Permissible const*>(hs_self)->getEffectivePermissions();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -20971,7 +20992,7 @@ catch (...)
 
 static std::int32_t hs_method_2c72e847(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Permissible*>(hs_self)->getPermissionLevel());
+    return static_cast<std::int32_t>(static_cast<endstone::Permissible const*>(hs_self)->getPermissionLevel());
 }
 catch (std::exception const& hs_error)
 {
@@ -20986,7 +21007,7 @@ catch (...)
 
 static bool hs_method_e11d24e9(void* hs_self, void* perm) try
 {
-    return static_cast<bool>(static_cast<endstone::Permissible*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
+    return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
 {
@@ -21001,7 +21022,7 @@ catch (...)
 
 static bool hs_method_7eb49288(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Permissible*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -21016,7 +21037,7 @@ catch (...)
 
 static bool hs_method_2c42ae7c(void* hs_self, void* perm) try
 {
-    return static_cast<bool>(static_cast<endstone::Permissible*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
+    return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
 {
@@ -21031,7 +21052,7 @@ catch (...)
 
 static bool hs_method_0fea9886(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Permissible*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -21146,7 +21167,7 @@ catch (...)
 
 static void hs_method_844cfb78(void* hs_self, void* perm, bool value) try
 {
-    static_cast<endstone::Permission*>(hs_self)->addParent(*static_cast<endstone::Permission*>(perm), static_cast<bool>(value));
+    static_cast<endstone::Permission const*>(hs_self)->addParent(*static_cast<endstone::Permission*>(perm), static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
 {
@@ -21193,7 +21214,7 @@ catch (...)
 
 static std::int32_t hs_method_d044a6f9(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Permission*>(hs_self)->getDefault());
+    return static_cast<std::int32_t>(static_cast<endstone::Permission const*>(hs_self)->getDefault());
 }
 catch (std::exception const& hs_error)
 {
@@ -21208,7 +21229,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a49fc3d5(void* hs_self) try
 {
-    auto result = static_cast<endstone::Permission*>(hs_self)->getDescription();
+    auto result = static_cast<endstone::Permission const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21225,7 +21246,7 @@ catch (...)
 
 static HosihikariStringView hs_method_674d4305(void* hs_self) try
 {
-    auto result = static_cast<endstone::Permission*>(hs_self)->getName();
+    auto result = static_cast<endstone::Permission const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21243,7 +21264,7 @@ catch (...)
 static HosihikariArrayView hs_method_16f14773(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Permission*>(hs_self)->getPermissibles();
+    auto result = static_cast<endstone::Permission const*>(hs_self)->getPermissibles();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -21352,7 +21373,7 @@ catch (...)
 
 static void* hs_method_0db6400b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment*>(hs_self)->getPermissible()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment const*>(hs_self)->getPermissible()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21369,7 +21390,7 @@ static HosihikariArrayView hs_method_5e0b211d(void* hs_self) try
 {
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
-    auto result = static_cast<endstone::PermissionAttachment*>(hs_self)->getPermissions();
+    auto result = static_cast<endstone::PermissionAttachment const*>(hs_self)->getPermissions();
     hs_mapEntries.clear();
     hs_mapEntries.reserve(result.size());
     hs_mapStrings.clear();
@@ -21399,7 +21420,7 @@ catch (...)
 
 static void* hs_method_bafd887c(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment*>(hs_self)->getPlugin()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21414,7 +21435,7 @@ catch (...)
 
 static void* hs_method_1561e66f(void* hs_self) try
 {
-    return static_cast<void*>(new std::function<void (const endstone::PermissionAttachment &)>(static_cast<endstone::PermissionAttachment*>(hs_self)->getRemovalCallback()));
+    return static_cast<void*>(new std::function<void (const endstone::PermissionAttachment &)>(static_cast<endstone::PermissionAttachment const*>(hs_self)->getRemovalCallback()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21569,7 +21590,7 @@ catch (...)
 
 static void* hs_method_6807d29a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PermissionAttachmentInfo*>(hs_self)->getAttachment()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getAttachment()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21584,7 +21605,7 @@ catch (...)
 
 static void* hs_method_c49d73e5(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachmentInfo*>(hs_self)->getPermissible()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getPermissible()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21599,7 +21620,7 @@ catch (...)
 
 static HosihikariStringView hs_method_64b34027(void* hs_self) try
 {
-    auto result = static_cast<endstone::PermissionAttachmentInfo*>(hs_self)->getPermission();
+    auto result = static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getPermission();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21616,7 +21637,7 @@ catch (...)
 
 static bool hs_method_f0aee6c2(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::PermissionAttachmentInfo*>(hs_self)->getValue());
+    return static_cast<bool>(static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
 {
@@ -21721,7 +21742,7 @@ catch (...)
 
 static void* hs_method_4981d2a2(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::Player*>(hs_self)->getAddress()));
+    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::Player const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21736,7 +21757,7 @@ catch (...)
 
 static bool hs_method_22c6dde5(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->getAllowFlight());
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->getAllowFlight());
 }
 catch (std::exception const& hs_error)
 {
@@ -21751,7 +21772,7 @@ catch (...)
 
 static HosihikariStringView hs_method_914b683b(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getDeviceId();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getDeviceId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21768,7 +21789,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a4bd4f38(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getDeviceOS();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getDeviceOS();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21785,7 +21806,7 @@ catch (...)
 
 static void* hs_method_56851ace(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player*>(hs_self)->getEnderChest()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getEnderChest()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21800,7 +21821,7 @@ catch (...)
 
 static std::int32_t hs_method_0a869444(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Player*>(hs_self)->getExpLevel());
+    return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getExpLevel());
 }
 catch (std::exception const& hs_error)
 {
@@ -21815,7 +21836,7 @@ catch (...)
 
 static float hs_method_52541e29(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Player*>(hs_self)->getExpProgress());
+    return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getExpProgress());
 }
 catch (std::exception const& hs_error)
 {
@@ -21830,7 +21851,7 @@ catch (...)
 
 static float hs_method_007333bf(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Player*>(hs_self)->getFlySpeed());
+    return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getFlySpeed());
 }
 catch (std::exception const& hs_error)
 {
@@ -21845,7 +21866,7 @@ catch (...)
 
 static std::int32_t hs_method_a370b4f8(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Player*>(hs_self)->getGameMode());
+    return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getGameMode());
 }
 catch (std::exception const& hs_error)
 {
@@ -21860,7 +21881,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f4994e1c(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getGameVersion();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getGameVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21877,7 +21898,7 @@ catch (...)
 
 static void* hs_method_a3acd946(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player*>(hs_self)->getInventory()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getInventory()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21892,7 +21913,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f261279f(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getLocale();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getLocale();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21909,7 +21930,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e7dd9639(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getName();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -21926,7 +21947,7 @@ catch (...)
 
 static std::int64_t hs_method_9cb6513a(void* hs_self) try
 {
-    return static_cast<std::int64_t>((static_cast<endstone::Player*>(hs_self)->getPing()).count());
+    return static_cast<std::int64_t>((static_cast<endstone::Player const*>(hs_self)->getPing()).count());
 }
 catch (std::exception const& hs_error)
 {
@@ -21941,7 +21962,7 @@ catch (...)
 
 static void* hs_method_d95fa490(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player*>(hs_self)->getScoreboard()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21956,7 +21977,7 @@ catch (...)
 
 static void* hs_method_b5761a6a(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Skin(static_cast<endstone::Player*>(hs_self)->getSkin()));
+    return static_cast<void*>(new endstone::Skin(static_cast<endstone::Player const*>(hs_self)->getSkin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -21971,7 +21992,7 @@ catch (...)
 
 static std::int32_t hs_method_4e1b6265(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Player*>(hs_self)->getTotalExp());
+    return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getTotalExp());
 }
 catch (std::exception const& hs_error)
 {
@@ -21986,7 +22007,7 @@ catch (...)
 
 static float hs_method_3426ba86(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Player*>(hs_self)->getWalkSpeed());
+    return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getWalkSpeed());
 }
 catch (std::exception const& hs_error)
 {
@@ -22001,7 +22022,7 @@ catch (...)
 
 static HosihikariStringView hs_method_467a1896(void* hs_self) try
 {
-    auto result = static_cast<endstone::Player*>(hs_self)->getXuid();
+    auto result = static_cast<endstone::Player const*>(hs_self)->getXuid();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -22048,7 +22069,7 @@ catch (...)
 
 static bool hs_method_c48a3c9d(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->isFlying());
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isFlying());
 }
 catch (std::exception const& hs_error)
 {
@@ -22063,7 +22084,7 @@ catch (...)
 
 static bool hs_method_a6129068(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->isOp());
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isOp());
 }
 catch (std::exception const& hs_error)
 {
@@ -22078,7 +22099,7 @@ catch (...)
 
 static bool hs_method_034c9ee3(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->isSneaking());
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isSneaking());
 }
 catch (std::exception const& hs_error)
 {
@@ -22093,7 +22114,7 @@ catch (...)
 
 static bool hs_method_17e3131f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->isSprinting());
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isSprinting());
 }
 catch (std::exception const& hs_error)
 {
@@ -22108,7 +22129,7 @@ catch (...)
 
 static void hs_method_c8a45702(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->kick(std::basic_string<char>(message_data, message_size));
+    static_cast<endstone::Player const*>(hs_self)->kick(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22123,7 +22144,7 @@ catch (...)
 
 static bool hs_method_66e6556f(void* hs_self, const char* command_data, std::size_t command_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Player*>(hs_self)->performCommand(std::basic_string<char>(command_data, command_size)));
+    return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->performCommand(std::basic_string<char>(command_data, command_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -22153,7 +22174,7 @@ catch (...)
 
 static void hs_method_d7922873(void* hs_self) try
 {
-    static_cast<endstone::Player*>(hs_self)->resetTitle();
+    static_cast<endstone::Player const*>(hs_self)->resetTitle();
 }
 catch (std::exception const& hs_error)
 {
@@ -22198,7 +22219,7 @@ catch (...)
 
 static void hs_method_16e86b9c(void* hs_self, std::int32_t packet_id, const char* payload_data, std::size_t payload_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendPacket(static_cast<int>(packet_id), std::basic_string_view<char>(payload_data, payload_size));
+    static_cast<endstone::Player const*>(hs_self)->sendPacket(static_cast<int>(packet_id), std::basic_string_view<char>(payload_data, payload_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22213,7 +22234,7 @@ catch (...)
 
 static void hs_method_388cfcc3(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendPopup(std::basic_string<char>(message_data, message_size));
+    static_cast<endstone::Player const*>(hs_self)->sendPopup(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22228,7 +22249,7 @@ catch (...)
 
 static void hs_method_c548d776(void* hs_self, const char* message_data, std::size_t message_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendTip(std::basic_string<char>(message_data, message_size));
+    static_cast<endstone::Player const*>(hs_self)->sendTip(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22243,7 +22264,7 @@ catch (...)
 
 static void hs_method_19a2aa94(void* hs_self, const char* title_data, std::size_t title_size, const char* subtitle_data, std::size_t subtitle_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size));
+    static_cast<endstone::Player const*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22258,7 +22279,7 @@ catch (...)
 
 static void hs_method_efeec355(void* hs_self, const char* title_data, std::size_t title_size, const char* subtitle_data, std::size_t subtitle_size, std::int32_t fade_in, std::int32_t stay, std::int32_t fade_out) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size), static_cast<int>(fade_in), static_cast<int>(stay), static_cast<int>(fade_out));
+    static_cast<endstone::Player const*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size), static_cast<int>(fade_in), static_cast<int>(stay), static_cast<int>(fade_out));
 }
 catch (std::exception const& hs_error)
 {
@@ -22273,7 +22294,7 @@ catch (...)
 
 static void hs_method_140230a4(void* hs_self, const char* title_data, std::size_t title_size, const char* content_data, std::size_t content_size) try
 {
-    static_cast<endstone::Player*>(hs_self)->sendToast(std::basic_string<char>(title_data, title_size), std::basic_string<char>(content_data, content_size));
+    static_cast<endstone::Player const*>(hs_self)->sendToast(std::basic_string<char>(title_data, title_size), std::basic_string<char>(content_data, content_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -22333,7 +22354,7 @@ catch (...)
 
 static void hs_method_b089acad(void* hs_self, float value) try
 {
-    static_cast<endstone::Player*>(hs_self)->setFlySpeed(static_cast<float>(value));
+    static_cast<endstone::Player const*>(hs_self)->setFlySpeed(static_cast<float>(value));
 }
 catch (std::exception const& hs_error)
 {
@@ -22438,7 +22459,7 @@ catch (...)
 
 static void hs_method_64633831(void* hs_self, float value) try
 {
-    static_cast<endstone::Player*>(hs_self)->setWalkSpeed(static_cast<float>(value));
+    static_cast<endstone::Player const*>(hs_self)->setWalkSpeed(static_cast<float>(value));
 }
 catch (std::exception const& hs_error)
 {
@@ -22453,7 +22474,7 @@ catch (...)
 
 static void hs_method_4561ad82(void* hs_self, const char* name_data, std::size_t name_size, void* location) try
 {
-    static_cast<endstone::Player*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location));
+    static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location));
 }
 catch (std::exception const& hs_error)
 {
@@ -22468,7 +22489,7 @@ catch (...)
 
 static void hs_method_49c2d51a(void* hs_self, const char* name_data, std::size_t name_size, void* location, const char* molang_variables_json_data, std::size_t molang_variables_json_size, bool molang_variables_json_hasValue) try
 {
-    static_cast<endstone::Player*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
+    static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
 {
@@ -22483,7 +22504,7 @@ catch (...)
 
 static void hs_method_e52f1365(void* hs_self, const char* name_data, std::size_t name_size, float x, float y, float z) try
 {
-    static_cast<endstone::Player*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
+    static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
 }
 catch (std::exception const& hs_error)
 {
@@ -22498,7 +22519,7 @@ catch (...)
 
 static void hs_method_93eb6528(void* hs_self, const char* name_data, std::size_t name_size, float x, float y, float z, const char* molang_variables_json_data, std::size_t molang_variables_json_size, bool molang_variables_json_hasValue) try
 {
-    static_cast<endstone::Player*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
+    static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
 {
@@ -22543,7 +22564,7 @@ catch (...)
 
 static void hs_method_642d5f09(void* hs_self, const char* host_data, std::size_t host_size, std::int32_t port) try
 {
-    static_cast<endstone::Player*>(hs_self)->transfer(std::basic_string<char>(host_data, host_size), static_cast<int>(port));
+    static_cast<endstone::Player const*>(hs_self)->transfer(std::basic_string<char>(host_data, host_size), static_cast<int>(port));
 }
 catch (std::exception const& hs_error)
 {
@@ -22558,7 +22579,7 @@ catch (...)
 
 static void hs_method_2bac054c(void* hs_self) try
 {
-    static_cast<endstone::Player*>(hs_self)->updateCommands();
+    static_cast<endstone::Player const*>(hs_self)->updateCommands();
 }
 catch (std::exception const& hs_error)
 {
@@ -22618,7 +22639,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6e16ee39(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerBanEntry*>(hs_self)->getName();
+    auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -22635,7 +22656,7 @@ catch (...)
 
 static void* hs_method_80abbf8c(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerBanEntry*>(hs_self)->getUniqueId();
+    auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getUniqueId();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::UUID(std::move(*result)));
@@ -22655,7 +22676,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8099d776(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerBanEntry*>(hs_self)->getXuid();
+    auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getXuid();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -22750,7 +22771,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_e53ccf1d(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size))).get());
+    return hs_make_shared_handle((static_cast<endstone::PlayerBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size))).get());
 }
 catch (std::exception const& hs_error)
 {
@@ -22765,7 +22786,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_ac3c9805(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
-    return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt))).get());
+    return hs_make_shared_handle((static_cast<endstone::PlayerBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
 {
@@ -22781,7 +22802,7 @@ catch (...)
 static HosihikariArrayView hs_method_0e726e25(void* hs_self) try
 {
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
-    auto result = static_cast<endstone::PlayerBanList*>(hs_self)->getEntries();
+    auto result = static_cast<endstone::PlayerBanList const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
     hs_arrayShared.reserve(result.size());
     for (auto const& item : result) { hs_arrayShared.push_back(hs_make_shared_handle(item.get())); }
@@ -22800,7 +22821,7 @@ catch (...)
 
 static bool hs_method_d5b50c77(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::PlayerBanList*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::PlayerBanList const*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -22815,7 +22836,7 @@ catch (...)
 
 static bool hs_method_b5bff8d5(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
-    return static_cast<bool>(static_cast<endstone::PlayerBanList*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt)));
+    return static_cast<bool>(static_cast<endstone::PlayerBanList const*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt)));
 }
 catch (std::exception const& hs_error)
 {
@@ -22965,7 +22986,7 @@ catch (...)
 
 static void* hs_method_b59d9235(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedEnterEvent*>(hs_self)->getBed()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedEnterEvent const*>(hs_self)->getBed()));
 }
 catch (std::exception const& hs_error)
 {
@@ -22980,7 +23001,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5c9d7d1a(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerBedEnterEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerBedEnterEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23072,7 +23093,7 @@ catch (...)
 
 static void* hs_method_2249aaa0(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedLeaveEvent*>(hs_self)->getBed()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedLeaveEvent const*>(hs_self)->getBed()));
 }
 catch (std::exception const& hs_error)
 {
@@ -23087,7 +23108,7 @@ catch (...)
 
 static HosihikariStringView hs_method_77badf1d(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerBedLeaveEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerBedLeaveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23194,7 +23215,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b4507a53(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerChatEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23211,7 +23232,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b92f560f(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerChatEvent*>(hs_self)->getFormat();
+    auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getFormat();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23228,7 +23249,7 @@ catch (...)
 
 static HosihikariStringView hs_method_458498c5(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerChatEvent*>(hs_self)->getMessage();
+    auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23246,7 +23267,7 @@ catch (...)
 static HosihikariArrayView hs_method_6522dd0f(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PlayerChatEvent*>(hs_self)->getRecipients();
+    auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getRecipients();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -23415,7 +23436,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8c4234ca(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerCommandEvent*>(hs_self)->getCommand();
+    auto result = static_cast<endstone::PlayerCommandEvent const*>(hs_self)->getCommand();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23432,7 +23453,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0ab19541(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerCommandEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerCommandEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23554,7 +23575,7 @@ catch (...)
 
 static void* hs_method_09a43d68(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerDeathEvent*>(hs_self)->getDeathMessage();
+    auto result = static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getDeathMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::move(*result)));
@@ -23574,7 +23595,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a73c6a4f(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerDeathEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23591,7 +23612,7 @@ catch (...)
 
 static void* hs_method_0f3fb098(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDeathEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -23696,7 +23717,7 @@ catch (...)
 
 static HosihikariStringView hs_method_662d6064(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23713,7 +23734,7 @@ catch (...)
 
 static void* hs_method_41d9abc5(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self)->getFrom()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
 {
@@ -23728,7 +23749,7 @@ catch (...)
 
 static void* hs_method_1c7ecf07(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self)->getTo()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
 {
@@ -23848,7 +23869,7 @@ catch (...)
 
 static HosihikariStringView hs_method_243dad04(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerDropItemEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerDropItemEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -23865,7 +23886,7 @@ catch (...)
 
 static void* hs_method_8372a1d3(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDropItemEvent*>(hs_self)->getItem()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDropItemEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
 {
@@ -23985,7 +24006,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b68df709(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerEmoteEvent*>(hs_self)->getEmoteId();
+    auto result = static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->getEmoteId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -24002,7 +24023,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1383452f(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerEmoteEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -24019,7 +24040,7 @@ catch (...)
 
 static bool hs_method_008ffb5b(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::PlayerEmoteEvent*>(hs_self)->isMuted());
+    return static_cast<bool>(static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->isMuted());
 }
 catch (std::exception const& hs_error)
 {
@@ -24424,7 +24445,7 @@ catch (...)
 
 static void* hs_method_3db1e9dc(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerEvent*>(hs_self)->getPlayer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -24544,7 +24565,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b3a3a53f(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerGameModeChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -24561,7 +24582,7 @@ catch (...)
 
 static std::int32_t hs_method_5bc97f4d(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self)->getNewGameMode());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerGameModeChangeEvent const*>(hs_self)->getNewGameMode());
 }
 catch (std::exception const& hs_error)
 {
@@ -24681,7 +24702,7 @@ catch (...)
 
 static void* hs_method_bcc3954e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractActorEvent*>(hs_self)->getActor()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractActorEvent const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -24696,7 +24717,7 @@ catch (...)
 
 static HosihikariStringView hs_method_2c450ef3(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerInteractActorEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerInteractActorEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -24818,7 +24839,7 @@ catch (...)
 
 static std::int32_t hs_method_fd32d648(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent*>(hs_self)->getAction());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getAction());
 }
 catch (std::exception const& hs_error)
 {
@@ -24833,7 +24854,7 @@ catch (...)
 
 static void* hs_method_50883ffe(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PlayerInteractEvent*>(hs_self)->getBlock()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getBlock()));
 }
 catch (std::exception const& hs_error)
 {
@@ -24848,7 +24869,7 @@ catch (...)
 
 static std::int32_t hs_method_d9ab8eaf(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent*>(hs_self)->getBlockFace());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getBlockFace());
 }
 catch (std::exception const& hs_error)
 {
@@ -24863,7 +24884,7 @@ catch (...)
 
 static void* hs_method_9615d72c(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInteractEvent*>(hs_self)->getClickedPosition();
+    auto result = static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getClickedPosition();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::Vector(std::move(*result)));
@@ -24883,7 +24904,7 @@ catch (...)
 
 static HosihikariStringView hs_method_eda76496(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerInteractEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -24900,7 +24921,7 @@ catch (...)
 
 static void* hs_method_fd08901a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractEvent*>(hs_self)->getItem()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
 {
@@ -24915,7 +24936,7 @@ catch (...)
 
 static bool hs_method_ccde37b2(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::PlayerInteractEvent*>(hs_self)->hasBlock());
+    return static_cast<bool>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->hasBlock());
 }
 catch (std::exception const& hs_error)
 {
@@ -24930,7 +24951,7 @@ catch (...)
 
 static bool hs_method_250987aa(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::PlayerInteractEvent*>(hs_self)->hasItem());
+    return static_cast<bool>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->hasItem());
 }
 catch (std::exception const& hs_error)
 {
@@ -24960,7 +24981,7 @@ catch (...)
 
 static void* hs_method_407afba1(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getBoots();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getBoots();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -24980,7 +25001,7 @@ catch (...)
 
 static void* hs_method_21cdca28(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getChestplate();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getChestplate();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -25000,7 +25021,7 @@ catch (...)
 
 static std::int32_t hs_method_2af5838e(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerInventory*>(hs_self)->getHeldItemSlot());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerInventory const*>(hs_self)->getHeldItemSlot());
 }
 catch (std::exception const& hs_error)
 {
@@ -25015,7 +25036,7 @@ catch (...)
 
 static void* hs_method_e7852bbe(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getHelmet();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getHelmet();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -25035,7 +25056,7 @@ catch (...)
 
 static void* hs_method_80e17233(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getItemInMainHand();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getItemInMainHand();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -25055,7 +25076,7 @@ catch (...)
 
 static void* hs_method_22b989c4(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getItemInOffHand();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getItemInOffHand();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -25075,7 +25096,7 @@ catch (...)
 
 static void* hs_method_7394574a(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerInventory*>(hs_self)->getLeggings();
+    auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getLeggings();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new endstone::ItemStack(std::move(*result)));
@@ -25305,7 +25326,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9e01e472(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerItemConsumeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -25322,7 +25343,7 @@ catch (...)
 
 static std::int32_t hs_method_23eda770(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemConsumeEvent*>(hs_self)->getHand());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getHand());
 }
 catch (std::exception const& hs_error)
 {
@@ -25337,7 +25358,7 @@ catch (...)
 
 static void* hs_method_37f0fdff(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerItemConsumeEvent*>(hs_self)->getItem()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
 {
@@ -25457,7 +25478,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9b0abce8(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerItemHeldEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -25474,7 +25495,7 @@ catch (...)
 
 static std::int32_t hs_method_33653a83(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self)->getNewSlot());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getNewSlot());
 }
 catch (std::exception const& hs_error)
 {
@@ -25489,7 +25510,7 @@ catch (...)
 
 static std::int32_t hs_method_07e177e9(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self)->getPreviousSlot());
+    return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getPreviousSlot());
 }
 catch (std::exception const& hs_error)
 {
@@ -25579,7 +25600,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9a7837cb(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerJoinEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerJoinEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -25596,7 +25617,7 @@ catch (...)
 
 static void* hs_method_af275668(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerJoinEvent*>(hs_self)->getJoinMessage();
+    auto result = static_cast<endstone::PlayerJoinEvent const*>(hs_self)->getJoinMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::move(*result)));
@@ -25736,7 +25757,7 @@ catch (...)
 
 static HosihikariStringView hs_method_408857f5(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerJumpEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerJumpEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -25858,7 +25879,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ca091d6a(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerKickEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerKickEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -25875,7 +25896,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0b3d6022(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerKickEvent*>(hs_self)->getReason();
+    auto result = static_cast<endstone::PlayerKickEvent const*>(hs_self)->getReason();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26012,7 +26033,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d1fe55ab(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerLoginEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerLoginEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26029,7 +26050,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c422381f(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerLoginEvent*>(hs_self)->getKickMessage();
+    auto result = static_cast<endstone::PlayerLoginEvent const*>(hs_self)->getKickMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26241,7 +26262,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a1d2aae6(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerMoveEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26258,7 +26279,7 @@ catch (...)
 
 static void* hs_method_0f5ff6d1(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent*>(hs_self)->getFrom()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
 {
@@ -26273,7 +26294,7 @@ catch (...)
 
 static void* hs_method_28cb48e3(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent*>(hs_self)->getTo()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
 {
@@ -26453,7 +26474,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7dbbe6d9(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerPickupItemEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerPickupItemEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26470,7 +26491,7 @@ catch (...)
 
 static void* hs_method_91dd524f(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerPickupItemEvent*>(hs_self)->getItem()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerPickupItemEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
 {
@@ -26605,7 +26626,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6a286f65(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerPortalEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerPortalEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26697,7 +26718,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dcf52f89(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerQuitEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerQuitEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26714,7 +26735,7 @@ catch (...)
 
 static void* hs_method_a21f1046(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerQuitEvent*>(hs_self)->getQuitMessage();
+    auto result = static_cast<endstone::PlayerQuitEvent const*>(hs_self)->getQuitMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::move(*result)));
@@ -26824,7 +26845,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9a200629(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerRespawnEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerRespawnEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26946,7 +26967,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5c33ba79(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerSkinChangeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -26963,7 +26984,7 @@ catch (...)
 
 static void* hs_method_d73a652d(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Skin(static_cast<endstone::PlayerSkinChangeEvent*>(hs_self)->getNewSkin()));
+    return static_cast<void*>(new endstone::Skin(static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getNewSkin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -26978,7 +26999,7 @@ catch (...)
 
 static void* hs_method_3c0a13be(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::PlayerSkinChangeEvent*>(hs_self)->getSkinChangeMessage();
+    auto result = static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getSkinChangeMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::move(*result)));
@@ -27133,7 +27154,7 @@ catch (...)
 
 static HosihikariStringView hs_method_46454b3c(void* hs_self) try
 {
-    auto result = static_cast<endstone::PlayerTeleportEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PlayerTeleportEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27165,7 +27186,7 @@ catch (...)
 
 static void* hs_method_b198102d(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Plugin*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Plugin const*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -27180,7 +27201,7 @@ catch (...)
 
 static HosihikariStringView hs_method_775a44b0(void* hs_self) try
 {
-    auto result = static_cast<endstone::Plugin*>(hs_self)->getDataFolder();
+    auto result = static_cast<endstone::Plugin const*>(hs_self)->getDataFolder();
     g_stringResult.assign(result.string());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27197,7 +27218,7 @@ catch (...)
 
 static void* hs_method_f1bd0b1c(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin*>(hs_self)->getDescription()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getDescription()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27212,7 +27233,7 @@ catch (...)
 
 static void* hs_method_68ae4547(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin*>(hs_self)->getLogger()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getLogger()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27227,7 +27248,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3e0154f0(void* hs_self) try
 {
-    auto result = static_cast<endstone::Plugin*>(hs_self)->getName();
+    auto result = static_cast<endstone::Plugin const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27244,7 +27265,7 @@ catch (...)
 
 static void* hs_method_43488e75(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin*>(hs_self)->getPluginLoader()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getPluginLoader()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27259,7 +27280,7 @@ catch (...)
 
 static void* hs_method_a6bd72ae(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin*>(hs_self)->getServer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27274,7 +27295,7 @@ catch (...)
 
 static bool hs_method_1f11e477(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Plugin*>(hs_self)->isEnabled());
+    return static_cast<bool>(static_cast<endstone::Plugin const*>(hs_self)->isEnabled());
 }
 catch (std::exception const& hs_error)
 {
@@ -27379,7 +27400,7 @@ catch (...)
 
 static void* hs_method_99b629bb(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginCommand*>(hs_self)->asPluginCommand()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginCommand const*>(hs_self)->asPluginCommand()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27394,7 +27415,7 @@ catch (...)
 
 static bool hs_method_18c8a5a2(void* hs_self, void* sender, const HosihikariStringView* args_data, std::size_t args_count) try
 {
-    return static_cast<bool>(static_cast<endstone::PluginCommand*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
+    return static_cast<bool>(static_cast<endstone::PluginCommand const*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
 }
 catch (std::exception const& hs_error)
 {
@@ -27409,7 +27430,7 @@ catch (...)
 
 static void* hs_method_8b4c19e2(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand*>(hs_self)->getExecutor()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand const*>(hs_self)->getExecutor()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27424,7 +27445,7 @@ catch (...)
 
 static void* hs_method_2476b603(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand*>(hs_self)->getPlugin()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27484,7 +27505,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a68fa3c7(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getAPIVersion();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getAPIVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27503,7 +27524,7 @@ static HosihikariArrayView hs_method_07a6157f(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getAuthors();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getAuthors();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27526,7 +27547,7 @@ catch (...)
 static HosihikariArrayView hs_method_8741d6ed(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getCommands();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getCommands();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new endstone::Command(item))); }
@@ -27547,7 +27568,7 @@ static HosihikariArrayView hs_method_1f3202d7(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getContributors();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getContributors();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27569,7 +27590,7 @@ catch (...)
 
 static std::int32_t hs_method_3aecb585(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PluginDescription*>(hs_self)->getDefaultPermission());
+    return static_cast<std::int32_t>(static_cast<endstone::PluginDescription const*>(hs_self)->getDefaultPermission());
 }
 catch (std::exception const& hs_error)
 {
@@ -27586,7 +27607,7 @@ static HosihikariArrayView hs_method_3c65a34b(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getDepend();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getDepend();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27608,7 +27629,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a5f88620(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getDescription();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27625,7 +27646,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd0a3c70(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getFullName();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getFullName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27642,7 +27663,7 @@ catch (...)
 
 static std::int32_t hs_method_c384d425(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::PluginDescription*>(hs_self)->getLoad());
+    return static_cast<std::int32_t>(static_cast<endstone::PluginDescription const*>(hs_self)->getLoad());
 }
 catch (std::exception const& hs_error)
 {
@@ -27659,7 +27680,7 @@ static HosihikariArrayView hs_method_22243c45(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getLoadBefore();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getLoadBefore();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27681,7 +27702,7 @@ catch (...)
 
 static HosihikariStringView hs_method_60803d5e(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getName();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27699,7 +27720,7 @@ catch (...)
 static HosihikariArrayView hs_method_d0208aa9(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getPermissions();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getPermissions();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new endstone::Permission(item))); }
@@ -27718,7 +27739,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b7c4bc57(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getPrefix();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getPrefix();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27737,7 +27758,7 @@ static HosihikariArrayView hs_method_89b9a91f(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getProvides();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getProvides();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27761,7 +27782,7 @@ static HosihikariArrayView hs_method_946b5490(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getSoftDepend();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getSoftDepend();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -27783,7 +27804,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e6575ca2(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getVersion();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27800,7 +27821,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b8361b96(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDescription*>(hs_self)->getWebsite();
+    auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getWebsite();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27892,7 +27913,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c615ea0b(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginDisableEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PluginDisableEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -27909,7 +27930,7 @@ catch (...)
 
 static void* hs_method_9a56d0d6(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginDisableEvent*>(hs_self)->getPlugin()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginDisableEvent const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -27999,7 +28020,7 @@ catch (...)
 
 static HosihikariStringView hs_method_11eaef90(void* hs_self) try
 {
-    auto result = static_cast<endstone::PluginEnableEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::PluginEnableEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -28016,7 +28037,7 @@ catch (...)
 
 static void* hs_method_10a06443(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginEnableEvent*>(hs_self)->getPlugin()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginEnableEvent const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -28031,7 +28052,7 @@ catch (...)
 
 static void hs_method_3fabd36a(void* hs_self, void* plugin) try
 {
-    static_cast<endstone::PluginLoader*>(hs_self)->disablePlugin(*static_cast<endstone::Plugin*>(plugin));
+    static_cast<endstone::PluginLoader const*>(hs_self)->disablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
 {
@@ -28046,7 +28067,7 @@ catch (...)
 
 static void hs_method_0dec6e88(void* hs_self, void* plugin) try
 {
-    static_cast<endstone::PluginLoader*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
+    static_cast<endstone::PluginLoader const*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
 {
@@ -28063,7 +28084,7 @@ static HosihikariArrayView hs_method_371cc56f(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::PluginLoader*>(hs_self)->getPluginFileFilters();
+    auto result = static_cast<endstone::PluginLoader const*>(hs_self)->getPluginFileFilters();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -28085,7 +28106,7 @@ catch (...)
 
 static void* hs_method_ba0f439a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginLoader*>(hs_self)->getServer()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginLoader const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
 {
@@ -28210,7 +28231,7 @@ catch (...)
 
 static void hs_method_b3bdd8f4(void* hs_self, void* plugin) try
 {
-    static_cast<endstone::PluginManager*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
+    static_cast<endstone::PluginManager const*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
 {
@@ -28225,7 +28246,7 @@ catch (...)
 
 static void hs_method_665eee88(void* hs_self) try
 {
-    static_cast<endstone::PluginManager*>(hs_self)->enablePlugins();
+    static_cast<endstone::PluginManager const*>(hs_self)->enablePlugins();
 }
 catch (std::exception const& hs_error)
 {
@@ -28241,7 +28262,7 @@ catch (...)
 static HosihikariArrayView hs_method_f8a94bea(void* hs_self, std::int32_t level) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginManager*>(hs_self)->getDefaultPermSubscriptions(static_cast<endstone::PermissionLevel>(level));
+    auto result = static_cast<endstone::PluginManager const*>(hs_self)->getDefaultPermSubscriptions(static_cast<endstone::PermissionLevel>(level));
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -28261,7 +28282,7 @@ catch (...)
 static HosihikariArrayView hs_method_3488946b(void* hs_self, std::int32_t level) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginManager*>(hs_self)->getDefaultPermissions(static_cast<endstone::PermissionLevel>(level));
+    auto result = static_cast<endstone::PluginManager const*>(hs_self)->getDefaultPermissions(static_cast<endstone::PermissionLevel>(level));
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -28280,7 +28301,7 @@ catch (...)
 
 static void* hs_method_c1d09d9c(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager*>(hs_self)->getPermission(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager const*>(hs_self)->getPermission(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -28296,7 +28317,7 @@ catch (...)
 static HosihikariArrayView hs_method_4a749daa(void* hs_self, const char* permission_data, std::size_t permission_size) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginManager*>(hs_self)->getPermissionSubscriptions(std::basic_string<char>(permission_data, permission_size));
+    auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPermissionSubscriptions(std::basic_string<char>(permission_data, permission_size));
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -28316,7 +28337,7 @@ catch (...)
 static HosihikariArrayView hs_method_a6414b23(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginManager*>(hs_self)->getPermissions();
+    auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPermissions();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -28335,7 +28356,7 @@ catch (...)
 
 static void* hs_method_b567008b(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager*>(hs_self)->getPlugin(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager const*>(hs_self)->getPlugin(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -28351,7 +28372,7 @@ catch (...)
 static HosihikariArrayView hs_method_5a06eb75(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::PluginManager*>(hs_self)->getPlugins();
+    auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPlugins();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -28370,7 +28391,7 @@ catch (...)
 
 static bool hs_method_69df9686(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return static_cast<bool>(static_cast<endstone::PluginManager*>(hs_self)->isPluginEnabled(std::basic_string<char>(name_data, name_size)));
+    return static_cast<bool>(static_cast<endstone::PluginManager const*>(hs_self)->isPluginEnabled(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -28385,7 +28406,7 @@ catch (...)
 
 static bool hs_method_44aacc70(void* hs_self, void* plugin) try
 {
-    return static_cast<bool>(static_cast<endstone::PluginManager*>(hs_self)->isPluginEnabled(static_cast<endstone::Plugin*>(plugin)));
+    return static_cast<bool>(static_cast<endstone::PluginManager const*>(hs_self)->isPluginEnabled(static_cast<endstone::Plugin*>(plugin)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29330,7 +29351,7 @@ catch (...)
 
 static void* hs_method_9bb7e442(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Recipe*>(hs_self)->getResult()));
+    return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Recipe const*>(hs_self)->getResult()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29380,7 +29401,7 @@ struct hs_cb_closure_hs_method_5174e059_cb0
 
 static void hs_method_5174e059(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
-    static_cast<endstone::Registry<endstone::BlockType>*>(hs_self)->forEach(std::function<bool (const endstone::BlockType &)>(hs_cb_closure_hs_method_5174e059_cb0{std::make_shared<hs_cb_state_hs_method_5174e059_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_5174e059_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_5174e059_cb0>(func_release))}));
+    static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->forEach(std::function<bool (const endstone::BlockType &)>(hs_cb_closure_hs_method_5174e059_cb0{std::make_shared<hs_cb_state_hs_method_5174e059_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_5174e059_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_5174e059_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
 {
@@ -29395,7 +29416,7 @@ catch (...)
 
 static void* hs_method_2b7fe892(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::BlockType>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29425,7 +29446,7 @@ catch (...)
 
 static void* hs_method_c76ca6db(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::BlockType>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29485,7 +29506,7 @@ catch (...)
 
 static void* hs_method_c0c2d74e(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->getId()));
+    return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29500,7 +29521,7 @@ catch (...)
 
 static HosihikariStringView hs_method_eb82a89d(void* hs_self) try
 {
-    auto result = static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->getTranslationKey();
+    auto result = static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -29517,7 +29538,7 @@ catch (...)
 
 static void* hs_method_e8769c8c(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->operator endstone::Identifier<endstone::BlockType>()));
+    return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator endstone::Identifier<endstone::BlockType>()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29532,7 +29553,7 @@ catch (...)
 
 static bool hs_method_4c92e3db(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->operator!=(*static_cast<const endstone::BlockType*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::BlockType*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29547,7 +29568,7 @@ catch (...)
 
 static bool hs_method_cf2ded48(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29562,7 +29583,7 @@ catch (...)
 
 static bool hs_method_5d03a0e0(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->operator==(*static_cast<const endstone::BlockType*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::BlockType*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29577,7 +29598,7 @@ catch (...)
 
 static bool hs_method_5d861629(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29627,7 +29648,7 @@ struct hs_cb_closure_hs_method_3150959d_cb0
 
 static void hs_method_3150959d(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
-    static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self)->forEach(std::function<bool (const endstone::Enchantment &)>(hs_cb_closure_hs_method_3150959d_cb0{std::make_shared<hs_cb_state_hs_method_3150959d_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_3150959d_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_3150959d_cb0>(func_release))}));
+    static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->forEach(std::function<bool (const endstone::Enchantment &)>(hs_cb_closure_hs_method_3150959d_cb0{std::make_shared<hs_cb_state_hs_method_3150959d_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_3150959d_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_3150959d_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
 {
@@ -29642,7 +29663,7 @@ catch (...)
 
 static void* hs_method_9824d7b2(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29672,7 +29693,7 @@ catch (...)
 
 static void* hs_method_5ff0cfea(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29732,7 +29753,7 @@ catch (...)
 
 static void* hs_method_00d2ceb7(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->getId()));
+    return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29747,7 +29768,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd1477bf(void* hs_self) try
 {
-    auto result = static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->getTranslationKey();
+    auto result = static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -29764,7 +29785,7 @@ catch (...)
 
 static void* hs_method_0a44bc09(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->operator endstone::Identifier<endstone::Enchantment>()));
+    return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator endstone::Identifier<endstone::Enchantment>()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29779,7 +29800,7 @@ catch (...)
 
 static bool hs_method_8ef9db8d(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->operator!=(*static_cast<const endstone::Enchantment*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29794,7 +29815,7 @@ catch (...)
 
 static bool hs_method_91998a59(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29809,7 +29830,7 @@ catch (...)
 
 static bool hs_method_3f276808(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->operator==(*static_cast<const endstone::Enchantment*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29824,7 +29845,7 @@ catch (...)
 
 static bool hs_method_02ebb8ba(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -29874,7 +29895,7 @@ struct hs_cb_closure_hs_method_f2521df4_cb0
 
 static void hs_method_f2521df4(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
-    static_cast<endstone::Registry<endstone::ItemType>*>(hs_self)->forEach(std::function<bool (const endstone::ItemType &)>(hs_cb_closure_hs_method_f2521df4_cb0{std::make_shared<hs_cb_state_hs_method_f2521df4_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_f2521df4_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_f2521df4_cb0>(func_release))}));
+    static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->forEach(std::function<bool (const endstone::ItemType &)>(hs_cb_closure_hs_method_f2521df4_cb0{std::make_shared<hs_cb_state_hs_method_f2521df4_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_f2521df4_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_f2521df4_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
 {
@@ -29889,7 +29910,7 @@ catch (...)
 
 static void* hs_method_5781d235(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::ItemType>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29919,7 +29940,7 @@ catch (...)
 
 static void* hs_method_04d90caa(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::ItemType>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -29979,7 +30000,7 @@ catch (...)
 
 static void* hs_method_86309f30(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->getId()));
+    return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -29994,7 +30015,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f3444385(void* hs_self) try
 {
-    auto result = static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->getTranslationKey();
+    auto result = static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -30011,7 +30032,7 @@ catch (...)
 
 static void* hs_method_94bed2d4(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->operator endstone::Identifier<endstone::ItemType>()));
+    return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator endstone::Identifier<endstone::ItemType>()));
 }
 catch (std::exception const& hs_error)
 {
@@ -30026,7 +30047,7 @@ catch (...)
 
 static bool hs_method_90b18e73(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -30041,7 +30062,7 @@ catch (...)
 
 static bool hs_method_b92ea9b2(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->operator!=(*static_cast<const endstone::ItemType*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::ItemType*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -30056,7 +30077,7 @@ catch (...)
 
 static bool hs_method_e5826cc0(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -30071,7 +30092,7 @@ catch (...)
 
 static bool hs_method_78a421b8(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self)->operator==(*static_cast<const endstone::ItemType*>(other)));
+    return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::ItemType*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -30391,7 +30412,7 @@ catch (...)
 
 static void* hs_method_8475b818(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(static_cast<endstone::Score*>(hs_self)->getEntry()));
+    return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(static_cast<endstone::Score const*>(hs_self)->getEntry()));
 }
 catch (std::exception const& hs_error)
 {
@@ -30406,7 +30427,7 @@ catch (...)
 
 static void* hs_method_56a25a01(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score*>(hs_self)->getObjective()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score const*>(hs_self)->getObjective()));
 }
 catch (std::exception const& hs_error)
 {
@@ -30421,7 +30442,7 @@ catch (...)
 
 static void* hs_method_53fb01c6(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score*>(hs_self)->getScoreboard()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
 {
@@ -30436,7 +30457,7 @@ catch (...)
 
 static std::int32_t hs_method_50e19cf7(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Score*>(hs_self)->getValue());
+    return static_cast<std::int32_t>(static_cast<endstone::Score const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
 {
@@ -30451,7 +30472,7 @@ catch (...)
 
 static bool hs_method_5e82457b(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Score*>(hs_self)->isScoreSet());
+    return static_cast<bool>(static_cast<endstone::Score const*>(hs_self)->isScoreSet());
 }
 catch (std::exception const& hs_error)
 {
@@ -30545,7 +30566,7 @@ catch (...)
 static HosihikariArrayView hs_method_5e069352(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Scoreboard*>(hs_self)->getEntries();
+    auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getEntries();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(item))); }
@@ -30564,7 +30585,7 @@ catch (...)
 
 static void* hs_method_4fb62c4b(void* hs_self, std::int32_t slot) try
 {
-    auto hs_result = static_cast<endstone::Scoreboard*>(hs_self)->getObjective(static_cast<endstone::DisplaySlot>(slot));
+    auto hs_result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjective(static_cast<endstone::DisplaySlot>(slot));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30580,7 +30601,7 @@ catch (...)
 
 static void* hs_method_4f807a3e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    auto hs_result = static_cast<endstone::Scoreboard*>(hs_self)->getObjective(std::basic_string<char>(name_data, name_size));
+    auto hs_result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjective(std::basic_string<char>(name_data, name_size));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30597,7 +30618,7 @@ catch (...)
 static HosihikariArrayView hs_method_afd39739(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Scoreboard*>(hs_self)->getObjectives();
+    auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjectives();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto& item : result) { hs_arrayResult.push_back(static_cast<void*>(item.release())); }
@@ -30617,7 +30638,7 @@ catch (...)
 static HosihikariArrayView hs_method_127d144b(void* hs_self, std::int32_t criteria) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Scoreboard*>(hs_self)->getObjectivesByCriteria(static_cast<endstone::Criteria::Type>(criteria));
+    auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjectivesByCriteria(static_cast<endstone::Criteria::Type>(criteria));
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto& item : result) { hs_arrayResult.push_back(static_cast<void*>(item.release())); }
@@ -30637,7 +30658,7 @@ catch (...)
 static HosihikariArrayView hs_method_c84052b6(void* hs_self, void* entry) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Scoreboard*>(hs_self)->getScores(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
+    auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getScores(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto& item : result) { hs_arrayResult.push_back(static_cast<void*>(item.release())); }
@@ -30776,7 +30797,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f0cee3f8(void* hs_self) try
 {
-    auto result = static_cast<endstone::ScriptMessageEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -30793,7 +30814,7 @@ catch (...)
 
 static HosihikariStringView hs_method_842a4797(void* hs_self) try
 {
-    auto result = static_cast<endstone::ScriptMessageEvent*>(hs_self)->getMessage();
+    auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -30810,7 +30831,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8d42d6fd(void* hs_self) try
 {
-    auto result = static_cast<endstone::ScriptMessageEvent*>(hs_self)->getMessageId();
+    auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getMessageId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -30827,7 +30848,7 @@ catch (...)
 
 static void* hs_method_4f5f3310(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ScriptMessageEvent*>(hs_self)->getSender()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getSender()));
 }
 catch (std::exception const& hs_error)
 {
@@ -30874,7 +30895,7 @@ catch (...)
 
 static void* hs_method_094184dd(void* hs_self, const char* type_data, std::size_t type_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->_getRegistry(std::basic_string<char>(type_data, type_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->_getRegistry(std::basic_string<char>(type_data, type_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -30889,7 +30910,7 @@ catch (...)
 
 static void hs_method_ebcb26df(void* hs_self, void* message, const char* permission_data, std::size_t permission_size) try
 {
-    static_cast<endstone::Server*>(hs_self)->broadcast(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message), std::basic_string<char>(permission_data, permission_size));
+    static_cast<endstone::Server const*>(hs_self)->broadcast(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message), std::basic_string<char>(permission_data, permission_size));
 }
 catch (std::exception const& hs_error)
 {
@@ -30904,7 +30925,7 @@ catch (...)
 
 static void hs_method_a1189c3a(void* hs_self, void* message) try
 {
-    static_cast<endstone::Server*>(hs_self)->broadcastMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
+    static_cast<endstone::Server const*>(hs_self)->broadcastMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
 {
@@ -30919,7 +30940,7 @@ catch (...)
 
 static void* hs_method_c5b87e08(void* hs_self, const char* type_data, std::size_t type_size) try
 {
-    auto hs_result = static_cast<endstone::Server*>(hs_self)->createBlockData(std::basic_string<char>(type_data, type_size));
+    auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBlockData(std::basic_string<char>(type_data, type_size));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30945,7 +30966,7 @@ static void* hs_method_22dd6517(void* hs_self, const char* type_data, std::size_
             std::string(reinterpret_cast<char const*>(hs_entry.key), hs_entry.keySize),
             *static_cast<std::variant<bool, std::basic_string<char>, int> const*>(reinterpret_cast<void const*>(hs_entry.value)));
     }
-    auto hs_result = static_cast<endstone::Server*>(hs_self)->createBlockData(std::basic_string<char>(type_data, type_size), std::move(hs_map1));
+    auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBlockData(std::basic_string<char>(type_data, type_size), std::move(hs_map1));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30961,7 +30982,7 @@ catch (...)
 
 static void* hs_method_44f12b17(void* hs_self, const char* title_data, std::size_t title_size, std::int32_t color, std::int32_t style) try
 {
-    auto hs_result = static_cast<endstone::Server*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style));
+    auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30977,7 +30998,7 @@ catch (...)
 
 static void* hs_method_1d4d7fac(void* hs_self, const char* title_data, std::size_t title_size, std::int32_t color, std::int32_t style, const std::int32_t* flags_data, std::size_t flags_count) try
 {
-    auto hs_result = static_cast<endstone::Server*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style), hs_make_vector<endstone::BarFlag>(flags_data, flags_count));
+    auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style), hs_make_vector<endstone::BarFlag>(flags_data, flags_count));
     return static_cast<void*>(hs_result.release());
 }
 catch (std::exception const& hs_error)
@@ -30993,7 +31014,7 @@ catch (...)
 
 static void* hs_method_06cdedfd(void* hs_self, void* dimension) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->createMap(*static_cast<const endstone::Dimension*>(dimension))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->createMap(*static_cast<const endstone::Dimension*>(dimension))));
 }
 catch (std::exception const& hs_error)
 {
@@ -31023,7 +31044,7 @@ catch (...)
 
 static bool hs_method_1e44a472(void* hs_self, void* sender, const char* command_line_data, std::size_t command_line_size) try
 {
-    return static_cast<bool>(static_cast<endstone::Server*>(hs_self)->dispatchCommand(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
+    return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->dispatchCommand(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -31083,7 +31104,7 @@ catch (...)
 
 static void* hs_method_6da115ab(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getBanList()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getBanList()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31098,7 +31119,7 @@ catch (...)
 
 static void* hs_method_c290cc55(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getCommandSender()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getCommandSender()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31158,7 +31179,7 @@ catch (...)
 
 static void* hs_method_836b6b13(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getIpBanList()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getIpBanList()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31173,7 +31194,7 @@ catch (...)
 
 static void* hs_method_a810e01b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getItemFactory()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getItemFactory()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31188,7 +31209,7 @@ catch (...)
 
 static void* hs_method_0e659757(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getLanguage()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getLanguage()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31203,7 +31224,7 @@ catch (...)
 
 static void* hs_method_feed67ac(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31218,7 +31239,7 @@ catch (...)
 
 static void* hs_method_a8442366(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getLogger()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getLogger()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31233,7 +31254,7 @@ catch (...)
 
 static void* hs_method_4866e309(void* hs_self, std::int64_t id) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getMap(static_cast<std::int64_t>(id))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getMap(static_cast<std::int64_t>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -31248,7 +31269,7 @@ catch (...)
 
 static std::int32_t hs_method_caf4d8c3(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Server*>(hs_self)->getMaxPlayers());
+    return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getMaxPlayers());
 }
 catch (std::exception const& hs_error)
 {
@@ -31263,7 +31284,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ea85d6df(void* hs_self) try
 {
-    auto result = static_cast<endstone::Server*>(hs_self)->getMinecraftVersion();
+    auto result = static_cast<endstone::Server const*>(hs_self)->getMinecraftVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31280,7 +31301,7 @@ catch (...)
 
 static HosihikariStringView hs_method_28e611fe(void* hs_self) try
 {
-    auto result = static_cast<endstone::Server*>(hs_self)->getName();
+    auto result = static_cast<endstone::Server const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31297,7 +31318,7 @@ catch (...)
 
 static bool hs_method_5d68ac20(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Server*>(hs_self)->getOnlineMode());
+    return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->getOnlineMode());
 }
 catch (std::exception const& hs_error)
 {
@@ -31313,7 +31334,7 @@ catch (...)
 static HosihikariArrayView hs_method_a312b59e(void* hs_self) try
 {
     thread_local std::vector<void*> hs_arrayResult;
-    auto result = static_cast<endstone::Server*>(hs_self)->getOnlinePlayers();
+    auto result = static_cast<endstone::Server const*>(hs_self)->getOnlinePlayers();
     hs_arrayResult.clear();
     hs_arrayResult.reserve(result.size());
     for (auto const& item : result) { hs_arrayResult.push_back(const_cast<void*>(static_cast<void const*>(item))); }
@@ -31332,7 +31353,7 @@ catch (...)
 
 static void* hs_method_a2419288(void* hs_self, void* id) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getPlayer(*static_cast<const endstone::UUID*>(id))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPlayer(*static_cast<const endstone::UUID*>(id))));
 }
 catch (std::exception const& hs_error)
 {
@@ -31347,7 +31368,7 @@ catch (...)
 
 static void* hs_method_3ba2eecb(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getPlayer(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPlayer(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -31362,7 +31383,7 @@ catch (...)
 
 static void* hs_method_bb9efb5e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getPluginCommand(std::basic_string<char>(name_data, name_size))));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPluginCommand(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -31377,7 +31398,7 @@ catch (...)
 
 static void* hs_method_891ed6ec(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getPluginManager()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getPluginManager()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31392,7 +31413,7 @@ catch (...)
 
 static std::int32_t hs_method_ab1700ed(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Server*>(hs_self)->getPort());
+    return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getPort());
 }
 catch (std::exception const& hs_error)
 {
@@ -31407,7 +31428,7 @@ catch (...)
 
 static std::int32_t hs_method_469f86e3(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Server*>(hs_self)->getPortV6());
+    return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getPortV6());
 }
 catch (std::exception const& hs_error)
 {
@@ -31422,7 +31443,7 @@ catch (...)
 
 static std::int32_t hs_method_287288b8(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Server*>(hs_self)->getProtocolVersion());
+    return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getProtocolVersion());
 }
 catch (std::exception const& hs_error)
 {
@@ -31437,7 +31458,7 @@ catch (...)
 
 static void* hs_method_a77fc0fd(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getScheduler()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getScheduler()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31452,7 +31473,7 @@ catch (...)
 
 static void* hs_method_6bb45431(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server*>(hs_self)->getScoreboard()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31467,7 +31488,7 @@ catch (...)
 
 static void* hs_method_19d8ed59(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server*>(hs_self)->getServiceManager()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getServiceManager()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31497,7 +31518,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e4199c93(void* hs_self) try
 {
-    auto result = static_cast<endstone::Server*>(hs_self)->getVersion();
+    auto result = static_cast<endstone::Server const*>(hs_self)->getVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31514,7 +31535,7 @@ catch (...)
 
 static bool hs_method_7c897210(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Server*>(hs_self)->isPrimaryThread());
+    return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->isPrimaryThread());
 }
 catch (std::exception const& hs_error)
 {
@@ -31694,7 +31715,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e19d14f5(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerCommandEvent*>(hs_self)->getCommand();
+    auto result = static_cast<endstone::ServerCommandEvent const*>(hs_self)->getCommand();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31711,7 +31732,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3191129f(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerCommandEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ServerCommandEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31728,7 +31749,7 @@ catch (...)
 
 static void* hs_method_94b85d8e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ServerCommandEvent*>(hs_self)->getSender()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ServerCommandEvent const*>(hs_self)->getSender()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31878,7 +31899,7 @@ catch (...)
 
 static void* hs_method_fff45c6f(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::ServerListPingEvent*>(hs_self)->getAddress()));
+    return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
 {
@@ -31893,7 +31914,7 @@ catch (...)
 
 static HosihikariStringView hs_method_63935e73(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerListPingEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31910,7 +31931,7 @@ catch (...)
 
 static std::int32_t hs_method_64a34151(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getGameMode());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getGameMode());
 }
 catch (std::exception const& hs_error)
 {
@@ -31925,7 +31946,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7029d579(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerListPingEvent*>(hs_self)->getLevelName();
+    auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLevelName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -31942,7 +31963,7 @@ catch (...)
 
 static std::int32_t hs_method_e72124b9(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getLocalPort());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLocalPort());
 }
 catch (std::exception const& hs_error)
 {
@@ -31957,7 +31978,7 @@ catch (...)
 
 static std::int32_t hs_method_870dfec1(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getLocalPortV6());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLocalPortV6());
 }
 catch (std::exception const& hs_error)
 {
@@ -31972,7 +31993,7 @@ catch (...)
 
 static std::int32_t hs_method_7b19ec4f(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getMaxPlayers());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMaxPlayers());
 }
 catch (std::exception const& hs_error)
 {
@@ -31987,7 +32008,7 @@ catch (...)
 
 static HosihikariStringView hs_method_19b5f2ad(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerListPingEvent*>(hs_self)->getMinecraftVersionNetwork();
+    auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMinecraftVersionNetwork();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32004,7 +32025,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5fa8bbd6(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerListPingEvent*>(hs_self)->getMotd();
+    auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMotd();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32021,7 +32042,7 @@ catch (...)
 
 static std::int32_t hs_method_ab83fae1(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getNetworkProtocolVersion());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getNetworkProtocolVersion());
 }
 catch (std::exception const& hs_error)
 {
@@ -32036,7 +32057,7 @@ catch (...)
 
 static std::int32_t hs_method_45897812(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent*>(hs_self)->getNumPlayers());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getNumPlayers());
 }
 catch (std::exception const& hs_error)
 {
@@ -32051,7 +32072,7 @@ catch (...)
 
 static HosihikariStringView hs_method_29ae1c45(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerListPingEvent*>(hs_self)->getServerGuid();
+    auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getServerGuid();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32278,7 +32299,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f2e505c(void* hs_self) try
 {
-    auto result = static_cast<endstone::ServerLoadEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ServerLoadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32295,7 +32316,7 @@ catch (...)
 
 static std::int32_t hs_method_d0f9781a(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::ServerLoadEvent*>(hs_self)->getType());
+    return static_cast<std::int32_t>(static_cast<endstone::ServerLoadEvent const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
 {
@@ -32325,7 +32346,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_5a82ad36(void* hs_self, const char* name_data, std::size_t name_size) try
 {
-    return hs_make_shared_handle(static_cast<endstone::ServiceManager*>(hs_self)->get(std::basic_string<char>(name_data, name_size)));
+    return hs_make_shared_handle(static_cast<endstone::ServiceManager const*>(hs_self)->get(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -32430,7 +32451,7 @@ catch (...)
 
 static void* hs_method_b76a1d2a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin*>(hs_self)->getCapeId()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin const*>(hs_self)->getCapeId()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32445,7 +32466,7 @@ catch (...)
 
 static void* hs_method_e317c5af(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Skin*>(hs_self)->getCapeImage()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Skin const*>(hs_self)->getCapeImage()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32460,7 +32481,7 @@ catch (...)
 
 static HosihikariStringView hs_method_268c7ed5(void* hs_self) try
 {
-    auto result = static_cast<endstone::Skin*>(hs_self)->getId();
+    auto result = static_cast<endstone::Skin const*>(hs_self)->getId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32477,7 +32498,7 @@ catch (...)
 
 static void* hs_method_adc734db(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin*>(hs_self)->getImage()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin const*>(hs_self)->getImage()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32537,7 +32558,7 @@ catch (...)
 
 static float hs_method_8e97707c(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::Slider*>(hs_self)->getDefaultValue();
+    auto result = static_cast<endstone::Slider const*>(hs_self)->getDefaultValue();
     *hs_hasValue = result.has_value();
     return result ? static_cast<float>(*result) : float{};
 }
@@ -32556,7 +32577,7 @@ catch (...)
 
 static void* hs_method_7f85a854(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Slider*>(hs_self)->getLabel()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Slider const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32571,7 +32592,7 @@ catch (...)
 
 static float hs_method_22a14062(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Slider*>(hs_self)->getMax());
+    return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getMax());
 }
 catch (std::exception const& hs_error)
 {
@@ -32586,7 +32607,7 @@ catch (...)
 
 static float hs_method_b6202ef6(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Slider*>(hs_self)->getMin());
+    return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getMin());
 }
 catch (std::exception const& hs_error)
 {
@@ -32601,7 +32622,7 @@ catch (...)
 
 static float hs_method_b88065d8(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Slider*>(hs_self)->getStep());
+    return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getStep());
 }
 catch (std::exception const& hs_error)
 {
@@ -32736,7 +32757,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7235e4c3(void* hs_self) try
 {
-    auto result = static_cast<endstone::SocketAddress*>(hs_self)->getHostname();
+    auto result = static_cast<endstone::SocketAddress const*>(hs_self)->getHostname();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -32753,7 +32774,7 @@ catch (...)
 
 static std::uint32_t hs_method_49415507(void* hs_self) try
 {
-    return static_cast<std::uint32_t>(static_cast<endstone::SocketAddress*>(hs_self)->getPort());
+    return static_cast<std::uint32_t>(static_cast<endstone::SocketAddress const*>(hs_self)->getPort());
 }
 catch (std::exception const& hs_error)
 {
@@ -32768,7 +32789,7 @@ catch (...)
 
 static bool hs_method_868949fd(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::SocketAddress*>(hs_self)->operator==(*static_cast<const endstone::SocketAddress*>(other)));
+    return static_cast<bool>(static_cast<endstone::SocketAddress const*>(hs_self)->operator==(*static_cast<const endstone::SocketAddress*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -32828,7 +32849,7 @@ catch (...)
 
 static void* hs_method_53f1a0f6(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Task*>(hs_self)->getOwner()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Task const*>(hs_self)->getOwner()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32843,7 +32864,7 @@ catch (...)
 
 static std::uint32_t hs_method_cd52150c(void* hs_self) try
 {
-    return static_cast<std::uint32_t>(static_cast<endstone::Task*>(hs_self)->getTaskId());
+    return static_cast<std::uint32_t>(static_cast<endstone::Task const*>(hs_self)->getTaskId());
 }
 catch (std::exception const& hs_error)
 {
@@ -32858,7 +32879,7 @@ catch (...)
 
 static bool hs_method_1b04d263(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Task*>(hs_self)->isCancelled());
+    return static_cast<bool>(static_cast<endstone::Task const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
 {
@@ -32873,7 +32894,7 @@ catch (...)
 
 static bool hs_method_3838f72f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Task*>(hs_self)->isSync());
+    return static_cast<bool>(static_cast<endstone::Task const*>(hs_self)->isSync());
 }
 catch (std::exception const& hs_error)
 {
@@ -32933,7 +32954,7 @@ catch (...)
 
 static HosihikariStringView hs_method_cf086930(void* hs_self, bool* hs_hasValue) try
 {
-    auto result = static_cast<endstone::TextInput*>(hs_self)->getDefaultValue();
+    auto result = static_cast<endstone::TextInput const*>(hs_self)->getDefaultValue();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32953,7 +32974,7 @@ catch (...)
 
 static void* hs_method_1aaed7fb(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput*>(hs_self)->getLabel()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -32968,7 +32989,7 @@ catch (...)
 
 static void* hs_method_59614a43(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput*>(hs_self)->getPlaceholder()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput const*>(hs_self)->getPlaceholder()));
 }
 catch (std::exception const& hs_error)
 {
@@ -33133,7 +33154,7 @@ catch (...)
 
 static HosihikariStringView hs_method_86f9ba6f(void* hs_self) try
 {
-    auto result = static_cast<endstone::ThunderChangeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::ThunderChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -33150,7 +33171,7 @@ catch (...)
 
 static bool hs_method_00fa4571(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::ThunderChangeEvent*>(hs_self)->toThunderState());
+    return static_cast<bool>(static_cast<endstone::ThunderChangeEvent const*>(hs_self)->toThunderState());
 }
 catch (std::exception const& hs_error)
 {
@@ -33210,7 +33231,7 @@ catch (...)
 
 static bool hs_method_7807e4ae(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Toggle*>(hs_self)->getDefaultValue());
+    return static_cast<bool>(static_cast<endstone::Toggle const*>(hs_self)->getDefaultValue());
 }
 catch (std::exception const& hs_error)
 {
@@ -33225,7 +33246,7 @@ catch (...)
 
 static void* hs_method_eb915f8b(void* hs_self) try
 {
-    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Toggle*>(hs_self)->getLabel()));
+    return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Toggle const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -33300,7 +33321,7 @@ catch (...)
 
 static bool hs_method_32afdbcb(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Translatable*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::Translatable const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -33315,7 +33336,7 @@ catch (...)
 
 static void* hs_method_ac3efcfe(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Translatable*>(hs_self)->getParameters()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Translatable const*>(hs_self)->getParameters()));
 }
 catch (std::exception const& hs_error)
 {
@@ -33330,7 +33351,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ec0d4ffa(void* hs_self) try
 {
-    auto result = static_cast<endstone::Translatable*>(hs_self)->getText();
+    auto result = static_cast<endstone::Translatable const*>(hs_self)->getText();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -33362,7 +33383,7 @@ catch (...)
 
 static void* hs_method_aec4c3c3(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID*>(hs_self)->begin()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID const*>(hs_self)->begin()));
 }
 catch (std::exception const& hs_error)
 {
@@ -33407,7 +33428,7 @@ catch (...)
 
 static void* hs_method_358c4b97(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID*>(hs_self)->end()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID const*>(hs_self)->end()));
 }
 catch (std::exception const& hs_error)
 {
@@ -33437,7 +33458,7 @@ catch (...)
 
 static bool hs_method_06f303a1(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::UUID*>(hs_self)->isNil());
+    return static_cast<bool>(static_cast<endstone::UUID const*>(hs_self)->isNil());
 }
 catch (std::exception const& hs_error)
 {
@@ -33467,7 +33488,7 @@ catch (...)
 
 static HosihikariStringView hs_method_99e57321(void* hs_self) try
 {
-    auto result = static_cast<endstone::UUID*>(hs_self)->str();
+    auto result = static_cast<endstone::UUID const*>(hs_self)->str();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -33499,7 +33520,7 @@ catch (...)
 
 static std::int32_t hs_method_15358322(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::UUID*>(hs_self)->version());
+    return static_cast<std::int32_t>(static_cast<endstone::UUID const*>(hs_self)->version());
 }
 catch (std::exception const& hs_error)
 {
@@ -33574,7 +33595,7 @@ catch (...)
 
 static float hs_method_cd2cd7ce(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->angle(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->angle(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33604,7 +33625,7 @@ catch (...)
 
 static float hs_method_46992c8a(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->distance(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->distance(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33619,7 +33640,7 @@ catch (...)
 
 static float hs_method_b8e92c28(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->distanceSquared(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->distanceSquared(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33634,7 +33655,7 @@ catch (...)
 
 static float hs_method_1421a900(void* hs_self, void* other) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->dot(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->dot(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33649,7 +33670,7 @@ catch (...)
 
 static std::int32_t hs_method_31144a4c(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Vector*>(hs_self)->getBlockX());
+    return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockX());
 }
 catch (std::exception const& hs_error)
 {
@@ -33664,7 +33685,7 @@ catch (...)
 
 static std::int32_t hs_method_e44caa09(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Vector*>(hs_self)->getBlockY());
+    return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockY());
 }
 catch (std::exception const& hs_error)
 {
@@ -33679,7 +33700,7 @@ catch (...)
 
 static std::int32_t hs_method_c50effd3(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::Vector*>(hs_self)->getBlockZ());
+    return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -33694,7 +33715,7 @@ catch (...)
 
 static void* hs_method_68e875ff(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->getCrossProduct(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->getCrossProduct(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -33709,7 +33730,7 @@ catch (...)
 
 static void* hs_method_5a72ef4a(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->getMidpoint(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->getMidpoint(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -33724,7 +33745,7 @@ catch (...)
 
 static float hs_method_17139368(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->getX());
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
 {
@@ -33739,7 +33760,7 @@ catch (...)
 
 static float hs_method_913f9b94(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->getY());
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
 {
@@ -33754,7 +33775,7 @@ catch (...)
 
 static float hs_method_696cf6c9(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->getZ());
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
 {
@@ -33769,7 +33790,7 @@ catch (...)
 
 static bool hs_method_753a5fd4(void* hs_self, void* min, void* max) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->isInAABB(*static_cast<const endstone::Vector*>(min), *static_cast<const endstone::Vector*>(max)));
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isInAABB(*static_cast<const endstone::Vector*>(min), *static_cast<const endstone::Vector*>(max)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33784,7 +33805,7 @@ catch (...)
 
 static bool hs_method_c56f5329(void* hs_self, void* origin, float radius) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->isInSphere(*static_cast<const endstone::Vector*>(origin), static_cast<float>(radius)));
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isInSphere(*static_cast<const endstone::Vector*>(origin), static_cast<float>(radius)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33799,7 +33820,7 @@ catch (...)
 
 static bool hs_method_e341a456(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->isNormalized());
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isNormalized());
 }
 catch (std::exception const& hs_error)
 {
@@ -33814,7 +33835,7 @@ catch (...)
 
 static bool hs_method_42a47900(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->isZero());
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isZero());
 }
 catch (std::exception const& hs_error)
 {
@@ -33829,7 +33850,7 @@ catch (...)
 
 static float hs_method_244017e4(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->length());
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->length());
 }
 catch (std::exception const& hs_error)
 {
@@ -33844,7 +33865,7 @@ catch (...)
 
 static float hs_method_e5170cea(void* hs_self) try
 {
-    return static_cast<float>(static_cast<endstone::Vector*>(hs_self)->lengthSquared());
+    return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->lengthSquared());
 }
 catch (std::exception const& hs_error)
 {
@@ -33904,7 +33925,7 @@ catch (...)
 
 static bool hs_method_26814558(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->operator!=(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->operator!=(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -33919,7 +33940,7 @@ catch (...)
 
 static void* hs_method_87c6e96d(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->operator*(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator*(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -33949,7 +33970,7 @@ catch (...)
 
 static void* hs_method_ef1fc55b(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -33979,7 +34000,7 @@ catch (...)
 
 static void* hs_method_60fb74ad(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -34009,7 +34030,7 @@ catch (...)
 
 static void* hs_method_5df75d45(void* hs_self, void* other) try
 {
-    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector*>(hs_self)->operator/(*static_cast<const endstone::Vector*>(other))));
+    return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator/(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
 {
@@ -34069,7 +34090,7 @@ catch (...)
 
 static bool hs_method_b217dcd5(void* hs_self, void* other) try
 {
-    return static_cast<bool>(static_cast<endstone::Vector*>(hs_self)->operator==(*static_cast<const endstone::Vector*>(other)));
+    return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->operator==(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
 {
@@ -34279,7 +34300,7 @@ catch (...)
 
 static HosihikariStringView hs_method_58f0be28(void* hs_self) try
 {
-    auto result = static_cast<endstone::WeatherChangeEvent*>(hs_self)->getEventName();
+    auto result = static_cast<endstone::WeatherChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -34296,7 +34317,7 @@ catch (...)
 
 static bool hs_method_0e26b9b9(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::WeatherChangeEvent*>(hs_self)->toWeatherState());
+    return static_cast<bool>(static_cast<endstone::WeatherChangeEvent const*>(hs_self)->toWeatherState());
 }
 catch (std::exception const& hs_error)
 {
@@ -34371,7 +34392,7 @@ catch (...)
 
 static void* hs_method_fa1f866e(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::WeatherEvent*>(hs_self)->getLevel()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::WeatherEvent const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
 {
@@ -34446,7 +34467,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a4b82fb7(void* hs_self, std::int32_t page) try
 {
-    auto result = static_cast<endstone::WritableBookMeta*>(hs_self)->getPage(static_cast<int>(page));
+    auto result = static_cast<endstone::WritableBookMeta const*>(hs_self)->getPage(static_cast<int>(page));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -34463,7 +34484,7 @@ catch (...)
 
 static std::int32_t hs_method_40fe9057(void* hs_self) try
 {
-    return static_cast<std::int32_t>(static_cast<endstone::WritableBookMeta*>(hs_self)->getPageCount());
+    return static_cast<std::int32_t>(static_cast<endstone::WritableBookMeta const*>(hs_self)->getPageCount());
 }
 catch (std::exception const& hs_error)
 {
@@ -34480,7 +34501,7 @@ static HosihikariArrayView hs_method_d2444a6f(void* hs_self) try
 {
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
-    auto result = static_cast<endstone::WritableBookMeta*>(hs_self)->getPages();
+    auto result = static_cast<endstone::WritableBookMeta const*>(hs_self)->getPages();
     hs_arrayStrings.clear();
     hs_arrayViews.clear();
     hs_arrayStrings.reserve(result.size());
@@ -34502,7 +34523,7 @@ catch (...)
 
 static bool hs_method_9a458a7f(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::WritableBookMeta*>(hs_self)->hasPages());
+    return static_cast<bool>(static_cast<endstone::WritableBookMeta const*>(hs_self)->hasPages());
 }
 catch (std::exception const& hs_error)
 {
@@ -34577,7 +34598,7 @@ catch (...)
 
 static void* hs_method_c0a18bdd(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Command(static_cast<endstone::detail::CommandBuilder*>(hs_self)->build()));
+    return static_cast<void*>(new endstone::Command(static_cast<endstone::detail::CommandBuilder const*>(hs_self)->build()));
 }
 catch (std::exception const& hs_error)
 {
@@ -34637,7 +34658,7 @@ catch (...)
 
 static void* hs_method_1197d8cc(void* hs_self) try
 {
-    return static_cast<void*>(new endstone::Permission(static_cast<endstone::detail::PermissionBuilder*>(hs_self)->build()));
+    return static_cast<void*>(new endstone::Permission(static_cast<endstone::detail::PermissionBuilder const*>(hs_self)->build()));
 }
 catch (std::exception const& hs_error)
 {
@@ -34727,7 +34748,7 @@ catch (...)
 
 static void* hs_method_8e229283(void* hs_self, const char* name_data, std::size_t name_size, const char* version_data, std::size_t version_size) try
 {
-    return static_cast<void*>(new endstone::PluginDescription(static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->build(std::basic_string<char>(name_data, name_size), std::basic_string<char>(version_data, version_size))));
+    return static_cast<void*>(new endstone::PluginDescription(static_cast<endstone::detail::PluginDescriptionBuilder const*>(hs_self)->build(std::basic_string<char>(name_data, name_size), std::basic_string<char>(version_data, version_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35092,7 +35113,7 @@ catch (...)
 
 static void* hs_method_47e2aef5(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->at(static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35137,7 +35158,7 @@ catch (...)
 
 static void* hs_method_4525430b(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->data()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
 {
@@ -35167,7 +35188,7 @@ catch (...)
 
 static bool hs_method_5676c89d(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -35182,7 +35203,7 @@ catch (...)
 
 static void* hs_method_ba0c8eb2(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35227,7 +35248,7 @@ catch (...)
 
 static std::uint64_t hs_method_9510ddb5(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->size());
+    return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
 {
@@ -35302,7 +35323,7 @@ catch (...)
 
 static void* hs_method_738d7d61(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->at(static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35347,7 +35368,7 @@ catch (...)
 
 static void* hs_method_79f539d8(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->data()));
+    return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
 {
@@ -35377,7 +35398,7 @@ catch (...)
 
 static bool hs_method_0f9715b4(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -35392,7 +35413,7 @@ catch (...)
 
 static void* hs_method_d4881781(void* hs_self, std::uint64_t i) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35437,7 +35458,7 @@ catch (...)
 
 static std::uint64_t hs_method_b2640908(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->size());
+    return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
 {
@@ -35812,7 +35833,7 @@ catch (...)
 
 static void* hs_method_6243cae4(void* hs_self, const char* key_data, std::size_t key_size) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag const*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35827,7 +35848,7 @@ catch (...)
 
 static void* hs_method_44225e41(void* hs_self, std::uint64_t index) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->at(static_cast<std::uint64_t>(index))));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag const*>(hs_self)->at(static_cast<std::uint64_t>(index))));
 }
 catch (std::exception const& hs_error)
 {
@@ -35872,7 +35893,7 @@ catch (...)
 
 static bool hs_method_c9fa7570(void* hs_self, const char* key_data, std::size_t key_size) try
 {
-    return static_cast<bool>(static_cast<endstone::nbt::Tag*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
+    return static_cast<bool>(static_cast<endstone::nbt::Tag const*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
 }
 catch (std::exception const& hs_error)
 {
@@ -35887,7 +35908,7 @@ catch (...)
 
 static bool hs_method_c6fd8bde(void* hs_self) try
 {
-    return static_cast<bool>(static_cast<endstone::nbt::Tag*>(hs_self)->empty());
+    return static_cast<bool>(static_cast<endstone::nbt::Tag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
 {
@@ -35932,7 +35953,7 @@ catch (...)
 
 static std::uint64_t hs_method_c826eb97(void* hs_self) try
 {
-    return static_cast<std::uint64_t>(static_cast<endstone::nbt::Tag*>(hs_self)->size());
+    return static_cast<std::uint64_t>(static_cast<endstone::nbt::Tag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
 {
@@ -35947,7 +35968,7 @@ catch (...)
 
 static std::uint8_t hs_method_461b4621(void* hs_self) try
 {
-    return static_cast<std::uint8_t>(static_cast<endstone::nbt::Tag*>(hs_self)->type());
+    return static_cast<std::uint8_t>(static_cast<endstone::nbt::Tag const*>(hs_self)->type());
 }
 catch (std::exception const& hs_error)
 {
@@ -36022,7 +36043,7 @@ catch (...)
 
 static void* hs_method_bb9f85c5(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double>*>(hs_self)->operator const double &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double> const*>(hs_self)->operator const double &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36037,7 +36058,7 @@ catch (...)
 
 static void* hs_method_f5476fc0(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36112,7 +36133,7 @@ catch (...)
 
 static void* hs_method_ea190831(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float>*>(hs_self)->operator const float &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float> const*>(hs_self)->operator const float &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36127,7 +36148,7 @@ catch (...)
 
 static void* hs_method_29fe7e41(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36202,7 +36223,7 @@ catch (...)
 
 static void* hs_method_739effb2(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int>*>(hs_self)->operator const int &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int> const*>(hs_self)->operator const int &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36217,7 +36238,7 @@ catch (...)
 
 static void* hs_method_1fa2443a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36292,7 +36313,7 @@ catch (...)
 
 static void* hs_method_2d2759c7(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t>*>(hs_self)->operator const std::int64_t &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t> const*>(hs_self)->operator const std::int64_t &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36307,7 +36328,7 @@ catch (...)
 
 static void* hs_method_b7abc577(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36382,7 +36403,7 @@ catch (...)
 
 static void* hs_method_27666b40(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short>*>(hs_self)->operator const short &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short> const*>(hs_self)->operator const short &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36397,7 +36418,7 @@ catch (...)
 
 static void* hs_method_4e1beb8a(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36487,7 +36508,7 @@ catch (...)
 
 static HosihikariStringView hs_method_087d950e(void* hs_self) try
 {
-    auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>>*>(hs_self)->operator const std::basic_string<char> &();
+    auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>> const*>(hs_self)->operator const std::basic_string<char> &();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -36504,7 +36525,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5bc99605(void* hs_self) try
 {
-    auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>>*>(hs_self)->value();
+    auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>> const*>(hs_self)->value();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
 }
@@ -36581,7 +36602,7 @@ catch (...)
 
 static void* hs_method_1bc059da(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char>*>(hs_self)->operator const unsigned char &()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char> const*>(hs_self)->operator const unsigned char &()));
 }
 catch (std::exception const& hs_error)
 {
@@ -36596,7 +36617,7 @@ catch (...)
 
 static void* hs_method_bc424f4f(void* hs_self) try
 {
-    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char>*>(hs_self)->value()));
+    return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
 {
