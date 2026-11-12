@@ -96,9 +96,15 @@ public sealed unsafe partial class PlayerInteractEvent : global::System.IDisposa
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public nint getItem()
+    public nint? getItem()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_fd08901a((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_fd08901a((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public bool hasBlock()

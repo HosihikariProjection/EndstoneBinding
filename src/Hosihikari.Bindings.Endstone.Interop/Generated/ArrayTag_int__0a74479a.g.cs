@@ -71,14 +71,26 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
         }
     }
 
-    public nint at_47e2aef5(ulong i)
+    public nint? at_47e2aef5(ulong i)
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_47e2aef5((void*)__hosihikari_shim_handle, i);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_47e2aef5((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint at_351288e4(ulong i)
+    public nint? at_351288e4(ulong i)
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_351288e4((void*)__hosihikari_shim_handle, i);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_351288e4((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<int>>>' is not a known bindable declaration.", false)]
@@ -102,14 +114,26 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
         NativeMethods.TablePtr->C0.hs_method_e58a485e((void*)__hosihikari_shim_handle);
     }
 
-    public nint data_4525430b()
+    public nint? data_4525430b()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_4525430b((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_4525430b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint data_bc70fe66()
+    public nint? data_bc70fe66()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_bc70fe66((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_bc70fe66((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public bool empty()
@@ -133,14 +157,26 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
     public nint insert(nint pos, int v) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<int>>>' is not a known bindable declaration.");
 
-    public nint operator_index_ba0c8eb2(ulong i)
+    public nint? operator_index_ba0c8eb2(ulong i)
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_ba0c8eb2((void*)__hosihikari_shim_handle, i);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ba0c8eb2((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint operator_index_b98815f4(ulong i)
+    public nint? operator_index_b98815f4(ulong i)
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_b98815f4((void*)__hosihikari_shim_handle, i);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b98815f4((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public void push_back(int v)

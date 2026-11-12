@@ -121,9 +121,15 @@ public sealed unsafe partial class ActionForm : global::System.IDisposable
         return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public nint getControls()
+    public nint? getControls()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_d5090347((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_d5090347((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.Function_e874b0c2? getOnSubmit()

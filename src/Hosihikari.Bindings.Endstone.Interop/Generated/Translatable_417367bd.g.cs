@@ -92,9 +92,15 @@ public sealed unsafe partial class Translatable : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_32afdbcb((void*)__hosihikari_shim_handle) != 0;
     }
 
-    public nint getParameters()
+    public nint? getParameters()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_ac3efcfe((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ac3efcfe((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public string getText()

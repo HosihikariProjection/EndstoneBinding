@@ -49,14 +49,26 @@ public sealed unsafe partial class BlockExplodeEvent : global::System.IDisposabl
         get => (nint)NativeMethods.TablePtr->C0.hs_get_d0bf76b1();
     }
 
-    public nint getBlockList_0b36dd73()
+    public nint? getBlockList_0b36dd73()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_0b36dd73((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_0b36dd73((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint getBlockList_c66ca50a()
+    public nint? getBlockList_c66ca50a()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_c66ca50a((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c66ca50a((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public string getEventName()

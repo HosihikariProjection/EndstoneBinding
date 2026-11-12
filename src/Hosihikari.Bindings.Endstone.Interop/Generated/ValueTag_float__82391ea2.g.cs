@@ -68,14 +68,26 @@ public sealed unsafe partial class ValueTag_float_ : global::System.IDisposable
     public static ValueTag_float_ Create_389d3327(nint v) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: constructors with mutable reference parameters are not projected.");
 
-    public nint operator_const_float__()
+    public nint? operator_const_float__()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_ea190831((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ea190831((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint value()
+    public nint? value()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_29fe7e41((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_29fe7e41((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()

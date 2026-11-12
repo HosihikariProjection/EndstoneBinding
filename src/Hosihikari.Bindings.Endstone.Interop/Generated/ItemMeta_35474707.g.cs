@@ -92,9 +92,15 @@ public sealed unsafe partial class ItemMeta : global::System.IDisposable
         return __hs_result;
     }
 
-    public nint getExtras()
+    public nint? getExtras()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_cd47d8f2((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_cd47d8f2((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public string[] getLore()

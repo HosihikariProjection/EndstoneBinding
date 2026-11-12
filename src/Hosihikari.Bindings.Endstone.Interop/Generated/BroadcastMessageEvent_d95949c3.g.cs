@@ -66,9 +66,15 @@ public sealed unsafe partial class BroadcastMessageEvent : global::System.IDispo
         return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public nint getRecipients()
+    public nint? getRecipients()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_ed51ea87((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ed51ea87((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public void setMessage(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 message)

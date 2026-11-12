@@ -40,14 +40,26 @@ public sealed unsafe partial class UUID : global::System.IDisposable
         return __hs_handle;
     }
 
-    public nint begin_aec4c3c3()
+    public nint? begin_aec4c3c3()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_aec4c3c3((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_aec4c3c3((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint begin_cfcdc770()
+    public nint? begin_cfcdc770()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_cfcdc770((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_cfcdc770((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public nint data
@@ -55,14 +67,26 @@ public sealed unsafe partial class UUID : global::System.IDisposable
         get => (nint)NativeMethods.TablePtr->C0.hs_get_d70256cb((void*)__hosihikari_shim_handle);
     }
 
-    public nint end_358c4b97()
+    public nint? end_358c4b97()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_358c4b97((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_358c4b97((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
-    public nint end_bed6b0aa()
+    public nint? end_bed6b0aa()
     {
-        return (nint)NativeMethods.TablePtr->C0.hs_method_bed6b0aa((void*)__hosihikari_shim_handle);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_bed6b0aa((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return (nint)__hs_handle;
     }
 
     public bool isNil()
