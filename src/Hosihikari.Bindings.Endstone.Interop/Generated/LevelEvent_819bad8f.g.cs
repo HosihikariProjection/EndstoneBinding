@@ -44,13 +44,25 @@ public sealed unsafe partial class LevelEvent
     public static LevelEvent Create(nint level) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: the class is abstract.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Level getLevel()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Level? getLevel()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Level((nint)NativeMethods.TablePtr->C0.hs_method_7f8aabca((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_7f8aabca((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Level((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event AsEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event? AsEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)NativeMethods.TablePtr->C0.hs_cast_ff754958((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_ff754958((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)__hs_handle, false);
     }
 }

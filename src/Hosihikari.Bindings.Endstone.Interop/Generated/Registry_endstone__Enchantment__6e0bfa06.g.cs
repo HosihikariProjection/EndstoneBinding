@@ -48,27 +48,55 @@ public sealed unsafe partial class Registry_endstone__Enchantment_
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment? get_9824d7b2(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_9824d7b2((void*)__hosihikari_shim_handle, (void*)id.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment? get_b0d6a1a6(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b0d6a1a6((void*)__hosihikari_shim_handle, (void*)id.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment getOrThrow_5ff0cfea(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment? getOrThrow_5ff0cfea(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)NativeMethods.TablePtr->C0.hs_method_5ff0cfea((void*)__hosihikari_shim_handle, (void*)id.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_5ff0cfea((void*)__hosihikari_shim_handle, (void*)id.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment getOrThrow_a1e9c09b(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment? getOrThrow_a1e9c09b(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Enchantment_ id)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)NativeMethods.TablePtr->C0.hs_method_a1e9c09b((void*)__hosihikari_shim_handle, (void*)id.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_a1e9c09b((void*)__hosihikari_shim_handle, (void*)id.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Enchantment((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.IRegistry AsIRegistry()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.IRegistry? AsIRegistry()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.IRegistry((nint)NativeMethods.TablePtr->C0.hs_cast_1ea84b7b((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_1ea84b7b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.IRegistry((nint)__hs_handle, false);
     }
 }

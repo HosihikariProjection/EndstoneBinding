@@ -45,7 +45,7 @@ public sealed unsafe partial class PluginDescriptionBuilder : global::System.IDi
         get => (nint)NativeMethods.TablePtr->C0.hs_get_e9584b36((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginDescription build(string name, string version)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginDescription? build(string name, string version)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -73,12 +73,18 @@ public sealed unsafe partial class PluginDescriptionBuilder : global::System.IDi
         {
             fixed (byte* __hs_stringData1 = __hs_stringBytes1)
             {
-                return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginDescription((nint)NativeMethods.TablePtr->C0.hs_method_8e229283((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1));
+                var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8e229283((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1);
+                if (__hs_handle == null)
+                {
+                    NativeMethods.GetLastError();
+                    return null;
+                }
+                return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginDescription((nint)__hs_handle);
             }
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder command(string name)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder? command(string name)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -93,7 +99,13 @@ public sealed unsafe partial class PluginDescriptionBuilder : global::System.IDi
         global::System.Text.Encoding.UTF8.GetBytes(name, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder((nint)NativeMethods.TablePtr->C0.hs_method_d253f495((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_d253f495((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder((nint)__hs_handle, false);
         }
     }
 
@@ -138,7 +150,7 @@ public sealed unsafe partial class PluginDescriptionBuilder : global::System.IDi
         get => (nint)NativeMethods.TablePtr->C0.hs_get_aa6fe5da((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder permission(string name)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder? permission(string name)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -153,7 +165,13 @@ public sealed unsafe partial class PluginDescriptionBuilder : global::System.IDi
         global::System.Text.Encoding.UTF8.GetBytes(name, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)NativeMethods.TablePtr->C0.hs_method_af0e7391((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_af0e7391((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)__hs_handle, false);
         }
     }
 

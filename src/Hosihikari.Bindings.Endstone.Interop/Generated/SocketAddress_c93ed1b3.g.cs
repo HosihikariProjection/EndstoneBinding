@@ -40,18 +40,19 @@ public sealed unsafe partial class SocketAddress : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static SocketAddress Create()
+    public static SocketAddress? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_b91d5c10();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new SocketAddress((nint)handle);
     }
 
-    public static SocketAddress Create(string hostname, uint port)
+    public static SocketAddress? Create(string hostname, uint port)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(hostname);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -69,7 +70,8 @@ public sealed unsafe partial class SocketAddress : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_b2236921(__hs_stringData0, (nuint)__hs_stringByteCount0, port);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new SocketAddress((nint)handle);

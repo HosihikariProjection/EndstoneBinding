@@ -45,7 +45,7 @@ public sealed unsafe partial class PlayerCommandEvent : global::System.IDisposab
         get => (nint)NativeMethods.TablePtr->C0.hs_get_c3418bc9();
     }
 
-    public static PlayerCommandEvent Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Player player, string command)
+    public static PlayerCommandEvent? Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Player player, string command)
     {
         var __hs_stringByteCount1 = global::System.Text.Encoding.UTF8.GetByteCount(command);
         scoped global::System.Span<byte> __hs_stringBytes1;
@@ -63,7 +63,8 @@ public sealed unsafe partial class PlayerCommandEvent : global::System.IDisposab
             var handle = NativeMethods.TablePtr->C0.hs_create_03fb2089((void*)player.Handle, __hs_stringData1, (nuint)__hs_stringByteCount1);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new PlayerCommandEvent((nint)handle);
@@ -102,24 +103,48 @@ public sealed unsafe partial class PlayerCommandEvent : global::System.IDisposab
     }
 
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Cancellable_endstone__PlayerEvent_ AsCancellable_endstone__PlayerEvent_()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Cancellable_endstone__PlayerEvent_? AsCancellable_endstone__PlayerEvent_()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Cancellable_endstone__PlayerEvent_((nint)NativeMethods.TablePtr->C0.hs_cast_2f6f4275((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_2f6f4275((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Cancellable_endstone__PlayerEvent_((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event AsEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event? AsEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)NativeMethods.TablePtr->C0.hs_cast_5147d518((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_5147d518((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ICancellable AsICancellable()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ICancellable? AsICancellable()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ICancellable((nint)NativeMethods.TablePtr->C0.hs_cast_44275ab7((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_44275ab7((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ICancellable((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerEvent AsPlayerEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerEvent? AsPlayerEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerEvent((nint)NativeMethods.TablePtr->C0.hs_cast_fa6074f6((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_fa6074f6((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerEvent((nint)__hs_handle, false);
     }
 
     public void Dispose()

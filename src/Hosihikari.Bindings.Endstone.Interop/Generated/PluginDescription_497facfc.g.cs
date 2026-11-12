@@ -40,7 +40,7 @@ public sealed unsafe partial class PluginDescription : global::System.IDisposabl
         return __hs_handle;
     }
 
-    public static PluginDescription Create(string name, string version, string description, int load, string[] authors, string[] contributors, string website, string prefix, string[] provides, string[] depend, string[] soft_depend, string[] load_before, int default_permission, global::Hosihikari.Bindings.Endstone.Interop.endstone.Command[] commands, global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission[] permissions)
+    public static PluginDescription? Create(string name, string version, string description, int load, string[] authors, string[] contributors, string website, string prefix, string[] provides, string[] depend, string[] soft_depend, string[] load_before, int default_permission, global::Hosihikari.Bindings.Endstone.Interop.endstone.Command[] commands, global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission[] permissions)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -248,7 +248,8 @@ public sealed unsafe partial class PluginDescription : global::System.IDisposabl
                                                             var handle = NativeMethods.TablePtr->C0.hs_create_f5310a99(__hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1, __hs_stringData2, (nuint)__hs_stringByteCount2, load, __hs_stringData6, (nuint)__hs_stringByteCount6, __hs_stringData7, (nuint)__hs_stringByteCount7, default_permission, __hs_vectorData4, (nuint)(authors?.Length ?? 0), __hs_vectorData5, (nuint)(contributors?.Length ?? 0), __hs_vectorData8, (nuint)(provides?.Length ?? 0), __hs_vectorData9, (nuint)(depend?.Length ?? 0), __hs_vectorData10, (nuint)(soft_depend?.Length ?? 0), __hs_vectorData11, (nuint)(load_before?.Length ?? 0), __hs_vectorData13, (nuint)(commands?.Length ?? 0), __hs_vectorData14, (nuint)(permissions?.Length ?? 0));
                                                             if (handle == null)
                                                             {
-                                                                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                                                                NativeMethods.GetLastError();
+                                                                return null;
                                                             }
 
                                                             return new PluginDescription((nint)handle);

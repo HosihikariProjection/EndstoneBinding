@@ -40,7 +40,7 @@ public sealed unsafe partial class PermissionBuilder : global::System.IDisposabl
         return __hs_handle;
     }
 
-    public static PermissionBuilder Create(string name)
+    public static PermissionBuilder? Create(string name)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,19 +58,26 @@ public sealed unsafe partial class PermissionBuilder : global::System.IDisposabl
             var handle = NativeMethods.TablePtr->C0.hs_create_b4ef4553(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new PermissionBuilder((nint)handle);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission build()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission? build()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)NativeMethods.TablePtr->C0.hs_method_1197d8cc((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_1197d8cc((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder children(string name, bool value)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder? children(string name, bool value)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -85,16 +92,28 @@ public sealed unsafe partial class PermissionBuilder : global::System.IDisposabl
         global::System.Text.Encoding.UTF8.GetBytes(name, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)NativeMethods.TablePtr->C0.hs_method_a61badb4((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, value), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_a61badb4((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, value);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)__hs_handle, false);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder default_(int default_value)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder? default_(int default_value)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)NativeMethods.TablePtr->C0.hs_method_b7b03a67((void*)__hosihikari_shim_handle, default_value), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b7b03a67((void*)__hosihikari_shim_handle, default_value);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder description(string description)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder? description(string description)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(description);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -109,7 +128,13 @@ public sealed unsafe partial class PermissionBuilder : global::System.IDisposabl
         global::System.Text.Encoding.UTF8.GetBytes(description, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)NativeMethods.TablePtr->C0.hs_method_f5492b69((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_f5492b69((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.PermissionBuilder((nint)__hs_handle, false);
         }
     }
 

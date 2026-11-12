@@ -40,7 +40,7 @@ public sealed unsafe partial class AttributeModifier : global::System.IDisposabl
         return __hs_handle;
     }
 
-    public static AttributeModifier Create(string name, global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID uuid, float amount, int operation)
+    public static AttributeModifier? Create(string name, global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID uuid, float amount, int operation)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,14 +58,15 @@ public sealed unsafe partial class AttributeModifier : global::System.IDisposabl
             var handle = NativeMethods.TablePtr->C0.hs_create_b7e7bc45(__hs_stringData0, (nuint)__hs_stringByteCount0, (void*)uuid.Handle, amount, operation);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new AttributeModifier((nint)handle);
         }
     }
 
-    public static AttributeModifier Create(string name, float amount, int operation)
+    public static AttributeModifier? Create(string name, float amount, int operation)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -83,7 +84,8 @@ public sealed unsafe partial class AttributeModifier : global::System.IDisposabl
             var handle = NativeMethods.TablePtr->C0.hs_create_4baec705(__hs_stringData0, (nuint)__hs_stringByteCount0, amount, operation);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new AttributeModifier((nint)handle);
@@ -106,9 +108,15 @@ public sealed unsafe partial class AttributeModifier : global::System.IDisposabl
         return NativeMethods.TablePtr->C0.hs_method_7086e74a((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID getUniqueId()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID? getUniqueId()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)NativeMethods.TablePtr->C0.hs_method_8a078c40((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8a078c40((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)__hs_handle);
     }
 
     public void Dispose()

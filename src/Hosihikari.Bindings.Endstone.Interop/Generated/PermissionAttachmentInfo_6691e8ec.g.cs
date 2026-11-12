@@ -40,7 +40,7 @@ public sealed unsafe partial class PermissionAttachmentInfo : global::System.IDi
         return __hs_handle;
     }
 
-    public static PermissionAttachmentInfo Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible permissible, string permission, global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment? attachment, bool value)
+    public static PermissionAttachmentInfo? Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible permissible, string permission, global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment? attachment, bool value)
     {
         var __hs_stringByteCount1 = global::System.Text.Encoding.UTF8.GetByteCount(permission);
         scoped global::System.Span<byte> __hs_stringBytes1;
@@ -58,7 +58,8 @@ public sealed unsafe partial class PermissionAttachmentInfo : global::System.IDi
             var handle = NativeMethods.TablePtr->C0.hs_create_95738960((void*)permissible.Handle, __hs_stringData1, (nuint)__hs_stringByteCount1, (void*)(attachment?.Handle ?? 0), value);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new PermissionAttachmentInfo((nint)handle);
@@ -68,12 +69,23 @@ public sealed unsafe partial class PermissionAttachmentInfo : global::System.IDi
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment? getAttachment()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_6807d29a((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible getPermissible()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible? getPermissible()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)NativeMethods.TablePtr->C0.hs_method_c49d73e5((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c49d73e5((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)__hs_handle, false);
     }
 
     public string getPermission()

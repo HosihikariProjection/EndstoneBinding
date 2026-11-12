@@ -46,9 +46,15 @@ public sealed unsafe partial class OfflinePlayer
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID getUniqueId()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID? getUniqueId()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)NativeMethods.TablePtr->C0.hs_method_4b50ef7b((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_4b50ef7b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)__hs_handle);
     }
 
     [global::System.Obsolete("BindingShim cannot project this member: the class has no accessible destructor.", false)]
@@ -58,6 +64,11 @@ public sealed unsafe partial class OfflinePlayer
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Player? TryAsPlayer()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_c30a0060((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Player((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Player((nint)__hs_handle, false);
     }
 }

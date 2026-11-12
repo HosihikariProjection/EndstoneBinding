@@ -58,7 +58,12 @@ public sealed unsafe partial class MapView
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Dimension? getDimension()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_2816961f((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Dimension((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Dimension((nint)__hs_handle, false);
     }
 
     public long getId()

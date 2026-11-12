@@ -44,14 +44,26 @@ public sealed unsafe partial class ListTag : global::System.IDisposable
     public static ListTag Create() =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: the class has no accessible destructor.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_32c719f8(ulong i)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? at_32c719f8(ulong i)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_32c719f8((void*)__hosihikari_shim_handle, i), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_32c719f8((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_8b672895(ulong i)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? at_8b672895(ulong i)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_8b672895((void*)__hosihikari_shim_handle, i), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8b672895((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
     }
 
     [global::System.Obsolete("BindingShim cannot project this member: by-value return type 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<endstone::nbt::Tag>>>' is not a known bindable declaration.", false)]
@@ -96,14 +108,26 @@ public sealed unsafe partial class ListTag : global::System.IDisposable
     public nint erase(nint first, nint last) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value return type 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<endstone::nbt::Tag>>>' is not a known bindable declaration.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag operator_index_59464a3a(ulong i)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? operator_index_59464a3a(ulong i)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_59464a3a((void*)__hosihikari_shim_handle, i), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_59464a3a((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag operator_index_51244beb(ulong i)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? operator_index_51244beb(ulong i)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_51244beb((void*)__hosihikari_shim_handle, i), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_51244beb((void*)__hosihikari_shim_handle, i);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
     }
 
     [global::System.Obsolete("BindingShim cannot project this member: the member requires linking against the carrier.", false)]
@@ -124,9 +148,15 @@ public sealed unsafe partial class ListTag : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_75608914((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_06c3c5db((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_06c3c5db((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

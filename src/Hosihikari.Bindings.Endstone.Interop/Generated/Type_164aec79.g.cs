@@ -43,12 +43,23 @@ public sealed unsafe partial class Type
     public static global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType? get(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_ id)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_df567989((void*)id.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_ getId()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_? getId()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_((nint)NativeMethods.TablePtr->C0.hs_method_c0c2d74e((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c0c2d74e((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_((nint)__hs_handle);
     }
 
     public string getTranslationKey()
@@ -57,9 +68,15 @@ public sealed unsafe partial class Type
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_ operator_Identifier()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_? operator_Identifier()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_((nint)NativeMethods.TablePtr->C0.hs_method_e8769c8c((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e8769c8c((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__BlockType_((nint)__hs_handle);
     }
 
     public bool operator_not_equal(global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType other)
@@ -89,6 +106,11 @@ public sealed unsafe partial class Type
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType? TryAsBlockType()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_cc0f233e((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockType((nint)__hs_handle, false);
     }
 }

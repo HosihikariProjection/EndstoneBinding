@@ -206,8 +206,14 @@ public sealed unsafe partial class IpBanList
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanList_endstone__IpBanEntry_ AsBanList_endstone__IpBanEntry_()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanList_endstone__IpBanEntry_? AsBanList_endstone__IpBanEntry_()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanList_endstone__IpBanEntry_((nint)NativeMethods.TablePtr->C0.hs_cast_23412fdb((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_23412fdb((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanList_endstone__IpBanEntry_((nint)__hs_handle, false);
     }
 }

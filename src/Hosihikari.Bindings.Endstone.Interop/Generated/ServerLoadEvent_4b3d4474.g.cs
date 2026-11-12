@@ -45,12 +45,13 @@ public sealed unsafe partial class ServerLoadEvent : global::System.IDisposable
         get => (nint)NativeMethods.TablePtr->C0.hs_get_99eb7c30();
     }
 
-    public static ServerLoadEvent Create(int type)
+    public static ServerLoadEvent? Create(int type)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_cc3cf295(type);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ServerLoadEvent((nint)handle);
@@ -67,14 +68,26 @@ public sealed unsafe partial class ServerLoadEvent : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_d0f9781a((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event AsEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event? AsEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)NativeMethods.TablePtr->C0.hs_cast_79401993((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_79401993((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ServerEvent AsServerEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ServerEvent? AsServerEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ServerEvent((nint)NativeMethods.TablePtr->C0.hs_cast_71f4f11c((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_71f4f11c((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ServerEvent((nint)__hs_handle, false);
     }
 
     public void Dispose()

@@ -40,20 +40,27 @@ public sealed unsafe partial class PermissionAttachment : global::System.IDispos
         return __hs_handle;
     }
 
-    public static PermissionAttachment Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin, global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible permissible)
+    public static PermissionAttachment? Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin, global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible permissible)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_619b01fd((void*)plugin.Handle, (void*)permissible.Handle);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new PermissionAttachment((nint)handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible getPermissible()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible? getPermissible()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)NativeMethods.TablePtr->C0.hs_method_0db6400b((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_0db6400b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)__hs_handle, false);
     }
 
     public global::System.Collections.Generic.Dictionary<string, bool> getPermissions()
@@ -71,14 +78,26 @@ public sealed unsafe partial class PermissionAttachment : global::System.IDispos
         return __hs_result;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin getPlugin()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin? getPlugin()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)NativeMethods.TablePtr->C0.hs_method_bafd887c((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_bafd887c((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Function_7a4e965f getRemovalCallback()
+    public global::Hosihikari.Bindings.Endstone.Interop.Function_7a4e965f? getRemovalCallback()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Function_7a4e965f((nint)NativeMethods.TablePtr->C0.hs_method_1561e66f((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_1561e66f((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Function_7a4e965f((nint)__hs_handle);
     }
 
     public bool remove()

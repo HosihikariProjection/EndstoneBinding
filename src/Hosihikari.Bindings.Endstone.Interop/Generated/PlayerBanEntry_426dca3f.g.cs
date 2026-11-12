@@ -40,7 +40,7 @@ public sealed unsafe partial class PlayerBanEntry : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static PlayerBanEntry Create(string name, global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID? uuid, string? xuid)
+    public static PlayerBanEntry? Create(string name, global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID? uuid, string? xuid)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -71,7 +71,8 @@ public sealed unsafe partial class PlayerBanEntry : global::System.IDisposable
                 var handle = NativeMethods.TablePtr->C0.hs_create_346d6121(__hs_stringData0, (nuint)__hs_stringByteCount0, (void*)(uuid?.Handle ?? 0), __hs_stringData2, (nuint)__hs_stringByteCount2, uuid is not null, xuid is not null);
                 if (handle == null)
                 {
-                    throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                    NativeMethods.GetLastError();
+                    return null;
                 }
 
                 return new PlayerBanEntry((nint)handle);
@@ -89,7 +90,12 @@ public sealed unsafe partial class PlayerBanEntry : global::System.IDisposable
     {
         var __hs_hasValue = false;
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_80abbf8c((void*)__hosihikari_shim_handle, &__hs_hasValue);
-        return __hs_hasValue && __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            if (!__hs_hasValue) { return null; }
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.UUID((nint)__hs_handle);
     }
 
     public string? getXuid()
@@ -99,9 +105,15 @@ public sealed unsafe partial class PlayerBanEntry : global::System.IDisposable
         return __hs_hasValue ? global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size)) : null;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry AsBanEntry()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry? AsBanEntry()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry((nint)NativeMethods.TablePtr->C0.hs_cast_bfe186a1((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_bfe186a1((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry((nint)__hs_handle, false);
     }
 
     public void Dispose()

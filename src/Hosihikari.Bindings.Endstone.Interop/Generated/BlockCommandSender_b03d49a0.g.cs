@@ -43,16 +43,33 @@ public sealed unsafe partial class BlockCommandSender
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Block? getBlock()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b1c439de((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Block((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Block((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender AsCommandSender()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender? AsCommandSender()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender((nint)NativeMethods.TablePtr->C0.hs_cast_3875f743((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_3875f743((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible AsPermissible()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible? AsPermissible()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)NativeMethods.TablePtr->C0.hs_cast_ef5a0ff9((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_ef5a0ff9((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)__hs_handle, false);
     }
 }

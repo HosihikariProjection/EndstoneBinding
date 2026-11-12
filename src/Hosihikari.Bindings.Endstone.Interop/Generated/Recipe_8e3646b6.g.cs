@@ -40,9 +40,15 @@ public sealed unsafe partial class Recipe
         return __hs_handle;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack getResult()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack? getResult()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack((nint)NativeMethods.TablePtr->C0.hs_method_9bb7e442((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_9bb7e442((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack((nint)__hs_handle);
     }
 
     [global::System.Obsolete("BindingShim cannot project this member: the class has no accessible destructor.", false)]

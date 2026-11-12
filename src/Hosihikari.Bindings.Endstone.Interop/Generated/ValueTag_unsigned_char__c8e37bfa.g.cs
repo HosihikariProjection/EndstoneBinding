@@ -40,23 +40,25 @@ public sealed unsafe partial class ValueTag_unsigned_char_ : global::System.IDis
         return __hs_handle;
     }
 
-    public static ValueTag_unsigned_char_ Create()
+    public static ValueTag_unsigned_char_? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_e3a13c3c();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ValueTag_unsigned_char_((nint)handle);
     }
 
-    public static ValueTag_unsigned_char_ Create_eb472178(nint v)
+    public static ValueTag_unsigned_char_? Create_eb472178(nint v)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_eb472178((void*)v);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ValueTag_unsigned_char_((nint)handle);
@@ -76,9 +78,15 @@ public sealed unsafe partial class ValueTag_unsigned_char_ : global::System.IDis
         return (nint)NativeMethods.TablePtr->C0.hs_method_bc424f4f((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_3298b734((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_3298b734((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

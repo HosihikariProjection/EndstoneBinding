@@ -40,7 +40,7 @@ public sealed unsafe partial class HandlerList : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static HandlerList Create(string @event)
+    public static HandlerList? Create(string @event)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(@event);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,7 +58,8 @@ public sealed unsafe partial class HandlerList : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_8d9494ee(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new HandlerList((nint)handle);
@@ -79,7 +80,12 @@ public sealed unsafe partial class HandlerList : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.EventHandler? registerHandler(global::Hosihikari.Bindings.Endstone.Interop.endstone.EventHandler handler)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_98c67315((void*)__hosihikari_shim_handle, (void*)handler.ReleaseHandle());
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.EventHandler((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.EventHandler((nint)__hs_handle, false);
     }
 
     public void unregister(global::Hosihikari.Bindings.Endstone.Interop.endstone.EventHandler handler)

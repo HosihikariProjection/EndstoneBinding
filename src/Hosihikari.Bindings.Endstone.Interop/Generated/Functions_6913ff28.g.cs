@@ -6,9 +6,15 @@ namespace Hosihikari.Bindings.Endstone.Interop.endstone.detail;
 
 public static unsafe partial class Functions
 {
-    public static global::Hosihikari.Bindings.Endstone.Interop.endstone.Server getServer()
+    public static global::Hosihikari.Bindings.Endstone.Interop.endstone.Server? getServer()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Server((nint)NativeMethods.TablePtr->C0.hs_function_6bbc2cf3(), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_function_6bbc2cf3();
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Server((nint)__hs_handle, false);
     }
 
     public static string quoted(string value)

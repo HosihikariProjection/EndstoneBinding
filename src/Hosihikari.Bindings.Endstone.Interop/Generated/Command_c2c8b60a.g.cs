@@ -40,7 +40,7 @@ public sealed unsafe partial class Command : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Command Create(string name, string description, string[] usages, string[] aliases, string[] permissions)
+    public static Command? Create(string name, string description, string[] usages, string[] aliases, string[] permissions)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -131,7 +131,8 @@ public sealed unsafe partial class Command : global::System.IDisposable
                             var handle = NativeMethods.TablePtr->C0.hs_create_82cb42ed(__hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1, __hs_vectorData2, (nuint)(usages?.Length ?? 0), __hs_vectorData3, (nuint)(aliases?.Length ?? 0), __hs_vectorData4, (nuint)(permissions?.Length ?? 0));
                             if (handle == null)
                             {
-                                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                                NativeMethods.GetLastError();
+                                return null;
                             }
 
                             return new Command((nint)handle);
@@ -145,7 +146,12 @@ public sealed unsafe partial class Command : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand? asPluginCommand()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_258d436e((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false);
     }
 
     public bool execute(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender sender, string[] args)
@@ -289,7 +295,12 @@ public sealed unsafe partial class Command : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand? TryAsPluginCommand()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_1d149984((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false);
     }
 
     public void Dispose()

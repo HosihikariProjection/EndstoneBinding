@@ -40,36 +40,50 @@ public sealed unsafe partial class Header : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Header Create()
+    public static Header? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_bd8f2c0e();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Header((nint)handle);
     }
 
-    public static Header Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
+    public static Header? Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_1dfe588b((void*)label.Handle);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Header((nint)handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 getLabel()
+    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? getLabel()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)NativeMethods.TablePtr->C0.hs_method_94ba2884((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_94ba2884((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Header setLabel(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Header? setLabel(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Header((nint)NativeMethods.TablePtr->C0.hs_method_a434230f((void*)__hosihikari_shim_handle, (void*)label.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_a434230f((void*)__hosihikari_shim_handle, (void*)label.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Header((nint)__hs_handle, false);
     }
 
     public void Dispose()

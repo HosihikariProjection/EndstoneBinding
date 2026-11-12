@@ -40,34 +40,37 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Vector Create()
+    public static Vector? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_0558b5cb();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Vector((nint)handle);
     }
 
-    public static Vector Create_59d8f0d9(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public static Vector? Create_59d8f0d9(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_59d8f0d9((void*)other.Handle);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Vector((nint)handle);
     }
 
-    public static Vector Create_f7d5c0b3(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public static Vector? Create_f7d5c0b3(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_f7d5c0b3((void*)other.Handle);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Vector((nint)handle);
@@ -78,9 +81,15 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_cd2cd7ce((void*)__hosihikari_shim_handle, (void*)other.Handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector crossProduct(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? crossProduct(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_bedcfefa((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_bedcfefa((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
     public float distance(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
@@ -113,14 +122,26 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_c50effd3((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector getCrossProduct(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? getCrossProduct(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_68e875ff((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_68e875ff((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector getMidpoint(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? getMidpoint(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_5a72ef4a((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_5a72ef4a((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
     public float getX()
@@ -168,19 +189,37 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_e5170cea((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector midpoint(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? midpoint(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_217b6b87((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_217b6b87((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector normalize()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? normalize()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_3dff0fe6((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_3dff0fe6((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector normalizeZeros()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? normalizeZeros()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_aef1cecd((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_aef1cecd((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
     public bool operator_not_equal(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
@@ -188,54 +227,114 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_26814558((void*)__hosihikari_shim_handle, (void*)other.Handle) != 0;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_multiply(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_multiply(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_87c6e96d((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_87c6e96d((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_operator___3f9215a2(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_operator___3f9215a2(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_3f9215a2((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_3f9215a2((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_add(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_add(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_ef1fc55b((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ef1fc55b((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_operator___90119843(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_operator___90119843(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_90119843((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_90119843((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_subtract(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_subtract(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_60fb74ad((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_60fb74ad((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_operator___0a40232b(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_operator___0a40232b(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_0a40232b((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_0a40232b((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_divide(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_divide(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_5df75d45((void*)__hosihikari_shim_handle, (void*)other.Handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_5df75d45((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_operator___4a2dbdbe(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_operator___4a2dbdbe(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_4a2dbdbe((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_4a2dbdbe((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_assign_682756f6(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_assign_682756f6(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_682756f6((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_682756f6((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector operator_assign_17143b18(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? operator_assign_17143b18(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_17143b18((void*)__hosihikari_shim_handle, (void*)other.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_17143b18((void*)__hosihikari_shim_handle, (void*)other.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
     public bool operator_equal(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector other)
@@ -243,34 +342,70 @@ public sealed unsafe partial class Vector : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_b217dcd5((void*)__hosihikari_shim_handle, (void*)other.Handle) != 0;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector rotateAroundAxis(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector axis, float angle)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? rotateAroundAxis(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector axis, float angle)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_609d0268((void*)__hosihikari_shim_handle, (void*)axis.Handle, angle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_609d0268((void*)__hosihikari_shim_handle, (void*)axis.Handle, angle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector rotateAroundNonUnitAxis(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector axis, float angle)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? rotateAroundNonUnitAxis(global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector axis, float angle)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_4d4b89ff((void*)__hosihikari_shim_handle, (void*)axis.Handle, angle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_4d4b89ff((void*)__hosihikari_shim_handle, (void*)axis.Handle, angle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector rotateAroundX(float angle)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? rotateAroundX(float angle)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_af683b71((void*)__hosihikari_shim_handle, angle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_af683b71((void*)__hosihikari_shim_handle, angle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector rotateAroundY(float angle)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? rotateAroundY(float angle)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_5706bd37((void*)__hosihikari_shim_handle, angle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_5706bd37((void*)__hosihikari_shim_handle, angle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector rotateAroundZ(float angle)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? rotateAroundZ(float angle)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_a753bc9b((void*)__hosihikari_shim_handle, angle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_a753bc9b((void*)__hosihikari_shim_handle, angle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector zero()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector? zero()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)NativeMethods.TablePtr->C0.hs_method_67f7f16d((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_67f7f16d((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Vector((nint)__hs_handle, false);
     }
 
     public void Dispose()

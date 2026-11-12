@@ -40,7 +40,7 @@ public sealed unsafe partial class Translatable : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Translatable Create(string text, string[] @params)
+    public static Translatable? Create(string text, string[] @params)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(text);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -78,7 +78,8 @@ public sealed unsafe partial class Translatable : global::System.IDisposable
                 var handle = NativeMethods.TablePtr->C0.hs_create_6641a0a9(__hs_stringData0, (nuint)__hs_stringByteCount0, __hs_vectorData1, (nuint)(@params?.Length ?? 0));
                 if (handle == null)
                 {
-                    throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                    NativeMethods.GetLastError();
+                    return null;
                 }
 
                 return new Translatable((nint)handle);

@@ -40,7 +40,7 @@ public sealed unsafe partial class CommandBuilder : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static CommandBuilder Create(string name)
+    public static CommandBuilder? Create(string name)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(name);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,19 +58,26 @@ public sealed unsafe partial class CommandBuilder : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_90ef1d59(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new CommandBuilder((nint)handle);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Command build()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Command? build()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Command((nint)NativeMethods.TablePtr->C0.hs_method_c0a18bdd((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c0a18bdd((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Command((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder description(string description)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder? description(string description)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(description);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -85,7 +92,13 @@ public sealed unsafe partial class CommandBuilder : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(description, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder((nint)NativeMethods.TablePtr->C0.hs_method_9800ad34((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_9800ad34((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.detail.CommandBuilder((nint)__hs_handle, false);
         }
     }
 

@@ -144,14 +144,25 @@ public sealed unsafe partial class WritableBookMeta
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta AsItemMeta()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? AsItemMeta()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)NativeMethods.TablePtr->C0.hs_cast_4d728731((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_4d728731((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta? TryAsBookMeta()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_ce5da043((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta((nint)__hs_handle, false);
     }
 }

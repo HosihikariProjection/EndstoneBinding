@@ -29,6 +29,7 @@
 namespace {
 
 using hosihikari::abi::setLastError;
+using hosihikari::abi::clearLastError;
 thread_local std::string g_stringResult;
 
 template <class T, class U>
@@ -217,6 +218,7 @@ T const& hs_game_ref_from_handle(HosihikariSharedHandle handle)
 
 static void hs_callable_7a4e965f_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::function<void (const endstone::PermissionAttachment &)>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -232,6 +234,7 @@ catch (...)
 
 static void hs_callable_7a4e965f_invoke(void* hs_self, void* arg0) try
 {
+    clearLastError();
     (*static_cast<std::function<void (const endstone::PermissionAttachment &)>*>(hs_self))(*static_cast<const endstone::PermissionAttachment*>(arg0));
 }
 catch (std::exception const& hs_error)
@@ -247,6 +250,7 @@ catch (...)
 
 static void hs_callable_a442e6f7_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::function<void (endstone::Player *)>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -262,6 +266,7 @@ catch (...)
 
 static void hs_callable_a442e6f7_invoke(void* hs_self, void* arg0) try
 {
+    clearLastError();
     (*static_cast<std::function<void (endstone::Player *)>*>(hs_self))(static_cast<endstone::Player*>(arg0));
 }
 catch (std::exception const& hs_error)
@@ -277,6 +282,7 @@ catch (...)
 
 static void hs_callable_e874b0c2_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::function<void (endstone::Player *, int)>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -292,6 +298,7 @@ catch (...)
 
 static void hs_callable_e874b0c2_invoke(void* hs_self, void* arg0, std::int32_t arg1) try
 {
+    clearLastError();
     (*static_cast<std::function<void (endstone::Player *, int)>*>(hs_self))(static_cast<endstone::Player*>(arg0), static_cast<int>(arg1));
 }
 catch (std::exception const& hs_error)
@@ -307,6 +314,7 @@ catch (...)
 
 static void hs_callable_08258ebd_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::function<void (endstone::Player *, std::basic_string<char>)>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -322,6 +330,7 @@ catch (...)
 
 static void hs_callable_08258ebd_invoke(void* hs_self, void* arg0, const char* arg1_data, std::size_t arg1_size) try
 {
+    clearLastError();
     (*static_cast<std::function<void (endstone::Player *, std::basic_string<char>)>*>(hs_self))(static_cast<endstone::Player*>(arg0), std::basic_string<char>(arg1_data, arg1_size));
 }
 catch (std::exception const& hs_error)
@@ -337,6 +346,7 @@ catch (...)
 
 static void hs_destroy_14f013f3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActionForm*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -352,6 +362,7 @@ catch (...)
 
 static void* hs_cast_2a627338(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Form<endstone::ActionForm>*>(static_cast<endstone::ActionForm*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -367,6 +378,7 @@ catch (...)
 
 static void* hs_create_598bce7a() try
 {
+    clearLastError();
     return new endstone::ActionForm();
 }
 catch (std::exception const& hs_error)
@@ -402,6 +414,7 @@ struct hs_cb_closure_hs_method_e3736391_cb2
 
 static void* hs_method_e3736391(void* hs_self, void* text, const char* icon_data, std::size_t icon_size, void* on_click_invoke, void* on_click_userData, void* on_click_release, bool icon_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->addButton(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text), (icon_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(icon_data, icon_size)} : std::nullopt), std::function<void (endstone::Player *)>(hs_cb_closure_hs_method_e3736391_cb2{std::make_shared<hs_cb_state_hs_method_e3736391_cb2>(reinterpret_cast<hs_cb_invoke_hs_method_e3736391_cb2>(on_click_invoke), on_click_userData, reinterpret_cast<hs_cb_release_hs_method_e3736391_cb2>(on_click_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -417,6 +430,7 @@ catch (...)
 
 static void* hs_method_9ff2f0da(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->addDivider()));
 }
 catch (std::exception const& hs_error)
@@ -432,6 +446,7 @@ catch (...)
 
 static void* hs_method_b8b47588(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->addHeader(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -447,6 +462,7 @@ catch (...)
 
 static void* hs_method_20c60f83(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->addLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -462,6 +478,7 @@ catch (...)
 
 static void* hs_method_9d857e16(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::ActionForm const*>(hs_self)->getContent()));
 }
 catch (std::exception const& hs_error)
@@ -477,6 +494,7 @@ catch (...)
 
 static void* hs_method_d5090347(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm const*>(hs_self)->getControls()));
 }
 catch (std::exception const& hs_error)
@@ -492,6 +510,7 @@ catch (...)
 
 static void* hs_method_fd0890fa(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::ActionForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
@@ -507,6 +526,7 @@ catch (...)
 
 static void* hs_method_3f77668b(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->setContent(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -522,6 +542,7 @@ catch (...)
 
 static void* hs_method_0cf944fa(void* hs_self, void* const* controls_data, std::size_t controls_count) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->setControls(hs_make_variant_vector<std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>>(controls_data, controls_count))));
 }
 catch (std::exception const& hs_error)
@@ -557,6 +578,7 @@ struct hs_cb_closure_hs_method_7a063590_cb0
 
 static void* hs_method_7a063590(void* hs_self, void* on_submit_invoke, void* on_submit_userData, void* on_submit_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActionForm*>(hs_self)->setOnSubmit(std::function<void (endstone::Player *, int)>(hs_cb_closure_hs_method_7a063590_cb0{std::make_shared<hs_cb_state_hs_method_7a063590_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_7a063590_cb0>(on_submit_invoke), on_submit_userData, reinterpret_cast<hs_cb_release_hs_method_7a063590_cb0>(on_submit_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -572,6 +594,7 @@ catch (...)
 
 static void* hs_cast_048d2bdd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Item*>(static_cast<endstone::Actor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -587,6 +610,7 @@ catch (...)
 
 static void* hs_cast_558c95a0(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Mob*>(static_cast<endstone::Actor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -602,6 +626,7 @@ catch (...)
 
 static void* hs_cast_b16f589d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Player*>(static_cast<endstone::Actor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -617,6 +642,7 @@ catch (...)
 
 static void* hs_cast_cf1bff98(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::Actor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -632,6 +658,7 @@ catch (...)
 
 static void* hs_cast_14b00461(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::Actor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -647,6 +674,7 @@ catch (...)
 
 static bool hs_method_96acbd59(void* hs_self, const char* tag_data, std::size_t tag_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->addScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
 }
 catch (std::exception const& hs_error)
@@ -662,6 +690,7 @@ catch (...)
 
 static void* hs_method_47bed08e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor const*>(hs_self)->asItem()));
 }
 catch (std::exception const& hs_error)
@@ -677,6 +706,7 @@ catch (...)
 
 static void* hs_method_cbd9f7e3(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Actor const*>(hs_self)->asMob()));
 }
 catch (std::exception const& hs_error)
@@ -692,6 +722,7 @@ catch (...)
 
 static void* hs_method_90c185c9(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -707,6 +738,7 @@ catch (...)
 
 static std::int64_t hs_method_e75fec06(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(static_cast<endstone::Actor const*>(hs_self)->getId());
 }
 catch (std::exception const& hs_error)
@@ -722,6 +754,7 @@ catch (...)
 
 static void* hs_method_2c4264aa(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Actor const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -737,6 +770,7 @@ catch (...)
 
 static void* hs_method_a3a383ab(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Actor const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
@@ -752,6 +786,7 @@ catch (...)
 
 static HosihikariStringView hs_method_52274c94(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Actor const*>(hs_self)->getNameTag();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -769,6 +804,7 @@ catch (...)
 
 static std::uint64_t hs_method_421c8c76(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::Actor const*>(hs_self)->getRuntimeId());
 }
 catch (std::exception const& hs_error)
@@ -784,6 +820,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f1586fb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Actor const*>(hs_self)->getScoreTag();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -801,6 +838,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_f4fc1248(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::Actor const*>(hs_self)->getScoreboardTags();
@@ -825,6 +863,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a25bf094(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Actor const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -842,6 +881,7 @@ catch (...)
 
 static void* hs_method_66649264(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Actor const*>(hs_self)->getVelocity()));
 }
 catch (std::exception const& hs_error)
@@ -857,6 +897,7 @@ catch (...)
 
 static bool hs_method_bd047ad0(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isDead());
 }
 catch (std::exception const& hs_error)
@@ -872,6 +913,7 @@ catch (...)
 
 static bool hs_method_ead096dd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isInLava());
 }
 catch (std::exception const& hs_error)
@@ -887,6 +929,7 @@ catch (...)
 
 static bool hs_method_80040a41(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isInWater());
 }
 catch (std::exception const& hs_error)
@@ -902,6 +945,7 @@ catch (...)
 
 static bool hs_method_43e8d43c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isNameTagAlwaysVisible());
 }
 catch (std::exception const& hs_error)
@@ -917,6 +961,7 @@ catch (...)
 
 static bool hs_method_110331fd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isNameTagVisible());
 }
 catch (std::exception const& hs_error)
@@ -932,6 +977,7 @@ catch (...)
 
 static bool hs_method_1a019155(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isOnGround());
 }
 catch (std::exception const& hs_error)
@@ -947,6 +993,7 @@ catch (...)
 
 static bool hs_method_4566329b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->isValid());
 }
 catch (std::exception const& hs_error)
@@ -962,6 +1009,7 @@ catch (...)
 
 static void hs_method_97e4c8df(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->remove();
 }
 catch (std::exception const& hs_error)
@@ -977,6 +1025,7 @@ catch (...)
 
 static bool hs_method_157784ca(void* hs_self, const char* tag_data, std::size_t tag_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor const*>(hs_self)->removeScoreboardTag(std::basic_string<char>(tag_data, tag_size)));
 }
 catch (std::exception const& hs_error)
@@ -992,6 +1041,7 @@ catch (...)
 
 static void hs_method_baf3aa06(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->setNameTag(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -1007,6 +1057,7 @@ catch (...)
 
 static void hs_method_ebed9758(void* hs_self, bool visible) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->setNameTagAlwaysVisible(static_cast<bool>(visible));
 }
 catch (std::exception const& hs_error)
@@ -1022,6 +1073,7 @@ catch (...)
 
 static void hs_method_0c1f6468(void* hs_self, bool visible) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->setNameTagVisible(static_cast<bool>(visible));
 }
 catch (std::exception const& hs_error)
@@ -1037,6 +1089,7 @@ catch (...)
 
 static void hs_method_ef1f7f16(void* hs_self, float yaw, float pitch) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->setRotation(static_cast<float>(yaw), static_cast<float>(pitch));
 }
 catch (std::exception const& hs_error)
@@ -1052,6 +1105,7 @@ catch (...)
 
 static void hs_method_614fc2f1(void* hs_self, const char* score_data, std::size_t score_size) try
 {
+    clearLastError();
     static_cast<endstone::Actor*>(hs_self)->setScoreTag(std::basic_string<char>(score_data, score_size));
 }
 catch (std::exception const& hs_error)
@@ -1067,6 +1121,7 @@ catch (...)
 
 static bool hs_method_ddf1c948(void* hs_self, void* target) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->teleport(*static_cast<const endstone::Actor*>(target)));
 }
 catch (std::exception const& hs_error)
@@ -1082,6 +1137,7 @@ catch (...)
 
 static bool hs_method_ab7b90ae(void* hs_self, void* location) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Actor*>(hs_self)->teleport(*static_cast<const endstone::Location*>(location)));
 }
 catch (std::exception const& hs_error)
@@ -1097,6 +1153,7 @@ catch (...)
 
 static void hs_destroy_21170623(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorDamageEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -1112,6 +1169,7 @@ catch (...)
 
 static void* hs_cast_afc3f4fd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::ActorDamageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1127,6 +1185,7 @@ catch (...)
 
 static void* hs_cast_630d9e1a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(static_cast<endstone::ActorDamageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1142,6 +1201,7 @@ catch (...)
 
 static void* hs_cast_0b0f4dc6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorDamageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1157,6 +1217,7 @@ catch (...)
 
 static void* hs_cast_e289cfbb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ActorDamageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1172,6 +1233,7 @@ catch (...)
 
 static void* hs_create_1c528cbf(void* actor, void* damage_source, float damage) try
 {
+    clearLastError();
     return new endstone::ActorDamageEvent(*static_cast<endstone::Mob*>(actor), std::unique_ptr<endstone::DamageSource>(static_cast<endstone::DamageSource*>(damage_source)), static_cast<const float>(damage));
 }
 catch (std::exception const& hs_error)
@@ -1187,6 +1249,7 @@ catch (...)
 
 static void* hs_get_6558493f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorDamageEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -1202,6 +1265,7 @@ catch (...)
 
 static float hs_method_9c13068e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::ActorDamageEvent const*>(hs_self)->getDamage());
 }
 catch (std::exception const& hs_error)
@@ -1217,6 +1281,7 @@ catch (...)
 
 static void* hs_method_cb6b8ac2(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDamageEvent const*>(hs_self)->getDamageSource()));
 }
 catch (std::exception const& hs_error)
@@ -1232,6 +1297,7 @@ catch (...)
 
 static HosihikariStringView hs_method_68e835a4(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorDamageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -1249,6 +1315,7 @@ catch (...)
 
 static void hs_method_f5f8691f(void* hs_self, float damage) try
 {
+    clearLastError();
     static_cast<endstone::ActorDamageEvent*>(hs_self)->setDamage(static_cast<const float>(damage));
 }
 catch (std::exception const& hs_error)
@@ -1264,6 +1331,7 @@ catch (...)
 
 static void hs_destroy_d7a8ab76(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorDeathEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -1279,6 +1347,7 @@ catch (...)
 
 static void* hs_cast_1848fd63(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDeathEvent*>(static_cast<endstone::ActorDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1294,6 +1363,7 @@ catch (...)
 
 static void* hs_cast_975fae4c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::ActorDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1309,6 +1379,7 @@ catch (...)
 
 static void* hs_cast_4c0a712c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1324,6 +1395,7 @@ catch (...)
 
 static void* hs_create_b1e7cfa9(void* actor, void* damage_source) try
 {
+    clearLastError();
     return new endstone::ActorDeathEvent(*static_cast<endstone::Mob*>(actor), std::unique_ptr<endstone::DamageSource>(static_cast<endstone::DamageSource*>(damage_source)));
 }
 catch (std::exception const& hs_error)
@@ -1339,6 +1411,7 @@ catch (...)
 
 static void* hs_get_e04f0f07() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorDeathEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -1354,6 +1427,7 @@ catch (...)
 
 static void* hs_method_a099264e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorDeathEvent const*>(hs_self)->getDamageSource()));
 }
 catch (std::exception const& hs_error)
@@ -1369,6 +1443,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3767e45d(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorDeathEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -1386,6 +1461,7 @@ catch (...)
 
 static void* hs_cast_a034a0cc(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorExplodeEvent*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1401,6 +1477,7 @@ catch (...)
 
 static void* hs_cast_56650640(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorRemoveEvent*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1416,6 +1493,7 @@ catch (...)
 
 static void* hs_cast_e2a7a068(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorSpawnEvent*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1431,6 +1509,7 @@ catch (...)
 
 static void* hs_cast_7fd9c718(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorTeleportEvent*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1446,6 +1525,7 @@ catch (...)
 
 static void* hs_cast_38550dc6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1461,6 +1541,7 @@ catch (...)
 
 static void* hs_cast_e596431f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorEvent<endstone::Actor>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1476,6 +1557,7 @@ catch (...)
 
 static void* hs_method_8cff3adf(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Actor> const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
@@ -1491,6 +1573,7 @@ catch (...)
 
 static void* hs_cast_6dd46b06(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDamageEvent*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1506,6 +1589,7 @@ catch (...)
 
 static void* hs_cast_5bfe5838(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDeathEvent*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1521,6 +1605,7 @@ catch (...)
 
 static void* hs_cast_b859f555(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorKnockbackEvent*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1536,6 +1621,7 @@ catch (...)
 
 static void* hs_cast_6cc7495b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1551,6 +1637,7 @@ catch (...)
 
 static void* hs_cast_50b4a481(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDeathEvent*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1566,6 +1653,7 @@ catch (...)
 
 static void* hs_cast_2b9e800a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorEvent<endstone::Mob>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1581,6 +1669,7 @@ catch (...)
 
 static void* hs_method_42208d88(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorEvent<endstone::Mob> const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
@@ -1596,6 +1685,7 @@ catch (...)
 
 static void hs_destroy_c396c44a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorExplodeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -1611,6 +1701,7 @@ catch (...)
 
 static void* hs_cast_0cec52c1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::ActorExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1626,6 +1717,7 @@ catch (...)
 
 static void* hs_cast_212f7e9a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::ActorExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1641,6 +1733,7 @@ catch (...)
 
 static void* hs_cast_169b63cb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1656,6 +1749,7 @@ catch (...)
 
 static void* hs_cast_b99f494a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ActorExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1671,6 +1765,7 @@ catch (...)
 
 static void* hs_get_c597e7fd() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorExplodeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -1686,6 +1781,7 @@ catch (...)
 
 static void* hs_method_8f4da3d9(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
@@ -1701,6 +1797,7 @@ catch (...)
 
 static void* hs_method_4ec91f56(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
@@ -1716,6 +1813,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f00b792d(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -1733,6 +1831,7 @@ catch (...)
 
 static void* hs_method_7039c3d9(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorExplodeEvent const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
@@ -1748,6 +1847,7 @@ catch (...)
 
 static void hs_destroy_32019a7c(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorKnockbackEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -1763,6 +1863,7 @@ catch (...)
 
 static void* hs_cast_68ecd15a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::ActorKnockbackEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1778,6 +1879,7 @@ catch (...)
 
 static void* hs_cast_646ece2d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(static_cast<endstone::ActorKnockbackEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1793,6 +1895,7 @@ catch (...)
 
 static void* hs_cast_14a5f191(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorKnockbackEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1808,6 +1911,7 @@ catch (...)
 
 static void* hs_cast_058509ff(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ActorKnockbackEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1823,6 +1927,7 @@ catch (...)
 
 static void* hs_create_30f49ae6(void* mob, void* source, void* knockback) try
 {
+    clearLastError();
     return new endstone::ActorKnockbackEvent(*static_cast<endstone::Mob*>(mob), static_cast<endstone::Actor*>(source), *static_cast<const endstone::Vector*>(knockback));
 }
 catch (std::exception const& hs_error)
@@ -1838,6 +1943,7 @@ catch (...)
 
 static void* hs_get_153427e7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorKnockbackEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -1853,6 +1959,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7da699f1(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -1870,6 +1977,7 @@ catch (...)
 
 static void* hs_method_9ffe5f0b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getKnockback()));
 }
 catch (std::exception const& hs_error)
@@ -1885,6 +1993,7 @@ catch (...)
 
 static void* hs_method_825022fe(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::ActorKnockbackEvent const*>(hs_self)->getSource()));
 }
 catch (std::exception const& hs_error)
@@ -1900,6 +2009,7 @@ catch (...)
 
 static void hs_method_c1270265(void* hs_self, void* knockback) try
 {
+    clearLastError();
     static_cast<endstone::ActorKnockbackEvent*>(hs_self)->setKnockback(*static_cast<const endstone::Vector*>(knockback));
 }
 catch (std::exception const& hs_error)
@@ -1915,6 +2025,7 @@ catch (...)
 
 static void hs_destroy_a0e97e9a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorRemoveEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -1930,6 +2041,7 @@ catch (...)
 
 static void* hs_cast_ec10347e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::ActorRemoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1945,6 +2057,7 @@ catch (...)
 
 static void* hs_cast_0b61b1f8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorRemoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -1960,6 +2073,7 @@ catch (...)
 
 static void* hs_get_2f7506b5() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorRemoveEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -1975,6 +2089,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c194c101(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorRemoveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -1992,6 +2107,7 @@ catch (...)
 
 static void hs_destroy_ac47ba29(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorSpawnEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -2007,6 +2123,7 @@ catch (...)
 
 static void* hs_cast_854b92ad(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::ActorSpawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2022,6 +2139,7 @@ catch (...)
 
 static void* hs_cast_39eebf2d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::ActorSpawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2037,6 +2155,7 @@ catch (...)
 
 static void* hs_cast_2fb9847b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorSpawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2052,6 +2171,7 @@ catch (...)
 
 static void* hs_cast_a23c41e9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ActorSpawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2067,6 +2187,7 @@ catch (...)
 
 static void* hs_create_bacc530a(void* actor) try
 {
+    clearLastError();
     return new endstone::ActorSpawnEvent(*static_cast<endstone::Actor*>(actor));
 }
 catch (std::exception const& hs_error)
@@ -2082,6 +2203,7 @@ catch (...)
 
 static void* hs_get_6f6cab33() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorSpawnEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -2097,6 +2219,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e43e08f7(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorSpawnEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -2114,6 +2237,7 @@ catch (...)
 
 static void hs_destroy_0b0dd816(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ActorTeleportEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -2129,6 +2253,7 @@ catch (...)
 
 static void* hs_cast_9cc0a583(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::ActorTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2144,6 +2269,7 @@ catch (...)
 
 static void* hs_cast_b38e484d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::ActorTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2159,6 +2285,7 @@ catch (...)
 
 static void* hs_cast_cd7ec810(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ActorTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2174,6 +2301,7 @@ catch (...)
 
 static void* hs_cast_3fec2724(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ActorTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2189,6 +2317,7 @@ catch (...)
 
 static void* hs_create_39faeb83(void* actor, void* from, void* to) try
 {
+    clearLastError();
     return new endstone::ActorTeleportEvent(*static_cast<endstone::Actor*>(actor), *static_cast<const endstone::Location*>(from), *static_cast<const endstone::Location*>(to));
 }
 catch (std::exception const& hs_error)
@@ -2204,6 +2333,7 @@ catch (...)
 
 static void* hs_get_a8b96773() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ActorTeleportEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -2219,6 +2349,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a55acdca(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -2236,6 +2367,7 @@ catch (...)
 
 static void* hs_method_eb5fe6a7(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
@@ -2251,6 +2383,7 @@ catch (...)
 
 static void* hs_method_bdc1a24d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ActorTeleportEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
@@ -2266,6 +2399,7 @@ catch (...)
 
 static void hs_method_19ffed09(void* hs_self, void* from) try
 {
+    clearLastError();
     static_cast<endstone::ActorTeleportEvent*>(hs_self)->setFrom(*static_cast<const endstone::Location*>(from));
 }
 catch (std::exception const& hs_error)
@@ -2281,6 +2415,7 @@ catch (...)
 
 static void hs_method_786b75ce(void* hs_self, void* to) try
 {
+    clearLastError();
     static_cast<endstone::ActorTeleportEvent*>(hs_self)->setTo(*static_cast<const endstone::Location*>(to));
 }
 catch (std::exception const& hs_error)
@@ -2296,6 +2431,7 @@ catch (...)
 
 static void hs_destroy_23714257(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Attribute*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -2311,6 +2447,7 @@ catch (...)
 
 static void* hs_get_4fab2d92() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::Absorption));
 }
 catch (std::exception const& hs_error)
@@ -2326,6 +2463,7 @@ catch (...)
 
 static void* hs_get_5927a00f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::AttackDamage));
 }
 catch (std::exception const& hs_error)
@@ -2341,6 +2479,7 @@ catch (...)
 
 static void* hs_get_ec511ed2() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::FollowRange));
 }
 catch (std::exception const& hs_error)
@@ -2356,6 +2495,7 @@ catch (...)
 
 static void* hs_get_12310918() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::Health));
 }
 catch (std::exception const& hs_error)
@@ -2371,6 +2511,7 @@ catch (...)
 
 static void* hs_get_dc5f4e60() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::JumpStrength));
 }
 catch (std::exception const& hs_error)
@@ -2386,6 +2527,7 @@ catch (...)
 
 static void* hs_get_d8f19f0e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::KnockbackResistance));
 }
 catch (std::exception const& hs_error)
@@ -2401,6 +2543,7 @@ catch (...)
 
 static void* hs_get_2ca6212f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::LavaMovementSpeed));
 }
 catch (std::exception const& hs_error)
@@ -2416,6 +2559,7 @@ catch (...)
 
 static void* hs_get_b34c877e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::Luck));
 }
 catch (std::exception const& hs_error)
@@ -2431,6 +2575,7 @@ catch (...)
 
 static void* hs_get_8223e6fc() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::MovementSpeed));
 }
 catch (std::exception const& hs_error)
@@ -2446,6 +2591,7 @@ catch (...)
 
 static void* hs_get_5833d34f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::PlayerExhaustion));
 }
 catch (std::exception const& hs_error)
@@ -2461,6 +2607,7 @@ catch (...)
 
 static void* hs_get_76aa44cd() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::PlayerExperience));
 }
 catch (std::exception const& hs_error)
@@ -2476,6 +2623,7 @@ catch (...)
 
 static void* hs_get_30029577() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::PlayerHunger));
 }
 catch (std::exception const& hs_error)
@@ -2491,6 +2639,7 @@ catch (...)
 
 static void* hs_get_55d7f312() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::PlayerLevel));
 }
 catch (std::exception const& hs_error)
@@ -2506,6 +2655,7 @@ catch (...)
 
 static void* hs_get_28d152da() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::PlayerSaturation));
 }
 catch (std::exception const& hs_error)
@@ -2521,6 +2671,7 @@ catch (...)
 
 static void* hs_get_96098024() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::UnderwaterMovementSpeed));
 }
 catch (std::exception const& hs_error)
@@ -2536,6 +2687,7 @@ catch (...)
 
 static void* hs_get_31db4d4e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Attribute::ZombieSpawnReinforcements));
 }
 catch (std::exception const& hs_error)
@@ -2551,6 +2703,7 @@ catch (...)
 
 static void hs_method_ddfdbac7(void* hs_self, void* modifier) try
 {
+    clearLastError();
     static_cast<endstone::AttributeInstance*>(hs_self)->addModifier(*static_cast<const endstone::AttributeModifier*>(modifier));
 }
 catch (std::exception const& hs_error)
@@ -2566,6 +2719,7 @@ catch (...)
 
 static float hs_method_cf3e205f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::AttributeInstance const*>(hs_self)->getBaseValue());
 }
 catch (std::exception const& hs_error)
@@ -2581,6 +2735,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_71e01c4c(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::AttributeInstance const*>(hs_self)->getModifiers();
     hs_arrayResult.clear();
@@ -2601,6 +2756,7 @@ catch (...)
 
 static void* hs_method_755320b4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::Attribute>(static_cast<endstone::AttributeInstance const*>(hs_self)->getType()));
 }
 catch (std::exception const& hs_error)
@@ -2616,6 +2772,7 @@ catch (...)
 
 static float hs_method_8f965183(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::AttributeInstance const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
@@ -2631,6 +2788,7 @@ catch (...)
 
 static void hs_method_249dba4a(void* hs_self, void* modifier) try
 {
+    clearLastError();
     static_cast<endstone::AttributeInstance*>(hs_self)->removeModifier(*static_cast<const endstone::AttributeModifier*>(modifier));
 }
 catch (std::exception const& hs_error)
@@ -2646,6 +2804,7 @@ catch (...)
 
 static void hs_method_b338dd40(void* hs_self, float value) try
 {
+    clearLastError();
     static_cast<endstone::AttributeInstance*>(hs_self)->setBaseValue(static_cast<float>(value));
 }
 catch (std::exception const& hs_error)
@@ -2661,6 +2820,7 @@ catch (...)
 
 static void hs_destroy_979fbed5(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::AttributeModifier*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -2676,6 +2836,7 @@ catch (...)
 
 static void* hs_create_b7e7bc45(const char* name_data, std::size_t name_size, void* uuid, float amount, std::int32_t operation) try
 {
+    clearLastError();
     return new endstone::AttributeModifier(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::UUID*>(uuid), static_cast<float>(amount), static_cast<endstone::AttributeModifier::Operation>(operation));
 }
 catch (std::exception const& hs_error)
@@ -2691,6 +2852,7 @@ catch (...)
 
 static void* hs_create_4baec705(const char* name_data, std::size_t name_size, float amount, std::int32_t operation) try
 {
+    clearLastError();
     return new endstone::AttributeModifier(std::basic_string<char>(name_data, name_size), static_cast<float>(amount), static_cast<endstone::AttributeModifier::Operation>(operation));
 }
 catch (std::exception const& hs_error)
@@ -2706,6 +2868,7 @@ catch (...)
 
 static float hs_method_7195aeb9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::AttributeModifier const*>(hs_self)->getAmount());
 }
 catch (std::exception const& hs_error)
@@ -2721,6 +2884,7 @@ catch (...)
 
 static HosihikariStringView hs_method_da791c2e(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::AttributeModifier const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -2738,6 +2902,7 @@ catch (...)
 
 static std::int32_t hs_method_7086e74a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::AttributeModifier const*>(hs_self)->getOperation());
 }
 catch (std::exception const& hs_error)
@@ -2753,6 +2918,7 @@ catch (...)
 
 static void* hs_method_8a078c40(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::UUID(static_cast<endstone::AttributeModifier const*>(hs_self)->getUniqueId()));
 }
 catch (std::exception const& hs_error)
@@ -2768,6 +2934,7 @@ catch (...)
 
 static void hs_destroy_758b8053(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BanEntry*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -2783,6 +2950,7 @@ catch (...)
 
 static HosihikariStringView hs_get_25022bea() try
 {
+    clearLastError();
     auto const& value = endstone::BanEntry::DateFormat;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -2799,6 +2967,7 @@ catch (...)
 
 static std::int64_t hs_method_ca474207(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((static_cast<endstone::BanEntry const*>(hs_self)->getCreated()).time_since_epoch()).count());
 }
 catch (std::exception const& hs_error)
@@ -2814,6 +2983,7 @@ catch (...)
 
 static std::int64_t hs_method_9931b4a6(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BanEntry const*>(hs_self)->getExpiration();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((*result).time_since_epoch()).count()) : std::int64_t{0};
@@ -2833,6 +3003,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c99f83bc(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BanEntry const*>(hs_self)->getReason();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -2850,6 +3021,7 @@ catch (...)
 
 static HosihikariStringView hs_method_10758bad(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BanEntry const*>(hs_self)->getSource();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -2867,6 +3039,7 @@ catch (...)
 
 static void hs_method_8bd4367b(void* hs_self, std::int64_t created) try
 {
+    clearLastError();
     static_cast<endstone::BanEntry*>(hs_self)->setCreated(std::chrono::system_clock::time_point(std::chrono::milliseconds(created)));
 }
 catch (std::exception const& hs_error)
@@ -2882,6 +3055,7 @@ catch (...)
 
 static void hs_method_5570ad52(void* hs_self, std::int64_t expiration, bool expiration_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::BanEntry*>(hs_self)->setExpiration((expiration_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expiration))} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -2897,6 +3071,7 @@ catch (...)
 
 static void hs_method_f4930bd7(void* hs_self, const char* reason_data, std::size_t reason_size) try
 {
+    clearLastError();
     static_cast<endstone::BanEntry*>(hs_self)->setReason(std::basic_string<char>(reason_data, reason_size));
 }
 catch (std::exception const& hs_error)
@@ -2912,6 +3087,7 @@ catch (...)
 
 static void hs_method_7f7278fb(void* hs_self, const char* source_data, std::size_t source_size) try
 {
+    clearLastError();
     static_cast<endstone::BanEntry*>(hs_self)->setSource(std::basic_string<char>(source_data, source_size));
 }
 catch (std::exception const& hs_error)
@@ -2927,6 +3103,7 @@ catch (...)
 
 static void* hs_cast_427d9b49(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::IpBanList*>(static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -2942,6 +3119,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_95d473c7(void* hs_self, const char* target_data, std::size_t target_size, const char* reason_data, std::size_t reason_size, std::int64_t duration, const char* source_data, std::size_t source_size, bool reason_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->addBan(std::basic_string<char>(target_data, target_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), std::chrono::duration<std::int64_t>(duration), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -2957,6 +3135,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_ac608f70(void* hs_self, const char* target_data, std::size_t target_size, const char* reason_data, std::size_t reason_size, std::int64_t expires, const char* source_data, std::size_t source_size, bool reason_hasValue, bool expires_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->addBan(std::basic_string<char>(target_data, target_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), (expires_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expires))} : std::nullopt), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -2972,6 +3151,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_9c067d7e(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
 }
 catch (std::exception const& hs_error)
@@ -2987,6 +3167,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_744f42c5(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
     auto result = static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
@@ -3007,6 +3188,7 @@ catch (...)
 
 static bool hs_method_2b4b4759(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BanList<endstone::IpBanEntry> const*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
 }
 catch (std::exception const& hs_error)
@@ -3022,6 +3204,7 @@ catch (...)
 
 static void hs_method_34e4c2c5(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     static_cast<endstone::BanList<endstone::IpBanEntry>*>(hs_self)->removeBan(std::basic_string<char>(target_data, target_size));
 }
 catch (std::exception const& hs_error)
@@ -3037,6 +3220,7 @@ catch (...)
 
 static void* hs_cast_77d60797(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBanList*>(static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3052,6 +3236,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_a1c47b93(void* hs_self, const char* target_data, std::size_t target_size, const char* reason_data, std::size_t reason_size, std::int64_t duration, const char* source_data, std::size_t source_size, bool reason_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->addBan(std::basic_string<char>(target_data, target_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), std::chrono::duration<std::int64_t>(duration), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -3067,6 +3252,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_9f5304ff(void* hs_self, const char* target_data, std::size_t target_size, const char* reason_data, std::size_t reason_size, std::int64_t expires, const char* source_data, std::size_t source_size, bool reason_hasValue, bool expires_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->addBan(std::basic_string<char>(target_data, target_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), (expires_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expires))} : std::nullopt), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -3082,6 +3268,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_b75217ef(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->getBanEntry(std::basic_string<char>(target_data, target_size))).get());
 }
 catch (std::exception const& hs_error)
@@ -3097,6 +3284,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_9156ed58(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
     auto result = static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
@@ -3117,6 +3305,7 @@ catch (...)
 
 static bool hs_method_5b738ea9(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BanList<endstone::PlayerBanEntry> const*>(hs_self)->isBanned(std::basic_string<char>(target_data, target_size)));
 }
 catch (std::exception const& hs_error)
@@ -3132,6 +3321,7 @@ catch (...)
 
 static void hs_method_5fae1a65(void* hs_self, const char* target_data, std::size_t target_size) try
 {
+    clearLastError();
     static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(hs_self)->removeBan(std::basic_string<char>(target_data, target_size));
 }
 catch (std::exception const& hs_error)
@@ -3147,6 +3337,7 @@ catch (...)
 
 static void hs_destroy_de7b6464(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Block*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -3162,6 +3353,7 @@ catch (...)
 
 static void* hs_method_809bcc46(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block const*>(hs_self)->captureState();
     return static_cast<void*>(hs_result.release());
 }
@@ -3178,6 +3370,7 @@ catch (...)
 
 static void* hs_method_e21e21fc(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block const*>(hs_self)->clone();
     return static_cast<void*>(hs_result.release());
 }
@@ -3194,6 +3387,7 @@ catch (...)
 
 static void* hs_method_3b999d50(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block const*>(hs_self)->getData();
     return static_cast<void*>(hs_result.release());
 }
@@ -3210,6 +3404,7 @@ catch (...)
 
 static void* hs_method_89761637(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Block const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -3225,6 +3420,7 @@ catch (...)
 
 static void* hs_method_4dca9f70(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Block const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
@@ -3240,6 +3436,7 @@ catch (...)
 
 static void* hs_method_405ccddb(void* hs_self, std::int32_t face) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block*>(hs_self)->getRelative(static_cast<endstone::BlockFace>(face));
     return static_cast<void*>(hs_result.release());
 }
@@ -3256,6 +3453,7 @@ catch (...)
 
 static void* hs_method_6cfbd383(void* hs_self, std::int32_t face, std::int32_t distance) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block*>(hs_self)->getRelative(static_cast<endstone::BlockFace>(face), static_cast<int>(distance));
     return static_cast<void*>(hs_result.release());
 }
@@ -3272,6 +3470,7 @@ catch (...)
 
 static void* hs_method_3b3cac5f(void* hs_self, std::int32_t offset_x, std::int32_t offset_y, std::int32_t offset_z) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Block*>(hs_self)->getRelative(static_cast<int>(offset_x), static_cast<int>(offset_y), static_cast<int>(offset_z));
     return static_cast<void*>(hs_result.release());
 }
@@ -3288,6 +3487,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d894e3eb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Block const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -3305,6 +3505,7 @@ catch (...)
 
 static std::int32_t hs_method_cbcdda48(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -3320,6 +3521,7 @@ catch (...)
 
 static std::int32_t hs_method_f89dfd25(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
@@ -3335,6 +3537,7 @@ catch (...)
 
 static std::int32_t hs_method_c5bb5933(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Block const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
@@ -3350,6 +3553,7 @@ catch (...)
 
 static void hs_method_00ec06f2(void* hs_self, void* data) try
 {
+    clearLastError();
     static_cast<endstone::Block*>(hs_self)->setData(*static_cast<const endstone::BlockData*>(data));
 }
 catch (std::exception const& hs_error)
@@ -3365,6 +3569,7 @@ catch (...)
 
 static void hs_method_52c4b083(void* hs_self, void* data, bool apply_physics) try
 {
+    clearLastError();
     static_cast<endstone::Block*>(hs_self)->setData(*static_cast<const endstone::BlockData*>(data), static_cast<bool>(apply_physics));
 }
 catch (std::exception const& hs_error)
@@ -3380,6 +3585,7 @@ catch (...)
 
 static void hs_method_2379ca17(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     static_cast<endstone::Block*>(hs_self)->setType(std::basic_string<char>(type_data, type_size));
 }
 catch (std::exception const& hs_error)
@@ -3395,6 +3601,7 @@ catch (...)
 
 static void hs_method_bd1506a8(void* hs_self, const char* type_data, std::size_t type_size, bool apply_physics) try
 {
+    clearLastError();
     static_cast<endstone::Block*>(hs_self)->setType(std::basic_string<char>(type_data, type_size), static_cast<bool>(apply_physics));
 }
 catch (std::exception const& hs_error)
@@ -3410,6 +3617,7 @@ catch (...)
 
 static void hs_destroy_e2789edf(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockBreakEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -3425,6 +3633,7 @@ catch (...)
 
 static void* hs_cast_5f8b1126(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockBreakEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3440,6 +3649,7 @@ catch (...)
 
 static void* hs_cast_01a7cd79(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockBreakEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3455,6 +3665,7 @@ catch (...)
 
 static void* hs_cast_c9e9015f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockBreakEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3470,6 +3681,7 @@ catch (...)
 
 static void* hs_cast_54dcdb14(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockBreakEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3485,6 +3697,7 @@ catch (...)
 
 static void* hs_create_f530a80b(void* block, void* player) try
 {
+    clearLastError();
     return new endstone::BlockBreakEvent(std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(block)), *static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -3500,6 +3713,7 @@ catch (...)
 
 static void* hs_get_9b024e34() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockBreakEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -3515,6 +3729,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f99f9261(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockBreakEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -3532,6 +3747,7 @@ catch (...)
 
 static void* hs_method_24767f40(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockBreakEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -3547,6 +3763,7 @@ catch (...)
 
 static void* hs_cast_3875f743(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::BlockCommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3562,6 +3779,7 @@ catch (...)
 
 static void* hs_cast_ef5a0ff9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::BlockCommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3577,6 +3795,7 @@ catch (...)
 
 static void* hs_method_b1c439de(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::BlockCommandSender const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
@@ -3593,6 +3812,7 @@ catch (...)
 
 static void hs_destroy_2c72a471(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockCookEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -3608,6 +3828,7 @@ catch (...)
 
 static void* hs_cast_94188a33(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockCookEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3623,6 +3844,7 @@ catch (...)
 
 static void* hs_cast_d43c6393(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockCookEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3638,6 +3860,7 @@ catch (...)
 
 static void* hs_cast_8ed14889(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockCookEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3653,6 +3876,7 @@ catch (...)
 
 static void* hs_cast_0c0e3d90(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockCookEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3668,6 +3892,7 @@ catch (...)
 
 static void* hs_create_9a05ed4b(void* block, void* source, void* result) try
 {
+    clearLastError();
     return new endstone::BlockCookEvent(std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(block)), *static_cast<const endstone::ItemStack*>(source), *static_cast<const endstone::ItemStack*>(result));
 }
 catch (std::exception const& hs_error)
@@ -3683,6 +3908,7 @@ catch (...)
 
 static void* hs_get_b09a94a0() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockCookEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -3698,6 +3924,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5825985b(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockCookEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -3715,6 +3942,7 @@ catch (...)
 
 static void* hs_method_0689da9d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent const*>(hs_self)->getResult()));
 }
 catch (std::exception const& hs_error)
@@ -3730,6 +3958,7 @@ catch (...)
 
 static void* hs_method_6cf59d58(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockCookEvent const*>(hs_self)->getSource()));
 }
 catch (std::exception const& hs_error)
@@ -3745,6 +3974,7 @@ catch (...)
 
 static void hs_method_f91e83e3(void* hs_self, void* result) try
 {
+    clearLastError();
     static_cast<endstone::BlockCookEvent*>(hs_self)->setResult(*static_cast<const endstone::ItemStack*>(result));
 }
 catch (std::exception const& hs_error)
@@ -3760,6 +3990,7 @@ catch (...)
 
 static void hs_destroy_a8d238b3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockData*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -3775,6 +4006,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_96f1d991(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::BlockData const*>(hs_self)->getBlockStates();
@@ -3807,6 +4039,7 @@ catch (...)
 
 static std::uint32_t hs_method_e9f183e7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint32_t>(static_cast<endstone::BlockData const*>(hs_self)->getRuntimeId());
 }
 catch (std::exception const& hs_error)
@@ -3822,6 +4055,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e9b5ba69(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockData const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -3839,6 +4073,7 @@ catch (...)
 
 static void* hs_cast_edf7d242(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3854,6 +4089,7 @@ catch (...)
 
 static void* hs_method_bfa4698d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockEvent const*>(hs_self)->getBlock()));
 }
 catch (std::exception const& hs_error)
@@ -3869,6 +4105,7 @@ catch (...)
 
 static void hs_destroy_fbdd313f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockExplodeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -3884,6 +4121,7 @@ catch (...)
 
 static void* hs_cast_17e57688(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3899,6 +4137,7 @@ catch (...)
 
 static void* hs_cast_b92cef72(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3914,6 +4153,7 @@ catch (...)
 
 static void* hs_cast_ab59dcb8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3929,6 +4169,7 @@ catch (...)
 
 static void* hs_cast_ce78ec20(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockExplodeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -3944,6 +4185,7 @@ catch (...)
 
 static void* hs_get_d0bf76b1() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockExplodeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -3959,6 +4201,7 @@ catch (...)
 
 static void* hs_method_0b36dd73(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockExplodeEvent const*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
@@ -3974,6 +4217,7 @@ catch (...)
 
 static void* hs_method_c66ca50a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockExplodeEvent*>(hs_self)->getBlockList()));
 }
 catch (std::exception const& hs_error)
@@ -3989,6 +4233,7 @@ catch (...)
 
 static HosihikariStringView hs_method_311d3f55(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockExplodeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4006,6 +4251,7 @@ catch (...)
 
 static void hs_destroy_928de0e6(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockFormEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4021,6 +4267,7 @@ catch (...)
 
 static void* hs_cast_352b8e8e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockFormEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4036,6 +4283,7 @@ catch (...)
 
 static void* hs_cast_3682cc7e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockGrowEvent*>(static_cast<endstone::BlockFormEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4051,6 +4299,7 @@ catch (...)
 
 static void* hs_cast_485109f8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockFormEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4066,6 +4315,7 @@ catch (...)
 
 static void* hs_cast_c6b18ff6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockFormEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4081,6 +4331,7 @@ catch (...)
 
 static void* hs_cast_6d13003f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockFormEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4096,6 +4347,7 @@ catch (...)
 
 static void* hs_get_7048e210() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockFormEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4111,6 +4363,7 @@ catch (...)
 
 static HosihikariStringView hs_method_fb399834(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockFormEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4128,6 +4381,7 @@ catch (...)
 
 static void hs_destroy_5eebd8b9(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockFromToEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4143,6 +4397,7 @@ catch (...)
 
 static void* hs_cast_15453d71(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockFromToEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4158,6 +4413,7 @@ catch (...)
 
 static void* hs_cast_9e380ca5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockFromToEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4173,6 +4429,7 @@ catch (...)
 
 static void* hs_cast_6a1a7154(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockFromToEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4188,6 +4445,7 @@ catch (...)
 
 static void* hs_cast_f9432937(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockFromToEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4203,6 +4461,7 @@ catch (...)
 
 static void* hs_create_075bf555(void* block, void* to_block) try
 {
+    clearLastError();
     return new endstone::BlockFromToEvent(std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(block)), std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(to_block)));
 }
 catch (std::exception const& hs_error)
@@ -4218,6 +4477,7 @@ catch (...)
 
 static void* hs_get_a76524aa() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockFromToEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4233,6 +4493,7 @@ catch (...)
 
 static HosihikariStringView hs_method_54b34f20(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockFromToEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4250,6 +4511,7 @@ catch (...)
 
 static void* hs_method_2b60a963(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockFromToEvent const*>(hs_self)->getToBlock()));
 }
 catch (std::exception const& hs_error)
@@ -4265,6 +4527,7 @@ catch (...)
 
 static void hs_destroy_d6012dec(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockGrowEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4280,6 +4543,7 @@ catch (...)
 
 static void* hs_cast_7e09b966(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFormEvent*>(static_cast<endstone::BlockGrowEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4295,6 +4559,7 @@ catch (...)
 
 static void* hs_cast_927af55d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockGrowEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4310,6 +4575,7 @@ catch (...)
 
 static void* hs_cast_ac6c6676(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockGrowEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4325,6 +4591,7 @@ catch (...)
 
 static void* hs_cast_9ba96497(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockGrowEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4340,6 +4607,7 @@ catch (...)
 
 static void* hs_cast_44957f33(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockGrowEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4355,6 +4623,7 @@ catch (...)
 
 static void* hs_create_c754c95a(void* block, void* new_state) try
 {
+    clearLastError();
     return new endstone::BlockGrowEvent(std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(block)), std::unique_ptr<endstone::BlockState>(static_cast<endstone::BlockState*>(new_state)));
 }
 catch (std::exception const& hs_error)
@@ -4370,6 +4639,7 @@ catch (...)
 
 static void* hs_get_966cb35c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockGrowEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4385,6 +4655,7 @@ catch (...)
 
 static HosihikariStringView hs_method_fab7e267(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockGrowEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4402,6 +4673,7 @@ catch (...)
 
 static void* hs_method_5f72ffd4(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockGrowEvent const*>(hs_self)->getNewState()));
 }
 catch (std::exception const& hs_error)
@@ -4417,6 +4689,7 @@ catch (...)
 
 static void* hs_cast_f1d84a91(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockPistonEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4432,6 +4705,7 @@ catch (...)
 
 static void* hs_cast_659d56ba(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockPistonEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4447,6 +4721,7 @@ catch (...)
 
 static void* hs_cast_87f0e28e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockPistonEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4462,6 +4737,7 @@ catch (...)
 
 static void* hs_cast_7a4d07af(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockPistonEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4477,6 +4753,7 @@ catch (...)
 
 static std::int32_t hs_method_6b2d2c9f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BlockPistonEvent const*>(hs_self)->getDirection());
 }
 catch (std::exception const& hs_error)
@@ -4492,6 +4769,7 @@ catch (...)
 
 static void hs_destroy_c607de84(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockPistonExtendEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4507,6 +4785,7 @@ catch (...)
 
 static void* hs_cast_57921719(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockPistonExtendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4522,6 +4801,7 @@ catch (...)
 
 static void* hs_cast_f04bfb5f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockPistonEvent*>(static_cast<endstone::BlockPistonExtendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4537,6 +4817,7 @@ catch (...)
 
 static void* hs_cast_3bf3c032(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockPistonExtendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4552,6 +4833,7 @@ catch (...)
 
 static void* hs_cast_10ed5078(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockPistonExtendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4567,6 +4849,7 @@ catch (...)
 
 static void* hs_cast_4f0173e8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockPistonExtendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4582,6 +4865,7 @@ catch (...)
 
 static void* hs_get_4a327ab8() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockPistonExtendEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4597,6 +4881,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e6a080b1(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockPistonExtendEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4614,6 +4899,7 @@ catch (...)
 
 static void hs_destroy_90edad1f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockPistonRetractEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4629,6 +4915,7 @@ catch (...)
 
 static void* hs_cast_63b9be17(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockPistonRetractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4644,6 +4931,7 @@ catch (...)
 
 static void* hs_cast_7a72a57b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockPistonEvent*>(static_cast<endstone::BlockPistonRetractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4659,6 +4947,7 @@ catch (...)
 
 static void* hs_cast_eba5e871(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockPistonRetractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4674,6 +4963,7 @@ catch (...)
 
 static void* hs_cast_d729ab40(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockPistonRetractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4689,6 +4979,7 @@ catch (...)
 
 static void* hs_cast_c4d1d599(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockPistonRetractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4704,6 +4995,7 @@ catch (...)
 
 static void* hs_get_1040cf70() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockPistonRetractEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4719,6 +5011,7 @@ catch (...)
 
 static HosihikariStringView hs_method_110c8164(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockPistonRetractEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4736,6 +5029,7 @@ catch (...)
 
 static void hs_destroy_054173aa(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockPlaceEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4751,6 +5045,7 @@ catch (...)
 
 static void* hs_cast_f6118ba1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::BlockPlaceEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4766,6 +5061,7 @@ catch (...)
 
 static void* hs_cast_55f5cc29(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::BlockPlaceEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4781,6 +5077,7 @@ catch (...)
 
 static void* hs_cast_7e6eeaff(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BlockPlaceEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4796,6 +5093,7 @@ catch (...)
 
 static void* hs_cast_7bba0229(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BlockPlaceEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -4811,6 +5109,7 @@ catch (...)
 
 static void* hs_create_0783046a(void* placed_block, void* replaced_block, void* placed_against, void* player) try
 {
+    clearLastError();
     return new endstone::BlockPlaceEvent(std::unique_ptr<endstone::BlockState>(static_cast<endstone::BlockState*>(placed_block)), std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(replaced_block)), std::unique_ptr<endstone::Block>(static_cast<endstone::Block*>(placed_against)), *static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -4826,6 +5125,7 @@ catch (...)
 
 static void* hs_get_c6e39b87() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockPlaceEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -4841,6 +5141,7 @@ catch (...)
 
 static void* hs_method_64f7e745(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockAgainst()));
 }
 catch (std::exception const& hs_error)
@@ -4856,6 +5157,7 @@ catch (...)
 
 static void* hs_method_5683151f(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockPlacedState()));
 }
 catch (std::exception const& hs_error)
@@ -4871,6 +5173,7 @@ catch (...)
 
 static void* hs_method_98b47dc7(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getBlockReplaced()));
 }
 catch (std::exception const& hs_error)
@@ -4886,6 +5189,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a8c10a60(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -4903,6 +5207,7 @@ catch (...)
 
 static void* hs_method_2c710588(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockPlaceEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -4918,6 +5223,7 @@ catch (...)
 
 static void hs_destroy_0368a1d0(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BlockState*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -4933,6 +5239,7 @@ catch (...)
 
 static void* hs_method_7aec47b6(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::BlockState const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
@@ -4949,6 +5256,7 @@ catch (...)
 
 static void* hs_method_ea3eebb2(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::BlockState const*>(hs_self)->getData();
     return static_cast<void*>(hs_result.release());
 }
@@ -4965,6 +5273,7 @@ catch (...)
 
 static void* hs_method_364f3508(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BlockState const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -4980,6 +5289,7 @@ catch (...)
 
 static void* hs_method_d65dc0f8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::BlockState const*>(hs_self)->getLocation()));
 }
 catch (std::exception const& hs_error)
@@ -4995,6 +5305,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8783cb22(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BlockState const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5012,6 +5323,7 @@ catch (...)
 
 static std::int32_t hs_method_b7396a05(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -5027,6 +5339,7 @@ catch (...)
 
 static std::int32_t hs_method_f6c69285(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
@@ -5042,6 +5355,7 @@ catch (...)
 
 static std::int32_t hs_method_23140121(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BlockState const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
@@ -5057,6 +5371,7 @@ catch (...)
 
 static void hs_method_682f91d2(void* hs_self, void* data) try
 {
+    clearLastError();
     static_cast<endstone::BlockState*>(hs_self)->setData(*static_cast<const endstone::BlockData*>(data));
 }
 catch (std::exception const& hs_error)
@@ -5072,6 +5387,7 @@ catch (...)
 
 static void hs_method_ecf5d7f7(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     static_cast<endstone::BlockState*>(hs_self)->setType(std::basic_string<char>(type_data, type_size));
 }
 catch (std::exception const& hs_error)
@@ -5087,6 +5403,7 @@ catch (...)
 
 static bool hs_method_86db12dc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BlockState*>(hs_self)->update());
 }
 catch (std::exception const& hs_error)
@@ -5102,6 +5419,7 @@ catch (...)
 
 static bool hs_method_aa94c59a(void* hs_self, bool force) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BlockState*>(hs_self)->update(static_cast<bool>(force)));
 }
 catch (std::exception const& hs_error)
@@ -5117,6 +5435,7 @@ catch (...)
 
 static bool hs_method_d784c8e6(void* hs_self, bool force, bool apply_physics) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BlockState*>(hs_self)->update(static_cast<bool>(force), static_cast<bool>(apply_physics)));
 }
 catch (std::exception const& hs_error)
@@ -5132,6 +5451,7 @@ catch (...)
 
 static void* hs_cast_2c3b91a5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Registry<endstone::BlockType>::Type*>(static_cast<endstone::BlockType*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5147,6 +5467,7 @@ catch (...)
 
 static void* hs_get_b10234d0() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::BlockType::Air));
 }
 catch (std::exception const& hs_error)
@@ -5162,6 +5483,7 @@ catch (...)
 
 static void* hs_get_2ff5bc98() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BlockType::RegistryType));
 }
 catch (std::exception const& hs_error)
@@ -5177,6 +5499,7 @@ catch (...)
 
 static void* hs_method_37b94a7d(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::BlockType const*>(hs_self)->createBlockData();
     return static_cast<void*>(hs_result.release());
 }
@@ -5193,6 +5516,7 @@ catch (...)
 
 static bool hs_method_9375ea5f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BlockType const*>(hs_self)->hasItemType());
 }
 catch (std::exception const& hs_error)
@@ -5208,6 +5532,7 @@ catch (...)
 
 static void* hs_cast_598461ef(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ItemMeta*>(static_cast<endstone::BookMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5223,6 +5548,7 @@ catch (...)
 
 static void* hs_cast_bc4d3831(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::WritableBookMeta*>(static_cast<endstone::BookMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5238,6 +5564,7 @@ catch (...)
 
 static std::int32_t hs_get_3dbd03f0() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::BookMeta::MetaType);
 }
 catch (std::exception const& hs_error)
@@ -5253,6 +5580,7 @@ catch (...)
 
 static HosihikariStringView hs_method_bc9be099(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BookMeta const*>(hs_self)->getAuthor();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5270,6 +5598,7 @@ catch (...)
 
 static std::int32_t hs_method_ed1b4877(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BookMeta const*>(hs_self)->getGeneration();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
@@ -5289,6 +5618,7 @@ catch (...)
 
 static HosihikariStringView hs_method_414649b7(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BookMeta const*>(hs_self)->getTitle();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5306,6 +5636,7 @@ catch (...)
 
 static bool hs_method_a6474ca8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasAuthor());
 }
 catch (std::exception const& hs_error)
@@ -5321,6 +5652,7 @@ catch (...)
 
 static bool hs_method_9b523c2c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasGeneration());
 }
 catch (std::exception const& hs_error)
@@ -5336,6 +5668,7 @@ catch (...)
 
 static bool hs_method_8a9362cc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BookMeta const*>(hs_self)->hasTitle());
 }
 catch (std::exception const& hs_error)
@@ -5351,6 +5684,7 @@ catch (...)
 
 static void hs_method_39e461d1(void* hs_self, const char* author_data, std::size_t author_size, bool author_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::BookMeta*>(hs_self)->setAuthor((author_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(author_data, author_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -5366,6 +5700,7 @@ catch (...)
 
 static void hs_method_70cefe27(void* hs_self, std::int32_t generation, bool generation_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::BookMeta*>(hs_self)->setGeneration((generation_hasValue ? std::optional<endstone::BookMeta::Generation>{static_cast<endstone::BookMeta::Generation>(generation)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -5381,6 +5716,7 @@ catch (...)
 
 static void hs_method_8567bdf4(void* hs_self, const char* title_data, std::size_t title_size, bool title_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::BookMeta*>(hs_self)->setTitle((title_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(title_data, title_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -5396,6 +5732,7 @@ catch (...)
 
 static void hs_destroy_35233daf(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BossBar*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -5411,6 +5748,7 @@ catch (...)
 
 static void hs_method_37934231(void* hs_self, std::int32_t flag) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->addFlag(static_cast<endstone::BarFlag>(flag));
 }
 catch (std::exception const& hs_error)
@@ -5426,6 +5764,7 @@ catch (...)
 
 static void hs_method_283daeb4(void* hs_self, void* player) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->addPlayer(*static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -5441,6 +5780,7 @@ catch (...)
 
 static std::int32_t hs_method_88d1b0e9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BossBar const*>(hs_self)->getColor());
 }
 catch (std::exception const& hs_error)
@@ -5456,6 +5796,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_5d17cef2(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::BossBar const*>(hs_self)->getPlayers();
     hs_arrayResult.clear();
@@ -5476,6 +5817,7 @@ catch (...)
 
 static float hs_method_dfb0f633(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::BossBar const*>(hs_self)->getProgress());
 }
 catch (std::exception const& hs_error)
@@ -5491,6 +5833,7 @@ catch (...)
 
 static std::int32_t hs_method_269db81f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::BossBar const*>(hs_self)->getStyle());
 }
 catch (std::exception const& hs_error)
@@ -5506,6 +5849,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3df48de6(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BossBar const*>(hs_self)->getTitle();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5523,6 +5867,7 @@ catch (...)
 
 static bool hs_method_67f21c42(void* hs_self, std::int32_t flag) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BossBar const*>(hs_self)->hasFlag(static_cast<endstone::BarFlag>(flag)));
 }
 catch (std::exception const& hs_error)
@@ -5538,6 +5883,7 @@ catch (...)
 
 static bool hs_method_a7098d5e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::BossBar const*>(hs_self)->isVisible());
 }
 catch (std::exception const& hs_error)
@@ -5553,6 +5899,7 @@ catch (...)
 
 static void hs_method_41e458a3(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->removeAll();
 }
 catch (std::exception const& hs_error)
@@ -5568,6 +5915,7 @@ catch (...)
 
 static void hs_method_d118e660(void* hs_self, std::int32_t flag) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->removeFlag(static_cast<endstone::BarFlag>(flag));
 }
 catch (std::exception const& hs_error)
@@ -5583,6 +5931,7 @@ catch (...)
 
 static void hs_method_a10e8be4(void* hs_self, void* player) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->removePlayer(*static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -5598,6 +5947,7 @@ catch (...)
 
 static void hs_method_f711f852(void* hs_self, std::int32_t color) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->setColor(static_cast<endstone::BarColor>(color));
 }
 catch (std::exception const& hs_error)
@@ -5613,6 +5963,7 @@ catch (...)
 
 static void hs_method_239be3df(void* hs_self, float progress) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->setProgress(static_cast<float>(progress));
 }
 catch (std::exception const& hs_error)
@@ -5628,6 +5979,7 @@ catch (...)
 
 static void hs_method_2189315f(void* hs_self, std::int32_t style) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->setStyle(static_cast<endstone::BarStyle>(style));
 }
 catch (std::exception const& hs_error)
@@ -5643,6 +5995,7 @@ catch (...)
 
 static void hs_method_015eb989(void* hs_self, const char* title_data, std::size_t title_size) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->setTitle(std::basic_string<char>(title_data, title_size));
 }
 catch (std::exception const& hs_error)
@@ -5658,6 +6011,7 @@ catch (...)
 
 static void hs_method_6beccfdf(void* hs_self, bool visible) try
 {
+    clearLastError();
     static_cast<endstone::BossBar*>(hs_self)->setVisible(static_cast<bool>(visible));
 }
 catch (std::exception const& hs_error)
@@ -5673,6 +6027,7 @@ catch (...)
 
 static void hs_destroy_d95949c3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::BroadcastMessageEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -5688,6 +6043,7 @@ catch (...)
 
 static void* hs_cast_bdf67fae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::BroadcastMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5703,6 +6059,7 @@ catch (...)
 
 static void* hs_cast_8921184a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::BroadcastMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5718,6 +6075,7 @@ catch (...)
 
 static void* hs_cast_4dc3995e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::BroadcastMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5733,6 +6091,7 @@ catch (...)
 
 static void* hs_cast_075af85e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::BroadcastMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -5748,6 +6107,7 @@ catch (...)
 
 static void* hs_get_f24197ce() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::BroadcastMessageEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -5763,6 +6123,7 @@ catch (...)
 
 static HosihikariStringView hs_method_403b3efd(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -5780,6 +6141,7 @@ catch (...)
 
 static void* hs_method_e5bc84d3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getMessage()));
 }
 catch (std::exception const& hs_error)
@@ -5795,6 +6157,7 @@ catch (...)
 
 static void* hs_method_ed51ea87(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::BroadcastMessageEvent const*>(hs_self)->getRecipients()));
 }
 catch (std::exception const& hs_error)
@@ -5810,6 +6173,7 @@ catch (...)
 
 static void hs_method_4c0b7fcf(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::BroadcastMessageEvent*>(hs_self)->setMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -5825,6 +6189,7 @@ catch (...)
 
 static void hs_destroy_a6b80c78(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Button*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -5840,6 +6205,7 @@ catch (...)
 
 static void* hs_create_a4f12f29() try
 {
+    clearLastError();
     return new endstone::Button();
 }
 catch (std::exception const& hs_error)
@@ -5875,6 +6241,7 @@ struct hs_cb_closure_hs_create_ed5746f6_cb2
 
 static void* hs_create_ed5746f6(void* text, const char* icon_data, std::size_t icon_size, void* on_click_invoke, void* on_click_userData, void* on_click_release, bool icon_hasValue) try
 {
+    clearLastError();
     return new endstone::Button(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text), (icon_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(icon_data, icon_size)} : std::nullopt), std::function<void (endstone::Player *)>(hs_cb_closure_hs_create_ed5746f6_cb2{std::make_shared<hs_cb_state_hs_create_ed5746f6_cb2>(reinterpret_cast<hs_cb_invoke_hs_create_ed5746f6_cb2>(on_click_invoke), on_click_userData, reinterpret_cast<hs_cb_release_hs_create_ed5746f6_cb2>(on_click_release))}));
 }
 catch (std::exception const& hs_error)
@@ -5890,6 +6257,7 @@ catch (...)
 
 static HosihikariStringView hs_method_694a6369(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Button const*>(hs_self)->getIcon();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
@@ -5910,6 +6278,7 @@ catch (...)
 
 static void* hs_method_b6343190(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Button const*>(hs_self)->getOnClick()));
 }
 catch (std::exception const& hs_error)
@@ -5925,6 +6294,7 @@ catch (...)
 
 static void* hs_method_b2627229(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Button const*>(hs_self)->getText()));
 }
 catch (std::exception const& hs_error)
@@ -5940,6 +6310,7 @@ catch (...)
 
 static void* hs_method_ebda1615(void* hs_self, const char* icon_data, std::size_t icon_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Button*>(hs_self)->setIcon(std::basic_string<char>(icon_data, icon_size))));
 }
 catch (std::exception const& hs_error)
@@ -5975,6 +6346,7 @@ struct hs_cb_closure_hs_method_7466e41b_cb0
 
 static void* hs_method_7466e41b(void* hs_self, void* on_click_invoke, void* on_click_userData, void* on_click_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Button*>(hs_self)->setOnClick(std::function<void (endstone::Player *)>(hs_cb_closure_hs_method_7466e41b_cb0{std::make_shared<hs_cb_state_hs_method_7466e41b_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_7466e41b_cb0>(on_click_invoke), on_click_userData, reinterpret_cast<hs_cb_release_hs_method_7466e41b_cb0>(on_click_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -5990,6 +6362,7 @@ catch (...)
 
 static void* hs_method_0ae373e7(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Button*>(hs_self)->setText(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -6005,6 +6378,7 @@ catch (...)
 
 static void* hs_cast_7b0767b6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorExplodeEvent*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6020,6 +6394,7 @@ catch (...)
 
 static void* hs_cast_c52e9aff(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorSpawnEvent*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6035,6 +6410,7 @@ catch (...)
 
 static void* hs_cast_9415d32c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorTeleportEvent*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6050,6 +6426,7 @@ catch (...)
 
 static void* hs_cast_fdfabd47(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6065,6 +6442,7 @@ catch (...)
 
 static void* hs_cast_a1721c64(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6080,6 +6458,7 @@ catch (...)
 
 static void* hs_cast_6b3b5090(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6095,6 +6474,7 @@ catch (...)
 
 static void hs_method_23889360(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -6110,6 +6490,7 @@ catch (...)
 
 static bool hs_method_625b3e48(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -6125,6 +6506,7 @@ catch (...)
 
 static void hs_method_75a0221d(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -6140,6 +6522,7 @@ catch (...)
 
 static void* hs_cast_632c82b1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDamageEvent*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6155,6 +6538,7 @@ catch (...)
 
 static void* hs_cast_d74d6624(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorKnockbackEvent*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6170,6 +6554,7 @@ catch (...)
 
 static void* hs_cast_8ddea310(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6185,6 +6570,7 @@ catch (...)
 
 static void* hs_cast_e147c157(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6200,6 +6586,7 @@ catch (...)
 
 static void* hs_cast_9f4a6f9d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6215,6 +6602,7 @@ catch (...)
 
 static void hs_method_8cf7a99a(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -6230,6 +6618,7 @@ catch (...)
 
 static bool hs_method_3708f584(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -6245,6 +6634,7 @@ catch (...)
 
 static void hs_method_f19ed5fb(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -6260,6 +6650,7 @@ catch (...)
 
 static void* hs_cast_2b8a52bd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockBreakEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6275,6 +6666,7 @@ catch (...)
 
 static void* hs_cast_3e59a4bd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockCookEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6290,6 +6682,7 @@ catch (...)
 
 static void* hs_cast_bbdc4b57(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockExplodeEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6305,6 +6698,7 @@ catch (...)
 
 static void* hs_cast_d0c7372e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFormEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6320,6 +6714,7 @@ catch (...)
 
 static void* hs_cast_3ab5d6e4(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFromToEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6335,6 +6730,7 @@ catch (...)
 
 static void* hs_cast_4d67084b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockGrowEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6350,6 +6746,7 @@ catch (...)
 
 static void* hs_cast_c8c75776(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6365,6 +6762,7 @@ catch (...)
 
 static void* hs_cast_7a641671(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonExtendEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6380,6 +6778,7 @@ catch (...)
 
 static void* hs_cast_c4b85ebb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonRetractEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6395,6 +6794,7 @@ catch (...)
 
 static void* hs_cast_3f0e3d17(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPlaceEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6410,6 +6810,7 @@ catch (...)
 
 static void* hs_cast_ac39e1d7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::LeavesDecayEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6425,6 +6826,7 @@ catch (...)
 
 static void* hs_cast_c5d7e9c2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6440,6 +6842,7 @@ catch (...)
 
 static void* hs_cast_6f0bb4ae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6455,6 +6858,7 @@ catch (...)
 
 static void* hs_cast_801607c6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6470,6 +6874,7 @@ catch (...)
 
 static void hs_method_a978b6eb(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -6485,6 +6890,7 @@ catch (...)
 
 static bool hs_method_1e85b26f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::BlockEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -6500,6 +6906,7 @@ catch (...)
 
 static void hs_method_5da6baf7(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::BlockEvent>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -6515,6 +6922,7 @@ catch (...)
 
 static void* hs_cast_5c5af0fd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedEnterEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6530,6 +6938,7 @@ catch (...)
 
 static void* hs_cast_75e80257(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerChatEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6545,6 +6954,7 @@ catch (...)
 
 static void* hs_cast_50726cb3(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerCommandEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6560,6 +6970,7 @@ catch (...)
 
 static void* hs_cast_1fe94255(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDropItemEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6575,6 +6986,7 @@ catch (...)
 
 static void* hs_cast_aeac3ba2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerEmoteEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6590,6 +7002,7 @@ catch (...)
 
 static void* hs_cast_9db4ed43(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerGameModeChangeEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6605,6 +7018,7 @@ catch (...)
 
 static void* hs_cast_797cedeb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractActorEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6620,6 +7034,7 @@ catch (...)
 
 static void* hs_cast_886ee052(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6635,6 +7050,7 @@ catch (...)
 
 static void* hs_cast_1d7f992e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemConsumeEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6650,6 +7066,7 @@ catch (...)
 
 static void* hs_cast_b8d7df5a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemHeldEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6665,6 +7082,7 @@ catch (...)
 
 static void* hs_cast_92f84bb9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJumpEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6680,6 +7098,7 @@ catch (...)
 
 static void* hs_cast_c17efaa8(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerKickEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6695,6 +7114,7 @@ catch (...)
 
 static void* hs_cast_688ecac9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerLoginEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6710,6 +7130,7 @@ catch (...)
 
 static void* hs_cast_c6cc6b93(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6725,6 +7146,7 @@ catch (...)
 
 static void* hs_cast_c4ce9b8e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPickupItemEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6740,6 +7162,7 @@ catch (...)
 
 static void* hs_cast_ec324329(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6755,6 +7178,7 @@ catch (...)
 
 static void* hs_cast_9a434c5d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerSkinChangeEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6770,6 +7194,7 @@ catch (...)
 
 static void* hs_cast_f27753ca(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6785,6 +7210,7 @@ catch (...)
 
 static void* hs_cast_640d5570(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6800,6 +7226,7 @@ catch (...)
 
 static void* hs_cast_74929fca(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6815,6 +7242,7 @@ catch (...)
 
 static void* hs_cast_c4f89413(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6830,6 +7258,7 @@ catch (...)
 
 static void hs_method_89cd5bd3(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -6845,6 +7274,7 @@ catch (...)
 
 static bool hs_method_7f1b7aaf(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::PlayerEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -6860,6 +7290,7 @@ catch (...)
 
 static void hs_method_19f9a558(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -6875,6 +7306,7 @@ catch (...)
 
 static void* hs_cast_85bf3d23(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BroadcastMessageEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6890,6 +7322,7 @@ catch (...)
 
 static void* hs_cast_e9772ca4(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketReceiveEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6905,6 +7338,7 @@ catch (...)
 
 static void* hs_cast_d95b40ac(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketSendEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6920,6 +7354,7 @@ catch (...)
 
 static void* hs_cast_a9d20885(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ScriptMessageEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6935,6 +7370,7 @@ catch (...)
 
 static void* hs_cast_6721177d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerCommandEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6950,6 +7386,7 @@ catch (...)
 
 static void* hs_cast_91f4b0a9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerListPingEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6965,6 +7402,7 @@ catch (...)
 
 static void* hs_cast_5adb7a71(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6980,6 +7418,7 @@ catch (...)
 
 static void* hs_cast_6e1e506e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -6995,6 +7434,7 @@ catch (...)
 
 static void* hs_cast_22ab2270(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7010,6 +7450,7 @@ catch (...)
 
 static void hs_method_e578c3d6(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -7025,6 +7466,7 @@ catch (...)
 
 static bool hs_method_087f3d74(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::ServerEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -7040,6 +7482,7 @@ catch (...)
 
 static void hs_method_7f41c6c9(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::ServerEvent>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -7055,6 +7498,7 @@ catch (...)
 
 static void* hs_cast_4acc7857(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ThunderChangeEvent*>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7070,6 +7514,7 @@ catch (...)
 
 static void* hs_cast_0530b500(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WeatherChangeEvent*>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7085,6 +7530,7 @@ catch (...)
 
 static void* hs_cast_2bdad3c2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7100,6 +7546,7 @@ catch (...)
 
 static void* hs_cast_5c6d48cb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7115,6 +7562,7 @@ catch (...)
 
 static void* hs_cast_71e960fa(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::WeatherEvent*>(static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7130,6 +7578,7 @@ catch (...)
 
 static void hs_method_2f9c52de(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -7145,6 +7594,7 @@ catch (...)
 
 static bool hs_method_6db9fa6c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Cancellable<endstone::WeatherEvent> const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -7160,6 +7610,7 @@ catch (...)
 
 static void hs_method_1c30a25b(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -7175,6 +7626,7 @@ catch (...)
 
 static void hs_destroy_680ba06e(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Chunk*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -7190,6 +7642,7 @@ catch (...)
 
 static void* hs_method_23a6e21d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -7205,6 +7658,7 @@ catch (...)
 
 static void* hs_method_45353431(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Chunk const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -7220,6 +7674,7 @@ catch (...)
 
 static std::int32_t hs_method_5dd743e3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Chunk const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -7235,6 +7690,7 @@ catch (...)
 
 static std::int32_t hs_method_88e69e6d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Chunk const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
@@ -7250,6 +7706,7 @@ catch (...)
 
 static void* hs_cast_16f5e6ae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::DimensionEvent*>(static_cast<endstone::ChunkEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7265,6 +7722,7 @@ catch (...)
 
 static void* hs_cast_d0b8de83(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ChunkEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7280,6 +7738,7 @@ catch (...)
 
 static void* hs_cast_e8e61c02(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::LevelEvent*>(static_cast<endstone::ChunkEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7295,6 +7754,7 @@ catch (...)
 
 static void* hs_method_c7604b5b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ChunkEvent const*>(hs_self)->getChunk()));
 }
 catch (std::exception const& hs_error)
@@ -7310,6 +7770,7 @@ catch (...)
 
 static void hs_destroy_45139b77(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ChunkLoadEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -7325,6 +7786,7 @@ catch (...)
 
 static void* hs_cast_e3234a11(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ChunkEvent*>(static_cast<endstone::ChunkLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7340,6 +7802,7 @@ catch (...)
 
 static void* hs_cast_11bf09d7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::DimensionEvent*>(static_cast<endstone::ChunkLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7355,6 +7818,7 @@ catch (...)
 
 static void* hs_cast_7c4acd07(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ChunkLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7370,6 +7834,7 @@ catch (...)
 
 static void* hs_cast_6fe4f8b7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::LevelEvent*>(static_cast<endstone::ChunkLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7385,6 +7850,7 @@ catch (...)
 
 static void* hs_create_6768b5c1(void* chunk) try
 {
+    clearLastError();
     return new endstone::ChunkLoadEvent(*static_cast<endstone::Chunk*>(chunk));
 }
 catch (std::exception const& hs_error)
@@ -7400,6 +7866,7 @@ catch (...)
 
 static void* hs_get_c5f2ed6b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ChunkLoadEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -7415,6 +7882,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd219c55(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ChunkLoadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -7432,6 +7900,7 @@ catch (...)
 
 static void hs_destroy_82615db9(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ChunkUnloadEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -7447,6 +7916,7 @@ catch (...)
 
 static void* hs_cast_45153e33(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ChunkEvent*>(static_cast<endstone::ChunkUnloadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7462,6 +7932,7 @@ catch (...)
 
 static void* hs_cast_6ba8799d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::DimensionEvent*>(static_cast<endstone::ChunkUnloadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7477,6 +7948,7 @@ catch (...)
 
 static void* hs_cast_69686c7a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ChunkUnloadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7492,6 +7964,7 @@ catch (...)
 
 static void* hs_cast_75c81851(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::LevelEvent*>(static_cast<endstone::ChunkUnloadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -7507,6 +7980,7 @@ catch (...)
 
 static void* hs_create_aae5a1d9(void* chunk) try
 {
+    clearLastError();
     return new endstone::ChunkUnloadEvent(*static_cast<endstone::Chunk*>(chunk));
 }
 catch (std::exception const& hs_error)
@@ -7522,6 +7996,7 @@ catch (...)
 
 static void* hs_get_178f4963() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ChunkUnloadEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -7537,6 +8012,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a8e1a5dd(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ChunkUnloadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -7554,6 +8030,7 @@ catch (...)
 
 static void hs_destroy_5fd175cd(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Color*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -7569,6 +8046,7 @@ catch (...)
 
 static void* hs_create_16a3a50e(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint8_t alpha) try
 {
+    clearLastError();
     return new endstone::Color(static_cast<const unsigned char>(red), static_cast<const unsigned char>(green), static_cast<const unsigned char>(blue), static_cast<const unsigned char>(alpha));
 }
 catch (std::exception const& hs_error)
@@ -7584,6 +8062,7 @@ catch (...)
 
 static std::int32_t hs_method_c6e20247(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asABGR());
 }
 catch (std::exception const& hs_error)
@@ -7599,6 +8078,7 @@ catch (...)
 
 static std::int32_t hs_method_3a6d50d8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asBGR());
 }
 catch (std::exception const& hs_error)
@@ -7614,6 +8094,7 @@ catch (...)
 
 static std::int32_t hs_method_fe1bd8a8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asRGB());
 }
 catch (std::exception const& hs_error)
@@ -7629,6 +8110,7 @@ catch (...)
 
 static std::int32_t hs_method_5f9b09ba(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->asRGBA());
 }
 catch (std::exception const& hs_error)
@@ -7644,6 +8126,7 @@ catch (...)
 
 static void* hs_method_520d5cb9(std::int32_t abgr) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromABGR(static_cast<const int>(abgr))));
 }
 catch (std::exception const& hs_error)
@@ -7659,6 +8142,7 @@ catch (...)
 
 static void* hs_method_a85ec1f7(std::int32_t bgr) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromBGR(static_cast<const int>(bgr))));
 }
 catch (std::exception const& hs_error)
@@ -7674,6 +8158,7 @@ catch (...)
 
 static void* hs_method_265097f4(std::int32_t blue, std::int32_t green, std::int32_t red) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromBGR(static_cast<const int>(blue), static_cast<const int>(green), static_cast<const int>(red))));
 }
 catch (std::exception const& hs_error)
@@ -7689,6 +8174,7 @@ catch (...)
 
 static void* hs_method_3a8c0087(std::int32_t rgb) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromRGB(static_cast<const int>(rgb))));
 }
 catch (std::exception const& hs_error)
@@ -7704,6 +8190,7 @@ catch (...)
 
 static void* hs_method_81568786(std::int32_t red, std::int32_t green, std::int32_t blue) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromRGB(static_cast<const int>(red), static_cast<const int>(green), static_cast<const int>(blue))));
 }
 catch (std::exception const& hs_error)
@@ -7719,6 +8206,7 @@ catch (...)
 
 static void* hs_method_5a22fc30(std::int32_t rgba) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromRGBA(static_cast<const int>(rgba))));
 }
 catch (std::exception const& hs_error)
@@ -7734,6 +8222,7 @@ catch (...)
 
 static void* hs_method_ba318cdf(std::int32_t red, std::int32_t green, std::int32_t blue, std::int32_t alpha) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(endstone::Color::fromRGBA(static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue), static_cast<int>(alpha))));
 }
 catch (std::exception const& hs_error)
@@ -7749,6 +8238,7 @@ catch (...)
 
 static std::int32_t hs_method_ec53d5b8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getAlpha());
 }
 catch (std::exception const& hs_error)
@@ -7764,6 +8254,7 @@ catch (...)
 
 static std::int32_t hs_method_868e3c39(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getBlue());
 }
 catch (std::exception const& hs_error)
@@ -7779,6 +8270,7 @@ catch (...)
 
 static std::int32_t hs_method_42c0196e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getGreen());
 }
 catch (std::exception const& hs_error)
@@ -7794,6 +8286,7 @@ catch (...)
 
 static std::int32_t hs_method_1a1f9a7c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Color const*>(hs_self)->getRed());
 }
 catch (std::exception const& hs_error)
@@ -7809,6 +8302,7 @@ catch (...)
 
 static bool hs_method_88cb059a(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Color const*>(hs_self)->operator!=(*static_cast<const endstone::Color*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -7824,6 +8318,7 @@ catch (...)
 
 static bool hs_method_61844f16(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Color const*>(hs_self)->operator==(*static_cast<const endstone::Color*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -7839,6 +8334,7 @@ catch (...)
 
 static void* hs_method_bc8aa569(void* hs_self, std::int32_t alpha) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setAlpha(static_cast<const int>(alpha))));
 }
 catch (std::exception const& hs_error)
@@ -7854,6 +8350,7 @@ catch (...)
 
 static void* hs_method_d6a9db7c(void* hs_self, std::int32_t blue) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setBlue(static_cast<const int>(blue))));
 }
 catch (std::exception const& hs_error)
@@ -7869,6 +8366,7 @@ catch (...)
 
 static void* hs_method_02ff922e(void* hs_self, std::int32_t green) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setGreen(static_cast<const int>(green))));
 }
 catch (std::exception const& hs_error)
@@ -7884,6 +8382,7 @@ catch (...)
 
 static void* hs_method_b6ae91e5(void* hs_self, std::int32_t red) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::Color const*>(hs_self)->setRed(static_cast<const int>(red))));
 }
 catch (std::exception const& hs_error)
@@ -7899,6 +8398,7 @@ catch (...)
 
 static void hs_destroy_34a5fade(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ColorFormat*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -7914,6 +8414,7 @@ catch (...)
 
 static HosihikariStringView hs_get_0ed3f23e() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Aqua;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -7930,6 +8431,7 @@ catch (...)
 
 static HosihikariStringView hs_get_14adc916() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Black;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -7946,6 +8448,7 @@ catch (...)
 
 static HosihikariStringView hs_get_3c1eda75() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Blue;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -7962,6 +8465,7 @@ catch (...)
 
 static HosihikariStringView hs_get_36dd6716() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Bold;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -7978,6 +8482,7 @@ catch (...)
 
 static HosihikariStringView hs_get_1f79dc85() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkAqua;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -7994,6 +8499,7 @@ catch (...)
 
 static HosihikariStringView hs_get_82bcc8f4() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkBlue;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8010,6 +8516,7 @@ catch (...)
 
 static HosihikariStringView hs_get_1e22adf9() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkGray;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8026,6 +8533,7 @@ catch (...)
 
 static HosihikariStringView hs_get_f029ff10() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkGreen;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8042,6 +8550,7 @@ catch (...)
 
 static HosihikariStringView hs_get_a4018898() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkPurple;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8058,6 +8567,7 @@ catch (...)
 
 static HosihikariStringView hs_get_f8d96684() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::DarkRed;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8074,6 +8584,7 @@ catch (...)
 
 static HosihikariStringView hs_get_b34a26d1() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Escape;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8090,6 +8601,7 @@ catch (...)
 
 static HosihikariStringView hs_get_f5e9ef43() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Gold;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8106,6 +8618,7 @@ catch (...)
 
 static HosihikariStringView hs_get_24576ca4() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Gray;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8122,6 +8635,7 @@ catch (...)
 
 static HosihikariStringView hs_get_efc40a36() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Green;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8138,6 +8652,7 @@ catch (...)
 
 static HosihikariStringView hs_get_898594f9() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Italic;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8154,6 +8669,7 @@ catch (...)
 
 static HosihikariStringView hs_get_a786d9ad() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::LightPurple;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8170,6 +8686,7 @@ catch (...)
 
 static HosihikariStringView hs_get_5cbaee0c() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialAmethyst;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8186,6 +8703,7 @@ catch (...)
 
 static HosihikariStringView hs_get_954a9c6e() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialCopper;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8202,6 +8720,7 @@ catch (...)
 
 static HosihikariStringView hs_get_96372f7e() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialDiamond;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8218,6 +8737,7 @@ catch (...)
 
 static HosihikariStringView hs_get_4c0a39d3() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialEmerald;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8234,6 +8754,7 @@ catch (...)
 
 static HosihikariStringView hs_get_d23bd69b() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialGold;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8250,6 +8771,7 @@ catch (...)
 
 static HosihikariStringView hs_get_20b8eca5() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialIron;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8266,6 +8788,7 @@ catch (...)
 
 static HosihikariStringView hs_get_676ef46d() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialLapis;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8282,6 +8805,7 @@ catch (...)
 
 static HosihikariStringView hs_get_6b330d46() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialNetherite;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8298,6 +8822,7 @@ catch (...)
 
 static HosihikariStringView hs_get_4a7abe1d() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialQuartz;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8314,6 +8839,7 @@ catch (...)
 
 static HosihikariStringView hs_get_87e75156() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialRedstone;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8330,6 +8856,7 @@ catch (...)
 
 static HosihikariStringView hs_get_cc94656c() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MaterialResin;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8346,6 +8873,7 @@ catch (...)
 
 static HosihikariStringView hs_get_1f30cd41() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::MinecoinGold;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8362,6 +8890,7 @@ catch (...)
 
 static HosihikariStringView hs_get_d112355e() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Obfuscated;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8378,6 +8907,7 @@ catch (...)
 
 static HosihikariStringView hs_get_69d027ff() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Red;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8394,6 +8924,7 @@ catch (...)
 
 static HosihikariStringView hs_get_2bf28927() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Reset;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8410,6 +8941,7 @@ catch (...)
 
 static HosihikariStringView hs_get_a1ec8371() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::White;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8426,6 +8958,7 @@ catch (...)
 
 static HosihikariStringView hs_get_2e5d1ba5() try
 {
+    clearLastError();
     auto const& value = endstone::ColorFormat::Yellow;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -8442,6 +8975,7 @@ catch (...)
 
 static void hs_destroy_8bec19e3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Colors*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -8457,6 +8991,7 @@ catch (...)
 
 static void* hs_get_67ca1265() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Colors::BLACK));
 }
 catch (std::exception const& hs_error)
@@ -8472,6 +9007,7 @@ catch (...)
 
 static void* hs_get_25b875e3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Colors::WHITE));
 }
 catch (std::exception const& hs_error)
@@ -8487,6 +9023,7 @@ catch (...)
 
 static void hs_destroy_c2c8b60a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Command*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -8502,6 +9039,7 @@ catch (...)
 
 static void* hs_cast_1d149984(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PluginCommand*>(static_cast<endstone::Command*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8517,6 +9055,7 @@ catch (...)
 
 static void* hs_create_82cb42ed(const char* name_data, std::size_t name_size, const char* description_data, std::size_t description_size, const HosihikariStringView* usages_data, std::size_t usages_count, const HosihikariStringView* aliases_data, std::size_t aliases_count, const HosihikariStringView* permissions_data, std::size_t permissions_count) try
 {
+    clearLastError();
     return new endstone::Command(std::basic_string<char>(name_data, name_size), std::basic_string<char>(description_data, description_size), hs_make_string_vector(usages_data, usages_count), hs_make_string_vector(aliases_data, aliases_count), hs_make_string_vector(permissions_data, permissions_count));
 }
 catch (std::exception const& hs_error)
@@ -8532,6 +9071,7 @@ catch (...)
 
 static void* hs_method_258d436e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Command const*>(hs_self)->asPluginCommand()));
 }
 catch (std::exception const& hs_error)
@@ -8547,6 +9087,7 @@ catch (...)
 
 static bool hs_method_843e3c70(void* hs_self, void* sender, const HosihikariStringView* args_data, std::size_t args_count) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
 }
 catch (std::exception const& hs_error)
@@ -8562,6 +9103,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_8bdb7033(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::Command const*>(hs_self)->getAliases();
@@ -8586,6 +9128,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a98b3f00(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Command const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -8603,6 +9146,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d90fc989(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Command const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -8620,6 +9164,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_44e86fef(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::Command const*>(hs_self)->getPermissions();
@@ -8644,6 +9189,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_2139fcb8(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::Command const*>(hs_self)->getUsages();
@@ -8668,6 +9214,7 @@ catch (...)
 
 static bool hs_method_a8c29d42(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->isRegistered());
 }
 catch (std::exception const& hs_error)
@@ -8683,6 +9230,7 @@ catch (...)
 
 static bool hs_method_8293f1a6(void* hs_self, void* command_map) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->registerTo(*static_cast<const endstone::CommandMap*>(command_map)));
 }
 catch (std::exception const& hs_error)
@@ -8698,6 +9246,7 @@ catch (...)
 
 static void hs_method_4936e954(void* hs_self, const char* description_data, std::size_t description_size) try
 {
+    clearLastError();
     static_cast<endstone::Command*>(hs_self)->setDescription(std::basic_string<char>(description_data, description_size));
 }
 catch (std::exception const& hs_error)
@@ -8713,6 +9262,7 @@ catch (...)
 
 static void hs_method_72641a1a(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     static_cast<endstone::Command*>(hs_self)->setName(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -8728,6 +9278,7 @@ catch (...)
 
 static bool hs_method_df3ee941(void* hs_self, void* target) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->testPermission(*static_cast<const endstone::CommandSender*>(target)));
 }
 catch (std::exception const& hs_error)
@@ -8743,6 +9294,7 @@ catch (...)
 
 static bool hs_method_76dd5767(void* hs_self, void* target) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command const*>(hs_self)->testPermissionSilently(*static_cast<const endstone::CommandSender*>(target)));
 }
 catch (std::exception const& hs_error)
@@ -8758,6 +9310,7 @@ catch (...)
 
 static bool hs_method_b3d6ab8c(void* hs_self, void* command_map) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Command*>(hs_self)->unregisterFrom(*static_cast<const endstone::CommandMap*>(command_map)));
 }
 catch (std::exception const& hs_error)
@@ -8773,6 +9326,7 @@ catch (...)
 
 static void hs_destroy_5dbcc063(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::CommandExecutor*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -8788,6 +9342,7 @@ catch (...)
 
 static void* hs_cast_91808d2b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Plugin*>(static_cast<endstone::CommandExecutor*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8803,6 +9358,7 @@ catch (...)
 
 static bool hs_method_13fd8943(void* hs_self, void* sender, void* command, const HosihikariStringView* args_data, std::size_t args_count) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandExecutor*>(hs_self)->onCommand(*static_cast<endstone::CommandSender*>(sender), *static_cast<const endstone::Command*>(command), hs_make_string_vector(args_data, args_count)));
 }
 catch (std::exception const& hs_error)
@@ -8818,6 +9374,7 @@ catch (...)
 
 static void hs_method_9377e1af(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::CommandMap*>(hs_self)->clearCommands();
 }
 catch (std::exception const& hs_error)
@@ -8833,6 +9390,7 @@ catch (...)
 
 static bool hs_method_40f031d6(void* hs_self, void* sender, const char* command_line_data, std::size_t command_line_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandMap const*>(hs_self)->dispatch(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
 }
 catch (std::exception const& hs_error)
@@ -8848,6 +9406,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_f9a885bb(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::CommandMap const*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -8863,6 +9422,7 @@ catch (...)
 
 static void* hs_method_d998e156(void* hs_self, void* arg0) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandMap*>(hs_self)->operator=(std::move(*static_cast<endstone::CommandMap*>(arg0)))));
 }
 catch (std::exception const& hs_error)
@@ -8878,6 +9438,7 @@ catch (...)
 
 static bool hs_method_05b1c177(void* hs_self, HosihikariSharedHandle command) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandMap*>(hs_self)->registerCommand(hs_shared_from_handle<endstone::Command>(command)));
 }
 catch (std::exception const& hs_error)
@@ -8893,6 +9454,7 @@ catch (...)
 
 static void* hs_cast_afe29da6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Actor*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8908,6 +9470,7 @@ catch (...)
 
 static void* hs_cast_c1c07519(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockCommandSender*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8923,6 +9486,7 @@ catch (...)
 
 static void* hs_cast_5abfdc46(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::CommandSenderWrapper*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8938,6 +9502,7 @@ catch (...)
 
 static void* hs_cast_f5da92a1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ConsoleCommandSender*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8953,6 +9518,7 @@ catch (...)
 
 static void* hs_cast_2af5e44c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Item*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8968,6 +9534,7 @@ catch (...)
 
 static void* hs_cast_97dbdca5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Mob*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8983,6 +9550,7 @@ catch (...)
 
 static void* hs_cast_7c735a41(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Player*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -8998,6 +9566,7 @@ catch (...)
 
 static void* hs_cast_f21a9878(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::CommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9013,6 +9582,7 @@ catch (...)
 
 static void* hs_method_92d89af7(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asActor()));
 }
 catch (std::exception const& hs_error)
@@ -9028,6 +9598,7 @@ catch (...)
 
 static void* hs_method_e3076cf4(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asBlock()));
 }
 catch (std::exception const& hs_error)
@@ -9043,6 +9614,7 @@ catch (...)
 
 static void* hs_method_5cb0ae2a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asCommandSender()));
 }
 catch (std::exception const& hs_error)
@@ -9058,6 +9630,7 @@ catch (...)
 
 static void* hs_method_397dcadc(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asConsole()));
 }
 catch (std::exception const& hs_error)
@@ -9073,6 +9646,7 @@ catch (...)
 
 static void* hs_method_b645d8d4(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSender const*>(hs_self)->asPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -9088,6 +9662,7 @@ catch (...)
 
 static HosihikariStringView hs_method_37a0b111(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::CommandSender const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -9105,6 +9680,7 @@ catch (...)
 
 static void* hs_method_b41b201e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSender const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
@@ -9120,6 +9696,7 @@ catch (...)
 
 static void hs_method_dad2680f(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::CommandSender const*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -9135,6 +9712,7 @@ catch (...)
 
 static void hs_method_0d00119e(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::CommandSender const*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -9150,6 +9728,7 @@ catch (...)
 
 static void hs_destroy_2cfa283c(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::CommandSenderWrapper*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -9165,6 +9744,7 @@ catch (...)
 
 static void* hs_cast_16573b99(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::CommandSenderWrapper*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9180,6 +9760,7 @@ catch (...)
 
 static void* hs_cast_c9674ee4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::CommandSenderWrapper*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9235,6 +9816,7 @@ struct hs_cb_closure_hs_create_09b33530_cb2
 
 static void* hs_create_09b33530(void* sender, void* on_message_invoke, void* on_message_userData, void* on_message_release, void* on_error_invoke, void* on_error_userData, void* on_error_release) try
 {
+    clearLastError();
     return new endstone::CommandSenderWrapper(*static_cast<endstone::CommandSender*>(sender), std::function<void (const std::variant<std::basic_string<char>, endstone::Translatable> &)>(hs_cb_closure_hs_create_09b33530_cb1{std::make_shared<hs_cb_state_hs_create_09b33530_cb1>(reinterpret_cast<hs_cb_invoke_hs_create_09b33530_cb1>(on_message_invoke), on_message_userData, reinterpret_cast<hs_cb_release_hs_create_09b33530_cb1>(on_message_release))}), std::function<void (const std::variant<std::basic_string<char>, endstone::Translatable> &)>(hs_cb_closure_hs_create_09b33530_cb2{std::make_shared<hs_cb_state_hs_create_09b33530_cb2>(reinterpret_cast<hs_cb_invoke_hs_create_09b33530_cb2>(on_error_invoke), on_error_userData, reinterpret_cast<hs_cb_release_hs_create_09b33530_cb2>(on_error_release))}));
 }
 catch (std::exception const& hs_error)
@@ -9250,6 +9832,7 @@ catch (...)
 
 static void* hs_method_fb24c542(void* hs_self, void* plugin) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->addAttachment(*static_cast<endstone::Plugin*>(plugin))));
 }
 catch (std::exception const& hs_error)
@@ -9265,6 +9848,7 @@ catch (...)
 
 static void* hs_method_e222aaee(void* hs_self, void* plugin, const char* name_data, std::size_t name_size, bool value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->addAttachment(*static_cast<endstone::Plugin*>(plugin), std::basic_string<char>(name_data, name_size), static_cast<bool>(value))));
 }
 catch (std::exception const& hs_error)
@@ -9280,6 +9864,7 @@ catch (...)
 
 static void* hs_method_3ae68602(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asActor()));
 }
 catch (std::exception const& hs_error)
@@ -9295,6 +9880,7 @@ catch (...)
 
 static void* hs_method_04ff5a20(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asBlock()));
 }
 catch (std::exception const& hs_error)
@@ -9310,6 +9896,7 @@ catch (...)
 
 static void* hs_method_9ab0c102(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asConsole()));
 }
 catch (std::exception const& hs_error)
@@ -9325,6 +9912,7 @@ catch (...)
 
 static void* hs_method_943bfeca(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->asPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -9340,6 +9928,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_44433c6b(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getEffectivePermissions();
     hs_arrayResult.clear();
@@ -9360,6 +9949,7 @@ catch (...)
 
 static HosihikariStringView hs_method_94271ffc(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -9377,6 +9967,7 @@ catch (...)
 
 static std::int32_t hs_method_66bba67b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getPermissionLevel());
 }
 catch (std::exception const& hs_error)
@@ -9392,6 +9983,7 @@ catch (...)
 
 static void* hs_method_b32b1bb7(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CommandSenderWrapper const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
@@ -9407,6 +9999,7 @@ catch (...)
 
 static bool hs_method_0112bd82(void* hs_self, void* perm) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
@@ -9422,6 +10015,7 @@ catch (...)
 
 static bool hs_method_7413ddc4(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -9437,6 +10031,7 @@ catch (...)
 
 static bool hs_method_0cbfe3a8(void* hs_self, void* perm) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
@@ -9452,6 +10047,7 @@ catch (...)
 
 static bool hs_method_29f6249e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandSenderWrapper const*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -9467,6 +10063,7 @@ catch (...)
 
 static void hs_method_dff7c105(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::CommandSenderWrapper*>(hs_self)->recalculatePermissions();
 }
 catch (std::exception const& hs_error)
@@ -9482,6 +10079,7 @@ catch (...)
 
 static bool hs_method_0ecf0f05(void* hs_self, void* attachment) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CommandSenderWrapper*>(hs_self)->removeAttachment(*static_cast<endstone::PermissionAttachment*>(attachment)));
 }
 catch (std::exception const& hs_error)
@@ -9497,6 +10095,7 @@ catch (...)
 
 static void hs_method_387e1e29(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::CommandSenderWrapper const*>(hs_self)->sendErrorMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -9512,6 +10111,7 @@ catch (...)
 
 static void hs_method_11f99321(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::CommandSenderWrapper const*>(hs_self)->sendMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -9527,6 +10127,7 @@ catch (...)
 
 static void hs_destroy_47531244(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::CompoundTag*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -9542,6 +10143,7 @@ catch (...)
 
 static void* hs_cast_f751d138(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::CompoundTag*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9557,6 +10159,7 @@ catch (...)
 
 static void* hs_create_8acc024d() try
 {
+    clearLastError();
     return new endstone::CompoundTag();
 }
 catch (std::exception const& hs_error)
@@ -9572,6 +10175,7 @@ catch (...)
 
 static void* hs_method_8c20061d(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CompoundTag const*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -9587,6 +10191,7 @@ catch (...)
 
 static void* hs_method_7dcad8a1(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CompoundTag*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -9602,6 +10207,7 @@ catch (...)
 
 static void hs_method_3b3991bf(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::CompoundTag*>(hs_self)->clear();
 }
 catch (std::exception const& hs_error)
@@ -9617,6 +10223,7 @@ catch (...)
 
 static bool hs_method_de544d3b(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CompoundTag const*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
 }
 catch (std::exception const& hs_error)
@@ -9632,6 +10239,7 @@ catch (...)
 
 static bool hs_method_0cd11854(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CompoundTag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -9647,6 +10255,7 @@ catch (...)
 
 static std::uint64_t hs_method_b1b84138(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::CompoundTag*>(hs_self)->erase(std::basic_string<char>(key_data, key_size)));
 }
 catch (std::exception const& hs_error)
@@ -9662,6 +10271,7 @@ catch (...)
 
 static void hs_method_16fdd585(void* hs_self, void* source) try
 {
+    clearLastError();
     static_cast<endstone::CompoundTag*>(hs_self)->merge(std::move(*static_cast<endstone::CompoundTag*>(source)));
 }
 catch (std::exception const& hs_error)
@@ -9677,6 +10287,7 @@ catch (...)
 
 static void hs_method_1459df00(void* hs_self, void* source) try
 {
+    clearLastError();
     static_cast<endstone::CompoundTag*>(hs_self)->merge(*static_cast<endstone::CompoundTag*>(source));
 }
 catch (std::exception const& hs_error)
@@ -9692,6 +10303,7 @@ catch (...)
 
 static void* hs_method_1a717656(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::CompoundTag*>(hs_self)->operator[](std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -9707,6 +10319,7 @@ catch (...)
 
 static std::uint64_t hs_method_c0127409(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::CompoundTag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
@@ -9722,6 +10335,7 @@ catch (...)
 
 static void hs_method_d9d14a48(void* hs_self, void* other) try
 {
+    clearLastError();
     static_cast<endstone::CompoundTag*>(hs_self)->swap(*static_cast<endstone::CompoundTag*>(other));
 }
 catch (std::exception const& hs_error)
@@ -9737,6 +10351,7 @@ catch (...)
 
 static void* hs_cast_84d6876f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::ConsoleCommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9752,6 +10367,7 @@ catch (...)
 
 static void* hs_cast_40b83e85(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::ConsoleCommandSender*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9767,6 +10383,7 @@ catch (...)
 
 static std::uint8_t hs_method_10edaf71(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint8_t>(static_cast<endstone::Criteria const*>(hs_self)->getDefaultRenderType());
 }
 catch (std::exception const& hs_error)
@@ -9782,6 +10399,7 @@ catch (...)
 
 static HosihikariStringView hs_method_db8d9b6c(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Criteria const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -9799,6 +10417,7 @@ catch (...)
 
 static bool hs_method_b898ebc7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Criteria const*>(hs_self)->isReadOnly());
 }
 catch (std::exception const& hs_error)
@@ -9814,6 +10433,7 @@ catch (...)
 
 static void* hs_cast_8fff943c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ItemMeta*>(static_cast<endstone::CrossbowMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -9829,6 +10449,7 @@ catch (...)
 
 static std::int32_t hs_get_ac57d345() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::CrossbowMeta::MetaType);
 }
 catch (std::exception const& hs_error)
@@ -9844,6 +10465,7 @@ catch (...)
 
 static void hs_method_6b7cb64c(void* hs_self, void* item) try
 {
+    clearLastError();
     static_cast<endstone::CrossbowMeta*>(hs_self)->addChargedProjectile(*static_cast<const endstone::ItemStack*>(item));
 }
 catch (std::exception const& hs_error)
@@ -9859,6 +10481,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_1b51daa8(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::CrossbowMeta const*>(hs_self)->getChargedProjectiles();
     hs_arrayResult.clear();
@@ -9879,6 +10502,7 @@ catch (...)
 
 static bool hs_method_abce5a3b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::CrossbowMeta const*>(hs_self)->hasChargedProjectiles());
 }
 catch (std::exception const& hs_error)
@@ -9894,6 +10518,7 @@ catch (...)
 
 static void hs_method_dc173cf9(void* hs_self, void* const* projectiles_data, std::size_t projectiles_count) try
 {
+    clearLastError();
     static_cast<endstone::CrossbowMeta*>(hs_self)->setChargedProjectiles(hs_make_record_vector<endstone::ItemStack>(projectiles_data, projectiles_count));
 }
 catch (std::exception const& hs_error)
@@ -9909,6 +10534,7 @@ catch (...)
 
 static void* hs_method_545ff876(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
@@ -9924,6 +10550,7 @@ catch (...)
 
 static void* hs_method_b1c82064(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::DamageSource const*>(hs_self)->getDamagingActor()));
 }
 catch (std::exception const& hs_error)
@@ -9939,6 +10566,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f28cf75b(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::DamageSource const*>(hs_self)->getType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -9956,6 +10584,7 @@ catch (...)
 
 static bool hs_method_a0e5d51d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::DamageSource const*>(hs_self)->isIndirect());
 }
 catch (std::exception const& hs_error)
@@ -9971,6 +10600,7 @@ catch (...)
 
 static void* hs_method_13a44bf4(void* hs_self, void* location, void* item) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dimension*>(hs_self)->dropItem(*static_cast<const endstone::Location*>(location), *static_cast<const endstone::ItemStack*>(item))));
 }
 catch (std::exception const& hs_error)
@@ -9986,6 +10616,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_c360259f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Dimension const*>(hs_self)->getActors();
     hs_arrayResult.clear();
@@ -10006,6 +10637,7 @@ catch (...)
 
 static void* hs_method_cb9e0c86(void* hs_self, void* location) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getBlockAt(*static_cast<const endstone::Location*>(location));
     return static_cast<void*>(hs_result.release());
 }
@@ -10022,6 +10654,7 @@ catch (...)
 
 static void* hs_method_b99df6a6(void* hs_self, std::int32_t x, std::int32_t y, std::int32_t z) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getBlockAt(static_cast<int>(x), static_cast<int>(y), static_cast<int>(z));
     return static_cast<void*>(hs_result.release());
 }
@@ -10038,6 +10671,7 @@ catch (...)
 
 static void* hs_method_ede9be19(void* hs_self, void* location) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockAt(*static_cast<const endstone::Location*>(location));
     return static_cast<void*>(hs_result.release());
 }
@@ -10054,6 +10688,7 @@ catch (...)
 
 static void* hs_method_ece60b3e(void* hs_self, std::int32_t x, std::int32_t z) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockAt(static_cast<int>(x), static_cast<int>(z));
     return static_cast<void*>(hs_result.release());
 }
@@ -10070,6 +10705,7 @@ catch (...)
 
 static std::int32_t hs_method_b7112c55(void* hs_self, std::int32_t x, std::int32_t z) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Dimension const*>(hs_self)->getHighestBlockYAt(static_cast<int>(x), static_cast<int>(z)));
 }
 catch (std::exception const& hs_error)
@@ -10085,6 +10721,7 @@ catch (...)
 
 static void* hs_method_a8f62076(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dimension const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -10100,6 +10737,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_04e7b449(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Dimension*>(hs_self)->getLoadedChunks();
     hs_arrayResult.clear();
@@ -10120,6 +10758,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a0c42bbe(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Dimension const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -10137,6 +10776,7 @@ catch (...)
 
 static std::int32_t hs_method_d9a230b4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Dimension const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
@@ -10152,6 +10792,7 @@ catch (...)
 
 static void* hs_method_9b8dee0d(void* hs_self, void* location, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Dimension*>(hs_self)->spawnActor(*static_cast<const endstone::Location*>(location), std::basic_string<char>(type_data, type_size))));
 }
 catch (std::exception const& hs_error)
@@ -10167,6 +10808,7 @@ catch (...)
 
 static void* hs_cast_9cffdec4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::DimensionEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -10182,6 +10824,7 @@ catch (...)
 
 static void* hs_cast_33ed9d13(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::LevelEvent*>(static_cast<endstone::DimensionEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -10197,6 +10840,7 @@ catch (...)
 
 static void* hs_method_c99ca150(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::DimensionEvent const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -10212,6 +10856,7 @@ catch (...)
 
 static void hs_destroy_41e95b31(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Divider*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -10227,6 +10872,7 @@ catch (...)
 
 static void* hs_create_461c2f46() try
 {
+    clearLastError();
     return new endstone::Divider();
 }
 catch (std::exception const& hs_error)
@@ -10242,6 +10888,7 @@ catch (...)
 
 static void hs_destroy_9c3982da(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Dropdown*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -10257,6 +10904,7 @@ catch (...)
 
 static void* hs_create_6935619b() try
 {
+    clearLastError();
     return new endstone::Dropdown();
 }
 catch (std::exception const& hs_error)
@@ -10272,6 +10920,7 @@ catch (...)
 
 static void* hs_create_6d3c42f7(void* label, std::int32_t default_index, const HosihikariStringView* options_data, std::size_t options_count, bool default_index_hasValue) try
 {
+    clearLastError();
     return new endstone::Dropdown(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label), hs_make_string_vector(options_data, options_count), (default_index_hasValue ? std::optional<int>{static_cast<int>(default_index)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -10287,6 +10936,7 @@ catch (...)
 
 static void* hs_method_ef8d8378(void* hs_self, const char* option_data, std::size_t option_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dropdown*>(hs_self)->addOption(std::basic_string<char>(option_data, option_size))));
 }
 catch (std::exception const& hs_error)
@@ -10302,6 +10952,7 @@ catch (...)
 
 static std::int32_t hs_method_06d835d9(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Dropdown const*>(hs_self)->getDefaultIndex();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
@@ -10321,6 +10972,7 @@ catch (...)
 
 static void* hs_method_adf3c2be(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Dropdown const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
@@ -10336,6 +10988,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_6c265d10(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::Dropdown const*>(hs_self)->getOptions();
@@ -10360,6 +11013,7 @@ catch (...)
 
 static void* hs_method_34be09a0(void* hs_self, std::int32_t default_index, bool default_index_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dropdown*>(hs_self)->setDefaultIndex((default_index_hasValue ? std::optional<int>{static_cast<int>(default_index)} : std::nullopt))));
 }
 catch (std::exception const& hs_error)
@@ -10375,6 +11029,7 @@ catch (...)
 
 static void* hs_method_dd40b665(void* hs_self, void* label) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dropdown*>(hs_self)->setLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label))));
 }
 catch (std::exception const& hs_error)
@@ -10390,6 +11045,7 @@ catch (...)
 
 static void* hs_method_e876541b(void* hs_self, const HosihikariStringView* options_data, std::size_t options_count) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Dropdown*>(hs_self)->setOptions(hs_make_string_vector(options_data, options_count))));
 }
 catch (std::exception const& hs_error)
@@ -10405,6 +11061,7 @@ catch (...)
 
 static void hs_destroy_cb8e5713(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::EffectType*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -10420,6 +11077,7 @@ catch (...)
 
 static void* hs_get_c0fea9c8() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Absorption));
 }
 catch (std::exception const& hs_error)
@@ -10435,6 +11093,7 @@ catch (...)
 
 static void* hs_get_0fa4a533() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::BadOmen));
 }
 catch (std::exception const& hs_error)
@@ -10450,6 +11109,7 @@ catch (...)
 
 static void* hs_get_a6f5a902() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Blindness));
 }
 catch (std::exception const& hs_error)
@@ -10465,6 +11125,7 @@ catch (...)
 
 static void* hs_get_07a7fd58() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::BreathOfTheNautilus));
 }
 catch (std::exception const& hs_error)
@@ -10480,6 +11141,7 @@ catch (...)
 
 static void* hs_get_cacdda5f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::ConduitPower));
 }
 catch (std::exception const& hs_error)
@@ -10495,6 +11157,7 @@ catch (...)
 
 static void* hs_get_8c88c9d5() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Darkness));
 }
 catch (std::exception const& hs_error)
@@ -10510,6 +11173,7 @@ catch (...)
 
 static void* hs_get_a0a8bd2e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::FatalPoison));
 }
 catch (std::exception const& hs_error)
@@ -10525,6 +11189,7 @@ catch (...)
 
 static void* hs_get_e6dfd97b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::FireResistance));
 }
 catch (std::exception const& hs_error)
@@ -10540,6 +11205,7 @@ catch (...)
 
 static void* hs_get_19f8bc6c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Haste));
 }
 catch (std::exception const& hs_error)
@@ -10555,6 +11221,7 @@ catch (...)
 
 static void* hs_get_499dd14d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::HealthBoost));
 }
 catch (std::exception const& hs_error)
@@ -10570,6 +11237,7 @@ catch (...)
 
 static void* hs_get_8432efe9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::HeroOfTheVillage));
 }
 catch (std::exception const& hs_error)
@@ -10585,6 +11253,7 @@ catch (...)
 
 static void* hs_get_99c3f8ce() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Hunger));
 }
 catch (std::exception const& hs_error)
@@ -10600,6 +11269,7 @@ catch (...)
 
 static void* hs_get_3b02faac() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Infested));
 }
 catch (std::exception const& hs_error)
@@ -10615,6 +11285,7 @@ catch (...)
 
 static void* hs_get_d479e900() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::InstantDamage));
 }
 catch (std::exception const& hs_error)
@@ -10630,6 +11301,7 @@ catch (...)
 
 static void* hs_get_2827fba7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::InstantHealth));
 }
 catch (std::exception const& hs_error)
@@ -10645,6 +11317,7 @@ catch (...)
 
 static void* hs_get_68b1b776() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Invisibility));
 }
 catch (std::exception const& hs_error)
@@ -10660,6 +11333,7 @@ catch (...)
 
 static void* hs_get_904b520e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::JumpBoost));
 }
 catch (std::exception const& hs_error)
@@ -10675,6 +11349,7 @@ catch (...)
 
 static void* hs_get_562e0fce() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Levitation));
 }
 catch (std::exception const& hs_error)
@@ -10690,6 +11365,7 @@ catch (...)
 
 static void* hs_get_dee2d487() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::MiningFatigue));
 }
 catch (std::exception const& hs_error)
@@ -10705,6 +11381,7 @@ catch (...)
 
 static void* hs_get_c57c1d75() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Nausea));
 }
 catch (std::exception const& hs_error)
@@ -10720,6 +11397,7 @@ catch (...)
 
 static void* hs_get_27b73aef() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::NightVision));
 }
 catch (std::exception const& hs_error)
@@ -10735,6 +11413,7 @@ catch (...)
 
 static void* hs_get_2ef25e36() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Oozing));
 }
 catch (std::exception const& hs_error)
@@ -10750,6 +11429,7 @@ catch (...)
 
 static void* hs_get_5b81a67c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Poison));
 }
 catch (std::exception const& hs_error)
@@ -10765,6 +11445,7 @@ catch (...)
 
 static void* hs_get_cc94bc60() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::RaidOmen));
 }
 catch (std::exception const& hs_error)
@@ -10780,6 +11461,7 @@ catch (...)
 
 static void* hs_get_11fb477c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Regeneration));
 }
 catch (std::exception const& hs_error)
@@ -10795,6 +11477,7 @@ catch (...)
 
 static void* hs_get_f8dbcb49() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Resistance));
 }
 catch (std::exception const& hs_error)
@@ -10810,6 +11493,7 @@ catch (...)
 
 static void* hs_get_00d82263() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Saturation));
 }
 catch (std::exception const& hs_error)
@@ -10825,6 +11509,7 @@ catch (...)
 
 static void* hs_get_a15af17d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::SlowFalling));
 }
 catch (std::exception const& hs_error)
@@ -10840,6 +11525,7 @@ catch (...)
 
 static void* hs_get_4e0efdfb() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Slowness));
 }
 catch (std::exception const& hs_error)
@@ -10855,6 +11541,7 @@ catch (...)
 
 static void* hs_get_384da66b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Speed));
 }
 catch (std::exception const& hs_error)
@@ -10870,6 +11557,7 @@ catch (...)
 
 static void* hs_get_9d95c6d3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Strength));
 }
 catch (std::exception const& hs_error)
@@ -10885,6 +11573,7 @@ catch (...)
 
 static void* hs_get_c70b1e67() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::TrialOmen));
 }
 catch (std::exception const& hs_error)
@@ -10900,6 +11589,7 @@ catch (...)
 
 static void* hs_get_df3bf9ed() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::WaterBreathing));
 }
 catch (std::exception const& hs_error)
@@ -10915,6 +11605,7 @@ catch (...)
 
 static void* hs_get_bab3ecdf() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Weakness));
 }
 catch (std::exception const& hs_error)
@@ -10930,6 +11621,7 @@ catch (...)
 
 static void* hs_get_b01fc8eb() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Weaving));
 }
 catch (std::exception const& hs_error)
@@ -10945,6 +11637,7 @@ catch (...)
 
 static void* hs_get_67711143() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::WindCharged));
 }
 catch (std::exception const& hs_error)
@@ -10960,6 +11653,7 @@ catch (...)
 
 static void* hs_get_fc557aed() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::EffectType::Wither));
 }
 catch (std::exception const& hs_error)
@@ -10975,6 +11669,7 @@ catch (...)
 
 static void* hs_cast_f921ca39(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Registry<endstone::Enchantment>::Type*>(static_cast<endstone::Enchantment*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -10990,6 +11685,7 @@ catch (...)
 
 static void* hs_get_cb19badc() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::AquaAffinity));
 }
 catch (std::exception const& hs_error)
@@ -11005,6 +11701,7 @@ catch (...)
 
 static void* hs_get_52397ef4() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::BaneOfArthropods));
 }
 catch (std::exception const& hs_error)
@@ -11020,6 +11717,7 @@ catch (...)
 
 static void* hs_get_4055435f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::BlastProtection));
 }
 catch (std::exception const& hs_error)
@@ -11035,6 +11733,7 @@ catch (...)
 
 static void* hs_get_29c2284e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Breach));
 }
 catch (std::exception const& hs_error)
@@ -11050,6 +11749,7 @@ catch (...)
 
 static void* hs_get_c2fc4f58() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Channeling));
 }
 catch (std::exception const& hs_error)
@@ -11065,6 +11765,7 @@ catch (...)
 
 static void* hs_get_4a15a899() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::CurseOfBinding));
 }
 catch (std::exception const& hs_error)
@@ -11080,6 +11781,7 @@ catch (...)
 
 static void* hs_get_e45abced() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::CurseOfVanishing));
 }
 catch (std::exception const& hs_error)
@@ -11095,6 +11797,7 @@ catch (...)
 
 static void* hs_get_391a4e72() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Density));
 }
 catch (std::exception const& hs_error)
@@ -11110,6 +11813,7 @@ catch (...)
 
 static void* hs_get_1468f05d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::DepthStrider));
 }
 catch (std::exception const& hs_error)
@@ -11125,6 +11829,7 @@ catch (...)
 
 static void* hs_get_19cb8272() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Efficiency));
 }
 catch (std::exception const& hs_error)
@@ -11140,6 +11845,7 @@ catch (...)
 
 static void* hs_get_ad95fd46() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::FeatherFalling));
 }
 catch (std::exception const& hs_error)
@@ -11155,6 +11861,7 @@ catch (...)
 
 static void* hs_get_c2daaa4d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::FireAspect));
 }
 catch (std::exception const& hs_error)
@@ -11170,6 +11877,7 @@ catch (...)
 
 static void* hs_get_00a64c9c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::FireProtection));
 }
 catch (std::exception const& hs_error)
@@ -11185,6 +11893,7 @@ catch (...)
 
 static void* hs_get_1d0e51c3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Flame));
 }
 catch (std::exception const& hs_error)
@@ -11200,6 +11909,7 @@ catch (...)
 
 static void* hs_get_15ec6b69() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Fortune));
 }
 catch (std::exception const& hs_error)
@@ -11215,6 +11925,7 @@ catch (...)
 
 static void* hs_get_0e829759() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::FrostWalker));
 }
 catch (std::exception const& hs_error)
@@ -11230,6 +11941,7 @@ catch (...)
 
 static void* hs_get_325b9913() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Impaling));
 }
 catch (std::exception const& hs_error)
@@ -11245,6 +11957,7 @@ catch (...)
 
 static void* hs_get_a89ec1c9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Infinity));
 }
 catch (std::exception const& hs_error)
@@ -11260,6 +11973,7 @@ catch (...)
 
 static void* hs_get_0e4898e6() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Knockback));
 }
 catch (std::exception const& hs_error)
@@ -11275,6 +11989,7 @@ catch (...)
 
 static void* hs_get_586511ee() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Looting));
 }
 catch (std::exception const& hs_error)
@@ -11290,6 +12005,7 @@ catch (...)
 
 static void* hs_get_ea32e7e9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Loyalty));
 }
 catch (std::exception const& hs_error)
@@ -11305,6 +12021,7 @@ catch (...)
 
 static void* hs_get_adb448a6() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::LuckOfTheSea));
 }
 catch (std::exception const& hs_error)
@@ -11320,6 +12037,7 @@ catch (...)
 
 static void* hs_get_4db1bcb7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Lunge));
 }
 catch (std::exception const& hs_error)
@@ -11335,6 +12053,7 @@ catch (...)
 
 static void* hs_get_3f603056() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Lure));
 }
 catch (std::exception const& hs_error)
@@ -11350,6 +12069,7 @@ catch (...)
 
 static void* hs_get_1754856b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Mending));
 }
 catch (std::exception const& hs_error)
@@ -11365,6 +12085,7 @@ catch (...)
 
 static void* hs_get_afdfb1e7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Multishot));
 }
 catch (std::exception const& hs_error)
@@ -11380,6 +12101,7 @@ catch (...)
 
 static void* hs_get_684403e6() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Piercing));
 }
 catch (std::exception const& hs_error)
@@ -11395,6 +12117,7 @@ catch (...)
 
 static void* hs_get_7e31743d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Power));
 }
 catch (std::exception const& hs_error)
@@ -11410,6 +12133,7 @@ catch (...)
 
 static void* hs_get_3bdd60c3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::ProjectileProtection));
 }
 catch (std::exception const& hs_error)
@@ -11425,6 +12149,7 @@ catch (...)
 
 static void* hs_get_92f0cf42() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Protection));
 }
 catch (std::exception const& hs_error)
@@ -11440,6 +12165,7 @@ catch (...)
 
 static void* hs_get_8a287471() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Punch));
 }
 catch (std::exception const& hs_error)
@@ -11455,6 +12181,7 @@ catch (...)
 
 static void* hs_get_dcbab3c3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::QuickCharge));
 }
 catch (std::exception const& hs_error)
@@ -11470,6 +12197,7 @@ catch (...)
 
 static void* hs_get_1033e670() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::Enchantment::RegistryType));
 }
 catch (std::exception const& hs_error)
@@ -11485,6 +12213,7 @@ catch (...)
 
 static void* hs_get_9b25f965() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Respiration));
 }
 catch (std::exception const& hs_error)
@@ -11500,6 +12229,7 @@ catch (...)
 
 static void* hs_get_d854aa52() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Riptide));
 }
 catch (std::exception const& hs_error)
@@ -11515,6 +12245,7 @@ catch (...)
 
 static void* hs_get_566b32e8() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Sharpness));
 }
 catch (std::exception const& hs_error)
@@ -11530,6 +12261,7 @@ catch (...)
 
 static void* hs_get_564c5cbf() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::SilkTouch));
 }
 catch (std::exception const& hs_error)
@@ -11545,6 +12277,7 @@ catch (...)
 
 static void* hs_get_8fcf8a73() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Smite));
 }
 catch (std::exception const& hs_error)
@@ -11560,6 +12293,7 @@ catch (...)
 
 static void* hs_get_67671d69() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::SoulSpeed));
 }
 catch (std::exception const& hs_error)
@@ -11575,6 +12309,7 @@ catch (...)
 
 static void* hs_get_5fda73bb() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::SwiftSneak));
 }
 catch (std::exception const& hs_error)
@@ -11590,6 +12325,7 @@ catch (...)
 
 static void* hs_get_2d4842ba() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Thorns));
 }
 catch (std::exception const& hs_error)
@@ -11605,6 +12341,7 @@ catch (...)
 
 static void* hs_get_84a62466() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::Unbreaking));
 }
 catch (std::exception const& hs_error)
@@ -11620,6 +12357,7 @@ catch (...)
 
 static void* hs_get_7e61d5a3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::Enchantment::WindBurst));
 }
 catch (std::exception const& hs_error)
@@ -11635,6 +12373,7 @@ catch (...)
 
 static bool hs_method_e509f229(void* hs_self, void* item) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Enchantment const*>(hs_self)->canEnchantItem(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
@@ -11650,6 +12389,7 @@ catch (...)
 
 static bool hs_method_b77af417(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Enchantment const*>(hs_self)->conflictsWith(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -11665,6 +12405,7 @@ catch (...)
 
 static std::int32_t hs_method_f4b98c86(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Enchantment const*>(hs_self)->getMaxLevel());
 }
 catch (std::exception const& hs_error)
@@ -11680,6 +12421,7 @@ catch (...)
 
 static std::int32_t hs_method_51220b54(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Enchantment const*>(hs_self)->getStartLevel());
 }
 catch (std::exception const& hs_error)
@@ -11695,6 +12437,7 @@ catch (...)
 
 static void* hs_cast_7915498f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDamageEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11710,6 +12453,7 @@ catch (...)
 
 static void* hs_cast_0b261c24(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDeathEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11725,6 +12469,7 @@ catch (...)
 
 static void* hs_cast_dab0ddaa(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorEvent<endstone::Actor>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11740,6 +12485,7 @@ catch (...)
 
 static void* hs_cast_408d949a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11755,6 +12501,7 @@ catch (...)
 
 static void* hs_cast_bc4eac47(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorExplodeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11770,6 +12517,7 @@ catch (...)
 
 static void* hs_cast_a032f019(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorKnockbackEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11785,6 +12533,7 @@ catch (...)
 
 static void* hs_cast_4d62e2e9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorRemoveEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11800,6 +12549,7 @@ catch (...)
 
 static void* hs_cast_ad9b4804(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorSpawnEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11815,6 +12565,7 @@ catch (...)
 
 static void* hs_cast_f5672035(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorTeleportEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11830,6 +12581,7 @@ catch (...)
 
 static void* hs_cast_5304bc9e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockBreakEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11845,6 +12597,7 @@ catch (...)
 
 static void* hs_cast_29c1a689(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockCookEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11860,6 +12613,7 @@ catch (...)
 
 static void* hs_cast_d88a92b7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11875,6 +12629,7 @@ catch (...)
 
 static void* hs_cast_9b67beb6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockExplodeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11890,6 +12645,7 @@ catch (...)
 
 static void* hs_cast_c8830fdf(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFormEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11905,6 +12661,7 @@ catch (...)
 
 static void* hs_cast_7848d07b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFromToEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11920,6 +12677,7 @@ catch (...)
 
 static void* hs_cast_32fd87ac(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockGrowEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11935,6 +12693,7 @@ catch (...)
 
 static void* hs_cast_e76c8131(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11950,6 +12709,7 @@ catch (...)
 
 static void* hs_cast_d30be32b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonExtendEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11965,6 +12725,7 @@ catch (...)
 
 static void* hs_cast_3300c134(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonRetractEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11980,6 +12741,7 @@ catch (...)
 
 static void* hs_cast_1112a5fd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPlaceEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -11995,6 +12757,7 @@ catch (...)
 
 static void* hs_cast_c918a5b6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BroadcastMessageEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12010,6 +12773,7 @@ catch (...)
 
 static void* hs_cast_5ea60b3b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12025,6 +12789,7 @@ catch (...)
 
 static void* hs_cast_c4bb8409(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12040,6 +12805,7 @@ catch (...)
 
 static void* hs_cast_ad726190(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12055,6 +12821,7 @@ catch (...)
 
 static void* hs_cast_94476e9b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12070,6 +12837,7 @@ catch (...)
 
 static void* hs_cast_5cb88087(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12085,6 +12853,7 @@ catch (...)
 
 static void* hs_cast_9c37fdb4(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::WeatherEvent>*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12100,6 +12869,7 @@ catch (...)
 
 static void* hs_cast_ebbaa490(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ChunkEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12115,6 +12885,7 @@ catch (...)
 
 static void* hs_cast_f028bb07(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ChunkLoadEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12130,6 +12901,7 @@ catch (...)
 
 static void* hs_cast_f2887fcd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ChunkUnloadEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12145,6 +12917,7 @@ catch (...)
 
 static void* hs_cast_3e9b6f7e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::DimensionEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12160,6 +12933,7 @@ catch (...)
 
 static void* hs_cast_bb39a0f2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::LeavesDecayEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12175,6 +12949,7 @@ catch (...)
 
 static void* hs_cast_f093ad96(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::LevelEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12190,6 +12965,7 @@ catch (...)
 
 static void* hs_cast_8516059a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::MapInitializeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12205,6 +12981,7 @@ catch (...)
 
 static void* hs_cast_3ac0f2b1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketReceiveEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12220,6 +12997,7 @@ catch (...)
 
 static void* hs_cast_af37e623(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketSendEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12235,6 +13013,7 @@ catch (...)
 
 static void* hs_cast_6d59d238(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedEnterEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12250,6 +13029,7 @@ catch (...)
 
 static void* hs_cast_4a54279f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedLeaveEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12265,6 +13045,7 @@ catch (...)
 
 static void* hs_cast_9a763c07(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerChatEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12280,6 +13061,7 @@ catch (...)
 
 static void* hs_cast_3b6d5ca5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerCommandEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12295,6 +13077,7 @@ catch (...)
 
 static void* hs_cast_12ddcc7a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDeathEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12310,6 +13093,7 @@ catch (...)
 
 static void* hs_cast_9c741e8f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDimensionChangeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12325,6 +13109,7 @@ catch (...)
 
 static void* hs_cast_ff0ced5c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDropItemEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12340,6 +13125,7 @@ catch (...)
 
 static void* hs_cast_1c3e7f4f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerEmoteEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12355,6 +13141,7 @@ catch (...)
 
 static void* hs_cast_15c3e21c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12370,6 +13157,7 @@ catch (...)
 
 static void* hs_cast_3ab96be9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerGameModeChangeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12385,6 +13173,7 @@ catch (...)
 
 static void* hs_cast_65734dcc(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractActorEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12400,6 +13189,7 @@ catch (...)
 
 static void* hs_cast_c945f964(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12415,6 +13205,7 @@ catch (...)
 
 static void* hs_cast_417a5241(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemConsumeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12430,6 +13221,7 @@ catch (...)
 
 static void* hs_cast_0642017b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemHeldEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12445,6 +13237,7 @@ catch (...)
 
 static void* hs_cast_5284e8fc(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJoinEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12460,6 +13253,7 @@ catch (...)
 
 static void* hs_cast_3b0fa5a2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJumpEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12475,6 +13269,7 @@ catch (...)
 
 static void* hs_cast_0c37f2f7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerKickEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12490,6 +13285,7 @@ catch (...)
 
 static void* hs_cast_3ea46fc6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerLoginEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12505,6 +13301,7 @@ catch (...)
 
 static void* hs_cast_bf246f71(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12520,6 +13317,7 @@ catch (...)
 
 static void* hs_cast_61b067b3(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPickupItemEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12535,6 +13333,7 @@ catch (...)
 
 static void* hs_cast_d19cfabb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12550,6 +13349,7 @@ catch (...)
 
 static void* hs_cast_2250938a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerQuitEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12565,6 +13365,7 @@ catch (...)
 
 static void* hs_cast_1c9ac002(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerRespawnEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12580,6 +13381,7 @@ catch (...)
 
 static void* hs_cast_46b27142(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerSkinChangeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12595,6 +13397,7 @@ catch (...)
 
 static void* hs_cast_7fd14a65(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12610,6 +13413,7 @@ catch (...)
 
 static void* hs_cast_216dd1be(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PluginDisableEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12625,6 +13429,7 @@ catch (...)
 
 static void* hs_cast_31533057(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PluginEnableEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12640,6 +13445,7 @@ catch (...)
 
 static void* hs_cast_da531362(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ScriptMessageEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12655,6 +13461,7 @@ catch (...)
 
 static void* hs_cast_78307f7c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerCommandEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12670,6 +13477,7 @@ catch (...)
 
 static void* hs_cast_262b255e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12685,6 +13493,7 @@ catch (...)
 
 static void* hs_cast_8d88dc6c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerListPingEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12700,6 +13509,7 @@ catch (...)
 
 static void* hs_cast_483d855b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerLoadEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12715,6 +13525,7 @@ catch (...)
 
 static void* hs_cast_6ae11792(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ThunderChangeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12730,6 +13541,7 @@ catch (...)
 
 static void* hs_cast_c8849ae3(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WeatherChangeEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12745,6 +13557,7 @@ catch (...)
 
 static void* hs_cast_e2073b6c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WeatherEvent*>(static_cast<endstone::Event*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -12760,6 +13573,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5521cc7d(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Event const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -12777,6 +13591,7 @@ catch (...)
 
 static bool hs_method_828d94d9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Event const*>(hs_self)->isAsynchronous());
 }
 catch (std::exception const& hs_error)
@@ -12792,6 +13607,7 @@ catch (...)
 
 static void* hs_method_604c4ba6(void* hs_self, void* arg0) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Event*>(hs_self)->operator=(std::move(*static_cast<endstone::Event*>(arg0)))));
 }
 catch (std::exception const& hs_error)
@@ -12807,6 +13623,7 @@ catch (...)
 
 static void hs_destroy_b1ba5a9f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::EventHandler*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -12842,6 +13659,7 @@ struct hs_cb_closure_hs_create_821d4cdc_cb1
 
 static void* hs_create_821d4cdc(const char* event_data, std::size_t event_size, void* executor_invoke, void* executor_userData, void* executor_release, std::int32_t priority, void* plugin, bool ignore_cancelled) try
 {
+    clearLastError();
     return new endstone::EventHandler(std::basic_string<char>(event_data, event_size), std::function<void (endstone::Event &)>(hs_cb_closure_hs_create_821d4cdc_cb1{std::make_shared<hs_cb_state_hs_create_821d4cdc_cb1>(reinterpret_cast<hs_cb_invoke_hs_create_821d4cdc_cb1>(executor_invoke), executor_userData, reinterpret_cast<hs_cb_release_hs_create_821d4cdc_cb1>(executor_release))}), static_cast<endstone::EventPriority>(priority), *static_cast<endstone::Plugin*>(plugin), static_cast<bool>(ignore_cancelled));
 }
 catch (std::exception const& hs_error)
@@ -12857,6 +13675,7 @@ catch (...)
 
 static void hs_method_9a78ce22(void* hs_self, void* event) try
 {
+    clearLastError();
     static_cast<endstone::EventHandler const*>(hs_self)->callEvent(*static_cast<endstone::Event*>(event));
 }
 catch (std::exception const& hs_error)
@@ -12872,6 +13691,7 @@ catch (...)
 
 static HosihikariStringView hs_method_90b375e3(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::EventHandler const*>(hs_self)->getEventType();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -12889,6 +13709,7 @@ catch (...)
 
 static void* hs_method_856d4bae(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::EventHandler const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
@@ -12904,6 +13725,7 @@ catch (...)
 
 static std::int32_t hs_method_4a2a82af(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::EventHandler const*>(hs_self)->getPriority());
 }
 catch (std::exception const& hs_error)
@@ -12919,6 +13741,7 @@ catch (...)
 
 static bool hs_method_f53a20bc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::EventHandler const*>(hs_self)->isIgnoreCancelled());
 }
 catch (std::exception const& hs_error)
@@ -12934,6 +13757,7 @@ catch (...)
 
 static void hs_destroy_ba9f438f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Form<endstone::ActionForm>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -12949,6 +13773,7 @@ catch (...)
 
 static void* hs_create_3f90e3e1() try
 {
+    clearLastError();
     return new endstone::Form<endstone::ActionForm>();
 }
 catch (std::exception const& hs_error)
@@ -12964,6 +13789,7 @@ catch (...)
 
 static void* hs_method_f3d0d576(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ActionForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
@@ -12979,6 +13805,7 @@ catch (...)
 
 static void* hs_method_3eb60709(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ActionForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
@@ -13014,6 +13841,7 @@ struct hs_cb_closure_hs_method_dd992244_cb0
 
 static void* hs_method_dd992244(void* hs_self, void* on_close_invoke, void* on_close_userData, void* on_close_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::ActionForm>*>(hs_self)->setOnClose(std::function<void (endstone::Player *)>(hs_cb_closure_hs_method_dd992244_cb0{std::make_shared<hs_cb_state_hs_method_dd992244_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_dd992244_cb0>(on_close_invoke), on_close_userData, reinterpret_cast<hs_cb_release_hs_method_dd992244_cb0>(on_close_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -13029,6 +13857,7 @@ catch (...)
 
 static void* hs_method_8541389a(void* hs_self, void* title) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::ActionForm>*>(hs_self)->setTitle(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(title))));
 }
 catch (std::exception const& hs_error)
@@ -13044,6 +13873,7 @@ catch (...)
 
 static void hs_destroy_1ad4d711(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Form<endstone::MessageForm>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -13059,6 +13889,7 @@ catch (...)
 
 static void* hs_create_26427ab1() try
 {
+    clearLastError();
     return new endstone::Form<endstone::MessageForm>();
 }
 catch (std::exception const& hs_error)
@@ -13074,6 +13905,7 @@ catch (...)
 
 static void* hs_method_c1218e7f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::MessageForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
@@ -13089,6 +13921,7 @@ catch (...)
 
 static void* hs_method_200d5e7a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::MessageForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
@@ -13124,6 +13957,7 @@ struct hs_cb_closure_hs_method_dab04cb1_cb0
 
 static void* hs_method_dab04cb1(void* hs_self, void* on_close_invoke, void* on_close_userData, void* on_close_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::MessageForm>*>(hs_self)->setOnClose(std::function<void (endstone::Player *)>(hs_cb_closure_hs_method_dab04cb1_cb0{std::make_shared<hs_cb_state_hs_method_dab04cb1_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_dab04cb1_cb0>(on_close_invoke), on_close_userData, reinterpret_cast<hs_cb_release_hs_method_dab04cb1_cb0>(on_close_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -13139,6 +13973,7 @@ catch (...)
 
 static void* hs_method_3aab670c(void* hs_self, void* title) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::MessageForm>*>(hs_self)->setTitle(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(title))));
 }
 catch (std::exception const& hs_error)
@@ -13154,6 +13989,7 @@ catch (...)
 
 static void hs_destroy_42131b78(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Form<endstone::ModalForm>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -13169,6 +14005,7 @@ catch (...)
 
 static void* hs_create_5911bb43() try
 {
+    clearLastError();
     return new endstone::Form<endstone::ModalForm>();
 }
 catch (std::exception const& hs_error)
@@ -13184,6 +14021,7 @@ catch (...)
 
 static void* hs_method_88a5abf6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *)>(static_cast<endstone::Form<endstone::ModalForm> const*>(hs_self)->getOnClose()));
 }
 catch (std::exception const& hs_error)
@@ -13199,6 +14037,7 @@ catch (...)
 
 static void* hs_method_ffd54804(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Form<endstone::ModalForm> const*>(hs_self)->getTitle()));
 }
 catch (std::exception const& hs_error)
@@ -13234,6 +14073,7 @@ struct hs_cb_closure_hs_method_560b2e39_cb0
 
 static void* hs_method_560b2e39(void* hs_self, void* on_close_invoke, void* on_close_userData, void* on_close_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::ModalForm>*>(hs_self)->setOnClose(std::function<void (endstone::Player *)>(hs_cb_closure_hs_method_560b2e39_cb0{std::make_shared<hs_cb_state_hs_method_560b2e39_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_560b2e39_cb0>(on_close_invoke), on_close_userData, reinterpret_cast<hs_cb_release_hs_method_560b2e39_cb0>(on_close_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -13249,6 +14089,7 @@ catch (...)
 
 static void* hs_method_689a3327(void* hs_self, void* title) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Form<endstone::ModalForm>*>(hs_self)->setTitle(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(title))));
 }
 catch (std::exception const& hs_error)
@@ -13264,6 +14105,7 @@ catch (...)
 
 static void hs_destroy_bedd34b0(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::HandlerList*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -13279,6 +14121,7 @@ catch (...)
 
 static void* hs_create_8d9494ee(const char* event_data, std::size_t event_size) try
 {
+    clearLastError();
     return new endstone::HandlerList(std::basic_string<char>(event_data, event_size));
 }
 catch (std::exception const& hs_error)
@@ -13294,6 +14137,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_afbf70d8(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::HandlerList const*>(hs_self)->getHandlers();
     hs_arrayResult.clear();
@@ -13314,6 +14158,7 @@ catch (...)
 
 static void* hs_method_98c67315(void* hs_self, void* handler) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::HandlerList*>(hs_self)->registerHandler(std::unique_ptr<endstone::EventHandler>(static_cast<endstone::EventHandler*>(handler)))));
 }
 catch (std::exception const& hs_error)
@@ -13329,6 +14174,7 @@ catch (...)
 
 static void hs_method_6569bb82(void* hs_self, void* handler) try
 {
+    clearLastError();
     static_cast<endstone::HandlerList*>(hs_self)->unregister(*static_cast<const endstone::EventHandler*>(handler));
 }
 catch (std::exception const& hs_error)
@@ -13344,6 +14190,7 @@ catch (...)
 
 static void hs_method_9b6e74ba(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::HandlerList*>(hs_self)->unregister(*static_cast<const endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -13359,6 +14206,7 @@ catch (...)
 
 static void hs_destroy_50f38d54(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Header*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -13374,6 +14222,7 @@ catch (...)
 
 static void* hs_create_bd8f2c0e() try
 {
+    clearLastError();
     return new endstone::Header();
 }
 catch (std::exception const& hs_error)
@@ -13389,6 +14238,7 @@ catch (...)
 
 static void* hs_create_1dfe588b(void* label) try
 {
+    clearLastError();
     return new endstone::Header(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label));
 }
 catch (std::exception const& hs_error)
@@ -13404,6 +14254,7 @@ catch (...)
 
 static void* hs_method_94ba2884(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Header const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
@@ -13419,6 +14270,7 @@ catch (...)
 
 static void* hs_method_a434230f(void* hs_self, void* label) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Header*>(hs_self)->setLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label))));
 }
 catch (std::exception const& hs_error)
@@ -13434,6 +14286,7 @@ catch (...)
 
 static void* hs_cast_8a14ea75(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorDamageEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13449,6 +14302,7 @@ catch (...)
 
 static void* hs_cast_9f9f1330(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorExplodeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13464,6 +14318,7 @@ catch (...)
 
 static void* hs_cast_9264118d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorKnockbackEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13479,6 +14334,7 @@ catch (...)
 
 static void* hs_cast_ea4d536a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorSpawnEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13494,6 +14350,7 @@ catch (...)
 
 static void* hs_cast_88a99122(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ActorTeleportEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13509,6 +14366,7 @@ catch (...)
 
 static void* hs_cast_7bbd7cc6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockBreakEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13524,6 +14382,7 @@ catch (...)
 
 static void* hs_cast_6ab10a31(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockCookEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13539,6 +14398,7 @@ catch (...)
 
 static void* hs_cast_7c828e79(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockExplodeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13554,6 +14414,7 @@ catch (...)
 
 static void* hs_cast_18a08ee2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFormEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13569,6 +14430,7 @@ catch (...)
 
 static void* hs_cast_b0f953a2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockFromToEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13584,6 +14446,7 @@ catch (...)
 
 static void* hs_cast_792288e1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockGrowEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13599,6 +14462,7 @@ catch (...)
 
 static void* hs_cast_3423575a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13614,6 +14478,7 @@ catch (...)
 
 static void* hs_cast_d9e5e030(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonExtendEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13629,6 +14494,7 @@ catch (...)
 
 static void* hs_cast_470cc0a7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPistonRetractEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13644,6 +14510,7 @@ catch (...)
 
 static void* hs_cast_c28f06b0(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockPlaceEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13659,6 +14526,7 @@ catch (...)
 
 static void* hs_cast_ce331dca(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BroadcastMessageEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13674,6 +14542,7 @@ catch (...)
 
 static void* hs_cast_dfd94705(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Actor>>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13689,6 +14558,7 @@ catch (...)
 
 static void* hs_cast_467ec8cd(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ActorEvent<endstone::Mob>>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13704,6 +14574,7 @@ catch (...)
 
 static void* hs_cast_0fac2e13(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13719,6 +14590,7 @@ catch (...)
 
 static void* hs_cast_319d560f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13734,6 +14606,7 @@ catch (...)
 
 static void* hs_cast_4ecdf7e6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13749,6 +14622,7 @@ catch (...)
 
 static void* hs_cast_949e30bb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::WeatherEvent>*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13764,6 +14638,7 @@ catch (...)
 
 static void* hs_cast_7c2ff568(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::LeavesDecayEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13779,6 +14654,7 @@ catch (...)
 
 static void* hs_cast_4b3d151c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketReceiveEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13794,6 +14670,7 @@ catch (...)
 
 static void* hs_cast_deeabec7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PacketSendEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13809,6 +14686,7 @@ catch (...)
 
 static void* hs_cast_310b0b7b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedEnterEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13824,6 +14702,7 @@ catch (...)
 
 static void* hs_cast_05a09477(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerChatEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13839,6 +14718,7 @@ catch (...)
 
 static void* hs_cast_778cfa20(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerCommandEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13854,6 +14734,7 @@ catch (...)
 
 static void* hs_cast_0105004e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDropItemEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13869,6 +14750,7 @@ catch (...)
 
 static void* hs_cast_6bdc0d2d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerEmoteEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13884,6 +14766,7 @@ catch (...)
 
 static void* hs_cast_df2d57f2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerGameModeChangeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13899,6 +14782,7 @@ catch (...)
 
 static void* hs_cast_a20f1a0f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractActorEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13914,6 +14798,7 @@ catch (...)
 
 static void* hs_cast_929ef26c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13929,6 +14814,7 @@ catch (...)
 
 static void* hs_cast_e847bf24(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemConsumeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13944,6 +14830,7 @@ catch (...)
 
 static void* hs_cast_0dae94b2(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemHeldEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13959,6 +14846,7 @@ catch (...)
 
 static void* hs_cast_9346f404(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJumpEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13974,6 +14862,7 @@ catch (...)
 
 static void* hs_cast_5a3b156a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerKickEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -13989,6 +14878,7 @@ catch (...)
 
 static void* hs_cast_b93865eb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerLoginEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14004,6 +14894,7 @@ catch (...)
 
 static void* hs_cast_e53c0617(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14019,6 +14910,7 @@ catch (...)
 
 static void* hs_cast_be60cc65(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPickupItemEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14034,6 +14926,7 @@ catch (...)
 
 static void* hs_cast_dd33acca(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14049,6 +14942,7 @@ catch (...)
 
 static void* hs_cast_36baa389(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerSkinChangeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14064,6 +14958,7 @@ catch (...)
 
 static void* hs_cast_d0c5c41b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14079,6 +14974,7 @@ catch (...)
 
 static void* hs_cast_056c2b6d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ScriptMessageEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14094,6 +14990,7 @@ catch (...)
 
 static void* hs_cast_6e3637e3(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerCommandEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14109,6 +15006,7 @@ catch (...)
 
 static void* hs_cast_1b65ef3b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ServerListPingEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14124,6 +15022,7 @@ catch (...)
 
 static void* hs_cast_bdde20b1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ThunderChangeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14139,6 +15038,7 @@ catch (...)
 
 static void* hs_cast_c5448f0f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WeatherChangeEvent*>(static_cast<endstone::ICancellable*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14154,6 +15054,7 @@ catch (...)
 
 static void hs_method_4eb9a2e8(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::ICancellable*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -14169,6 +15070,7 @@ catch (...)
 
 static bool hs_method_297a2019(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ICancellable const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -14184,6 +15086,7 @@ catch (...)
 
 static void hs_method_f20cf498(void* hs_self, bool cancel) try
 {
+    clearLastError();
     static_cast<endstone::ICancellable*>(hs_self)->setCancelled(static_cast<bool>(cancel));
 }
 catch (std::exception const& hs_error)
@@ -14199,6 +15102,7 @@ catch (...)
 
 static void hs_destroy_7a5ce5ce(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::IRegistry*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -14214,6 +15118,7 @@ catch (...)
 
 static void* hs_cast_3e1c2ed7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Registry<endstone::BlockType>*>(static_cast<endstone::IRegistry*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14229,6 +15134,7 @@ catch (...)
 
 static void* hs_cast_61591796(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Registry<endstone::Enchantment>*>(static_cast<endstone::IRegistry*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14244,6 +15150,7 @@ catch (...)
 
 static void* hs_cast_9b7338f5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Registry<endstone::ItemType>*>(static_cast<endstone::IRegistry*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -14259,6 +15166,7 @@ catch (...)
 
 static void hs_destroy_f0254b86(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::Attribute>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -14274,6 +15182,7 @@ catch (...)
 
 static void* hs_create_89e4c122(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Attribute>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::Attribute>>(hs_borrowed->strings[0]);
@@ -14294,6 +15203,7 @@ catch (...)
 
 static void* hs_create_f0c72e68(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Attribute>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::Attribute>>(std::string_view(hs_borrowed->strings[0]));
@@ -14314,6 +15224,7 @@ catch (...)
 
 static void* hs_create_d8db6b11(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Attribute>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -14335,6 +15246,7 @@ catch (...)
 
 static HosihikariStringView hs_get_5c45f524() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::Attribute>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -14351,6 +15263,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8fbdaacf(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14368,6 +15281,7 @@ catch (...)
 
 static HosihikariStringView hs_method_de387ceb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14385,6 +15299,7 @@ catch (...)
 
 static void* hs_method_dc58d608(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::Attribute>(endstone::Identifier<endstone::Attribute>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -14400,6 +15315,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1aacf4c7(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14417,6 +15333,7 @@ catch (...)
 
 static bool hs_method_e93a0167(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14432,6 +15349,7 @@ catch (...)
 
 static bool hs_method_99905309(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::Attribute> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Attribute>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14447,6 +15365,7 @@ catch (...)
 
 static void hs_destroy_6f7cc141(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::BlockType>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -14462,6 +15381,7 @@ catch (...)
 
 static void* hs_create_436a7679(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::BlockType>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::BlockType>>(hs_borrowed->strings[0]);
@@ -14482,6 +15402,7 @@ catch (...)
 
 static void* hs_create_2aae5a58(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::BlockType>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::BlockType>>(std::string_view(hs_borrowed->strings[0]));
@@ -14502,6 +15423,7 @@ catch (...)
 
 static void* hs_create_d33e431e(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::BlockType>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -14523,6 +15445,7 @@ catch (...)
 
 static HosihikariStringView hs_get_88919212() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::BlockType>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -14539,6 +15462,7 @@ catch (...)
 
 static HosihikariStringView hs_method_368d2e5c(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14556,6 +15480,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d826ab39(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14573,6 +15498,7 @@ catch (...)
 
 static void* hs_method_536ffd0e(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(endstone::Identifier<endstone::BlockType>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -14588,6 +15514,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7ec2a60b(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14605,6 +15532,7 @@ catch (...)
 
 static bool hs_method_f9895e58(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14620,6 +15548,7 @@ catch (...)
 
 static bool hs_method_ff363f9a(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::BlockType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14635,6 +15564,7 @@ catch (...)
 
 static void hs_destroy_ecddc85a(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::EffectType>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -14650,6 +15580,7 @@ catch (...)
 
 static void* hs_create_b837d798(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::EffectType>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::EffectType>>(hs_borrowed->strings[0]);
@@ -14670,6 +15601,7 @@ catch (...)
 
 static void* hs_create_afa867a7(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::EffectType>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::EffectType>>(std::string_view(hs_borrowed->strings[0]));
@@ -14690,6 +15622,7 @@ catch (...)
 
 static void* hs_create_0436e06a(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::EffectType>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -14711,6 +15644,7 @@ catch (...)
 
 static HosihikariStringView hs_get_45263e5e() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::EffectType>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -14727,6 +15661,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d86c10f1(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14744,6 +15679,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c82873c6(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14761,6 +15697,7 @@ catch (...)
 
 static void* hs_method_f363258e(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::EffectType>(endstone::Identifier<endstone::EffectType>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -14776,6 +15713,7 @@ catch (...)
 
 static HosihikariStringView hs_method_921eaed1(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14793,6 +15731,7 @@ catch (...)
 
 static bool hs_method_04eb2c33(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14808,6 +15747,7 @@ catch (...)
 
 static bool hs_method_231f561c(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::EffectType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::EffectType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14823,6 +15763,7 @@ catch (...)
 
 static void hs_destroy_480784ce(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::Enchantment>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -14838,6 +15779,7 @@ catch (...)
 
 static void* hs_create_adf80fd9(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Enchantment>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::Enchantment>>(hs_borrowed->strings[0]);
@@ -14858,6 +15800,7 @@ catch (...)
 
 static void* hs_create_c15968dd(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Enchantment>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::Enchantment>>(std::string_view(hs_borrowed->strings[0]));
@@ -14878,6 +15821,7 @@ catch (...)
 
 static void* hs_create_067a59db(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::Enchantment>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -14899,6 +15843,7 @@ catch (...)
 
 static HosihikariStringView hs_get_e4337297() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::Enchantment>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -14915,6 +15860,7 @@ catch (...)
 
 static HosihikariStringView hs_method_15da8200(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14932,6 +15878,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1580c7b3(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14949,6 +15896,7 @@ catch (...)
 
 static void* hs_method_182095df(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(endstone::Identifier<endstone::Enchantment>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -14964,6 +15912,7 @@ catch (...)
 
 static HosihikariStringView hs_method_069ca5ec(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -14981,6 +15930,7 @@ catch (...)
 
 static bool hs_method_2569d99d(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -14996,6 +15946,7 @@ catch (...)
 
 static bool hs_method_6f15e1ca(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::Enchantment> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -15011,6 +15962,7 @@ catch (...)
 
 static void hs_destroy_db7a25fb(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::ItemType>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -15026,6 +15978,7 @@ catch (...)
 
 static void* hs_create_e7ef4bcf(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::ItemType>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::ItemType>>(hs_borrowed->strings[0]);
@@ -15046,6 +15999,7 @@ catch (...)
 
 static void* hs_create_db0af3b8(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::ItemType>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::ItemType>>(std::string_view(hs_borrowed->strings[0]));
@@ -15066,6 +16020,7 @@ catch (...)
 
 static void* hs_create_c504eff7(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::ItemType>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -15087,6 +16042,7 @@ catch (...)
 
 static HosihikariStringView hs_get_5a376a49() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::ItemType>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -15103,6 +16059,7 @@ catch (...)
 
 static HosihikariStringView hs_method_95fc5d09(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15120,6 +16077,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b025d694(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15137,6 +16095,7 @@ catch (...)
 
 static void* hs_method_5d73cb1e(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(endstone::Identifier<endstone::ItemType>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -15152,6 +16111,7 @@ catch (...)
 
 static HosihikariStringView hs_method_432fbdeb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15169,6 +16129,7 @@ catch (...)
 
 static bool hs_method_bc33017e(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -15184,6 +16145,7 @@ catch (...)
 
 static bool hs_method_1d49e2cf(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::ItemType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -15199,6 +16161,7 @@ catch (...)
 
 static void hs_destroy_f89e0f3f(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::Identifier<endstone::PotionType>>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -15214,6 +16177,7 @@ catch (...)
 
 static void* hs_create_1e37c9fe(const char* s_data, std::size_t s_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::PotionType>>();
     hs_borrowed->strings.emplace_back(s_data, s_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::PotionType>>(hs_borrowed->strings[0]);
@@ -15234,6 +16198,7 @@ catch (...)
 
 static void* hs_create_90ebf2af(const char* identifier_data, std::size_t identifier_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::PotionType>>();
     hs_borrowed->strings.emplace_back(identifier_data, identifier_size);
     hs_borrowed->value = std::make_unique<endstone::Identifier<endstone::PotionType>>(std::string_view(hs_borrowed->strings[0]));
@@ -15254,6 +16219,7 @@ catch (...)
 
 static void* hs_create_1093b0a8(const char* namespace__data, std::size_t namespace__size, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::Identifier<endstone::PotionType>>();
     hs_borrowed->strings.emplace_back(namespace__data, namespace__size);
     hs_borrowed->strings.emplace_back(key_data, key_size);
@@ -15275,6 +16241,7 @@ catch (...)
 
 static HosihikariStringView hs_get_0d65367b() try
 {
+    clearLastError();
     auto const& value = endstone::Identifier<endstone::PotionType>::Minecraft;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -15291,6 +16258,7 @@ catch (...)
 
 static HosihikariStringView hs_method_726772db(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->getKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15308,6 +16276,7 @@ catch (...)
 
 static HosihikariStringView hs_method_53469ec5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->getNamespace();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15325,6 +16294,7 @@ catch (...)
 
 static void* hs_method_2e7f4d49(const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::PotionType>(endstone::Identifier<endstone::PotionType>::minecraft(std::basic_string_view<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -15340,6 +16310,7 @@ catch (...)
 
 static HosihikariStringView hs_method_72228dbe(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator std::basic_string<char>();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15357,6 +16328,7 @@ catch (...)
 
 static bool hs_method_8995c2b6(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -15372,6 +16344,7 @@ catch (...)
 
 static bool hs_method_6a05846e(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Identifier<endstone::PotionType> const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::PotionType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -15387,6 +16360,7 @@ catch (...)
 
 static void hs_destroy_1f0388f6(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Image*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -15402,6 +16376,7 @@ catch (...)
 
 static void* hs_create_21db8062(std::int32_t type, std::int32_t width, std::int32_t height) try
 {
+    clearLastError();
     return new endstone::Image(static_cast<const endstone::Image::Type>(type), static_cast<const int>(width), static_cast<const int>(height));
 }
 catch (std::exception const& hs_error)
@@ -15417,6 +16392,7 @@ catch (...)
 
 static void* hs_method_1db0b641(std::int32_t type, std::int32_t width, std::int32_t height, const std::uint8_t* array_data, std::size_t array_count, bool* hs_hasValue) try
 {
+    clearLastError();
     auto hs_expected = endstone::Image::fromArray(static_cast<endstone::Image::Type>(type), static_cast<const int>(width), static_cast<const int>(height), hs_make_vector<unsigned char>(array_data, array_count));
     if (!hs_expected)
     {
@@ -15442,6 +16418,7 @@ catch (...)
 
 static void* hs_method_6e846c30(std::int32_t type, std::int32_t width, std::int32_t height, const char* buffer_data, std::size_t buffer_size, bool* hs_hasValue) try
 {
+    clearLastError();
     auto hs_expected = endstone::Image::fromBuffer(static_cast<endstone::Image::Type>(type), static_cast<const int>(width), static_cast<const int>(height), std::basic_string_view<char>(buffer_data, buffer_size));
     if (!hs_expected)
     {
@@ -15467,6 +16444,7 @@ catch (...)
 
 static void* hs_method_88dd3b47(void* hs_self, std::int32_t x, std::int32_t y) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::Image const*>(hs_self)->getColor(static_cast<const int>(x), static_cast<const int>(y))));
 }
 catch (std::exception const& hs_error)
@@ -15482,6 +16460,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1a3d1eec(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Image const*>(hs_self)->getData();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -15499,6 +16478,7 @@ catch (...)
 
 static std::int32_t hs_method_a3155781(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getDepth());
 }
 catch (std::exception const& hs_error)
@@ -15514,6 +16494,7 @@ catch (...)
 
 static std::int32_t hs_method_fb8c5d13(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getHeight());
 }
 catch (std::exception const& hs_error)
@@ -15529,6 +16510,7 @@ catch (...)
 
 static std::int32_t hs_method_e57a6d79(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Image const*>(hs_self)->getWidth());
 }
 catch (std::exception const& hs_error)
@@ -15544,6 +16526,7 @@ catch (...)
 
 static void hs_method_8453ba94(void* hs_self, std::int32_t x, std::int32_t y, void* color) try
 {
+    clearLastError();
     static_cast<endstone::Image*>(hs_self)->setColor(static_cast<const int>(x), static_cast<const int>(y), *static_cast<const endstone::Color*>(color));
 }
 catch (std::exception const& hs_error)
@@ -15559,6 +16542,7 @@ catch (...)
 
 static void* hs_cast_e262ab35(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInventory*>(static_cast<endstone::Inventory*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -15574,6 +16558,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_7dafaf57(void* hs_self, void* const* items_data, std::size_t items_count) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::Inventory*>(hs_self)->addItem(hs_make_record_vector<endstone::ItemStack>(items_data, items_count));
@@ -15603,6 +16588,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_360446fb(void* hs_self, void* item) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::Inventory const*>(hs_self)->all(*static_cast<const endstone::ItemStack*>(item));
@@ -15632,6 +16618,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_ca0ae1bc(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::Inventory const*>(hs_self)->all(std::basic_string<char>(type_data, type_size));
@@ -15661,6 +16648,7 @@ catch (...)
 
 static void hs_method_110ad5d5(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->clear();
 }
 catch (std::exception const& hs_error)
@@ -15676,6 +16664,7 @@ catch (...)
 
 static void hs_method_de53c816(void* hs_self, std::int32_t index) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->clear(static_cast<int>(index));
 }
 catch (std::exception const& hs_error)
@@ -15691,6 +16680,7 @@ catch (...)
 
 static bool hs_method_7f00f8a3(void* hs_self, void* item) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
@@ -15706,6 +16696,7 @@ catch (...)
 
 static bool hs_method_5c31ac2b(void* hs_self, void* item, std::int32_t amount) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
@@ -15721,6 +16712,7 @@ catch (...)
 
 static bool hs_method_376fa141(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->contains(std::basic_string<char>(type_data, type_size)));
 }
 catch (std::exception const& hs_error)
@@ -15736,6 +16728,7 @@ catch (...)
 
 static bool hs_method_66a561ae(void* hs_self, void* item, std::int32_t amount) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->containsAtLeast(*static_cast<const endstone::ItemStack*>(item), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
@@ -15751,6 +16744,7 @@ catch (...)
 
 static bool hs_method_6b032e11(void* hs_self, const char* type_data, std::size_t type_size, std::int32_t amount) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->containsAtLeast(std::basic_string<char>(type_data, type_size), static_cast<int>(amount)));
 }
 catch (std::exception const& hs_error)
@@ -15766,6 +16760,7 @@ catch (...)
 
 static std::int32_t hs_method_1c4f2943(void* hs_self, void* item) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->first(*static_cast<const endstone::ItemStack*>(item)));
 }
 catch (std::exception const& hs_error)
@@ -15781,6 +16776,7 @@ catch (...)
 
 static std::int32_t hs_method_efaa5e3c(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->first(std::basic_string<char>(type_data, type_size)));
 }
 catch (std::exception const& hs_error)
@@ -15796,6 +16792,7 @@ catch (...)
 
 static std::int32_t hs_method_16338ae0(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->firstEmpty());
 }
 catch (std::exception const& hs_error)
@@ -15811,6 +16808,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_9b2201c9(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Inventory const*>(hs_self)->getContents();
     hs_arrayResult.clear();
@@ -15831,6 +16829,7 @@ catch (...)
 
 static void* hs_method_917b3412(void* hs_self, std::int32_t index, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Inventory const*>(hs_self)->getItem(static_cast<int>(index));
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -15851,6 +16850,7 @@ catch (...)
 
 static std::int32_t hs_method_7666f5f7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
@@ -15866,6 +16866,7 @@ catch (...)
 
 static std::int32_t hs_method_03536d24(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Inventory const*>(hs_self)->getSize());
 }
 catch (std::exception const& hs_error)
@@ -15881,6 +16882,7 @@ catch (...)
 
 static bool hs_method_54f1a207(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Inventory const*>(hs_self)->isEmpty());
 }
 catch (std::exception const& hs_error)
@@ -15896,6 +16898,7 @@ catch (...)
 
 static void hs_method_2317bda0(void* hs_self, void* item) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->remove(*static_cast<const endstone::ItemStack*>(item));
 }
 catch (std::exception const& hs_error)
@@ -15911,6 +16914,7 @@ catch (...)
 
 static void hs_method_80807888(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->remove(std::basic_string<char>(type_data, type_size));
 }
 catch (std::exception const& hs_error)
@@ -15926,6 +16930,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_a7ff981b(void* hs_self, void* const* items_data, std::size_t items_count) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::Inventory*>(hs_self)->removeItem(hs_make_record_vector<endstone::ItemStack>(items_data, items_count));
@@ -15955,6 +16960,7 @@ catch (...)
 
 static void hs_method_93db8198(void* hs_self, void* const* items_data, std::size_t items_count) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->setContents(hs_make_optional_record_vector<endstone::ItemStack>(items_data, items_count));
 }
 catch (std::exception const& hs_error)
@@ -15970,6 +16976,7 @@ catch (...)
 
 static void hs_method_44d2334c(void* hs_self, std::int32_t index, void* item, bool item_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Inventory*>(hs_self)->setItem(static_cast<int>(index), (item_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(item)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -15985,6 +16992,7 @@ catch (...)
 
 static void hs_destroy_a7df4d30(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::IpBanEntry*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -16000,6 +17008,7 @@ catch (...)
 
 static void* hs_cast_d1caf0c7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BanEntry*>(static_cast<endstone::IpBanEntry*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16015,6 +17024,7 @@ catch (...)
 
 static void* hs_create_0c659ed5(const char* address_data, std::size_t address_size) try
 {
+    clearLastError();
     return new endstone::IpBanEntry(std::basic_string<char>(address_data, address_size));
 }
 catch (std::exception const& hs_error)
@@ -16030,6 +17040,7 @@ catch (...)
 
 static HosihikariStringView hs_method_38cbbb5a(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::IpBanEntry const*>(hs_self)->getAddress();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -16047,6 +17058,7 @@ catch (...)
 
 static void* hs_cast_23412fdb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BanList<endstone::IpBanEntry>*>(static_cast<endstone::IpBanList*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16062,6 +17074,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_4c6dbde4(void* hs_self, const char* address_data, std::size_t address_size, const char* reason_data, std::size_t reason_size, std::int64_t duration, const char* source_data, std::size_t source_size, bool reason_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::IpBanList*>(hs_self)->addBan(std::basic_string<char>(address_data, address_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), std::chrono::duration<std::int64_t>(duration), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -16077,6 +17090,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_7285c7d5(void* hs_self, const char* address_data, std::size_t address_size, const char* reason_data, std::size_t reason_size, std::int64_t expires, const char* source_data, std::size_t source_size, bool reason_hasValue, bool expires_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::IpBanList*>(hs_self)->addBan(std::basic_string<char>(address_data, address_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), (expires_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expires))} : std::nullopt), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -16092,6 +17106,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_81765192(void* hs_self, const char* address_data, std::size_t address_size) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::IpBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(address_data, address_size))).get());
 }
 catch (std::exception const& hs_error)
@@ -16107,6 +17122,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_bd6469d4(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
     auto result = static_cast<endstone::IpBanList const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
@@ -16127,6 +17143,7 @@ catch (...)
 
 static bool hs_method_bc2fd375(void* hs_self, const char* address_data, std::size_t address_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::IpBanList const*>(hs_self)->isBanned(std::basic_string<char>(address_data, address_size)));
 }
 catch (std::exception const& hs_error)
@@ -16142,6 +17159,7 @@ catch (...)
 
 static void hs_method_99fd116a(void* hs_self, const char* address_data, std::size_t address_size) try
 {
+    clearLastError();
     static_cast<endstone::IpBanList*>(hs_self)->removeBan(std::basic_string<char>(address_data, address_size));
 }
 catch (std::exception const& hs_error)
@@ -16157,6 +17175,7 @@ catch (...)
 
 static void* hs_cast_b3ea5c40(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Actor*>(static_cast<endstone::Item*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16172,6 +17191,7 @@ catch (...)
 
 static void* hs_cast_eb00c604(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::Item*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16187,6 +17207,7 @@ catch (...)
 
 static void* hs_cast_9ebdaafe(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::Item*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16202,6 +17223,7 @@ catch (...)
 
 static void* hs_method_e67805b3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Item const*>(hs_self)->getItemStack()));
 }
 catch (std::exception const& hs_error)
@@ -16217,6 +17239,7 @@ catch (...)
 
 static std::int32_t hs_method_cb924d86(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Item const*>(hs_self)->getPickupDelay());
 }
 catch (std::exception const& hs_error)
@@ -16232,6 +17255,7 @@ catch (...)
 
 static std::int64_t hs_method_f43096ca(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Item const*>(hs_self)->getThrower();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int64_t>(*result) : std::int64_t{};
@@ -16251,6 +17275,7 @@ catch (...)
 
 static bool hs_method_c38c6e29(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Item const*>(hs_self)->isUnlimitedLifetime());
 }
 catch (std::exception const& hs_error)
@@ -16266,6 +17291,7 @@ catch (...)
 
 static void hs_method_327ba5e2(void* hs_self, void* stack) try
 {
+    clearLastError();
     static_cast<endstone::Item*>(hs_self)->setItemStack(*static_cast<const endstone::ItemStack*>(stack));
 }
 catch (std::exception const& hs_error)
@@ -16281,6 +17307,7 @@ catch (...)
 
 static void hs_method_d4fd9e86(void* hs_self, std::int32_t delay) try
 {
+    clearLastError();
     static_cast<endstone::Item*>(hs_self)->setPickupDelay(static_cast<int>(delay));
 }
 catch (std::exception const& hs_error)
@@ -16296,6 +17323,7 @@ catch (...)
 
 static void hs_method_b0a39e74(void* hs_self, std::int64_t thrower, bool thrower_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Item*>(hs_self)->setThrower((thrower_hasValue ? std::optional<std::int64_t>{static_cast<std::int64_t>(thrower)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -16311,6 +17339,7 @@ catch (...)
 
 static void hs_method_faf33d09(void* hs_self, bool unlimited) try
 {
+    clearLastError();
     static_cast<endstone::Item*>(hs_self)->setUnlimitedLifetime(static_cast<bool>(unlimited));
 }
 catch (std::exception const& hs_error)
@@ -16326,6 +17355,7 @@ catch (...)
 
 static void* hs_method_d6415600(void* hs_self, void* meta, void* type) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::ItemFactory const*>(hs_self)->asMetaFor(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
     return static_cast<void*>(hs_result.release());
 }
@@ -16342,6 +17372,7 @@ catch (...)
 
 static bool hs_method_c6d96d56(void* hs_self, void* meta1, void* meta2) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemFactory const*>(hs_self)->equals(static_cast<const endstone::ItemMeta*>(meta1), static_cast<const endstone::ItemMeta*>(meta2)));
 }
 catch (std::exception const& hs_error)
@@ -16357,6 +17388,7 @@ catch (...)
 
 static void* hs_method_c3966973(void* hs_self, void* type) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::ItemFactory const*>(hs_self)->getItemMeta(*static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
     return static_cast<void*>(hs_result.release());
 }
@@ -16373,6 +17405,7 @@ catch (...)
 
 static bool hs_method_7f7364e4(void* hs_self, void* meta, void* type) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemFactory const*>(hs_self)->isApplicable(static_cast<const endstone::ItemMeta*>(meta), *static_cast<const endstone::Identifier<endstone::ItemType>*>(type)));
 }
 catch (std::exception const& hs_error)
@@ -16388,6 +17421,7 @@ catch (...)
 
 static void hs_destroy_35474707(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ItemMeta*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -16403,6 +17437,7 @@ catch (...)
 
 static void* hs_cast_52bece1f(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BookMeta*>(static_cast<endstone::ItemMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16418,6 +17453,7 @@ catch (...)
 
 static void* hs_cast_4081aac0(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::CrossbowMeta*>(static_cast<endstone::ItemMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16433,6 +17469,7 @@ catch (...)
 
 static void* hs_cast_4a0b3d94(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::MapMeta*>(static_cast<endstone::ItemMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16448,6 +17485,7 @@ catch (...)
 
 static void* hs_cast_20389c4c(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WritableBookMeta*>(static_cast<endstone::ItemMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -16463,6 +17501,7 @@ catch (...)
 
 static std::int32_t hs_get_b7742554() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::ItemMeta::MetaType);
 }
 catch (std::exception const& hs_error)
@@ -16478,6 +17517,7 @@ catch (...)
 
 static bool hs_method_9bed7a9c(void* hs_self, void* id, std::int32_t level, bool force) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->addEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id), static_cast<int>(level), static_cast<bool>(force)));
 }
 catch (std::exception const& hs_error)
@@ -16493,6 +17533,7 @@ catch (...)
 
 static void* hs_method_684deaf6(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::ItemMeta const*>(hs_self)->clone();
     return static_cast<void*>(hs_result.release());
 }
@@ -16509,6 +17550,7 @@ catch (...)
 
 static std::int32_t hs_method_7f56ac29(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getDamage());
 }
 catch (std::exception const& hs_error)
@@ -16524,6 +17566,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f9913330(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getDisplayName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -16541,6 +17584,7 @@ catch (...)
 
 static std::int32_t hs_method_0c8148f2(void* hs_self, void* id) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getEnchantLevel(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
@@ -16556,6 +17600,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_477df617(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getEnchants();
@@ -16585,6 +17630,7 @@ catch (...)
 
 static void* hs_method_cd47d8f2(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemMeta const*>(hs_self)->getExtras()));
 }
 catch (std::exception const& hs_error)
@@ -16600,6 +17646,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_c11da252(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::ItemMeta const*>(hs_self)->getLore();
@@ -16624,6 +17671,7 @@ catch (...)
 
 static std::int32_t hs_method_c6bdbd15(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getRepairCost());
 }
 catch (std::exception const& hs_error)
@@ -16639,6 +17687,7 @@ catch (...)
 
 static std::int32_t hs_method_daac4a2d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemMeta const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
@@ -16654,6 +17703,7 @@ catch (...)
 
 static bool hs_method_e4906b2d(void* hs_self, void* id) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasConflictingEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
@@ -16669,6 +17719,7 @@ catch (...)
 
 static bool hs_method_d9ef803c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasDamage());
 }
 catch (std::exception const& hs_error)
@@ -16684,6 +17735,7 @@ catch (...)
 
 static bool hs_method_49583d1c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasDisplayName());
 }
 catch (std::exception const& hs_error)
@@ -16699,6 +17751,7 @@ catch (...)
 
 static bool hs_method_ca72dfec(void* hs_self, void* id) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
@@ -16714,6 +17767,7 @@ catch (...)
 
 static bool hs_method_d8a3a51a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasEnchants());
 }
 catch (std::exception const& hs_error)
@@ -16729,6 +17783,7 @@ catch (...)
 
 static bool hs_method_25e37ea5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasLore());
 }
 catch (std::exception const& hs_error)
@@ -16744,6 +17799,7 @@ catch (...)
 
 static bool hs_method_93c57639(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->hasRepairCost());
 }
 catch (std::exception const& hs_error)
@@ -16759,6 +17815,7 @@ catch (...)
 
 static bool hs_method_1706707c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta const*>(hs_self)->isUnbreakable());
 }
 catch (std::exception const& hs_error)
@@ -16774,6 +17831,7 @@ catch (...)
 
 static bool hs_method_0cc34e1e(void* hs_self, void* id) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemMeta*>(hs_self)->removeEnchant(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id)));
 }
 catch (std::exception const& hs_error)
@@ -16789,6 +17847,7 @@ catch (...)
 
 static void hs_method_65130b8c(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::ItemMeta*>(hs_self)->removeEnchants();
 }
 catch (std::exception const& hs_error)
@@ -16804,6 +17863,7 @@ catch (...)
 
 static void hs_method_37a46761(void* hs_self, std::int32_t damage) try
 {
+    clearLastError();
     static_cast<endstone::ItemMeta*>(hs_self)->setDamage(static_cast<int>(damage));
 }
 catch (std::exception const& hs_error)
@@ -16819,6 +17879,7 @@ catch (...)
 
 static void hs_method_38f091c4(void* hs_self, const char* name_data, std::size_t name_size, bool name_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::ItemMeta*>(hs_self)->setDisplayName((name_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(name_data, name_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -16834,6 +17895,7 @@ catch (...)
 
 static void hs_method_8de798e0(void* hs_self, std::int32_t cost) try
 {
+    clearLastError();
     static_cast<endstone::ItemMeta*>(hs_self)->setRepairCost(static_cast<int>(cost));
 }
 catch (std::exception const& hs_error)
@@ -16849,6 +17911,7 @@ catch (...)
 
 static void hs_method_dc81e9da(void* hs_self, bool unbreakable) try
 {
+    clearLastError();
     static_cast<endstone::ItemMeta*>(hs_self)->setUnbreakable(static_cast<bool>(unbreakable));
 }
 catch (std::exception const& hs_error)
@@ -16864,6 +17927,7 @@ catch (...)
 
 static void hs_destroy_ecc0e998(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ItemStack*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -16879,6 +17943,7 @@ catch (...)
 
 static void* hs_create_bea8b69c(void* other) try
 {
+    clearLastError();
     return new endstone::ItemStack(*static_cast<const endstone::ItemStack*>(other));
 }
 catch (std::exception const& hs_error)
@@ -16894,6 +17959,7 @@ catch (...)
 
 static void* hs_create_9749f6e4(void* type, std::int32_t amount, std::int32_t data) try
 {
+    clearLastError();
     return new endstone::ItemStack(*static_cast<const endstone::Identifier<endstone::ItemType>*>(type), static_cast<int>(amount), static_cast<int>(data));
 }
 catch (std::exception const& hs_error)
@@ -16909,6 +17975,7 @@ catch (...)
 
 static void* hs_create_5db531db(void* other) try
 {
+    clearLastError();
     return new endstone::ItemStack(std::move(*static_cast<endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -16924,6 +17991,7 @@ catch (...)
 
 static std::int32_t hs_method_3072a761(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getAmount());
 }
 catch (std::exception const& hs_error)
@@ -16939,6 +18007,7 @@ catch (...)
 
 static std::int32_t hs_method_25f9d71e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getData());
 }
 catch (std::exception const& hs_error)
@@ -16954,6 +18023,7 @@ catch (...)
 
 static void* hs_method_230881aa(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::ItemStack const*>(hs_self)->getItemMeta();
     return static_cast<void*>(hs_result.release());
 }
@@ -16970,6 +18040,7 @@ catch (...)
 
 static std::int32_t hs_method_880ca943(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemStack const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
@@ -16985,6 +18056,7 @@ catch (...)
 
 static void* hs_method_45b5bc75(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::CompoundTag(static_cast<endstone::ItemStack const*>(hs_self)->getNbt()));
 }
 catch (std::exception const& hs_error)
@@ -17000,6 +18072,7 @@ catch (...)
 
 static HosihikariStringView hs_method_efe5df22(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ItemStack const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17017,6 +18090,7 @@ catch (...)
 
 static void* hs_method_3d4ba86e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemStack const*>(hs_self)->getType()));
 }
 catch (std::exception const& hs_error)
@@ -17032,6 +18106,7 @@ catch (...)
 
 static bool hs_method_833a1664(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->hasItemMeta());
 }
 catch (std::exception const& hs_error)
@@ -17047,6 +18122,7 @@ catch (...)
 
 static bool hs_method_7caee6c3(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->isSimilar(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -17062,6 +18138,7 @@ catch (...)
 
 static bool hs_method_6d85c46f(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->operator!=(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -17077,6 +18154,7 @@ catch (...)
 
 static void* hs_method_f452cd9a(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemStack*>(hs_self)->operator=(*static_cast<const endstone::ItemStack*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -17092,6 +18170,7 @@ catch (...)
 
 static void* hs_method_d00055a6(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ItemStack*>(hs_self)->operator=(std::move(*static_cast<endstone::ItemStack*>(other)))));
 }
 catch (std::exception const& hs_error)
@@ -17107,6 +18186,7 @@ catch (...)
 
 static bool hs_method_3f763bcf(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemStack const*>(hs_self)->operator==(*static_cast<const endstone::ItemStack*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -17122,6 +18202,7 @@ catch (...)
 
 static void hs_method_f556fcaf(void* hs_self, std::int32_t amount) try
 {
+    clearLastError();
     static_cast<endstone::ItemStack*>(hs_self)->setAmount(static_cast<int>(amount));
 }
 catch (std::exception const& hs_error)
@@ -17137,6 +18218,7 @@ catch (...)
 
 static void hs_method_483ef809(void* hs_self, std::int32_t data) try
 {
+    clearLastError();
     static_cast<endstone::ItemStack*>(hs_self)->setData(static_cast<int>(data));
 }
 catch (std::exception const& hs_error)
@@ -17152,6 +18234,7 @@ catch (...)
 
 static bool hs_method_5aa79c5f(void* hs_self, void* meta) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ItemStack*>(hs_self)->setItemMeta(static_cast<endstone::ItemMeta*>(meta)));
 }
 catch (std::exception const& hs_error)
@@ -17167,6 +18250,7 @@ catch (...)
 
 static void hs_method_d82bd1bb(void* hs_self, void* nbt) try
 {
+    clearLastError();
     static_cast<endstone::ItemStack*>(hs_self)->setNbt(*static_cast<const endstone::CompoundTag*>(nbt));
 }
 catch (std::exception const& hs_error)
@@ -17182,6 +18266,7 @@ catch (...)
 
 static void hs_method_608dd657(void* hs_self, void* type) try
 {
+    clearLastError();
     static_cast<endstone::ItemStack*>(hs_self)->setType(*static_cast<const endstone::Identifier<endstone::ItemType>*>(type));
 }
 catch (std::exception const& hs_error)
@@ -17197,6 +18282,7 @@ catch (...)
 
 static void* hs_cast_57463d0b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Registry<endstone::ItemType>::Type*>(static_cast<endstone::ItemType*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17212,6 +18298,7 @@ catch (...)
 
 static void* hs_get_6aad1cda() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::ItemType::Air));
 }
 catch (std::exception const& hs_error)
@@ -17227,6 +18314,7 @@ catch (...)
 
 static void* hs_get_83ae15ec() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ItemType::RegistryType));
 }
 catch (std::exception const& hs_error)
@@ -17242,6 +18330,7 @@ catch (...)
 
 static void* hs_method_efd88a4c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType const*>(hs_self)->createItemStack()));
 }
 catch (std::exception const& hs_error)
@@ -17257,6 +18346,7 @@ catch (...)
 
 static void* hs_method_64d1e9b9(void* hs_self, std::int32_t amount) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::ItemType const*>(hs_self)->createItemStack(static_cast<int>(amount))));
 }
 catch (std::exception const& hs_error)
@@ -17272,6 +18362,7 @@ catch (...)
 
 static std::int32_t hs_method_99c63aca(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemType const*>(hs_self)->getMaxDurability());
 }
 catch (std::exception const& hs_error)
@@ -17287,6 +18378,7 @@ catch (...)
 
 static std::int32_t hs_method_8541145d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ItemType const*>(hs_self)->getMaxStackSize());
 }
 catch (std::exception const& hs_error)
@@ -17302,6 +18394,7 @@ catch (...)
 
 static HosihikariStringView hs_method_04596f49(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ItemType const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17319,6 +18412,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d6685e73(void* hs_self, std::int32_t data) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ItemType const*>(hs_self)->getTranslationKey(static_cast<int>(data));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17336,6 +18430,7 @@ catch (...)
 
 static void hs_destroy_e2f214b6(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Label*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -17351,6 +18446,7 @@ catch (...)
 
 static void* hs_create_5f9e6485() try
 {
+    clearLastError();
     return new endstone::Label();
 }
 catch (std::exception const& hs_error)
@@ -17366,6 +18462,7 @@ catch (...)
 
 static void* hs_create_8da6dd40(void* text) try
 {
+    clearLastError();
     return new endstone::Label(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text));
 }
 catch (std::exception const& hs_error)
@@ -17381,6 +18478,7 @@ catch (...)
 
 static void* hs_method_6dbcb5f6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Label const*>(hs_self)->getText()));
 }
 catch (std::exception const& hs_error)
@@ -17396,6 +18494,7 @@ catch (...)
 
 static void* hs_method_b5ad9dfd(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Label*>(hs_self)->setText(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -17411,6 +18510,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7013216f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->getLocale();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17428,6 +18528,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ac56f932(void* hs_self, void* translatable) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17445,6 +18546,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0b444435(void* hs_self, void* translatable, const char* locale_data, std::size_t locale_size) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(*static_cast<const endstone::Translatable*>(translatable), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17462,6 +18564,7 @@ catch (...)
 
 static HosihikariStringView hs_method_52cb81ab(void* hs_self, const char* text_data, std::size_t text_size) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17479,6 +18582,7 @@ catch (...)
 
 static HosihikariStringView hs_method_99591aec(void* hs_self, const char* text_data, std::size_t text_size, const char* locale_data, std::size_t locale_size) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17496,6 +18600,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6b6b40f7(void* hs_self, const char* text_data, std::size_t text_size, const HosihikariStringView* params_data, std::size_t params_count) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17513,6 +18618,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e22d8019(void* hs_self, const char* text_data, std::size_t text_size, const char* locale_data, std::size_t locale_size, const HosihikariStringView* params_data, std::size_t params_count) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Language const*>(hs_self)->translate(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count), std::basic_string<char>(locale_data, locale_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17530,6 +18636,7 @@ catch (...)
 
 static void hs_destroy_bbe78c01(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::LeavesDecayEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -17545,6 +18652,7 @@ catch (...)
 
 static void* hs_cast_e3f1693a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BlockEvent*>(static_cast<endstone::LeavesDecayEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17560,6 +18668,7 @@ catch (...)
 
 static void* hs_cast_d895e309(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::BlockEvent>*>(static_cast<endstone::LeavesDecayEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17575,6 +18684,7 @@ catch (...)
 
 static void* hs_cast_6c3bab3f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::LeavesDecayEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17590,6 +18700,7 @@ catch (...)
 
 static void* hs_cast_17057adc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::LeavesDecayEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17605,6 +18716,7 @@ catch (...)
 
 static void* hs_get_5da12fe5() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::LeavesDecayEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -17620,6 +18732,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c129abd1(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::LeavesDecayEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17637,6 +18750,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_270292cc(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Level const*>(hs_self)->getActors();
     hs_arrayResult.clear();
@@ -17657,6 +18771,7 @@ catch (...)
 
 static void* hs_method_08076e18(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Level const*>(hs_self)->getDimension(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -17672,6 +18787,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_454cbadf(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Level const*>(hs_self)->getDimensions();
     hs_arrayResult.clear();
@@ -17692,6 +18808,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3aa0a1c5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Level const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -17709,6 +18826,7 @@ catch (...)
 
 static std::int64_t hs_method_68956a20(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(static_cast<endstone::Level const*>(hs_self)->getSeed());
 }
 catch (std::exception const& hs_error)
@@ -17724,6 +18842,7 @@ catch (...)
 
 static std::int32_t hs_method_00cfe7f2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Level const*>(hs_self)->getTime());
 }
 catch (std::exception const& hs_error)
@@ -17739,6 +18858,7 @@ catch (...)
 
 static void hs_method_694008cf(void* hs_self, std::int32_t time) try
 {
+    clearLastError();
     static_cast<endstone::Level*>(hs_self)->setTime(static_cast<int>(time));
 }
 catch (std::exception const& hs_error)
@@ -17754,6 +18874,7 @@ catch (...)
 
 static void* hs_cast_ff754958(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::LevelEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17769,6 +18890,7 @@ catch (...)
 
 static void* hs_method_7f8aabca(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::LevelEvent const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -17784,6 +18906,7 @@ catch (...)
 
 static void hs_destroy_e763f608(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ListTag*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -17799,6 +18922,7 @@ catch (...)
 
 static void* hs_cast_06c3c5db(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::ListTag*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -17814,6 +18938,7 @@ catch (...)
 
 static void* hs_method_32c719f8(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -17829,6 +18954,7 @@ catch (...)
 
 static void* hs_method_8b672895(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -17844,6 +18970,7 @@ catch (...)
 
 static void hs_method_4d7af4f8(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::ListTag*>(hs_self)->clear();
 }
 catch (std::exception const& hs_error)
@@ -17859,6 +18986,7 @@ catch (...)
 
 static bool hs_method_8a81070e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ListTag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -17874,6 +19002,7 @@ catch (...)
 
 static void* hs_method_59464a3a(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -17889,6 +19018,7 @@ catch (...)
 
 static void* hs_method_51244beb(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ListTag*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -17904,6 +19034,7 @@ catch (...)
 
 static std::uint64_t hs_method_e3e53cbe(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::ListTag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
@@ -17919,6 +19050,7 @@ catch (...)
 
 static std::uint8_t hs_method_75608914(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint8_t>(static_cast<endstone::ListTag const*>(hs_self)->type());
 }
 catch (std::exception const& hs_error)
@@ -17934,6 +19066,7 @@ catch (...)
 
 static void hs_destroy_6642e54c(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Location*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -17949,6 +19082,7 @@ catch (...)
 
 static float hs_method_8831f6a1(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->distance(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -17964,6 +19098,7 @@ catch (...)
 
 static float hs_method_0622d069(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->distanceSquared(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -17979,6 +19114,7 @@ catch (...)
 
 static void* hs_method_649e1ae4(void* hs_self) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Location const*>(hs_self)->getBlock();
     return static_cast<void*>(hs_result.release());
 }
@@ -17995,6 +19131,7 @@ catch (...)
 
 static std::int32_t hs_method_f8bbc4e1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockX());
 }
 catch (std::exception const& hs_error)
@@ -18010,6 +19147,7 @@ catch (...)
 
 static std::int32_t hs_method_554a1f23(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockY());
 }
 catch (std::exception const& hs_error)
@@ -18025,6 +19163,7 @@ catch (...)
 
 static std::int32_t hs_method_e9f07d2b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Location const*>(hs_self)->getBlockZ());
 }
 catch (std::exception const& hs_error)
@@ -18040,6 +19179,7 @@ catch (...)
 
 static void* hs_method_5ecb0a21(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -18055,6 +19195,7 @@ catch (...)
 
 static void* hs_method_9cdb71dc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location const*>(hs_self)->getDirection()));
 }
 catch (std::exception const& hs_error)
@@ -18070,6 +19211,7 @@ catch (...)
 
 static float hs_method_b8b34fa8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getPitch());
 }
 catch (std::exception const& hs_error)
@@ -18085,6 +19227,7 @@ catch (...)
 
 static float hs_method_a1d9947a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -18100,6 +19243,7 @@ catch (...)
 
 static float hs_method_fb2e70e8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
@@ -18115,6 +19259,7 @@ catch (...)
 
 static float hs_method_43129c10(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getYaw());
 }
 catch (std::exception const& hs_error)
@@ -18130,6 +19275,7 @@ catch (...)
 
 static float hs_method_32fa8b3e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
@@ -18145,6 +19291,7 @@ catch (...)
 
 static float hs_method_4bdfc918(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->length());
 }
 catch (std::exception const& hs_error)
@@ -18160,6 +19307,7 @@ catch (...)
 
 static float hs_method_c850923b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Location const*>(hs_self)->lengthSquared());
 }
 catch (std::exception const& hs_error)
@@ -18175,6 +19323,7 @@ catch (...)
 
 static float hs_method_5706c73b(float pitch) try
 {
+    clearLastError();
     return static_cast<float>(endstone::Location::normalizePitch(static_cast<float>(pitch)));
 }
 catch (std::exception const& hs_error)
@@ -18190,6 +19339,7 @@ catch (...)
 
 static float hs_method_da544290(float yaw) try
 {
+    clearLastError();
     return static_cast<float>(endstone::Location::normalizeYaw(static_cast<float>(yaw)));
 }
 catch (std::exception const& hs_error)
@@ -18205,6 +19355,7 @@ catch (...)
 
 static void* hs_method_e4d6c405(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Location const*>(hs_self)->operator endstone::Vector()));
 }
 catch (std::exception const& hs_error)
@@ -18220,6 +19371,7 @@ catch (...)
 
 static bool hs_method_72db90df(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Location const*>(hs_self)->operator!=(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -18235,6 +19387,7 @@ catch (...)
 
 static void* hs_method_f3d61120(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator+(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18250,6 +19403,7 @@ catch (...)
 
 static void* hs_method_e49ec4d5(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18265,6 +19419,7 @@ catch (...)
 
 static void* hs_method_4fe0a03f(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->operator+=(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18280,6 +19435,7 @@ catch (...)
 
 static void* hs_method_26e794ef(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->operator+=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18295,6 +19451,7 @@ catch (...)
 
 static void* hs_method_f44ea418(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator-(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18310,6 +19467,7 @@ catch (...)
 
 static void* hs_method_5353323f(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Location(static_cast<endstone::Location const*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18325,6 +19483,7 @@ catch (...)
 
 static void* hs_method_8fae509e(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->operator-=(*static_cast<const endstone::Location*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18340,6 +19499,7 @@ catch (...)
 
 static void* hs_method_60c29b11(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->operator-=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -18355,6 +19515,7 @@ catch (...)
 
 static bool hs_method_6639e422(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Location const*>(hs_self)->operator==(*static_cast<const endstone::Location*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -18370,6 +19531,7 @@ catch (...)
 
 static void hs_method_7656eb88(void* hs_self, void* dimension) try
 {
+    clearLastError();
     static_cast<endstone::Location*>(hs_self)->setDimension(*static_cast<endstone::Dimension*>(dimension));
 }
 catch (std::exception const& hs_error)
@@ -18385,6 +19547,7 @@ catch (...)
 
 static void* hs_method_96f26f4c(void* hs_self, void* vector) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->setDirection(*static_cast<const endstone::Vector*>(vector))));
 }
 catch (std::exception const& hs_error)
@@ -18400,6 +19563,7 @@ catch (...)
 
 static void hs_method_427f9030(void* hs_self, float pitch) try
 {
+    clearLastError();
     static_cast<endstone::Location*>(hs_self)->setPitch(static_cast<float>(pitch));
 }
 catch (std::exception const& hs_error)
@@ -18415,6 +19579,7 @@ catch (...)
 
 static void hs_method_5171b718(void* hs_self, float yaw) try
 {
+    clearLastError();
     static_cast<endstone::Location*>(hs_self)->setYaw(static_cast<float>(yaw));
 }
 catch (std::exception const& hs_error)
@@ -18430,6 +19595,7 @@ catch (...)
 
 static void* hs_method_f6c3888d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Location*>(hs_self)->zero()));
 }
 catch (std::exception const& hs_error)
@@ -18445,6 +19611,7 @@ catch (...)
 
 static void hs_method_930a76c1(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->critical(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18460,6 +19627,7 @@ catch (...)
 
 static void hs_method_ffcad596(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->debug(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18475,6 +19643,7 @@ catch (...)
 
 static void hs_method_788fde20(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->error(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18490,6 +19659,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c7c832ab(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Logger const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -18507,6 +19677,7 @@ catch (...)
 
 static void hs_method_046652ba(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->info(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18522,6 +19693,7 @@ catch (...)
 
 static bool hs_method_fa5a7e03(void* hs_self, std::uint8_t level) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Logger const*>(hs_self)->isEnabledFor(static_cast<endstone::Logger::Level>(level)));
 }
 catch (std::exception const& hs_error)
@@ -18537,6 +19709,7 @@ catch (...)
 
 static void hs_method_976ee1e7(void* hs_self, std::uint8_t level, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->log(static_cast<endstone::Logger::Level>(level), std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18552,6 +19725,7 @@ catch (...)
 
 static void hs_method_e4550d82(void* hs_self, std::uint8_t level) try
 {
+    clearLastError();
     static_cast<endstone::Logger*>(hs_self)->setLevel(static_cast<endstone::Logger::Level>(level));
 }
 catch (std::exception const& hs_error)
@@ -18567,6 +19741,7 @@ catch (...)
 
 static void hs_method_033cc665(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->trace(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18582,6 +19757,7 @@ catch (...)
 
 static void hs_method_2ffebdc2(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Logger const*>(hs_self)->warning(std::basic_string_view<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -18597,6 +19773,7 @@ catch (...)
 
 static void hs_method_cb7dcf5e(void* hs_self, std::int32_t x, std::int32_t y, void* image) try
 {
+    clearLastError();
     static_cast<endstone::MapCanvas*>(hs_self)->drawImage(static_cast<int>(x), static_cast<int>(y), *static_cast<const endstone::Image*>(image));
 }
 catch (std::exception const& hs_error)
@@ -18612,6 +19789,7 @@ catch (...)
 
 static std::uint32_t hs_method_fcf827c1(void* hs_self, std::int32_t x, std::int32_t y) try
 {
+    clearLastError();
     return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas const*>(hs_self)->getBasePixel(static_cast<int>(x), static_cast<int>(y)));
 }
 catch (std::exception const& hs_error)
@@ -18627,6 +19805,7 @@ catch (...)
 
 static void* hs_method_9a8bcddf(void* hs_self, std::int32_t x, std::int32_t y) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas const*>(hs_self)->getBasePixelColor(static_cast<int>(x), static_cast<int>(y))));
 }
 catch (std::exception const& hs_error)
@@ -18642,6 +19821,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_1548e67e(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::MapCanvas const*>(hs_self)->getCursors();
     hs_arrayResult.clear();
@@ -18662,6 +19842,7 @@ catch (...)
 
 static void* hs_method_e50e956b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapCanvas const*>(hs_self)->getMapView()));
 }
 catch (std::exception const& hs_error)
@@ -18677,6 +19858,7 @@ catch (...)
 
 static std::uint32_t hs_method_dc4744ef(void* hs_self, std::int32_t x, std::int32_t y) try
 {
+    clearLastError();
     return static_cast<std::uint32_t>(static_cast<endstone::MapCanvas const*>(hs_self)->getPixel(static_cast<int>(x), static_cast<int>(y)));
 }
 catch (std::exception const& hs_error)
@@ -18692,6 +19874,7 @@ catch (...)
 
 static void* hs_method_1b0673af(void* hs_self, std::int32_t x, std::int32_t y) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Color(static_cast<endstone::MapCanvas const*>(hs_self)->getPixelColor(static_cast<int>(x), static_cast<int>(y))));
 }
 catch (std::exception const& hs_error)
@@ -18707,6 +19890,7 @@ catch (...)
 
 static void hs_method_159de010(void* hs_self, void* const* cursors_data, std::size_t cursors_count) try
 {
+    clearLastError();
     static_cast<endstone::MapCanvas*>(hs_self)->setCursors(hs_make_record_vector<endstone::MapCursor>(cursors_data, cursors_count));
 }
 catch (std::exception const& hs_error)
@@ -18722,6 +19906,7 @@ catch (...)
 
 static void hs_method_8a0b9fe7(void* hs_self, std::int32_t x, std::int32_t y, std::uint32_t color) try
 {
+    clearLastError();
     static_cast<endstone::MapCanvas*>(hs_self)->setPixel(static_cast<int>(x), static_cast<int>(y), static_cast<unsigned int>(color));
 }
 catch (std::exception const& hs_error)
@@ -18737,6 +19922,7 @@ catch (...)
 
 static void hs_method_1e99091f(void* hs_self, std::int32_t x, std::int32_t y, void* color) try
 {
+    clearLastError();
     static_cast<endstone::MapCanvas*>(hs_self)->setPixelColor(static_cast<int>(x), static_cast<int>(y), *static_cast<const endstone::Color*>(color));
 }
 catch (std::exception const& hs_error)
@@ -18752,6 +19938,7 @@ catch (...)
 
 static void hs_destroy_e9827695(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::MapCursor*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -18767,6 +19954,7 @@ catch (...)
 
 static void* hs_create_b85a4cc2(std::int8_t x, std::int8_t y, std::int8_t direction, std::int32_t type, bool visible, const char* caption_data, std::size_t caption_size) try
 {
+    clearLastError();
     return new endstone::MapCursor(static_cast<signed char>(x), static_cast<signed char>(y), static_cast<signed char>(direction), static_cast<endstone::MapCursor::Type>(type), static_cast<bool>(visible), std::basic_string<char>(caption_data, caption_size));
 }
 catch (std::exception const& hs_error)
@@ -18782,6 +19970,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3e1bc8bb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::MapCursor const*>(hs_self)->getCaption();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -18799,6 +19988,7 @@ catch (...)
 
 static std::int8_t hs_method_28d5480a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getDirection());
 }
 catch (std::exception const& hs_error)
@@ -18814,6 +20004,7 @@ catch (...)
 
 static std::int32_t hs_method_67d6c003(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::MapCursor const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
@@ -18829,6 +20020,7 @@ catch (...)
 
 static std::int8_t hs_method_f9b6e643(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -18844,6 +20036,7 @@ catch (...)
 
 static std::int8_t hs_method_6c40daae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int8_t>(static_cast<endstone::MapCursor const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
@@ -18859,6 +20052,7 @@ catch (...)
 
 static bool hs_method_b8f3469f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapCursor const*>(hs_self)->isVisible());
 }
 catch (std::exception const& hs_error)
@@ -18874,6 +20068,7 @@ catch (...)
 
 static void hs_method_9e4ac8e1(void* hs_self, const char* caption_data, std::size_t caption_size) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setCaption(std::basic_string<char>(caption_data, caption_size));
 }
 catch (std::exception const& hs_error)
@@ -18889,6 +20084,7 @@ catch (...)
 
 static void hs_method_458e560e(void* hs_self, std::int8_t direction) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setDirection(static_cast<signed char>(direction));
 }
 catch (std::exception const& hs_error)
@@ -18904,6 +20100,7 @@ catch (...)
 
 static void hs_method_7cff3c2e(void* hs_self, std::int32_t type) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setType(static_cast<endstone::MapCursor::Type>(type));
 }
 catch (std::exception const& hs_error)
@@ -18919,6 +20116,7 @@ catch (...)
 
 static void hs_method_43eea81d(void* hs_self, bool visible) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setVisible(static_cast<bool>(visible));
 }
 catch (std::exception const& hs_error)
@@ -18934,6 +20132,7 @@ catch (...)
 
 static void hs_method_4837ef21(void* hs_self, std::int8_t x) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setX(static_cast<const signed char>(x));
 }
 catch (std::exception const& hs_error)
@@ -18949,6 +20148,7 @@ catch (...)
 
 static void hs_method_db40d828(void* hs_self, std::int8_t y) try
 {
+    clearLastError();
     static_cast<endstone::MapCursor*>(hs_self)->setY(static_cast<const signed char>(y));
 }
 catch (std::exception const& hs_error)
@@ -18964,6 +20164,7 @@ catch (...)
 
 static void hs_destroy_0640f72f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::MapInitializeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -18979,6 +20180,7 @@ catch (...)
 
 static void* hs_cast_00fdb9c4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::MapInitializeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -18994,6 +20196,7 @@ catch (...)
 
 static void* hs_cast_e6890801(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::MapInitializeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19009,6 +20212,7 @@ catch (...)
 
 static void* hs_create_3723564a(void* map) try
 {
+    clearLastError();
     return new endstone::MapInitializeEvent(*static_cast<endstone::MapView*>(map));
 }
 catch (std::exception const& hs_error)
@@ -19024,6 +20228,7 @@ catch (...)
 
 static void* hs_get_448d8f46() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::MapInitializeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -19039,6 +20244,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a75b8b71(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::MapInitializeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -19056,6 +20262,7 @@ catch (...)
 
 static void* hs_method_faa396d6(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MapInitializeEvent const*>(hs_self)->getMap()));
 }
 catch (std::exception const& hs_error)
@@ -19071,6 +20278,7 @@ catch (...)
 
 static void* hs_cast_6d8c28a6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ItemMeta*>(static_cast<endstone::MapMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19086,6 +20294,7 @@ catch (...)
 
 static std::int32_t hs_get_2da2fd06() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::MapMeta::MetaType);
 }
 catch (std::exception const& hs_error)
@@ -19101,6 +20310,7 @@ catch (...)
 
 static std::int64_t hs_method_ef46ef88(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(static_cast<endstone::MapMeta const*>(hs_self)->getMapId());
 }
 catch (std::exception const& hs_error)
@@ -19116,6 +20326,7 @@ catch (...)
 
 static void* hs_method_53bc778b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapMeta const*>(hs_self)->getMapView()));
 }
 catch (std::exception const& hs_error)
@@ -19131,6 +20342,7 @@ catch (...)
 
 static bool hs_method_06b88344(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapMeta const*>(hs_self)->hasMapId());
 }
 catch (std::exception const& hs_error)
@@ -19146,6 +20358,7 @@ catch (...)
 
 static bool hs_method_a04ea49e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapMeta const*>(hs_self)->hasMapView());
 }
 catch (std::exception const& hs_error)
@@ -19161,6 +20374,7 @@ catch (...)
 
 static void hs_method_9ee58155(void* hs_self, std::int64_t id) try
 {
+    clearLastError();
     static_cast<endstone::MapMeta*>(hs_self)->setMapId(static_cast<std::int64_t>(id));
 }
 catch (std::exception const& hs_error)
@@ -19176,6 +20390,7 @@ catch (...)
 
 static void hs_method_1052b284(void* hs_self, void* map) try
 {
+    clearLastError();
     static_cast<endstone::MapMeta*>(hs_self)->setMapView(static_cast<const endstone::MapView*>(map));
 }
 catch (std::exception const& hs_error)
@@ -19191,6 +20406,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_director_06c8f948(bool is_contextual, void* invoke, void* userData, void* release) try
 {
+    clearLastError();
     struct hs_director final : endstone::MapRenderer
     {
         using hs_invoke_type = void (*)(void*, void*, void*, void*);
@@ -19228,6 +20444,7 @@ catch (...)
 
 static void hs_method_e56656e4(void* hs_self, void* map) try
 {
+    clearLastError();
     static_cast<endstone::MapRenderer*>(hs_self)->initialize(*static_cast<endstone::MapView*>(map));
 }
 catch (std::exception const& hs_error)
@@ -19243,6 +20460,7 @@ catch (...)
 
 static bool hs_method_adda0eac(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapRenderer const*>(hs_self)->isContextual());
 }
 catch (std::exception const& hs_error)
@@ -19258,6 +20476,7 @@ catch (...)
 
 static void hs_method_224059bb(void* hs_self, void* map, void* canvas, void* player) try
 {
+    clearLastError();
     static_cast<endstone::MapRenderer*>(hs_self)->render(*static_cast<endstone::MapView*>(map), *static_cast<endstone::MapCanvas*>(canvas), *static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -19273,6 +20492,7 @@ catch (...)
 
 static void hs_method_cc6d2d45(void* hs_self, HosihikariSharedHandle renderer) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->addRenderer(hs_shared_from_handle<endstone::MapRenderer>(renderer));
 }
 catch (std::exception const& hs_error)
@@ -19288,6 +20508,7 @@ catch (...)
 
 static std::int32_t hs_method_3c3ee09a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::MapView const*>(hs_self)->getCenterX());
 }
 catch (std::exception const& hs_error)
@@ -19303,6 +20524,7 @@ catch (...)
 
 static std::int32_t hs_method_90396455(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::MapView const*>(hs_self)->getCenterZ());
 }
 catch (std::exception const& hs_error)
@@ -19318,6 +20540,7 @@ catch (...)
 
 static void* hs_method_2816961f(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::MapView const*>(hs_self)->getDimension()));
 }
 catch (std::exception const& hs_error)
@@ -19333,6 +20556,7 @@ catch (...)
 
 static std::int64_t hs_method_e5c3bdc1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(static_cast<endstone::MapView const*>(hs_self)->getId());
 }
 catch (std::exception const& hs_error)
@@ -19348,6 +20572,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_668e6cb1(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
     auto result = static_cast<endstone::MapView const*>(hs_self)->getRenderers();
     hs_arrayShared.clear();
@@ -19368,6 +20593,7 @@ catch (...)
 
 static std::uint8_t hs_method_7a4e3be8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint8_t>(static_cast<endstone::MapView const*>(hs_self)->getScale());
 }
 catch (std::exception const& hs_error)
@@ -19383,6 +20609,7 @@ catch (...)
 
 static bool hs_method_dfced9b6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isLocked());
 }
 catch (std::exception const& hs_error)
@@ -19398,6 +20625,7 @@ catch (...)
 
 static bool hs_method_d2219fdf(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isUnlimitedTracking());
 }
 catch (std::exception const& hs_error)
@@ -19413,6 +20641,7 @@ catch (...)
 
 static bool hs_method_df1c121e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapView const*>(hs_self)->isVirtual());
 }
 catch (std::exception const& hs_error)
@@ -19428,6 +20657,7 @@ catch (...)
 
 static bool hs_method_34277fd9(void* hs_self, HosihikariSharedHandle renderer) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::MapView*>(hs_self)->removeRenderer(hs_shared_from_handle<endstone::MapRenderer>(renderer)));
 }
 catch (std::exception const& hs_error)
@@ -19443,6 +20673,7 @@ catch (...)
 
 static void hs_method_47011010(void* hs_self, std::int32_t x) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setCenterX(static_cast<int>(x));
 }
 catch (std::exception const& hs_error)
@@ -19458,6 +20689,7 @@ catch (...)
 
 static void hs_method_3f03f012(void* hs_self, std::int32_t z) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setCenterZ(static_cast<int>(z));
 }
 catch (std::exception const& hs_error)
@@ -19473,6 +20705,7 @@ catch (...)
 
 static void hs_method_960ea684(void* hs_self, void* dimension) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setDimension(*static_cast<const endstone::Dimension*>(dimension));
 }
 catch (std::exception const& hs_error)
@@ -19488,6 +20721,7 @@ catch (...)
 
 static void hs_method_d99231bd(void* hs_self, bool locked) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setLocked(static_cast<bool>(locked));
 }
 catch (std::exception const& hs_error)
@@ -19503,6 +20737,7 @@ catch (...)
 
 static void hs_method_08c724c1(void* hs_self, std::uint8_t scale) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setScale(static_cast<endstone::MapView::Scale>(scale));
 }
 catch (std::exception const& hs_error)
@@ -19518,6 +20753,7 @@ catch (...)
 
 static void hs_method_ea998821(void* hs_self, bool unlimited) try
 {
+    clearLastError();
     static_cast<endstone::MapView*>(hs_self)->setUnlimitedTracking(static_cast<bool>(unlimited));
 }
 catch (std::exception const& hs_error)
@@ -19533,6 +20769,7 @@ catch (...)
 
 static void hs_destroy_8a5a7653(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::MessageForm*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -19548,6 +20785,7 @@ catch (...)
 
 static void* hs_cast_ae0325ad(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Form<endstone::MessageForm>*>(static_cast<endstone::MessageForm*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19563,6 +20801,7 @@ catch (...)
 
 static void* hs_method_b37b9bbb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getButton1()));
 }
 catch (std::exception const& hs_error)
@@ -19578,6 +20817,7 @@ catch (...)
 
 static void* hs_method_2db27c2d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getButton2()));
 }
 catch (std::exception const& hs_error)
@@ -19593,6 +20833,7 @@ catch (...)
 
 static void* hs_method_e035040a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::MessageForm const*>(hs_self)->getContent()));
 }
 catch (std::exception const& hs_error)
@@ -19608,6 +20849,7 @@ catch (...)
 
 static void* hs_method_9826e082(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *, int)>(static_cast<endstone::MessageForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
@@ -19623,6 +20865,7 @@ catch (...)
 
 static void* hs_method_41da86fb(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MessageForm*>(hs_self)->setButton1(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -19638,6 +20881,7 @@ catch (...)
 
 static void* hs_method_046c33b1(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MessageForm*>(hs_self)->setButton2(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -19653,6 +20897,7 @@ catch (...)
 
 static void* hs_method_d9b782ea(void* hs_self, void* text) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MessageForm*>(hs_self)->setContent(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text))));
 }
 catch (std::exception const& hs_error)
@@ -19688,6 +20933,7 @@ struct hs_cb_closure_hs_method_6eb29429_cb0
 
 static void* hs_method_6eb29429(void* hs_self, void* on_submit_invoke, void* on_submit_userData, void* on_submit_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::MessageForm*>(hs_self)->setOnSubmit(std::function<void (endstone::Player *, int)>(hs_cb_closure_hs_method_6eb29429_cb0{std::make_shared<hs_cb_state_hs_method_6eb29429_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_6eb29429_cb0>(on_submit_invoke), on_submit_userData, reinterpret_cast<hs_cb_release_hs_method_6eb29429_cb0>(on_submit_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -19703,6 +20949,7 @@ catch (...)
 
 static void* hs_cast_56600815(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Player*>(static_cast<endstone::Mob*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19718,6 +20965,7 @@ catch (...)
 
 static void* hs_cast_4dd89f46(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Actor*>(static_cast<endstone::Mob*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19733,6 +20981,7 @@ catch (...)
 
 static void* hs_cast_3637e39f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::Mob*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19748,6 +20997,7 @@ catch (...)
 
 static void* hs_cast_61b1127c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::Mob*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19763,6 +21013,7 @@ catch (...)
 
 static std::int32_t hs_method_fcf492e7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Mob const*>(hs_self)->getHealth());
 }
 catch (std::exception const& hs_error)
@@ -19778,6 +21029,7 @@ catch (...)
 
 static std::int32_t hs_method_480f4712(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Mob const*>(hs_self)->getMaxHealth());
 }
 catch (std::exception const& hs_error)
@@ -19793,6 +21045,7 @@ catch (...)
 
 static bool hs_method_6a0ca04e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Mob const*>(hs_self)->isGliding());
 }
 catch (std::exception const& hs_error)
@@ -19808,6 +21061,7 @@ catch (...)
 
 static void hs_method_eca6ecbb(void* hs_self, std::int32_t health) try
 {
+    clearLastError();
     static_cast<endstone::Mob const*>(hs_self)->setHealth(static_cast<int>(health));
 }
 catch (std::exception const& hs_error)
@@ -19823,6 +21077,7 @@ catch (...)
 
 static void hs_method_3cecb4b6(void* hs_self, std::int32_t health) try
 {
+    clearLastError();
     static_cast<endstone::Mob const*>(hs_self)->setMaxHealth(static_cast<int>(health));
 }
 catch (std::exception const& hs_error)
@@ -19838,6 +21093,7 @@ catch (...)
 
 static void hs_destroy_50792e32(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ModalForm*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -19853,6 +21109,7 @@ catch (...)
 
 static void* hs_cast_a966c2c9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Form<endstone::ModalForm>*>(static_cast<endstone::ModalForm*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -19868,6 +21125,7 @@ catch (...)
 
 static void* hs_method_d6ba0b11(void* hs_self, void* control) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ModalForm*>(hs_self)->addControl(*static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(control))));
 }
 catch (std::exception const& hs_error)
@@ -19883,6 +21141,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_e6901603(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::ModalForm const*>(hs_self)->getControls();
     hs_arrayResult.clear();
@@ -19903,6 +21162,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e533f412(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ModalForm const*>(hs_self)->getIcon();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
@@ -19923,6 +21183,7 @@ catch (...)
 
 static void* hs_method_738959a6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (endstone::Player *, std::basic_string<char>)>(static_cast<endstone::ModalForm const*>(hs_self)->getOnSubmit()));
 }
 catch (std::exception const& hs_error)
@@ -19938,6 +21199,7 @@ catch (...)
 
 static void* hs_method_87da21ad(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ModalForm const*>(hs_self)->getSubmitButton();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -19958,6 +21220,7 @@ catch (...)
 
 static void* hs_method_e8d9d3b9(void* hs_self, void* const* controls_data, std::size_t controls_count) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ModalForm*>(hs_self)->setControls(hs_make_variant_vector<std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>>(controls_data, controls_count))));
 }
 catch (std::exception const& hs_error)
@@ -19973,6 +21236,7 @@ catch (...)
 
 static void* hs_method_2fd6a4b6(void* hs_self, const char* icon_data, std::size_t icon_size, bool icon_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ModalForm*>(hs_self)->setIcon((icon_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(icon_data, icon_size)} : std::nullopt))));
 }
 catch (std::exception const& hs_error)
@@ -20009,6 +21273,7 @@ struct hs_cb_closure_hs_method_7a28fda0_cb0
 
 static void* hs_method_7a28fda0(void* hs_self, void* on_submit_invoke, void* on_submit_userData, void* on_submit_release) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ModalForm*>(hs_self)->setOnSubmit(std::function<void (endstone::Player *, std::basic_string<char>)>(hs_cb_closure_hs_method_7a28fda0_cb0{std::make_shared<hs_cb_state_hs_method_7a28fda0_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_7a28fda0_cb0>(on_submit_invoke), on_submit_userData, reinterpret_cast<hs_cb_release_hs_method_7a28fda0_cb0>(on_submit_release))}))));
 }
 catch (std::exception const& hs_error)
@@ -20024,6 +21289,7 @@ catch (...)
 
 static void* hs_method_b175a990(void* hs_self, void* text, bool text_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ModalForm*>(hs_self)->setSubmitButton((text_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(text)} : std::nullopt))));
 }
 catch (std::exception const& hs_error)
@@ -20039,6 +21305,7 @@ catch (...)
 
 static void hs_destroy_2b13267b(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Objective*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -20054,6 +21321,7 @@ catch (...)
 
 static void* hs_method_84b58b4c(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective const*>(hs_self)->getCriteria()));
 }
 catch (std::exception const& hs_error)
@@ -20069,6 +21337,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9d527bb5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Objective const*>(hs_self)->getDisplayName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20086,6 +21355,7 @@ catch (...)
 
 static std::int32_t hs_method_6fabf6ef(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Objective const*>(hs_self)->getDisplaySlot();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
@@ -20105,6 +21375,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f699330(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Objective const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20122,6 +21393,7 @@ catch (...)
 
 static std::uint8_t hs_method_a38ef899(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint8_t>(static_cast<endstone::Objective const*>(hs_self)->getRenderType());
 }
 catch (std::exception const& hs_error)
@@ -20137,6 +21409,7 @@ catch (...)
 
 static void* hs_method_6d50e0da(void* hs_self, void* entry) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Objective const*>(hs_self)->getScore(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
     return static_cast<void*>(hs_result.release());
 }
@@ -20153,6 +21426,7 @@ catch (...)
 
 static void* hs_method_f4a5b3b4(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Objective const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
@@ -20168,6 +21442,7 @@ catch (...)
 
 static std::int32_t hs_method_654c0623(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Objective const*>(hs_self)->getSortOrder();
     *hs_hasValue = result.has_value();
     return result ? static_cast<std::int32_t>(*result) : std::int32_t{};
@@ -20187,6 +21462,7 @@ catch (...)
 
 static bool hs_method_cabc5bde(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->isDisplayed());
 }
 catch (std::exception const& hs_error)
@@ -20202,6 +21478,7 @@ catch (...)
 
 static bool hs_method_ae3a847e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->isModifiable());
 }
 catch (std::exception const& hs_error)
@@ -20217,6 +21494,7 @@ catch (...)
 
 static bool hs_method_57030bb9(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->operator!=(*static_cast<const endstone::Objective*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -20232,6 +21510,7 @@ catch (...)
 
 static bool hs_method_bb751e05(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Objective const*>(hs_self)->operator==(*static_cast<const endstone::Objective*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -20247,6 +21526,7 @@ catch (...)
 
 static void hs_method_7a4cd4a6(void* hs_self, std::int32_t slot, std::int32_t order, bool slot_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Objective*>(hs_self)->setDisplay((slot_hasValue ? std::optional<endstone::DisplaySlot>{static_cast<endstone::DisplaySlot>(slot)} : std::nullopt), static_cast<endstone::ObjectiveSortOrder>(order));
 }
 catch (std::exception const& hs_error)
@@ -20262,6 +21542,7 @@ catch (...)
 
 static void hs_method_2d7ab63c(void* hs_self, const char* display_name_data, std::size_t display_name_size) try
 {
+    clearLastError();
     static_cast<endstone::Objective*>(hs_self)->setDisplayName(std::basic_string<char>(display_name_data, display_name_size));
 }
 catch (std::exception const& hs_error)
@@ -20277,6 +21558,7 @@ catch (...)
 
 static void hs_method_4a5f57fc(void* hs_self, std::int32_t slot, bool slot_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Objective*>(hs_self)->setDisplaySlot((slot_hasValue ? std::optional<endstone::DisplaySlot>{static_cast<endstone::DisplaySlot>(slot)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -20292,6 +21574,7 @@ catch (...)
 
 static void hs_method_03a30016(void* hs_self, std::int32_t order) try
 {
+    clearLastError();
     static_cast<endstone::Objective*>(hs_self)->setSortOrder(static_cast<endstone::ObjectiveSortOrder>(order));
 }
 catch (std::exception const& hs_error)
@@ -20307,6 +21590,7 @@ catch (...)
 
 static void hs_method_9fe08cbd(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Objective const*>(hs_self)->unregister();
 }
 catch (std::exception const& hs_error)
@@ -20322,6 +21606,7 @@ catch (...)
 
 static void* hs_cast_c30a0060(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Player*>(static_cast<endstone::OfflinePlayer*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20337,6 +21622,7 @@ catch (...)
 
 static HosihikariStringView hs_method_08805458(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::OfflinePlayer const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20354,6 +21640,7 @@ catch (...)
 
 static void* hs_method_4b50ef7b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::UUID(static_cast<endstone::OfflinePlayer const*>(hs_self)->getUniqueId()));
 }
 catch (std::exception const& hs_error)
@@ -20369,6 +21656,7 @@ catch (...)
 
 static void hs_destroy_2333fb4c(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::PacketReceiveEvent>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -20384,6 +21672,7 @@ catch (...)
 
 static void* hs_cast_bafac3b4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::PacketReceiveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20399,6 +21688,7 @@ catch (...)
 
 static void* hs_cast_25c055d4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PacketReceiveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20414,6 +21704,7 @@ catch (...)
 
 static void* hs_cast_d6b1ee61(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PacketReceiveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20429,6 +21720,7 @@ catch (...)
 
 static void* hs_cast_09c24188(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::PacketReceiveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20444,6 +21736,7 @@ catch (...)
 
 static void* hs_get_23676d63() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PacketReceiveEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -20459,6 +21752,7 @@ catch (...)
 
 static void* hs_create_a524b719(void* player, std::int32_t packet_id, const char* payload_data, std::size_t payload_size, void* address, std::int32_t sub_client_id) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::PacketReceiveEvent>();
     hs_borrowed->strings.emplace_back(payload_data, payload_size);
     hs_borrowed->value = std::make_unique<endstone::PacketReceiveEvent>(static_cast<endstone::Player*>(player), static_cast<const int>(packet_id), std::string_view(hs_borrowed->strings[0]), *static_cast<const endstone::SocketAddress*>(address), static_cast<const int>(sub_client_id));
@@ -20479,6 +21773,7 @@ catch (...)
 
 static void* hs_method_919f586b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
@@ -20494,6 +21789,7 @@ catch (...)
 
 static HosihikariStringView hs_method_87ccf1c7(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20511,6 +21807,7 @@ catch (...)
 
 static std::int32_t hs_method_97a7e348(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPacketId());
 }
 catch (std::exception const& hs_error)
@@ -20526,6 +21823,7 @@ catch (...)
 
 static HosihikariStringView hs_method_2e177bbc(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPayload();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20543,6 +21841,7 @@ catch (...)
 
 static void* hs_method_627bbdd2(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -20558,6 +21857,7 @@ catch (...)
 
 static std::int32_t hs_method_e27885bf(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PacketReceiveEvent const*>(hs_self)->getSubClientId());
 }
 catch (std::exception const& hs_error)
@@ -20573,6 +21873,7 @@ catch (...)
 
 static void hs_method_142c6737(void* hs_self, const char* payload_data, std::size_t payload_size) try
 {
+    clearLastError();
     static_cast<endstone::PacketReceiveEvent*>(hs_self)->setPayload(std::basic_string_view<char>(payload_data, payload_size));
 }
 catch (std::exception const& hs_error)
@@ -20588,6 +21889,7 @@ catch (...)
 
 static void hs_destroy_578b0b0b(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::PacketSendEvent>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -20603,6 +21905,7 @@ catch (...)
 
 static void* hs_cast_619c23df(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::PacketSendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20618,6 +21921,7 @@ catch (...)
 
 static void* hs_cast_b5062b29(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PacketSendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20633,6 +21937,7 @@ catch (...)
 
 static void* hs_cast_5ba74fe5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PacketSendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20648,6 +21953,7 @@ catch (...)
 
 static void* hs_cast_822a9fd7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::PacketSendEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20663,6 +21969,7 @@ catch (...)
 
 static void* hs_get_8a66849e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PacketSendEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -20678,6 +21985,7 @@ catch (...)
 
 static void* hs_create_8d8f9b72(void* player, std::int32_t packet_id, const char* payload_data, std::size_t payload_size, void* address, std::int32_t sub_client_id) try
 {
+    clearLastError();
     auto* hs_borrowed = new hs_borrowed_holder<endstone::PacketSendEvent>();
     hs_borrowed->strings.emplace_back(payload_data, payload_size);
     hs_borrowed->value = std::make_unique<endstone::PacketSendEvent>(static_cast<endstone::Player*>(player), static_cast<const int>(packet_id), std::string_view(hs_borrowed->strings[0]), *static_cast<const endstone::SocketAddress*>(address), static_cast<const int>(sub_client_id));
@@ -20698,6 +22006,7 @@ catch (...)
 
 static void* hs_method_53132e9f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::PacketSendEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
@@ -20713,6 +22022,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e4c67418(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PacketSendEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20730,6 +22040,7 @@ catch (...)
 
 static std::int32_t hs_method_20d62971(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getPacketId());
 }
 catch (std::exception const& hs_error)
@@ -20745,6 +22056,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7e4406c6(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PacketSendEvent const*>(hs_self)->getPayload();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -20762,6 +22074,7 @@ catch (...)
 
 static void* hs_method_19c260f4(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -20777,6 +22090,7 @@ catch (...)
 
 static std::int32_t hs_method_419bf171(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PacketSendEvent const*>(hs_self)->getSubClientId());
 }
 catch (std::exception const& hs_error)
@@ -20792,6 +22106,7 @@ catch (...)
 
 static void hs_method_950a5c86(void* hs_self, const char* payload_data, std::size_t payload_size) try
 {
+    clearLastError();
     static_cast<endstone::PacketSendEvent*>(hs_self)->setPayload(std::basic_string_view<char>(payload_data, payload_size));
 }
 catch (std::exception const& hs_error)
@@ -20807,6 +22122,7 @@ catch (...)
 
 static void* hs_cast_aea46c80(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Actor*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20822,6 +22138,7 @@ catch (...)
 
 static void* hs_cast_cf4129a5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockCommandSender*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20837,6 +22154,7 @@ catch (...)
 
 static void* hs_cast_8e3aa52b(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::CommandSender*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20852,6 +22170,7 @@ catch (...)
 
 static void* hs_cast_59a15001(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::CommandSenderWrapper*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20867,6 +22186,7 @@ catch (...)
 
 static void* hs_cast_23bd673e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ConsoleCommandSender*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20882,6 +22202,7 @@ catch (...)
 
 static void* hs_cast_3a3032b7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Item*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20897,6 +22218,7 @@ catch (...)
 
 static void* hs_cast_ac188479(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Mob*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20912,6 +22234,7 @@ catch (...)
 
 static void* hs_cast_a6460721(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Player*>(static_cast<endstone::Permissible*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -20927,6 +22250,7 @@ catch (...)
 
 static void* hs_method_da405b06(void* hs_self, void* plugin) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permissible*>(hs_self)->addAttachment(*static_cast<endstone::Plugin*>(plugin))));
 }
 catch (std::exception const& hs_error)
@@ -20942,6 +22266,7 @@ catch (...)
 
 static void* hs_method_55484657(void* hs_self, void* plugin, const char* name_data, std::size_t name_size, bool value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permissible*>(hs_self)->addAttachment(*static_cast<endstone::Plugin*>(plugin), std::basic_string<char>(name_data, name_size), static_cast<bool>(value))));
 }
 catch (std::exception const& hs_error)
@@ -20957,6 +22282,7 @@ catch (...)
 
 static void* hs_method_258edc33(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permissible const*>(hs_self)->asCommandSender()));
 }
 catch (std::exception const& hs_error)
@@ -20972,6 +22298,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_445e9e34(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Permissible const*>(hs_self)->getEffectivePermissions();
     hs_arrayResult.clear();
@@ -20992,6 +22319,7 @@ catch (...)
 
 static std::int32_t hs_method_2c72e847(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Permissible const*>(hs_self)->getPermissionLevel());
 }
 catch (std::exception const& hs_error)
@@ -21007,6 +22335,7 @@ catch (...)
 
 static bool hs_method_e11d24e9(void* hs_self, void* perm) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->hasPermission(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
@@ -21022,6 +22351,7 @@ catch (...)
 
 static bool hs_method_7eb49288(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->hasPermission(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -21037,6 +22367,7 @@ catch (...)
 
 static bool hs_method_2c42ae7c(void* hs_self, void* perm) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->isPermissionSet(*static_cast<const endstone::Permission*>(perm)));
 }
 catch (std::exception const& hs_error)
@@ -21052,6 +22383,7 @@ catch (...)
 
 static bool hs_method_0fea9886(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Permissible const*>(hs_self)->isPermissionSet(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -21067,6 +22399,7 @@ catch (...)
 
 static void hs_method_99127ab5(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Permissible*>(hs_self)->recalculatePermissions();
 }
 catch (std::exception const& hs_error)
@@ -21082,6 +22415,7 @@ catch (...)
 
 static bool hs_method_d0af79ef(void* hs_self, void* attachment) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Permissible*>(hs_self)->removeAttachment(*static_cast<endstone::PermissionAttachment*>(attachment)));
 }
 catch (std::exception const& hs_error)
@@ -21097,6 +22431,7 @@ catch (...)
 
 static void hs_destroy_10534cf1(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Permission*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -21112,6 +22447,7 @@ catch (...)
 
 static std::int32_t hs_get_1de75832() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::Permission::DefaultPermission);
 }
 catch (std::exception const& hs_error)
@@ -21127,6 +22463,7 @@ catch (...)
 
 static void* hs_create_2e599a1a(const char* name_data, std::size_t name_size, const char* description_data, std::size_t description_size, std::int32_t default_value, HosihikariArrayView children_map) try
 {
+    clearLastError();
     std::unordered_map<std::basic_string<char>, bool> hs_map3;
     hs_map3.reserve(children_map.size);
     auto const* hs_map3Items = static_cast<HosihikariMapEntry const*>(children_map.data);
@@ -21152,6 +22489,7 @@ catch (...)
 
 static void* hs_method_b77c7c2d(void* hs_self, const char* name_data, std::size_t name_size, bool value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Permission*>(hs_self)->addParent(std::basic_string<char>(name_data, name_size), static_cast<bool>(value))));
 }
 catch (std::exception const& hs_error)
@@ -21167,6 +22505,7 @@ catch (...)
 
 static void hs_method_844cfb78(void* hs_self, void* perm, bool value) try
 {
+    clearLastError();
     static_cast<endstone::Permission const*>(hs_self)->addParent(*static_cast<endstone::Permission*>(perm), static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -21182,6 +22521,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_4ed26779(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::Permission*>(hs_self)->getChildren();
@@ -21214,6 +22554,7 @@ catch (...)
 
 static std::int32_t hs_method_d044a6f9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Permission const*>(hs_self)->getDefault());
 }
 catch (std::exception const& hs_error)
@@ -21229,6 +22570,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a49fc3d5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Permission const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21246,6 +22588,7 @@ catch (...)
 
 static HosihikariStringView hs_method_674d4305(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Permission const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21263,6 +22606,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_16f14773(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Permission const*>(hs_self)->getPermissibles();
     hs_arrayResult.clear();
@@ -21283,6 +22627,7 @@ catch (...)
 
 static void hs_method_b3cddaf0(void* hs_self, void* plugin_manager) try
 {
+    clearLastError();
     static_cast<endstone::Permission*>(hs_self)->init(*static_cast<endstone::PluginManager*>(plugin_manager));
 }
 catch (std::exception const& hs_error)
@@ -21298,6 +22643,7 @@ catch (...)
 
 static void hs_method_be6d8c0d(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Permission*>(hs_self)->recalculatePermissibles();
 }
 catch (std::exception const& hs_error)
@@ -21313,6 +22659,7 @@ catch (...)
 
 static void hs_method_50638c53(void* hs_self, std::int32_t value) try
 {
+    clearLastError();
     static_cast<endstone::Permission*>(hs_self)->setDefault(static_cast<endstone::PermissionDefault>(value));
 }
 catch (std::exception const& hs_error)
@@ -21328,6 +22675,7 @@ catch (...)
 
 static void hs_method_0a1fef83(void* hs_self, const char* value_data, std::size_t value_size) try
 {
+    clearLastError();
     static_cast<endstone::Permission*>(hs_self)->setDescription(std::basic_string<char>(value_data, value_size));
 }
 catch (std::exception const& hs_error)
@@ -21343,6 +22691,7 @@ catch (...)
 
 static void hs_destroy_66cc8237(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PermissionAttachment*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -21358,6 +22707,7 @@ catch (...)
 
 static void* hs_create_619b01fd(void* plugin, void* permissible) try
 {
+    clearLastError();
     return new endstone::PermissionAttachment(*static_cast<endstone::Plugin*>(plugin), *static_cast<endstone::Permissible*>(permissible));
 }
 catch (std::exception const& hs_error)
@@ -21373,6 +22723,7 @@ catch (...)
 
 static void* hs_method_0db6400b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment const*>(hs_self)->getPermissible()));
 }
 catch (std::exception const& hs_error)
@@ -21388,6 +22739,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_5e0b211d(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariMapEntry> hs_mapEntries;
     thread_local std::vector<std::string> hs_mapStrings;
     auto result = static_cast<endstone::PermissionAttachment const*>(hs_self)->getPermissions();
@@ -21420,6 +22772,7 @@ catch (...)
 
 static void* hs_method_bafd887c(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachment const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
@@ -21435,6 +22788,7 @@ catch (...)
 
 static void* hs_method_1561e66f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::function<void (const endstone::PermissionAttachment &)>(static_cast<endstone::PermissionAttachment const*>(hs_self)->getRemovalCallback()));
 }
 catch (std::exception const& hs_error)
@@ -21450,6 +22804,7 @@ catch (...)
 
 static bool hs_method_5aae78fb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PermissionAttachment*>(hs_self)->remove());
 }
 catch (std::exception const& hs_error)
@@ -21465,6 +22820,7 @@ catch (...)
 
 static void hs_method_cb061df8(void* hs_self, void* perm, bool value) try
 {
+    clearLastError();
     static_cast<endstone::PermissionAttachment*>(hs_self)->setPermission(*static_cast<endstone::Permission*>(perm), static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -21480,6 +22836,7 @@ catch (...)
 
 static void hs_method_dd9332da(void* hs_self, const char* name_data, std::size_t name_size, bool value) try
 {
+    clearLastError();
     static_cast<endstone::PermissionAttachment*>(hs_self)->setPermission(std::basic_string<char>(name_data, name_size), static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -21515,6 +22872,7 @@ struct hs_cb_closure_hs_method_373eb582_cb0
 
 static void hs_method_373eb582(void* hs_self, void* ex_invoke, void* ex_userData, void* ex_release) try
 {
+    clearLastError();
     static_cast<endstone::PermissionAttachment*>(hs_self)->setRemovalCallback(std::function<void (const endstone::PermissionAttachment &)>(hs_cb_closure_hs_method_373eb582_cb0{std::make_shared<hs_cb_state_hs_method_373eb582_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_373eb582_cb0>(ex_invoke), ex_userData, reinterpret_cast<hs_cb_release_hs_method_373eb582_cb0>(ex_release))}));
 }
 catch (std::exception const& hs_error)
@@ -21530,6 +22888,7 @@ catch (...)
 
 static void hs_method_ce4f25a7(void* hs_self, void* perm) try
 {
+    clearLastError();
     static_cast<endstone::PermissionAttachment*>(hs_self)->unsetPermission(*static_cast<endstone::Permission*>(perm));
 }
 catch (std::exception const& hs_error)
@@ -21545,6 +22904,7 @@ catch (...)
 
 static void hs_method_8186e7af(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     static_cast<endstone::PermissionAttachment*>(hs_self)->unsetPermission(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -21560,6 +22920,7 @@ catch (...)
 
 static void hs_destroy_6691e8ec(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PermissionAttachmentInfo*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -21575,6 +22936,7 @@ catch (...)
 
 static void* hs_create_95738960(void* permissible, const char* permission_data, std::size_t permission_size, void* attachment, bool value) try
 {
+    clearLastError();
     return new endstone::PermissionAttachmentInfo(*static_cast<endstone::Permissible*>(permissible), std::basic_string<char>(permission_data, permission_size), static_cast<endstone::PermissionAttachment*>(attachment), static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -21590,6 +22952,7 @@ catch (...)
 
 static void* hs_method_6807d29a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getAttachment()));
 }
 catch (std::exception const& hs_error)
@@ -21605,6 +22968,7 @@ catch (...)
 
 static void* hs_method_c49d73e5(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getPermissible()));
 }
 catch (std::exception const& hs_error)
@@ -21620,6 +22984,7 @@ catch (...)
 
 static HosihikariStringView hs_method_64b34027(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getPermission();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21637,6 +23002,7 @@ catch (...)
 
 static bool hs_method_f0aee6c2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PermissionAttachmentInfo const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
@@ -21652,6 +23018,7 @@ catch (...)
 
 static void* hs_cast_09b64297(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Actor*>(static_cast<endstone::Player*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -21667,6 +23034,7 @@ catch (...)
 
 static void* hs_cast_b042a59f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandSender*>(static_cast<endstone::Player*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -21682,6 +23050,7 @@ catch (...)
 
 static void* hs_cast_9484548d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Mob*>(static_cast<endstone::Player*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -21697,6 +23066,7 @@ catch (...)
 
 static void* hs_cast_25c37ab2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::OfflinePlayer*>(static_cast<endstone::Player*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -21712,6 +23082,7 @@ catch (...)
 
 static void* hs_cast_c47d6a7f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Permissible*>(static_cast<endstone::Player*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -21727,6 +23098,7 @@ catch (...)
 
 static void hs_method_6e6a0b47(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->closeForm();
 }
 catch (std::exception const& hs_error)
@@ -21742,6 +23114,7 @@ catch (...)
 
 static void* hs_method_4981d2a2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::Player const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
@@ -21757,6 +23130,7 @@ catch (...)
 
 static bool hs_method_22c6dde5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->getAllowFlight());
 }
 catch (std::exception const& hs_error)
@@ -21772,6 +23146,7 @@ catch (...)
 
 static HosihikariStringView hs_method_914b683b(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getDeviceId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21789,6 +23164,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a4bd4f38(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getDeviceOS();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21806,6 +23182,7 @@ catch (...)
 
 static void* hs_method_56851ace(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getEnderChest()));
 }
 catch (std::exception const& hs_error)
@@ -21821,6 +23198,7 @@ catch (...)
 
 static std::int32_t hs_method_0a869444(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getExpLevel());
 }
 catch (std::exception const& hs_error)
@@ -21836,6 +23214,7 @@ catch (...)
 
 static float hs_method_52541e29(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getExpProgress());
 }
 catch (std::exception const& hs_error)
@@ -21851,6 +23230,7 @@ catch (...)
 
 static float hs_method_007333bf(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getFlySpeed());
 }
 catch (std::exception const& hs_error)
@@ -21866,6 +23246,7 @@ catch (...)
 
 static std::int32_t hs_method_a370b4f8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getGameMode());
 }
 catch (std::exception const& hs_error)
@@ -21881,6 +23262,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f4994e1c(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getGameVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21898,6 +23280,7 @@ catch (...)
 
 static void* hs_method_a3acd946(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getInventory()));
 }
 catch (std::exception const& hs_error)
@@ -21913,6 +23296,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f261279f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getLocale();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21930,6 +23314,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e7dd9639(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -21947,6 +23332,7 @@ catch (...)
 
 static std::int64_t hs_method_9cb6513a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>((static_cast<endstone::Player const*>(hs_self)->getPing()).count());
 }
 catch (std::exception const& hs_error)
@@ -21962,6 +23348,7 @@ catch (...)
 
 static void* hs_method_d95fa490(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Player const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
@@ -21977,6 +23364,7 @@ catch (...)
 
 static void* hs_method_b5761a6a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Skin(static_cast<endstone::Player const*>(hs_self)->getSkin()));
 }
 catch (std::exception const& hs_error)
@@ -21992,6 +23380,7 @@ catch (...)
 
 static std::int32_t hs_method_4e1b6265(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Player const*>(hs_self)->getTotalExp());
 }
 catch (std::exception const& hs_error)
@@ -22007,6 +23396,7 @@ catch (...)
 
 static float hs_method_3426ba86(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Player const*>(hs_self)->getWalkSpeed());
 }
 catch (std::exception const& hs_error)
@@ -22022,6 +23412,7 @@ catch (...)
 
 static HosihikariStringView hs_method_467a1896(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Player const*>(hs_self)->getXuid();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -22039,6 +23430,7 @@ catch (...)
 
 static void hs_method_768227ec(void* hs_self, std::int32_t amount) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->giveExp(static_cast<int>(amount));
 }
 catch (std::exception const& hs_error)
@@ -22054,6 +23446,7 @@ catch (...)
 
 static void hs_method_0c583557(void* hs_self, std::int32_t amount) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->giveExpLevels(static_cast<int>(amount));
 }
 catch (std::exception const& hs_error)
@@ -22069,6 +23462,7 @@ catch (...)
 
 static bool hs_method_c48a3c9d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isFlying());
 }
 catch (std::exception const& hs_error)
@@ -22084,6 +23478,7 @@ catch (...)
 
 static bool hs_method_a6129068(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isOp());
 }
 catch (std::exception const& hs_error)
@@ -22099,6 +23494,7 @@ catch (...)
 
 static bool hs_method_034c9ee3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isSneaking());
 }
 catch (std::exception const& hs_error)
@@ -22114,6 +23510,7 @@ catch (...)
 
 static bool hs_method_17e3131f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->isSprinting());
 }
 catch (std::exception const& hs_error)
@@ -22129,6 +23526,7 @@ catch (...)
 
 static void hs_method_c8a45702(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->kick(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -22144,6 +23542,7 @@ catch (...)
 
 static bool hs_method_66e6556f(void* hs_self, const char* command_data, std::size_t command_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Player const*>(hs_self)->performCommand(std::basic_string<char>(command_data, command_size)));
 }
 catch (std::exception const& hs_error)
@@ -22159,6 +23558,7 @@ catch (...)
 
 static void hs_method_dcb8d8fd(void* hs_self, void* location, const char* sound_data, std::size_t sound_size, float volume, float pitch) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->playSound(*static_cast<const endstone::Location*>(location), std::basic_string<char>(sound_data, sound_size), static_cast<float>(volume), static_cast<float>(pitch));
 }
 catch (std::exception const& hs_error)
@@ -22174,6 +23574,7 @@ catch (...)
 
 static void hs_method_d7922873(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->resetTitle();
 }
 catch (std::exception const& hs_error)
@@ -22189,6 +23590,7 @@ catch (...)
 
 static void hs_method_f582f838(void* hs_self, void* form) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->sendForm(*static_cast<const std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(form));
 }
 catch (std::exception const& hs_error)
@@ -22204,6 +23606,7 @@ catch (...)
 
 static void hs_method_7ba4e40a(void* hs_self, void* map) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->sendMap(*static_cast<endstone::MapView*>(map));
 }
 catch (std::exception const& hs_error)
@@ -22219,6 +23622,7 @@ catch (...)
 
 static void hs_method_16e86b9c(void* hs_self, std::int32_t packet_id, const char* payload_data, std::size_t payload_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendPacket(static_cast<int>(packet_id), std::basic_string_view<char>(payload_data, payload_size));
 }
 catch (std::exception const& hs_error)
@@ -22234,6 +23638,7 @@ catch (...)
 
 static void hs_method_388cfcc3(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendPopup(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -22249,6 +23654,7 @@ catch (...)
 
 static void hs_method_c548d776(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendTip(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -22264,6 +23670,7 @@ catch (...)
 
 static void hs_method_19a2aa94(void* hs_self, const char* title_data, std::size_t title_size, const char* subtitle_data, std::size_t subtitle_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size));
 }
 catch (std::exception const& hs_error)
@@ -22279,6 +23686,7 @@ catch (...)
 
 static void hs_method_efeec355(void* hs_self, const char* title_data, std::size_t title_size, const char* subtitle_data, std::size_t subtitle_size, std::int32_t fade_in, std::int32_t stay, std::int32_t fade_out) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendTitle(std::basic_string<char>(title_data, title_size), std::basic_string<char>(subtitle_data, subtitle_size), static_cast<int>(fade_in), static_cast<int>(stay), static_cast<int>(fade_out));
 }
 catch (std::exception const& hs_error)
@@ -22294,6 +23702,7 @@ catch (...)
 
 static void hs_method_140230a4(void* hs_self, const char* title_data, std::size_t title_size, const char* content_data, std::size_t content_size) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->sendToast(std::basic_string<char>(title_data, title_size), std::basic_string<char>(content_data, content_size));
 }
 catch (std::exception const& hs_error)
@@ -22309,6 +23718,7 @@ catch (...)
 
 static void hs_method_58033f21(void* hs_self, bool flight) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setAllowFlight(static_cast<bool>(flight));
 }
 catch (std::exception const& hs_error)
@@ -22324,6 +23734,7 @@ catch (...)
 
 static void hs_method_705e6066(void* hs_self, std::int32_t level) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setExpLevel(static_cast<int>(level));
 }
 catch (std::exception const& hs_error)
@@ -22339,6 +23750,7 @@ catch (...)
 
 static void hs_method_8e94d8bb(void* hs_self, float progress) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setExpProgress(static_cast<float>(progress));
 }
 catch (std::exception const& hs_error)
@@ -22354,6 +23766,7 @@ catch (...)
 
 static void hs_method_b089acad(void* hs_self, float value) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->setFlySpeed(static_cast<float>(value));
 }
 catch (std::exception const& hs_error)
@@ -22369,6 +23782,7 @@ catch (...)
 
 static void hs_method_dbc8ff48(void* hs_self, bool value) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setFlying(static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -22384,6 +23798,7 @@ catch (...)
 
 static void hs_method_d694215d(void* hs_self, std::int32_t mode) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setGameMode(static_cast<endstone::GameMode>(mode));
 }
 catch (std::exception const& hs_error)
@@ -22399,6 +23814,7 @@ catch (...)
 
 static void hs_method_7508e0b2(void* hs_self, bool value) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setOp(static_cast<bool>(value));
 }
 catch (std::exception const& hs_error)
@@ -22414,6 +23830,7 @@ catch (...)
 
 static void hs_method_f9f068bc(void* hs_self, void* scoreboard) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setScoreboard(*static_cast<endstone::Scoreboard*>(scoreboard));
 }
 catch (std::exception const& hs_error)
@@ -22429,6 +23846,7 @@ catch (...)
 
 static void hs_method_9710f635(void* hs_self, bool sneak) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setSneaking(static_cast<bool>(sneak));
 }
 catch (std::exception const& hs_error)
@@ -22444,6 +23862,7 @@ catch (...)
 
 static void hs_method_3e5a7dde(void* hs_self, bool sprinting) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->setSprinting(static_cast<bool>(sprinting));
 }
 catch (std::exception const& hs_error)
@@ -22459,6 +23878,7 @@ catch (...)
 
 static void hs_method_64633831(void* hs_self, float value) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->setWalkSpeed(static_cast<float>(value));
 }
 catch (std::exception const& hs_error)
@@ -22474,6 +23894,7 @@ catch (...)
 
 static void hs_method_4561ad82(void* hs_self, const char* name_data, std::size_t name_size, void* location) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location));
 }
 catch (std::exception const& hs_error)
@@ -22489,6 +23910,7 @@ catch (...)
 
 static void hs_method_49c2d51a(void* hs_self, const char* name_data, std::size_t name_size, void* location, const char* molang_variables_json_data, std::size_t molang_variables_json_size, bool molang_variables_json_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Location*>(location), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -22504,6 +23926,7 @@ catch (...)
 
 static void hs_method_e52f1365(void* hs_self, const char* name_data, std::size_t name_size, float x, float y, float z) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
 }
 catch (std::exception const& hs_error)
@@ -22519,6 +23942,7 @@ catch (...)
 
 static void hs_method_93eb6528(void* hs_self, const char* name_data, std::size_t name_size, float x, float y, float z, const char* molang_variables_json_data, std::size_t molang_variables_json_size, bool molang_variables_json_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->spawnParticle(std::basic_string<char>(name_data, name_size), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z), (molang_variables_json_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(molang_variables_json_data, molang_variables_json_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -22534,6 +23958,7 @@ catch (...)
 
 static void hs_method_e4aeae2a(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->stopAllSounds();
 }
 catch (std::exception const& hs_error)
@@ -22549,6 +23974,7 @@ catch (...)
 
 static void hs_method_d8ac09f3(void* hs_self, const char* sound_data, std::size_t sound_size) try
 {
+    clearLastError();
     static_cast<endstone::Player*>(hs_self)->stopSound(std::basic_string<char>(sound_data, sound_size));
 }
 catch (std::exception const& hs_error)
@@ -22564,6 +23990,7 @@ catch (...)
 
 static void hs_method_642d5f09(void* hs_self, const char* host_data, std::size_t host_size, std::int32_t port) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->transfer(std::basic_string<char>(host_data, host_size), static_cast<int>(port));
 }
 catch (std::exception const& hs_error)
@@ -22579,6 +24006,7 @@ catch (...)
 
 static void hs_method_2bac054c(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Player const*>(hs_self)->updateCommands();
 }
 catch (std::exception const& hs_error)
@@ -22594,6 +24022,7 @@ catch (...)
 
 static void hs_destroy_426dca3f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerBanEntry*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -22609,6 +24038,7 @@ catch (...)
 
 static void* hs_cast_bfe186a1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BanEntry*>(static_cast<endstone::PlayerBanEntry*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22624,6 +24054,7 @@ catch (...)
 
 static void* hs_create_346d6121(const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerBanEntry(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -22639,6 +24070,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6e16ee39(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -22656,6 +24088,7 @@ catch (...)
 
 static void* hs_method_80abbf8c(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getUniqueId();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -22676,6 +24109,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8099d776(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerBanEntry const*>(hs_self)->getXuid();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
@@ -22696,6 +24130,7 @@ catch (...)
 
 static void* hs_cast_3f2bfc7e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::BanList<endstone::PlayerBanEntry>*>(static_cast<endstone::PlayerBanList*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22711,6 +24146,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_402af978(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, const char* reason_data, std::size_t reason_size, std::int64_t duration, const char* source_data, std::size_t source_size, bool uuid_hasValue, bool xuid_hasValue, bool reason_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->addBan(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), std::chrono::duration<std::int64_t>(duration), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -22726,6 +24162,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_f5a8bfc6(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, const char* reason_data, std::size_t reason_size, std::int64_t expires, const char* source_data, std::size_t source_size, bool uuid_hasValue, bool xuid_hasValue, bool reason_hasValue, bool expires_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->addBan(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), (expires_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expires))} : std::nullopt), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -22741,6 +24178,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_d3942874(void* hs_self, const char* name_data, std::size_t name_size, const char* reason_data, std::size_t reason_size, std::int64_t duration, const char* source_data, std::size_t source_size, bool reason_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->addBan(std::basic_string<char>(name_data, name_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), std::chrono::duration<std::int64_t>(duration), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -22756,6 +24194,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_4e3f6442(void* hs_self, const char* name_data, std::size_t name_size, const char* reason_data, std::size_t reason_size, std::int64_t expires, const char* source_data, std::size_t source_size, bool reason_hasValue, bool expires_hasValue, bool source_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList*>(hs_self)->addBan(std::basic_string<char>(name_data, name_size), (reason_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(reason_data, reason_size)} : std::nullopt), (expires_hasValue ? std::optional<std::chrono::time_point<std::chrono::system_clock>>{std::chrono::system_clock::time_point(std::chrono::milliseconds(expires))} : std::nullopt), (source_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(source_data, source_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -22771,6 +24210,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_e53ccf1d(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size))).get());
 }
 catch (std::exception const& hs_error)
@@ -22786,6 +24226,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_ac3c9805(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
+    clearLastError();
     return hs_make_shared_handle((static_cast<endstone::PlayerBanList const*>(hs_self)->getBanEntry(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt))).get());
 }
 catch (std::exception const& hs_error)
@@ -22801,6 +24242,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_0e726e25(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<HosihikariSharedHandle> hs_arrayShared;
     auto result = static_cast<endstone::PlayerBanList const*>(hs_self)->getEntries();
     hs_arrayShared.clear();
@@ -22821,6 +24263,7 @@ catch (...)
 
 static bool hs_method_d5b50c77(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PlayerBanList const*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -22836,6 +24279,7 @@ catch (...)
 
 static bool hs_method_b5bff8d5(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PlayerBanList const*>(hs_self)->isBanned(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt)));
 }
 catch (std::exception const& hs_error)
@@ -22851,6 +24295,7 @@ catch (...)
 
 static void hs_method_97810986(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerBanList*>(hs_self)->removeBan(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -22866,6 +24311,7 @@ catch (...)
 
 static void hs_method_1cd88237(void* hs_self, const char* name_data, std::size_t name_size, void* uuid, const char* xuid_data, std::size_t xuid_size, bool uuid_hasValue, bool xuid_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerBanList*>(hs_self)->removeBan(std::basic_string<char>(name_data, name_size), (uuid_hasValue ? std::optional<endstone::UUID>{*static_cast<const endstone::UUID*>(uuid)} : std::nullopt), (xuid_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(xuid_data, xuid_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -22881,6 +24327,7 @@ catch (...)
 
 static void hs_destroy_7b8e6eea(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerBedEnterEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -22896,6 +24343,7 @@ catch (...)
 
 static void* hs_cast_21969f86(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerBedEnterEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22911,6 +24359,7 @@ catch (...)
 
 static void* hs_cast_1831400f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerBedEnterEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22926,6 +24375,7 @@ catch (...)
 
 static void* hs_cast_162c90ad(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerBedEnterEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22941,6 +24391,7 @@ catch (...)
 
 static void* hs_cast_23e56d3f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerBedEnterEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -22956,6 +24407,7 @@ catch (...)
 
 static void* hs_get_d7045c4e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerBedEnterEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -22971,6 +24423,7 @@ catch (...)
 
 static void* hs_create_3a900960(void* player, void* bed) try
 {
+    clearLastError();
     return new endstone::PlayerBedEnterEvent(*static_cast<endstone::Player*>(player), *static_cast<endstone::Block*>(bed));
 }
 catch (std::exception const& hs_error)
@@ -22986,6 +24439,7 @@ catch (...)
 
 static void* hs_method_b59d9235(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedEnterEvent const*>(hs_self)->getBed()));
 }
 catch (std::exception const& hs_error)
@@ -23001,6 +24455,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5c9d7d1a(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerBedEnterEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23018,6 +24473,7 @@ catch (...)
 
 static void hs_destroy_f655aa00(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerBedLeaveEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23033,6 +24489,7 @@ catch (...)
 
 static void* hs_cast_a315a98b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerBedLeaveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23048,6 +24505,7 @@ catch (...)
 
 static void* hs_cast_b53e030a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerBedLeaveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23063,6 +24521,7 @@ catch (...)
 
 static void* hs_get_e7991111() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerBedLeaveEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23078,6 +24537,7 @@ catch (...)
 
 static void* hs_create_9b8e3210(void* player, void* bed) try
 {
+    clearLastError();
     return new endstone::PlayerBedLeaveEvent(*static_cast<endstone::Player*>(player), *static_cast<endstone::Block*>(bed));
 }
 catch (std::exception const& hs_error)
@@ -23093,6 +24553,7 @@ catch (...)
 
 static void* hs_method_2249aaa0(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerBedLeaveEvent const*>(hs_self)->getBed()));
 }
 catch (std::exception const& hs_error)
@@ -23108,6 +24569,7 @@ catch (...)
 
 static HosihikariStringView hs_method_77badf1d(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerBedLeaveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23125,6 +24587,7 @@ catch (...)
 
 static void hs_destroy_73420e51(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerChatEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23140,6 +24603,7 @@ catch (...)
 
 static void* hs_cast_6fd71a13(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerChatEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23155,6 +24619,7 @@ catch (...)
 
 static void* hs_cast_e0a0d2dc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerChatEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23170,6 +24635,7 @@ catch (...)
 
 static void* hs_cast_09824b0a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerChatEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23185,6 +24651,7 @@ catch (...)
 
 static void* hs_cast_9c695d2f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerChatEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23200,6 +24667,7 @@ catch (...)
 
 static void* hs_get_4a1a45ea() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerChatEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23215,6 +24683,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b4507a53(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23232,6 +24701,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b92f560f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getFormat();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23249,6 +24719,7 @@ catch (...)
 
 static HosihikariStringView hs_method_458498c5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23266,6 +24737,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_6522dd0f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PlayerChatEvent const*>(hs_self)->getRecipients();
     hs_arrayResult.clear();
@@ -23286,6 +24758,7 @@ catch (...)
 
 static void hs_method_957acc7a(void* hs_self, const char* format_data, std::size_t format_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerChatEvent*>(hs_self)->setFormat(std::basic_string<char>(format_data, format_size));
 }
 catch (std::exception const& hs_error)
@@ -23301,6 +24774,7 @@ catch (...)
 
 static void hs_method_84f09843(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerChatEvent*>(hs_self)->setMessage(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -23316,6 +24790,7 @@ catch (...)
 
 static void hs_method_97171171(void* hs_self, void* player) try
 {
+    clearLastError();
     static_cast<endstone::PlayerChatEvent*>(hs_self)->setPlayer(*static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -23331,6 +24806,7 @@ catch (...)
 
 static void hs_destroy_232523fc(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerCommandEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23346,6 +24822,7 @@ catch (...)
 
 static void* hs_cast_2f6f4275(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23361,6 +24838,7 @@ catch (...)
 
 static void* hs_cast_5147d518(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23376,6 +24854,7 @@ catch (...)
 
 static void* hs_cast_44275ab7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23391,6 +24870,7 @@ catch (...)
 
 static void* hs_cast_fa6074f6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23406,6 +24886,7 @@ catch (...)
 
 static void* hs_get_c3418bc9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerCommandEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23421,6 +24902,7 @@ catch (...)
 
 static void* hs_create_03fb2089(void* player, const char* command_data, std::size_t command_size) try
 {
+    clearLastError();
     return new endstone::PlayerCommandEvent(*static_cast<endstone::Player*>(player), std::basic_string<char>(command_data, command_size));
 }
 catch (std::exception const& hs_error)
@@ -23436,6 +24918,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8c4234ca(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerCommandEvent const*>(hs_self)->getCommand();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23453,6 +24936,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0ab19541(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerCommandEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23470,6 +24954,7 @@ catch (...)
 
 static void hs_method_3e202e96(void* hs_self, const char* command_data, std::size_t command_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerCommandEvent*>(hs_self)->setCommand(std::basic_string<char>(command_data, command_size));
 }
 catch (std::exception const& hs_error)
@@ -23485,6 +24970,7 @@ catch (...)
 
 static void hs_destroy_21bb0371(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerDeathEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23500,6 +24986,7 @@ catch (...)
 
 static void* hs_cast_0187d923(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorDeathEvent*>(static_cast<endstone::PlayerDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23515,6 +25002,7 @@ catch (...)
 
 static void* hs_cast_c6415699(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ActorEvent<endstone::Mob>*>(static_cast<endstone::PlayerDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23530,6 +25018,7 @@ catch (...)
 
 static void* hs_cast_358bbcc3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerDeathEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23545,6 +25034,7 @@ catch (...)
 
 static void* hs_get_6c21fa68() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerDeathEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23560,6 +25050,7 @@ catch (...)
 
 static void* hs_create_ba4c0257(void* player, void* damage_source, void* death_message, bool death_message_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerDeathEvent(*static_cast<endstone::Player*>(player), std::unique_ptr<endstone::DamageSource>(static_cast<endstone::DamageSource*>(damage_source)), (death_message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(death_message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -23575,6 +25066,7 @@ catch (...)
 
 static void* hs_method_09a43d68(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getDeathMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -23595,6 +25087,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a73c6a4f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23612,6 +25105,7 @@ catch (...)
 
 static void* hs_method_0f3fb098(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDeathEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -23627,6 +25121,7 @@ catch (...)
 
 static void hs_method_7b4a723d(void* hs_self, void* death_message, bool death_message_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerDeathEvent*>(hs_self)->setDeathMessage((death_message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(death_message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -23642,6 +25137,7 @@ catch (...)
 
 static void hs_destroy_bea4b70e(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23657,6 +25153,7 @@ catch (...)
 
 static void* hs_cast_bcb09735(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23672,6 +25169,7 @@ catch (...)
 
 static void* hs_cast_9793c9e1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerDimensionChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23687,6 +25185,7 @@ catch (...)
 
 static void* hs_get_da0bdd12() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerDimensionChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23702,6 +25201,7 @@ catch (...)
 
 static void* hs_create_eb5beb30(void* player, void* from, void* to) try
 {
+    clearLastError();
     return new endstone::PlayerDimensionChangeEvent(*static_cast<endstone::Player*>(player), *static_cast<endstone::Dimension*>(from), *static_cast<endstone::Dimension*>(to));
 }
 catch (std::exception const& hs_error)
@@ -23717,6 +25217,7 @@ catch (...)
 
 static HosihikariStringView hs_method_662d6064(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23734,6 +25235,7 @@ catch (...)
 
 static void* hs_method_41d9abc5(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
@@ -23749,6 +25251,7 @@ catch (...)
 
 static void* hs_method_1c7ecf07(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDimensionChangeEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
@@ -23764,6 +25267,7 @@ catch (...)
 
 static void hs_destroy_69bba1d4(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerDropItemEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23779,6 +25283,7 @@ catch (...)
 
 static void* hs_cast_d6ce8e07(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerDropItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23794,6 +25299,7 @@ catch (...)
 
 static void* hs_cast_da12043e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerDropItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23809,6 +25315,7 @@ catch (...)
 
 static void* hs_cast_8733fa2e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerDropItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23824,6 +25331,7 @@ catch (...)
 
 static void* hs_cast_a6726808(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerDropItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23839,6 +25347,7 @@ catch (...)
 
 static void* hs_get_cc5d87d8() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerDropItemEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23854,6 +25363,7 @@ catch (...)
 
 static void* hs_create_a7be53e1(void* player, void* drop) try
 {
+    clearLastError();
     return new endstone::PlayerDropItemEvent(*static_cast<endstone::Player*>(player), *static_cast<const endstone::ItemStack*>(drop));
 }
 catch (std::exception const& hs_error)
@@ -23869,6 +25379,7 @@ catch (...)
 
 static HosihikariStringView hs_method_243dad04(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerDropItemEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -23886,6 +25397,7 @@ catch (...)
 
 static void* hs_method_8372a1d3(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerDropItemEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
@@ -23901,6 +25413,7 @@ catch (...)
 
 static void hs_destroy_78f9787a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerEmoteEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -23916,6 +25429,7 @@ catch (...)
 
 static void* hs_cast_5e4ea4ca(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerEmoteEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23931,6 +25445,7 @@ catch (...)
 
 static void* hs_cast_d5132711(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerEmoteEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23946,6 +25461,7 @@ catch (...)
 
 static void* hs_cast_fa26a4a6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerEmoteEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23961,6 +25477,7 @@ catch (...)
 
 static void* hs_cast_cd4803c8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerEmoteEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -23976,6 +25493,7 @@ catch (...)
 
 static void* hs_get_8e71f75c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerEmoteEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -23991,6 +25509,7 @@ catch (...)
 
 static void* hs_create_7fffb4c9(void* player, const char* emote_id_data, std::size_t emote_id_size, bool muted) try
 {
+    clearLastError();
     return new endstone::PlayerEmoteEvent(*static_cast<endstone::Player*>(player), std::basic_string<char>(emote_id_data, emote_id_size), static_cast<bool>(muted));
 }
 catch (std::exception const& hs_error)
@@ -24006,6 +25525,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b68df709(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->getEmoteId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -24023,6 +25543,7 @@ catch (...)
 
 static HosihikariStringView hs_method_1383452f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -24040,6 +25561,7 @@ catch (...)
 
 static bool hs_method_008ffb5b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PlayerEmoteEvent const*>(hs_self)->isMuted());
 }
 catch (std::exception const& hs_error)
@@ -24055,6 +25577,7 @@ catch (...)
 
 static void hs_method_918bae3a(void* hs_self, bool muted) try
 {
+    clearLastError();
     static_cast<endstone::PlayerEmoteEvent*>(hs_self)->setMuted(static_cast<bool>(muted));
 }
 catch (std::exception const& hs_error)
@@ -24070,6 +25593,7 @@ catch (...)
 
 static void* hs_cast_4e48a6d5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24085,6 +25609,7 @@ catch (...)
 
 static void* hs_cast_0203f239(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedEnterEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24100,6 +25625,7 @@ catch (...)
 
 static void* hs_cast_65b028b9(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerBedLeaveEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24115,6 +25641,7 @@ catch (...)
 
 static void* hs_cast_eed69f10(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerChatEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24130,6 +25657,7 @@ catch (...)
 
 static void* hs_cast_6b6b7074(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerCommandEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24145,6 +25673,7 @@ catch (...)
 
 static void* hs_cast_fe5e4580(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDimensionChangeEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24160,6 +25689,7 @@ catch (...)
 
 static void* hs_cast_65a60a87(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerDropItemEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24175,6 +25705,7 @@ catch (...)
 
 static void* hs_cast_5eff9e1a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerEmoteEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24190,6 +25721,7 @@ catch (...)
 
 static void* hs_cast_a2f7633a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerGameModeChangeEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24205,6 +25737,7 @@ catch (...)
 
 static void* hs_cast_4b5ed8e1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractActorEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24220,6 +25753,7 @@ catch (...)
 
 static void* hs_cast_3a5ebe85(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerInteractEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24235,6 +25769,7 @@ catch (...)
 
 static void* hs_cast_53f72038(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemConsumeEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24250,6 +25785,7 @@ catch (...)
 
 static void* hs_cast_000ed956(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerItemHeldEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24265,6 +25801,7 @@ catch (...)
 
 static void* hs_cast_a0ac2f82(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJoinEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24280,6 +25817,7 @@ catch (...)
 
 static void* hs_cast_9a8c299d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJumpEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24295,6 +25833,7 @@ catch (...)
 
 static void* hs_cast_4ee6fde6(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerKickEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24310,6 +25849,7 @@ catch (...)
 
 static void* hs_cast_6fcfcb10(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerLoginEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24325,6 +25865,7 @@ catch (...)
 
 static void* hs_cast_5bdf260a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24340,6 +25881,7 @@ catch (...)
 
 static void* hs_cast_a7f845fb(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPickupItemEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24355,6 +25897,7 @@ catch (...)
 
 static void* hs_cast_b3241dbe(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24370,6 +25913,7 @@ catch (...)
 
 static void* hs_cast_94a3f305(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerQuitEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24385,6 +25929,7 @@ catch (...)
 
 static void* hs_cast_5335f95d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerRespawnEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24400,6 +25945,7 @@ catch (...)
 
 static void* hs_cast_72ad1515(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerSkinChangeEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24415,6 +25961,7 @@ catch (...)
 
 static void* hs_cast_683fbb67(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24430,6 +25977,7 @@ catch (...)
 
 static void* hs_cast_56f879ae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24445,6 +25993,7 @@ catch (...)
 
 static void* hs_method_3db1e9dc(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerEvent const*>(hs_self)->getPlayer()));
 }
 catch (std::exception const& hs_error)
@@ -24460,6 +26009,7 @@ catch (...)
 
 static void hs_destroy_5caad170(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -24475,6 +26025,7 @@ catch (...)
 
 static void* hs_cast_2be2bb61(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24490,6 +26041,7 @@ catch (...)
 
 static void* hs_cast_7b5d036e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24505,6 +26057,7 @@ catch (...)
 
 static void* hs_cast_2ac53b2b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24520,6 +26073,7 @@ catch (...)
 
 static void* hs_cast_37c09502(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerGameModeChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24535,6 +26089,7 @@ catch (...)
 
 static void* hs_get_42d3d34a() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerGameModeChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -24550,6 +26105,7 @@ catch (...)
 
 static void* hs_create_adb993f6(void* player, std::int32_t new_game_mode) try
 {
+    clearLastError();
     return new endstone::PlayerGameModeChangeEvent(*static_cast<endstone::Player*>(player), static_cast<endstone::GameMode>(new_game_mode));
 }
 catch (std::exception const& hs_error)
@@ -24565,6 +26121,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b3a3a53f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerGameModeChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -24582,6 +26139,7 @@ catch (...)
 
 static std::int32_t hs_method_5bc97f4d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerGameModeChangeEvent const*>(hs_self)->getNewGameMode());
 }
 catch (std::exception const& hs_error)
@@ -24597,6 +26155,7 @@ catch (...)
 
 static void hs_destroy_0752461f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerInteractActorEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -24612,6 +26171,7 @@ catch (...)
 
 static void* hs_cast_c5f66d62(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerInteractActorEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24627,6 +26187,7 @@ catch (...)
 
 static void* hs_cast_81643f73(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerInteractActorEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24642,6 +26203,7 @@ catch (...)
 
 static void* hs_cast_4d15b86f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerInteractActorEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24657,6 +26219,7 @@ catch (...)
 
 static void* hs_cast_9d896ed5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerInteractActorEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24672,6 +26235,7 @@ catch (...)
 
 static void* hs_get_a26b7c31() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerInteractActorEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -24687,6 +26251,7 @@ catch (...)
 
 static void* hs_create_27af3a46(void* player, void* actor) try
 {
+    clearLastError();
     return new endstone::PlayerInteractActorEvent(*static_cast<endstone::Player*>(player), *static_cast<endstone::Actor*>(actor));
 }
 catch (std::exception const& hs_error)
@@ -24702,6 +26267,7 @@ catch (...)
 
 static void* hs_method_bcc3954e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractActorEvent const*>(hs_self)->getActor()));
 }
 catch (std::exception const& hs_error)
@@ -24717,6 +26283,7 @@ catch (...)
 
 static HosihikariStringView hs_method_2c450ef3(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInteractActorEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -24734,6 +26301,7 @@ catch (...)
 
 static void hs_destroy_2921a71d(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerInteractEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -24749,6 +26317,7 @@ catch (...)
 
 static void* hs_cast_20fcdc99(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerInteractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24764,6 +26333,7 @@ catch (...)
 
 static void* hs_cast_9b5106a7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerInteractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24779,6 +26349,7 @@ catch (...)
 
 static void* hs_cast_e5156566(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerInteractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24794,6 +26365,7 @@ catch (...)
 
 static void* hs_cast_8741dc7d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerInteractEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24809,6 +26381,7 @@ catch (...)
 
 static void* hs_get_dc89b525() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerInteractEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -24824,6 +26397,7 @@ catch (...)
 
 static void* hs_create_09873167(void* player, std::int32_t action, void* item, void* block_clicked, std::int32_t block_face, void* clicked_position, bool item_hasValue, bool clicked_position_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerInteractEvent(*static_cast<endstone::Player*>(player), static_cast<endstone::PlayerInteractEvent::Action>(action), (item_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(item)} : std::nullopt), static_cast<endstone::Block*>(block_clicked), static_cast<endstone::BlockFace>(block_face), (clicked_position_hasValue ? std::optional<endstone::Vector>{*static_cast<const endstone::Vector*>(clicked_position)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -24839,6 +26413,7 @@ catch (...)
 
 static std::int32_t hs_method_fd32d648(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getAction());
 }
 catch (std::exception const& hs_error)
@@ -24854,6 +26429,7 @@ catch (...)
 
 static void* hs_method_50883ffe(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getBlock()));
 }
 catch (std::exception const& hs_error)
@@ -24869,6 +26445,7 @@ catch (...)
 
 static std::int32_t hs_method_d9ab8eaf(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getBlockFace());
 }
 catch (std::exception const& hs_error)
@@ -24884,6 +26461,7 @@ catch (...)
 
 static void* hs_method_9615d72c(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getClickedPosition();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -24904,6 +26482,7 @@ catch (...)
 
 static HosihikariStringView hs_method_eda76496(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -24921,6 +26500,7 @@ catch (...)
 
 static void* hs_method_fd08901a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerInteractEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
@@ -24936,6 +26516,7 @@ catch (...)
 
 static bool hs_method_ccde37b2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->hasBlock());
 }
 catch (std::exception const& hs_error)
@@ -24951,6 +26532,7 @@ catch (...)
 
 static bool hs_method_250987aa(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PlayerInteractEvent const*>(hs_self)->hasItem());
 }
 catch (std::exception const& hs_error)
@@ -24966,6 +26548,7 @@ catch (...)
 
 static void* hs_cast_5511c96b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Inventory*>(static_cast<endstone::PlayerInventory*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -24981,6 +26564,7 @@ catch (...)
 
 static void* hs_method_407afba1(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getBoots();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25001,6 +26585,7 @@ catch (...)
 
 static void* hs_method_21cdca28(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getChestplate();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25021,6 +26606,7 @@ catch (...)
 
 static std::int32_t hs_method_2af5838e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerInventory const*>(hs_self)->getHeldItemSlot());
 }
 catch (std::exception const& hs_error)
@@ -25036,6 +26622,7 @@ catch (...)
 
 static void* hs_method_e7852bbe(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getHelmet();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25056,6 +26643,7 @@ catch (...)
 
 static void* hs_method_80e17233(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getItemInMainHand();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25076,6 +26664,7 @@ catch (...)
 
 static void* hs_method_22b989c4(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getItemInOffHand();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25096,6 +26685,7 @@ catch (...)
 
 static void* hs_method_7394574a(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerInventory const*>(hs_self)->getLeggings();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25116,6 +26706,7 @@ catch (...)
 
 static void hs_method_152a38b3(void* hs_self, void* boots, bool boots_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setBoots((boots_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(boots)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25131,6 +26722,7 @@ catch (...)
 
 static void hs_method_0c7c03cb(void* hs_self, void* chestplate, bool chestplate_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setChestplate((chestplate_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(chestplate)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25146,6 +26738,7 @@ catch (...)
 
 static void hs_method_720209cc(void* hs_self, std::int32_t slot) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setHeldItemSlot(static_cast<int>(slot));
 }
 catch (std::exception const& hs_error)
@@ -25161,6 +26754,7 @@ catch (...)
 
 static void hs_method_0414afa6(void* hs_self, void* helmet, bool helmet_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setHelmet((helmet_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(helmet)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25176,6 +26770,7 @@ catch (...)
 
 static void hs_method_06d22994(void* hs_self, void* item, bool item_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setItemInMainHand((item_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(item)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25191,6 +26786,7 @@ catch (...)
 
 static void hs_method_a50f5807(void* hs_self, void* item, bool item_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setItemInOffHand((item_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(item)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25206,6 +26802,7 @@ catch (...)
 
 static void hs_method_5339c3c9(void* hs_self, void* leggings, bool leggings_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerInventory*>(hs_self)->setLeggings((leggings_hasValue ? std::optional<endstone::ItemStack>{*static_cast<const endstone::ItemStack*>(leggings)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25221,6 +26818,7 @@ catch (...)
 
 static void hs_destroy_deb3197a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerItemConsumeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25236,6 +26834,7 @@ catch (...)
 
 static void* hs_cast_3cafff1c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerItemConsumeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25251,6 +26850,7 @@ catch (...)
 
 static void* hs_cast_8e288949(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerItemConsumeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25266,6 +26866,7 @@ catch (...)
 
 static void* hs_cast_e78a2a89(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerItemConsumeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25281,6 +26882,7 @@ catch (...)
 
 static void* hs_cast_b71a0641(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerItemConsumeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25296,6 +26898,7 @@ catch (...)
 
 static void* hs_get_77e0d86d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerItemConsumeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -25311,6 +26914,7 @@ catch (...)
 
 static void* hs_create_fcc7ded7(void* player, void* item, std::int32_t hand) try
 {
+    clearLastError();
     return new endstone::PlayerItemConsumeEvent(*static_cast<endstone::Player*>(player), *static_cast<const endstone::ItemStack*>(item), static_cast<endstone::EquipmentSlot>(hand));
 }
 catch (std::exception const& hs_error)
@@ -25326,6 +26930,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9e01e472(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25343,6 +26948,7 @@ catch (...)
 
 static std::int32_t hs_method_23eda770(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getHand());
 }
 catch (std::exception const& hs_error)
@@ -25358,6 +26964,7 @@ catch (...)
 
 static void* hs_method_37f0fdff(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerItemConsumeEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
@@ -25373,6 +26980,7 @@ catch (...)
 
 static void hs_destroy_9953d00b(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerItemHeldEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25388,6 +26996,7 @@ catch (...)
 
 static void* hs_cast_98d7cc0f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25403,6 +27012,7 @@ catch (...)
 
 static void* hs_cast_6c9ed6c7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25418,6 +27028,7 @@ catch (...)
 
 static void* hs_cast_c235bc0a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25433,6 +27044,7 @@ catch (...)
 
 static void* hs_cast_b0e1dbe0(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerItemHeldEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25448,6 +27060,7 @@ catch (...)
 
 static void* hs_get_dc32f986() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerItemHeldEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -25463,6 +27076,7 @@ catch (...)
 
 static void* hs_create_23595a75(void* player, std::int32_t previous, std::int32_t current) try
 {
+    clearLastError();
     return new endstone::PlayerItemHeldEvent(*static_cast<endstone::Player*>(player), static_cast<const int>(previous), static_cast<const int>(current));
 }
 catch (std::exception const& hs_error)
@@ -25478,6 +27092,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9b0abce8(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25495,6 +27110,7 @@ catch (...)
 
 static std::int32_t hs_method_33653a83(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getNewSlot());
 }
 catch (std::exception const& hs_error)
@@ -25510,6 +27126,7 @@ catch (...)
 
 static std::int32_t hs_method_07e177e9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PlayerItemHeldEvent const*>(hs_self)->getPreviousSlot());
 }
 catch (std::exception const& hs_error)
@@ -25525,6 +27142,7 @@ catch (...)
 
 static void hs_destroy_9f331fab(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerJoinEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25540,6 +27158,7 @@ catch (...)
 
 static void* hs_cast_d7457a81(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerJoinEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25555,6 +27174,7 @@ catch (...)
 
 static void* hs_cast_8dc67042(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerJoinEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25570,6 +27190,7 @@ catch (...)
 
 static void* hs_get_0935792e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerJoinEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -25585,6 +27206,7 @@ catch (...)
 
 static void* hs_create_58d23106(void* player, void* join_message, bool join_message_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerJoinEvent(*static_cast<endstone::Player*>(player), (join_message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(join_message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25600,6 +27222,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9a7837cb(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerJoinEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25617,6 +27240,7 @@ catch (...)
 
 static void* hs_method_af275668(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerJoinEvent const*>(hs_self)->getJoinMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -25637,6 +27261,7 @@ catch (...)
 
 static void hs_method_a3832a8c(void* hs_self, void* message, bool message_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerJoinEvent*>(hs_self)->setJoinMessage((message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -25652,6 +27277,7 @@ catch (...)
 
 static void hs_destroy_2fa323f1(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerJumpEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25667,6 +27293,7 @@ catch (...)
 
 static void* hs_cast_88d19e67(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerJumpEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25682,6 +27309,7 @@ catch (...)
 
 static void* hs_cast_33480cbe(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerJumpEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25697,6 +27325,7 @@ catch (...)
 
 static void* hs_cast_3690090c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerJumpEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25712,6 +27341,7 @@ catch (...)
 
 static void* hs_cast_7eb6c23c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerJumpEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25727,6 +27357,7 @@ catch (...)
 
 static void* hs_cast_242254ab(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::PlayerJumpEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25742,6 +27373,7 @@ catch (...)
 
 static void* hs_get_80302a8e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerJumpEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -25757,6 +27389,7 @@ catch (...)
 
 static HosihikariStringView hs_method_408857f5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerJumpEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25774,6 +27407,7 @@ catch (...)
 
 static void hs_destroy_1f874428(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerKickEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25789,6 +27423,7 @@ catch (...)
 
 static void* hs_cast_fc72c352(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerKickEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25804,6 +27439,7 @@ catch (...)
 
 static void* hs_cast_73a1b90b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerKickEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25819,6 +27455,7 @@ catch (...)
 
 static void* hs_cast_9bb4cf96(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerKickEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25834,6 +27471,7 @@ catch (...)
 
 static void* hs_cast_7aaa5e70(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerKickEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25849,6 +27487,7 @@ catch (...)
 
 static void* hs_get_e1c18cb7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerKickEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -25864,6 +27503,7 @@ catch (...)
 
 static void* hs_create_b7b99633(void* player, const char* reason_data, std::size_t reason_size) try
 {
+    clearLastError();
     return new endstone::PlayerKickEvent(*static_cast<endstone::Player*>(player), std::basic_string<char>(reason_data, reason_size));
 }
 catch (std::exception const& hs_error)
@@ -25879,6 +27519,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ca091d6a(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerKickEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25896,6 +27537,7 @@ catch (...)
 
 static HosihikariStringView hs_method_0b3d6022(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerKickEvent const*>(hs_self)->getReason();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -25913,6 +27555,7 @@ catch (...)
 
 static void hs_method_3e9def5d(void* hs_self, const char* reason_data, std::size_t reason_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerKickEvent*>(hs_self)->setReason(std::basic_string<char>(reason_data, reason_size));
 }
 catch (std::exception const& hs_error)
@@ -25928,6 +27571,7 @@ catch (...)
 
 static void hs_destroy_b96ae6e0(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerLoginEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -25943,6 +27587,7 @@ catch (...)
 
 static void* hs_cast_832aac3b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerLoginEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25958,6 +27603,7 @@ catch (...)
 
 static void* hs_cast_1abe7ded(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerLoginEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25973,6 +27619,7 @@ catch (...)
 
 static void* hs_cast_1a29c6ec(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerLoginEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -25988,6 +27635,7 @@ catch (...)
 
 static void* hs_cast_f38f3dae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerLoginEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26003,6 +27651,7 @@ catch (...)
 
 static void* hs_get_39ac7edc() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerLoginEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26018,6 +27667,7 @@ catch (...)
 
 static void* hs_create_10124064(void* player, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     return new endstone::PlayerLoginEvent(*static_cast<endstone::Player*>(player), std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -26033,6 +27683,7 @@ catch (...)
 
 static HosihikariStringView hs_method_d1fe55ab(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerLoginEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26050,6 +27701,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c422381f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerLoginEvent const*>(hs_self)->getKickMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26067,6 +27719,7 @@ catch (...)
 
 static void hs_method_a4bf23b3(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::PlayerLoginEvent*>(hs_self)->setKickMessage(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -26082,6 +27735,7 @@ catch (...)
 
 static void hs_destroy_e9760885(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerMoveEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26097,6 +27751,7 @@ catch (...)
 
 static void* hs_cast_550f0be5(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerJumpEvent*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26112,6 +27767,7 @@ catch (...)
 
 static void* hs_cast_603cd18a(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26127,6 +27783,7 @@ catch (...)
 
 static void* hs_cast_9ca672c0(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26142,6 +27799,7 @@ catch (...)
 
 static void* hs_cast_b973ae3e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26157,6 +27815,7 @@ catch (...)
 
 static void* hs_cast_f369f3a2(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26172,6 +27831,7 @@ catch (...)
 
 static void* hs_cast_05ad14fd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26187,6 +27847,7 @@ catch (...)
 
 static void* hs_cast_0abdce14(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerMoveEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26202,6 +27863,7 @@ catch (...)
 
 static void* hs_get_4223d5c1() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerMoveEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26217,6 +27879,7 @@ catch (...)
 
 static void* hs_create_a4643fb8(void* player, void* from, void* to) try
 {
+    clearLastError();
     return new endstone::PlayerMoveEvent(*static_cast<endstone::Player*>(player), *static_cast<const endstone::Location*>(from), *static_cast<const endstone::Location*>(to));
 }
 catch (std::exception const& hs_error)
@@ -26232,6 +27895,7 @@ catch (...)
 
 static void* hs_get_92a2823f(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent*>(hs_self)->from_));
 }
 catch (std::exception const& hs_error)
@@ -26247,6 +27911,7 @@ catch (...)
 
 static void hs_set_92a2823f(void* hs_self, void* value) try
 {
+    clearLastError();
     static_cast<endstone::PlayerMoveEvent*>(hs_self)->from_ = static_cast<endstone::Location>(*static_cast<const endstone::Location*>(value));
 }
 catch (std::exception const& hs_error)
@@ -26262,6 +27927,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a1d2aae6(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26279,6 +27945,7 @@ catch (...)
 
 static void* hs_method_0f5ff6d1(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getFrom()));
 }
 catch (std::exception const& hs_error)
@@ -26294,6 +27961,7 @@ catch (...)
 
 static void* hs_method_28cb48e3(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent const*>(hs_self)->getTo()));
 }
 catch (std::exception const& hs_error)
@@ -26309,6 +27977,7 @@ catch (...)
 
 static void hs_method_f580d61f(void* hs_self, void* from) try
 {
+    clearLastError();
     static_cast<endstone::PlayerMoveEvent*>(hs_self)->setFrom(*static_cast<const endstone::Location*>(from));
 }
 catch (std::exception const& hs_error)
@@ -26324,6 +27993,7 @@ catch (...)
 
 static void hs_method_0de8af6d(void* hs_self, void* to) try
 {
+    clearLastError();
     static_cast<endstone::PlayerMoveEvent*>(hs_self)->setTo(*static_cast<const endstone::Location*>(to));
 }
 catch (std::exception const& hs_error)
@@ -26339,6 +28009,7 @@ catch (...)
 
 static void* hs_get_ce3f8806(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerMoveEvent*>(hs_self)->to_));
 }
 catch (std::exception const& hs_error)
@@ -26354,6 +28025,7 @@ catch (...)
 
 static void hs_set_ce3f8806(void* hs_self, void* value) try
 {
+    clearLastError();
     static_cast<endstone::PlayerMoveEvent*>(hs_self)->to_ = static_cast<endstone::Location>(*static_cast<const endstone::Location*>(value));
 }
 catch (std::exception const& hs_error)
@@ -26369,6 +28041,7 @@ catch (...)
 
 static void hs_destroy_46c72fe0(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerPickupItemEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26384,6 +28057,7 @@ catch (...)
 
 static void* hs_cast_481b7aa1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerPickupItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26399,6 +28073,7 @@ catch (...)
 
 static void* hs_cast_42ca0664(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerPickupItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26414,6 +28089,7 @@ catch (...)
 
 static void* hs_cast_149bd6c6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerPickupItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26429,6 +28105,7 @@ catch (...)
 
 static void* hs_cast_2b18ad2d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerPickupItemEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26444,6 +28121,7 @@ catch (...)
 
 static void* hs_get_ee377252() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerPickupItemEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26459,6 +28137,7 @@ catch (...)
 
 static void* hs_create_352fb381(void* player, void* item) try
 {
+    clearLastError();
     return new endstone::PlayerPickupItemEvent(*static_cast<endstone::Player*>(player), *static_cast<endstone::Item*>(item));
 }
 catch (std::exception const& hs_error)
@@ -26474,6 +28153,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7dbbe6d9(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerPickupItemEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26491,6 +28171,7 @@ catch (...)
 
 static void* hs_method_91dd524f(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PlayerPickupItemEvent const*>(hs_self)->getItem()));
 }
 catch (std::exception const& hs_error)
@@ -26506,6 +28187,7 @@ catch (...)
 
 static void hs_destroy_93d9555b(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerPortalEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26521,6 +28203,7 @@ catch (...)
 
 static void* hs_cast_ac924476(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26536,6 +28219,7 @@ catch (...)
 
 static void* hs_cast_0d43b213(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26551,6 +28235,7 @@ catch (...)
 
 static void* hs_cast_4b621e8a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26566,6 +28251,7 @@ catch (...)
 
 static void* hs_cast_bcba7024(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26581,6 +28267,7 @@ catch (...)
 
 static void* hs_cast_0fddfde3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26596,6 +28283,7 @@ catch (...)
 
 static void* hs_cast_628f118a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerTeleportEvent*>(static_cast<endstone::PlayerPortalEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26611,6 +28299,7 @@ catch (...)
 
 static void* hs_get_91479d0d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerPortalEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26626,6 +28315,7 @@ catch (...)
 
 static HosihikariStringView hs_method_6a286f65(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerPortalEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26643,6 +28333,7 @@ catch (...)
 
 static void hs_destroy_77740c4a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerQuitEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26658,6 +28349,7 @@ catch (...)
 
 static void* hs_cast_f7e6dfd0(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerQuitEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26673,6 +28365,7 @@ catch (...)
 
 static void* hs_cast_062024fc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerQuitEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26688,6 +28381,7 @@ catch (...)
 
 static void* hs_get_6dd8ba88() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerQuitEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26703,6 +28397,7 @@ catch (...)
 
 static void* hs_create_bec39eb4(void* player, void* quit_message, bool quit_message_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerQuitEvent(*static_cast<endstone::Player*>(player), (quit_message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(quit_message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -26718,6 +28413,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dcf52f89(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerQuitEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26735,6 +28431,7 @@ catch (...)
 
 static void* hs_method_a21f1046(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerQuitEvent const*>(hs_self)->getQuitMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -26755,6 +28452,7 @@ catch (...)
 
 static void hs_method_221a79aa(void* hs_self, void* message, bool message_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerQuitEvent*>(hs_self)->setQuitMessage((message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -26770,6 +28468,7 @@ catch (...)
 
 static void hs_destroy_b301f523(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerRespawnEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26785,6 +28484,7 @@ catch (...)
 
 static void* hs_cast_e505747f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerRespawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26800,6 +28500,7 @@ catch (...)
 
 static void* hs_cast_c4a7a11c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerRespawnEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26815,6 +28516,7 @@ catch (...)
 
 static void* hs_get_88e469cd() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerRespawnEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26830,6 +28532,7 @@ catch (...)
 
 static void* hs_create_d61df892(void* player) try
 {
+    clearLastError();
     return new endstone::PlayerRespawnEvent(*static_cast<endstone::Player*>(player));
 }
 catch (std::exception const& hs_error)
@@ -26845,6 +28548,7 @@ catch (...)
 
 static HosihikariStringView hs_method_9a200629(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerRespawnEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26862,6 +28566,7 @@ catch (...)
 
 static void hs_destroy_75a5031c(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerSkinChangeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -26877,6 +28582,7 @@ catch (...)
 
 static void* hs_cast_dd30bd94(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerSkinChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26892,6 +28598,7 @@ catch (...)
 
 static void* hs_cast_0d829ac8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerSkinChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26907,6 +28614,7 @@ catch (...)
 
 static void* hs_cast_1a4c6029(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerSkinChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26922,6 +28630,7 @@ catch (...)
 
 static void* hs_cast_a9fd6bfc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerSkinChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -26937,6 +28646,7 @@ catch (...)
 
 static void* hs_get_9305609b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerSkinChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -26952,6 +28662,7 @@ catch (...)
 
 static void* hs_create_7d06c231(void* player, void* new_skin, void* message, bool message_hasValue) try
 {
+    clearLastError();
     return new endstone::PlayerSkinChangeEvent(*static_cast<endstone::Player*>(player), *static_cast<const endstone::Skin*>(new_skin), (message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -26967,6 +28678,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5c33ba79(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -26984,6 +28696,7 @@ catch (...)
 
 static void* hs_method_d73a652d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Skin(static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getNewSkin()));
 }
 catch (std::exception const& hs_error)
@@ -26999,6 +28712,7 @@ catch (...)
 
 static void* hs_method_3c0a13be(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerSkinChangeEvent const*>(hs_self)->getSkinChangeMessage();
     *hs_hasValue = result.has_value();
     if (!result) { return nullptr; }
@@ -27019,6 +28733,7 @@ catch (...)
 
 static void hs_method_56fe64c4(void* hs_self, void* message, bool message_hasValue) try
 {
+    clearLastError();
     static_cast<endstone::PlayerSkinChangeEvent*>(hs_self)->setSkinChangeMessage((message_hasValue ? std::optional<std::variant<std::basic_string<char>, endstone::Translatable>>{*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -27034,6 +28749,7 @@ catch (...)
 
 static void hs_destroy_20eb43b0(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PlayerTeleportEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -27049,6 +28765,7 @@ catch (...)
 
 static void* hs_cast_a55f33a0(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::PlayerPortalEvent*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27064,6 +28781,7 @@ catch (...)
 
 static void* hs_cast_49ac7230(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::PlayerEvent>*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27079,6 +28797,7 @@ catch (...)
 
 static void* hs_cast_fb0ac823(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27094,6 +28813,7 @@ catch (...)
 
 static void* hs_cast_4359d006(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27109,6 +28829,7 @@ catch (...)
 
 static void* hs_cast_12314db8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerEvent*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27124,6 +28845,7 @@ catch (...)
 
 static void* hs_cast_689870c8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::PlayerMoveEvent*>(static_cast<endstone::PlayerTeleportEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27139,6 +28861,7 @@ catch (...)
 
 static void* hs_get_6c5522fa() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PlayerTeleportEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -27154,6 +28877,7 @@ catch (...)
 
 static HosihikariStringView hs_method_46454b3c(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PlayerTeleportEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27171,6 +28895,7 @@ catch (...)
 
 static void* hs_cast_59074223(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::CommandExecutor*>(static_cast<endstone::Plugin*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27186,6 +28911,7 @@ catch (...)
 
 static void* hs_method_b198102d(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Plugin const*>(hs_self)->getCommand(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -27201,6 +28927,7 @@ catch (...)
 
 static HosihikariStringView hs_method_775a44b0(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Plugin const*>(hs_self)->getDataFolder();
     g_stringResult.assign(result.string());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27218,6 +28945,7 @@ catch (...)
 
 static void* hs_method_f1bd0b1c(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getDescription()));
 }
 catch (std::exception const& hs_error)
@@ -27233,6 +28961,7 @@ catch (...)
 
 static void* hs_method_68ae4547(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getLogger()));
 }
 catch (std::exception const& hs_error)
@@ -27248,6 +28977,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3e0154f0(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Plugin const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27265,6 +28995,7 @@ catch (...)
 
 static void* hs_method_43488e75(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getPluginLoader()));
 }
 catch (std::exception const& hs_error)
@@ -27280,6 +29011,7 @@ catch (...)
 
 static void* hs_method_a6bd72ae(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Plugin const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
@@ -27295,6 +29027,7 @@ catch (...)
 
 static bool hs_method_1f11e477(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Plugin const*>(hs_self)->isEnabled());
 }
 catch (std::exception const& hs_error)
@@ -27310,6 +29043,7 @@ catch (...)
 
 static void hs_method_bd51770f(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Plugin*>(hs_self)->onDisable();
 }
 catch (std::exception const& hs_error)
@@ -27325,6 +29059,7 @@ catch (...)
 
 static void hs_method_ce3da367(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Plugin*>(hs_self)->onEnable();
 }
 catch (std::exception const& hs_error)
@@ -27340,6 +29075,7 @@ catch (...)
 
 static void hs_method_85847eff(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Plugin*>(hs_self)->onLoad();
 }
 catch (std::exception const& hs_error)
@@ -27355,6 +29091,7 @@ catch (...)
 
 static void hs_destroy_50201d01(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PluginCommand*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -27370,6 +29107,7 @@ catch (...)
 
 static void* hs_cast_aac01ba5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Command*>(static_cast<endstone::PluginCommand*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27385,6 +29123,7 @@ catch (...)
 
 static void* hs_create_8af6fd61(void* command, void* owner) try
 {
+    clearLastError();
     return new endstone::PluginCommand(*static_cast<const endstone::Command*>(command), *static_cast<endstone::Plugin*>(owner));
 }
 catch (std::exception const& hs_error)
@@ -27400,6 +29139,7 @@ catch (...)
 
 static void* hs_method_99b629bb(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginCommand const*>(hs_self)->asPluginCommand()));
 }
 catch (std::exception const& hs_error)
@@ -27415,6 +29155,7 @@ catch (...)
 
 static bool hs_method_18c8a5a2(void* hs_self, void* sender, const HosihikariStringView* args_data, std::size_t args_count) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PluginCommand const*>(hs_self)->execute(*static_cast<endstone::CommandSender*>(sender), hs_make_string_vector(args_data, args_count)));
 }
 catch (std::exception const& hs_error)
@@ -27430,6 +29171,7 @@ catch (...)
 
 static void* hs_method_8b4c19e2(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand const*>(hs_self)->getExecutor()));
 }
 catch (std::exception const& hs_error)
@@ -27445,6 +29187,7 @@ catch (...)
 
 static void* hs_method_2476b603(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginCommand const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
@@ -27460,6 +29203,7 @@ catch (...)
 
 static void hs_method_3aac26f3(void* hs_self, HosihikariSharedHandle executor) try
 {
+    clearLastError();
     static_cast<endstone::PluginCommand*>(hs_self)->setExecutor(hs_shared_from_handle<endstone::CommandExecutor>(executor));
 }
 catch (std::exception const& hs_error)
@@ -27475,6 +29219,7 @@ catch (...)
 
 static void hs_destroy_497facfc(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PluginDescription*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -27490,6 +29235,7 @@ catch (...)
 
 static void* hs_create_f5310a99(const char* name_data, std::size_t name_size, const char* version_data, std::size_t version_size, const char* description_data, std::size_t description_size, std::int32_t load, const char* website_data, std::size_t website_size, const char* prefix_data, std::size_t prefix_size, std::int32_t default_permission, const HosihikariStringView* authors_data, std::size_t authors_count, const HosihikariStringView* contributors_data, std::size_t contributors_count, const HosihikariStringView* provides_data, std::size_t provides_count, const HosihikariStringView* depend_data, std::size_t depend_count, const HosihikariStringView* soft_depend_data, std::size_t soft_depend_count, const HosihikariStringView* load_before_data, std::size_t load_before_count, void* const* commands_data, std::size_t commands_count, void* const* permissions_data, std::size_t permissions_count) try
 {
+    clearLastError();
     return new endstone::PluginDescription(std::basic_string<char>(name_data, name_size), std::basic_string<char>(version_data, version_size), std::basic_string<char>(description_data, description_size), static_cast<endstone::PluginLoadOrder>(load), hs_make_string_vector(authors_data, authors_count), hs_make_string_vector(contributors_data, contributors_count), std::basic_string<char>(website_data, website_size), std::basic_string<char>(prefix_data, prefix_size), hs_make_string_vector(provides_data, provides_count), hs_make_string_vector(depend_data, depend_count), hs_make_string_vector(soft_depend_data, soft_depend_count), hs_make_string_vector(load_before_data, load_before_count), static_cast<endstone::PermissionDefault>(default_permission), hs_make_record_vector<endstone::Command>(commands_data, commands_count), hs_make_record_vector<endstone::Permission>(permissions_data, permissions_count));
 }
 catch (std::exception const& hs_error)
@@ -27505,6 +29251,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a68fa3c7(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getAPIVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27522,6 +29269,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_07a6157f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getAuthors();
@@ -27546,6 +29294,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_8741d6ed(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getCommands();
     hs_arrayResult.clear();
@@ -27566,6 +29315,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_1f3202d7(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getContributors();
@@ -27590,6 +29340,7 @@ catch (...)
 
 static std::int32_t hs_method_3aecb585(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PluginDescription const*>(hs_self)->getDefaultPermission());
 }
 catch (std::exception const& hs_error)
@@ -27605,6 +29356,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_3c65a34b(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getDepend();
@@ -27629,6 +29381,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a5f88620(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getDescription();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27646,6 +29399,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd0a3c70(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getFullName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27663,6 +29417,7 @@ catch (...)
 
 static std::int32_t hs_method_c384d425(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::PluginDescription const*>(hs_self)->getLoad());
 }
 catch (std::exception const& hs_error)
@@ -27678,6 +29433,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_22243c45(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getLoadBefore();
@@ -27702,6 +29458,7 @@ catch (...)
 
 static HosihikariStringView hs_method_60803d5e(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27719,6 +29476,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_d0208aa9(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getPermissions();
     hs_arrayResult.clear();
@@ -27739,6 +29497,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b7c4bc57(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getPrefix();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27756,6 +29515,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_89b9a91f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getProvides();
@@ -27780,6 +29540,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_946b5490(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getSoftDepend();
@@ -27804,6 +29565,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e6575ca2(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27821,6 +29583,7 @@ catch (...)
 
 static HosihikariStringView hs_method_b8361b96(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDescription const*>(hs_self)->getWebsite();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27838,6 +29601,7 @@ catch (...)
 
 static void hs_destroy_754b8d19(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PluginDisableEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -27853,6 +29617,7 @@ catch (...)
 
 static void* hs_cast_ca23c780(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PluginDisableEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27868,6 +29633,7 @@ catch (...)
 
 static void* hs_cast_b4447508(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::PluginDisableEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27883,6 +29649,7 @@ catch (...)
 
 static void* hs_get_b59aead7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PluginDisableEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -27898,6 +29665,7 @@ catch (...)
 
 static void* hs_create_70cfd6b4(void* plugin) try
 {
+    clearLastError();
     return new endstone::PluginDisableEvent(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -27913,6 +29681,7 @@ catch (...)
 
 static HosihikariStringView hs_method_c615ea0b(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginDisableEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -27930,6 +29699,7 @@ catch (...)
 
 static void* hs_method_9a56d0d6(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginDisableEvent const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
@@ -27945,6 +29715,7 @@ catch (...)
 
 static void hs_destroy_f41b0314(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PluginEnableEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -27960,6 +29731,7 @@ catch (...)
 
 static void* hs_cast_00d89e41(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::PluginEnableEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27975,6 +29747,7 @@ catch (...)
 
 static void* hs_cast_061c3294(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::PluginEnableEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -27990,6 +29763,7 @@ catch (...)
 
 static void* hs_get_2efd4212() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::PluginEnableEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -28005,6 +29779,7 @@ catch (...)
 
 static void* hs_create_24e5dd99(void* plugin) try
 {
+    clearLastError();
     return new endstone::PluginEnableEvent(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -28020,6 +29795,7 @@ catch (...)
 
 static HosihikariStringView hs_method_11eaef90(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::PluginEnableEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -28037,6 +29813,7 @@ catch (...)
 
 static void* hs_method_10a06443(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginEnableEvent const*>(hs_self)->getPlugin()));
 }
 catch (std::exception const& hs_error)
@@ -28052,6 +29829,7 @@ catch (...)
 
 static void hs_method_3fabd36a(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::PluginLoader const*>(hs_self)->disablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -28067,6 +29845,7 @@ catch (...)
 
 static void hs_method_0dec6e88(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::PluginLoader const*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -28082,6 +29861,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_371cc56f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::PluginLoader const*>(hs_self)->getPluginFileFilters();
@@ -28106,6 +29886,7 @@ catch (...)
 
 static void* hs_method_ba0f439a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginLoader const*>(hs_self)->getServer()));
 }
 catch (std::exception const& hs_error)
@@ -28121,6 +29902,7 @@ catch (...)
 
 static void* hs_method_41bf9b37(void* hs_self, const char* file_data, std::size_t file_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginLoader*>(hs_self)->loadPlugin(std::basic_string<char>(file_data, file_size))));
 }
 catch (std::exception const& hs_error)
@@ -28136,6 +29918,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_5f1e701c(void* hs_self, const char* directory_data, std::size_t directory_size) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginLoader*>(hs_self)->loadPlugins(std::basic_string<char>(directory_data, directory_size));
     hs_arrayResult.clear();
@@ -28156,6 +29939,7 @@ catch (...)
 
 static void* hs_method_1dd41d86(void* hs_self, void* perm) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::PluginManager*>(hs_self)->addPermission(std::unique_ptr<endstone::Permission>(static_cast<endstone::Permission*>(perm)))));
 }
 catch (std::exception const& hs_error)
@@ -28171,6 +29955,7 @@ catch (...)
 
 static void hs_method_589ace68(void* hs_self, void* event) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->callEvent(*static_cast<endstone::Event*>(event));
 }
 catch (std::exception const& hs_error)
@@ -28186,6 +29971,7 @@ catch (...)
 
 static void hs_method_cd5ea5e2(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->clearPlugins();
 }
 catch (std::exception const& hs_error)
@@ -28201,6 +29987,7 @@ catch (...)
 
 static void hs_method_9b59fde0(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->disablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -28216,6 +30003,7 @@ catch (...)
 
 static void hs_method_f6b52813(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->disablePlugins();
 }
 catch (std::exception const& hs_error)
@@ -28231,6 +30019,7 @@ catch (...)
 
 static void hs_method_b3bdd8f4(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager const*>(hs_self)->enablePlugin(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -28246,6 +30035,7 @@ catch (...)
 
 static void hs_method_665eee88(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager const*>(hs_self)->enablePlugins();
 }
 catch (std::exception const& hs_error)
@@ -28261,6 +30051,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_f8a94bea(void* hs_self, std::int32_t level) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager const*>(hs_self)->getDefaultPermSubscriptions(static_cast<endstone::PermissionLevel>(level));
     hs_arrayResult.clear();
@@ -28281,6 +30072,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_3488946b(void* hs_self, std::int32_t level) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager const*>(hs_self)->getDefaultPermissions(static_cast<endstone::PermissionLevel>(level));
     hs_arrayResult.clear();
@@ -28301,6 +30093,7 @@ catch (...)
 
 static void* hs_method_c1d09d9c(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager const*>(hs_self)->getPermission(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -28316,6 +30109,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_4a749daa(void* hs_self, const char* permission_data, std::size_t permission_size) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPermissionSubscriptions(std::basic_string<char>(permission_data, permission_size));
     hs_arrayResult.clear();
@@ -28336,6 +30130,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_a6414b23(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPermissions();
     hs_arrayResult.clear();
@@ -28356,6 +30151,7 @@ catch (...)
 
 static void* hs_method_b567008b(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager const*>(hs_self)->getPlugin(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -28371,6 +30167,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_5a06eb75(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager const*>(hs_self)->getPlugins();
     hs_arrayResult.clear();
@@ -28391,6 +30188,7 @@ catch (...)
 
 static bool hs_method_69df9686(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PluginManager const*>(hs_self)->isPluginEnabled(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -28406,6 +30204,7 @@ catch (...)
 
 static bool hs_method_44aacc70(void* hs_self, void* plugin) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::PluginManager const*>(hs_self)->isPluginEnabled(static_cast<endstone::Plugin*>(plugin)));
 }
 catch (std::exception const& hs_error)
@@ -28421,6 +30220,7 @@ catch (...)
 
 static void* hs_method_59f4b461(void* hs_self, const char* file_data, std::size_t file_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::PluginManager*>(hs_self)->loadPlugin(std::basic_string<char>(file_data, file_size))));
 }
 catch (std::exception const& hs_error)
@@ -28436,6 +30236,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_9235e6e5(void* hs_self, const char* directory_data, std::size_t directory_size) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager*>(hs_self)->loadPlugins(std::basic_string<char>(directory_data, directory_size));
     hs_arrayResult.clear();
@@ -28456,6 +30257,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_a6c745c0(void* hs_self, const HosihikariStringView* files_data, std::size_t files_count) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::PluginManager*>(hs_self)->loadPlugins(hs_make_string_vector(files_data, files_count));
     hs_arrayResult.clear();
@@ -28476,6 +30278,7 @@ catch (...)
 
 static void hs_method_6338183e(void* hs_self, void* perm) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->recalculatePermissionDefaults(*static_cast<endstone::Permission*>(perm));
 }
 catch (std::exception const& hs_error)
@@ -28511,6 +30314,7 @@ struct hs_cb_closure_hs_method_ab519a5b_cb1
 
 static void hs_method_ab519a5b(void* hs_self, const char* event_data, std::size_t event_size, void* executor_invoke, void* executor_userData, void* executor_release, std::int32_t priority, void* plugin, bool ignore_cancelled) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->registerEvent(std::basic_string<char>(event_data, event_size), std::function<void (endstone::Event &)>(hs_cb_closure_hs_method_ab519a5b_cb1{std::make_shared<hs_cb_state_hs_method_ab519a5b_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_ab519a5b_cb1>(executor_invoke), executor_userData, reinterpret_cast<hs_cb_release_hs_method_ab519a5b_cb1>(executor_release))}), static_cast<endstone::EventPriority>(priority), *static_cast<endstone::Plugin*>(plugin), static_cast<bool>(ignore_cancelled));
 }
 catch (std::exception const& hs_error)
@@ -28526,6 +30330,7 @@ catch (...)
 
 static void hs_method_83f14c3f(void* hs_self, void* loader) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->registerLoader(std::unique_ptr<endstone::PluginLoader>(static_cast<endstone::PluginLoader*>(loader)));
 }
 catch (std::exception const& hs_error)
@@ -28541,6 +30346,7 @@ catch (...)
 
 static void hs_method_b477b5a5(void* hs_self, void* perm) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->removePermission(*static_cast<endstone::Permission*>(perm));
 }
 catch (std::exception const& hs_error)
@@ -28556,6 +30362,7 @@ catch (...)
 
 static void hs_method_407bba61(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->removePermission(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -28571,6 +30378,7 @@ catch (...)
 
 static void hs_method_841d0de2(void* hs_self, std::int32_t level, void* permissible) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->subscribeToDefaultPerms(static_cast<endstone::PermissionLevel>(level), *static_cast<endstone::Permissible*>(permissible));
 }
 catch (std::exception const& hs_error)
@@ -28586,6 +30394,7 @@ catch (...)
 
 static void hs_method_6050a295(void* hs_self, const char* permission_data, std::size_t permission_size, void* permissible) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->subscribeToPermission(std::basic_string<char>(permission_data, permission_size), *static_cast<endstone::Permissible*>(permissible));
 }
 catch (std::exception const& hs_error)
@@ -28601,6 +30410,7 @@ catch (...)
 
 static void hs_method_010082fa(void* hs_self, std::int32_t level, void* permissible) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->unsubscribeFromDefaultPerms(static_cast<endstone::PermissionLevel>(level), *static_cast<endstone::Permissible*>(permissible));
 }
 catch (std::exception const& hs_error)
@@ -28616,6 +30426,7 @@ catch (...)
 
 static void hs_method_7796cb1d(void* hs_self, const char* permission_data, std::size_t permission_size, void* permissible) try
 {
+    clearLastError();
     static_cast<endstone::PluginManager*>(hs_self)->unsubscribeFromPermission(std::basic_string<char>(permission_data, permission_size), *static_cast<endstone::Permissible*>(permissible));
 }
 catch (std::exception const& hs_error)
@@ -28631,6 +30442,7 @@ catch (...)
 
 static void hs_destroy_bc463d54(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::PotionType*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -28646,6 +30458,7 @@ catch (...)
 
 static void* hs_get_62b6ec28() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Awkward));
 }
 catch (std::exception const& hs_error)
@@ -28661,6 +30474,7 @@ catch (...)
 
 static void* hs_get_f1c93b1b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::FireResistance));
 }
 catch (std::exception const& hs_error)
@@ -28676,6 +30490,7 @@ catch (...)
 
 static void* hs_get_210aec99() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Harming));
 }
 catch (std::exception const& hs_error)
@@ -28691,6 +30506,7 @@ catch (...)
 
 static void* hs_get_72d3689b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Healing));
 }
 catch (std::exception const& hs_error)
@@ -28706,6 +30522,7 @@ catch (...)
 
 static void* hs_get_84c78539() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Infested));
 }
 catch (std::exception const& hs_error)
@@ -28721,6 +30538,7 @@ catch (...)
 
 static void* hs_get_36b8cd9e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Invisibility));
 }
 catch (std::exception const& hs_error)
@@ -28736,6 +30554,7 @@ catch (...)
 
 static void* hs_get_32ef7f4b() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Leaping));
 }
 catch (std::exception const& hs_error)
@@ -28751,6 +30570,7 @@ catch (...)
 
 static void* hs_get_15a4a587() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongFireResistance));
 }
 catch (std::exception const& hs_error)
@@ -28766,6 +30586,7 @@ catch (...)
 
 static void* hs_get_dddf0582() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongInvisibility));
 }
 catch (std::exception const& hs_error)
@@ -28781,6 +30602,7 @@ catch (...)
 
 static void* hs_get_f3b3acd5() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongLeaping));
 }
 catch (std::exception const& hs_error)
@@ -28796,6 +30618,7 @@ catch (...)
 
 static void* hs_get_314db61a() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongMundane));
 }
 catch (std::exception const& hs_error)
@@ -28811,6 +30634,7 @@ catch (...)
 
 static void* hs_get_74bb0dda() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongNightvision));
 }
 catch (std::exception const& hs_error)
@@ -28826,6 +30650,7 @@ catch (...)
 
 static void* hs_get_eb8fd0db() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongPoison));
 }
 catch (std::exception const& hs_error)
@@ -28841,6 +30666,7 @@ catch (...)
 
 static void* hs_get_9dd11cb9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongRegeneration));
 }
 catch (std::exception const& hs_error)
@@ -28856,6 +30682,7 @@ catch (...)
 
 static void* hs_get_5103c52c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongSlowFalling));
 }
 catch (std::exception const& hs_error)
@@ -28871,6 +30698,7 @@ catch (...)
 
 static void* hs_get_82035215() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongSlowness));
 }
 catch (std::exception const& hs_error)
@@ -28886,6 +30714,7 @@ catch (...)
 
 static void* hs_get_9b405859() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongStrength));
 }
 catch (std::exception const& hs_error)
@@ -28901,6 +30730,7 @@ catch (...)
 
 static void* hs_get_15969a63() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongSwiftness));
 }
 catch (std::exception const& hs_error)
@@ -28916,6 +30746,7 @@ catch (...)
 
 static void* hs_get_7f830bdc() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongTurtleMaster));
 }
 catch (std::exception const& hs_error)
@@ -28931,6 +30762,7 @@ catch (...)
 
 static void* hs_get_9bd04856() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongWaterBreathing));
 }
 catch (std::exception const& hs_error)
@@ -28946,6 +30778,7 @@ catch (...)
 
 static void* hs_get_dae912db() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::LongWeakness));
 }
 catch (std::exception const& hs_error)
@@ -28961,6 +30794,7 @@ catch (...)
 
 static void* hs_get_0fb92869() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Mundane));
 }
 catch (std::exception const& hs_error)
@@ -28976,6 +30810,7 @@ catch (...)
 
 static void* hs_get_75caa797() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Nightvision));
 }
 catch (std::exception const& hs_error)
@@ -28991,6 +30826,7 @@ catch (...)
 
 static void* hs_get_7f276f72() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Oozing));
 }
 catch (std::exception const& hs_error)
@@ -29006,6 +30842,7 @@ catch (...)
 
 static void* hs_get_cff4966e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Poison));
 }
 catch (std::exception const& hs_error)
@@ -29021,6 +30858,7 @@ catch (...)
 
 static void* hs_get_8473977d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Regeneration));
 }
 catch (std::exception const& hs_error)
@@ -29036,6 +30874,7 @@ catch (...)
 
 static void* hs_get_c7253434() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::SlowFalling));
 }
 catch (std::exception const& hs_error)
@@ -29051,6 +30890,7 @@ catch (...)
 
 static void* hs_get_0eb89e3d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Slowness));
 }
 catch (std::exception const& hs_error)
@@ -29066,6 +30906,7 @@ catch (...)
 
 static void* hs_get_1b58ea40() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Strength));
 }
 catch (std::exception const& hs_error)
@@ -29081,6 +30922,7 @@ catch (...)
 
 static void* hs_get_cc2496d7() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongHarming));
 }
 catch (std::exception const& hs_error)
@@ -29096,6 +30938,7 @@ catch (...)
 
 static void* hs_get_cce60f38() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongHealing));
 }
 catch (std::exception const& hs_error)
@@ -29111,6 +30954,7 @@ catch (...)
 
 static void* hs_get_ebe577d5() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongLeaping));
 }
 catch (std::exception const& hs_error)
@@ -29126,6 +30970,7 @@ catch (...)
 
 static void* hs_get_dadb651f() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongPoison));
 }
 catch (std::exception const& hs_error)
@@ -29141,6 +30986,7 @@ catch (...)
 
 static void* hs_get_b81e0b9c() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongRegeneration));
 }
 catch (std::exception const& hs_error)
@@ -29156,6 +31002,7 @@ catch (...)
 
 static void* hs_get_d2cc5af9() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongSlowness));
 }
 catch (std::exception const& hs_error)
@@ -29171,6 +31018,7 @@ catch (...)
 
 static void* hs_get_02393b90() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongStrength));
 }
 catch (std::exception const& hs_error)
@@ -29186,6 +31034,7 @@ catch (...)
 
 static void* hs_get_b17a7869() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongSwiftness));
 }
 catch (std::exception const& hs_error)
@@ -29201,6 +31050,7 @@ catch (...)
 
 static void* hs_get_24c26c44() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::StrongTurtleMaster));
 }
 catch (std::exception const& hs_error)
@@ -29216,6 +31066,7 @@ catch (...)
 
 static void* hs_get_57e20b8a() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Swiftness));
 }
 catch (std::exception const& hs_error)
@@ -29231,6 +31082,7 @@ catch (...)
 
 static void* hs_get_a099d9d6() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Thick));
 }
 catch (std::exception const& hs_error)
@@ -29246,6 +31098,7 @@ catch (...)
 
 static void* hs_get_ed65bf43() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::TurtleMaster));
 }
 catch (std::exception const& hs_error)
@@ -29261,6 +31114,7 @@ catch (...)
 
 static void* hs_get_3d336e4e() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Water));
 }
 catch (std::exception const& hs_error)
@@ -29276,6 +31130,7 @@ catch (...)
 
 static void* hs_get_ff3cde94() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::WaterBreathing));
 }
 catch (std::exception const& hs_error)
@@ -29291,6 +31146,7 @@ catch (...)
 
 static void* hs_get_90e31550() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Weakness));
 }
 catch (std::exception const& hs_error)
@@ -29306,6 +31162,7 @@ catch (...)
 
 static void* hs_get_d8212332() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Weaving));
 }
 catch (std::exception const& hs_error)
@@ -29321,6 +31178,7 @@ catch (...)
 
 static void* hs_get_671e37ef() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::WindCharged));
 }
 catch (std::exception const& hs_error)
@@ -29336,6 +31194,7 @@ catch (...)
 
 static void* hs_get_a3ec8cdc() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::PotionType::Wither));
 }
 catch (std::exception const& hs_error)
@@ -29351,6 +31210,7 @@ catch (...)
 
 static void* hs_method_9bb7e442(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::ItemStack(static_cast<endstone::Recipe const*>(hs_self)->getResult()));
 }
 catch (std::exception const& hs_error)
@@ -29366,6 +31226,7 @@ catch (...)
 
 static void* hs_cast_aab7ff89(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::IRegistry*>(static_cast<endstone::Registry<endstone::BlockType>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29401,6 +31262,7 @@ struct hs_cb_closure_hs_method_5174e059_cb0
 
 static void hs_method_5174e059(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
+    clearLastError();
     static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->forEach(std::function<bool (const endstone::BlockType &)>(hs_cb_closure_hs_method_5174e059_cb0{std::make_shared<hs_cb_state_hs_method_5174e059_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_5174e059_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_5174e059_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
@@ -29416,6 +31278,7 @@ catch (...)
 
 static void* hs_method_2b7fe892(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29431,6 +31294,7 @@ catch (...)
 
 static void* hs_method_2186031d(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::BlockType>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29446,6 +31310,7 @@ catch (...)
 
 static void* hs_method_c76ca6db(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::BlockType> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29461,6 +31326,7 @@ catch (...)
 
 static void* hs_method_03bc5362(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::BlockType>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29476,6 +31342,7 @@ catch (...)
 
 static void* hs_cast_cc0f233e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BlockType*>(static_cast<endstone::Registry<endstone::BlockType>::Type*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29491,6 +31358,7 @@ catch (...)
 
 static void* hs_method_df567989(void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::Registry<endstone::BlockType>::Type::get(*static_cast<const endstone::Identifier<endstone::BlockType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29506,6 +31374,7 @@ catch (...)
 
 static void* hs_method_c0c2d74e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
@@ -29521,6 +31390,7 @@ catch (...)
 
 static HosihikariStringView hs_method_eb82a89d(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -29538,6 +31408,7 @@ catch (...)
 
 static void* hs_method_e8769c8c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::BlockType>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator endstone::Identifier<endstone::BlockType>()));
 }
 catch (std::exception const& hs_error)
@@ -29553,6 +31424,7 @@ catch (...)
 
 static bool hs_method_4c92e3db(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::BlockType*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29568,6 +31440,7 @@ catch (...)
 
 static bool hs_method_cf2ded48(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29583,6 +31456,7 @@ catch (...)
 
 static bool hs_method_5d03a0e0(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::BlockType*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29598,6 +31472,7 @@ catch (...)
 
 static bool hs_method_5d861629(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::BlockType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::BlockType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29613,6 +31488,7 @@ catch (...)
 
 static void* hs_cast_1ea84b7b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::IRegistry*>(static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29648,6 +31524,7 @@ struct hs_cb_closure_hs_method_3150959d_cb0
 
 static void hs_method_3150959d(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
+    clearLastError();
     static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->forEach(std::function<bool (const endstone::Enchantment &)>(hs_cb_closure_hs_method_3150959d_cb0{std::make_shared<hs_cb_state_hs_method_3150959d_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_3150959d_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_3150959d_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
@@ -29663,6 +31540,7 @@ catch (...)
 
 static void* hs_method_9824d7b2(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29678,6 +31556,7 @@ catch (...)
 
 static void* hs_method_b0d6a1a6(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29693,6 +31572,7 @@ catch (...)
 
 static void* hs_method_5ff0cfea(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::Enchantment> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29708,6 +31588,7 @@ catch (...)
 
 static void* hs_method_a1e9c09b(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::Enchantment>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29723,6 +31604,7 @@ catch (...)
 
 static void* hs_cast_92961d8e(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Enchantment*>(static_cast<endstone::Registry<endstone::Enchantment>::Type*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29738,6 +31620,7 @@ catch (...)
 
 static void* hs_method_496348c8(void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::Registry<endstone::Enchantment>::Type::get(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29753,6 +31636,7 @@ catch (...)
 
 static void* hs_method_00d2ceb7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
@@ -29768,6 +31652,7 @@ catch (...)
 
 static HosihikariStringView hs_method_dd1477bf(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -29785,6 +31670,7 @@ catch (...)
 
 static void* hs_method_0a44bc09(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::Enchantment>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator endstone::Identifier<endstone::Enchantment>()));
 }
 catch (std::exception const& hs_error)
@@ -29800,6 +31686,7 @@ catch (...)
 
 static bool hs_method_8ef9db8d(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29815,6 +31702,7 @@ catch (...)
 
 static bool hs_method_91998a59(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29830,6 +31718,7 @@ catch (...)
 
 static bool hs_method_3f276808(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Enchantment*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29845,6 +31734,7 @@ catch (...)
 
 static bool hs_method_02ebb8ba(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::Enchantment>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::Enchantment>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -29860,6 +31750,7 @@ catch (...)
 
 static void* hs_cast_b2d20ea1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::IRegistry*>(static_cast<endstone::Registry<endstone::ItemType>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29895,6 +31786,7 @@ struct hs_cb_closure_hs_method_f2521df4_cb0
 
 static void hs_method_f2521df4(void* hs_self, void* func_invoke, void* func_userData, void* func_release) try
 {
+    clearLastError();
     static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->forEach(std::function<bool (const endstone::ItemType &)>(hs_cb_closure_hs_method_f2521df4_cb0{std::make_shared<hs_cb_state_hs_method_f2521df4_cb0>(reinterpret_cast<hs_cb_invoke_hs_method_f2521df4_cb0>(func_invoke), func_userData, reinterpret_cast<hs_cb_release_hs_method_f2521df4_cb0>(func_release))}));
 }
 catch (std::exception const& hs_error)
@@ -29910,6 +31802,7 @@ catch (...)
 
 static void* hs_method_5781d235(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29925,6 +31818,7 @@ catch (...)
 
 static void* hs_method_011f7c17(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Registry<endstone::ItemType>*>(hs_self)->get(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29940,6 +31834,7 @@ catch (...)
 
 static void* hs_method_04d90caa(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::ItemType> const*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29955,6 +31850,7 @@ catch (...)
 
 static void* hs_method_b144bf99(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Registry<endstone::ItemType>*>(hs_self)->getOrThrow(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -29970,6 +31866,7 @@ catch (...)
 
 static void* hs_cast_5e4388a7(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ItemType*>(static_cast<endstone::Registry<endstone::ItemType>::Type*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -29985,6 +31882,7 @@ catch (...)
 
 static void* hs_method_25fcd283(void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::Registry<endstone::ItemType>::Type::get(*static_cast<const endstone::Identifier<endstone::ItemType>*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -30000,6 +31898,7 @@ catch (...)
 
 static void* hs_method_86309f30(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->getId()));
 }
 catch (std::exception const& hs_error)
@@ -30015,6 +31914,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f3444385(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->getTranslationKey();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -30032,6 +31932,7 @@ catch (...)
 
 static void* hs_method_94bed2d4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Identifier<endstone::ItemType>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator endstone::Identifier<endstone::ItemType>()));
 }
 catch (std::exception const& hs_error)
@@ -30047,6 +31948,7 @@ catch (...)
 
 static bool hs_method_90b18e73(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -30062,6 +31964,7 @@ catch (...)
 
 static bool hs_method_b92ea9b2(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator!=(*static_cast<const endstone::ItemType*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -30077,6 +31980,7 @@ catch (...)
 
 static bool hs_method_e5826cc0(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::Identifier<endstone::ItemType>*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -30092,6 +31996,7 @@ catch (...)
 
 static bool hs_method_78a421b8(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Registry<endstone::ItemType>::Type const*>(hs_self)->operator==(*static_cast<const endstone::ItemType*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -30107,6 +32012,7 @@ catch (...)
 
 static void hs_method_4eb0841a(void* hs_self, std::uint32_t id) try
 {
+    clearLastError();
     static_cast<endstone::Scheduler*>(hs_self)->cancelTask(static_cast<unsigned int>(id));
 }
 catch (std::exception const& hs_error)
@@ -30122,6 +32028,7 @@ catch (...)
 
 static void hs_method_8e978361(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::Scheduler*>(hs_self)->cancelTasks(*static_cast<endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -30137,6 +32044,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_59f092e9(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Scheduler*>(hs_self)->getPendingTasks();
     hs_arrayResult.clear();
@@ -30157,6 +32065,7 @@ catch (...)
 
 static bool hs_method_8b614fe6(void* hs_self, std::uint32_t id) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Scheduler*>(hs_self)->isQueued(static_cast<unsigned int>(id)));
 }
 catch (std::exception const& hs_error)
@@ -30172,6 +32081,7 @@ catch (...)
 
 static bool hs_method_e288ccfe(void* hs_self, std::uint32_t id) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Scheduler*>(hs_self)->isRunning(static_cast<unsigned int>(id)));
 }
 catch (std::exception const& hs_error)
@@ -30207,6 +32117,7 @@ struct hs_cb_closure_hs_method_aa0dd230_cb1
 
 static HosihikariSharedHandle hs_method_aa0dd230(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTask(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_aa0dd230_cb1{std::make_shared<hs_cb_state_hs_method_aa0dd230_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_aa0dd230_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_aa0dd230_cb1>(task_release))})));
 }
 catch (std::exception const& hs_error)
@@ -30242,6 +32153,7 @@ struct hs_cb_closure_hs_method_045a0625_cb1
 
 static HosihikariSharedHandle hs_method_045a0625(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTaskAsync(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_045a0625_cb1{std::make_shared<hs_cb_state_hs_method_045a0625_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_045a0625_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_045a0625_cb1>(task_release))})));
 }
 catch (std::exception const& hs_error)
@@ -30277,6 +32189,7 @@ struct hs_cb_closure_hs_method_77093da2_cb1
 
 static HosihikariSharedHandle hs_method_77093da2(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release, std::uint64_t delay) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTaskLater(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_77093da2_cb1{std::make_shared<hs_cb_state_hs_method_77093da2_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_77093da2_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_77093da2_cb1>(task_release))}), static_cast<std::uint64_t>(delay)));
 }
 catch (std::exception const& hs_error)
@@ -30312,6 +32225,7 @@ struct hs_cb_closure_hs_method_43ceab8e_cb1
 
 static HosihikariSharedHandle hs_method_43ceab8e(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release, std::uint64_t delay) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTaskLaterAsync(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_43ceab8e_cb1{std::make_shared<hs_cb_state_hs_method_43ceab8e_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_43ceab8e_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_43ceab8e_cb1>(task_release))}), static_cast<std::uint64_t>(delay)));
 }
 catch (std::exception const& hs_error)
@@ -30347,6 +32261,7 @@ struct hs_cb_closure_hs_method_09c640a2_cb1
 
 static HosihikariSharedHandle hs_method_09c640a2(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release, std::uint64_t delay, std::uint64_t period) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTaskTimer(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_09c640a2_cb1{std::make_shared<hs_cb_state_hs_method_09c640a2_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_09c640a2_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_09c640a2_cb1>(task_release))}), static_cast<std::uint64_t>(delay), static_cast<std::uint64_t>(period)));
 }
 catch (std::exception const& hs_error)
@@ -30382,6 +32297,7 @@ struct hs_cb_closure_hs_method_3ac36e45_cb1
 
 static HosihikariSharedHandle hs_method_3ac36e45(void* hs_self, void* plugin, void* task_invoke, void* task_userData, void* task_release, std::uint64_t delay, std::uint64_t period) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Scheduler*>(hs_self)->runTaskTimerAsync(*static_cast<endstone::Plugin*>(plugin), std::function<void ()>(hs_cb_closure_hs_method_3ac36e45_cb1{std::make_shared<hs_cb_state_hs_method_3ac36e45_cb1>(reinterpret_cast<hs_cb_invoke_hs_method_3ac36e45_cb1>(task_invoke), task_userData, reinterpret_cast<hs_cb_release_hs_method_3ac36e45_cb1>(task_release))}), static_cast<std::uint64_t>(delay), static_cast<std::uint64_t>(period)));
 }
 catch (std::exception const& hs_error)
@@ -30397,6 +32313,7 @@ catch (...)
 
 static void hs_destroy_bfa7598b(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Score*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -30412,6 +32329,7 @@ catch (...)
 
 static void* hs_method_8475b818(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(static_cast<endstone::Score const*>(hs_self)->getEntry()));
 }
 catch (std::exception const& hs_error)
@@ -30427,6 +32345,7 @@ catch (...)
 
 static void* hs_method_56a25a01(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score const*>(hs_self)->getObjective()));
 }
 catch (std::exception const& hs_error)
@@ -30442,6 +32361,7 @@ catch (...)
 
 static void* hs_method_53fb01c6(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Score const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
@@ -30457,6 +32377,7 @@ catch (...)
 
 static std::int32_t hs_method_50e19cf7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Score const*>(hs_self)->getValue());
 }
 catch (std::exception const& hs_error)
@@ -30472,6 +32393,7 @@ catch (...)
 
 static bool hs_method_5e82457b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Score const*>(hs_self)->isScoreSet());
 }
 catch (std::exception const& hs_error)
@@ -30487,6 +32409,7 @@ catch (...)
 
 static void hs_method_da40729f(void* hs_self, std::int32_t score) try
 {
+    clearLastError();
     static_cast<endstone::Score*>(hs_self)->setValue(static_cast<int>(score));
 }
 catch (std::exception const& hs_error)
@@ -30502,6 +32425,7 @@ catch (...)
 
 static void* hs_method_81207156(void* hs_self, const char* name_data, std::size_t name_size, std::int32_t criteria) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Scoreboard*>(hs_self)->addObjective(std::basic_string<char>(name_data, name_size), static_cast<endstone::Criteria::Type>(criteria));
     return static_cast<void*>(hs_result.release());
 }
@@ -30518,6 +32442,7 @@ catch (...)
 
 static void* hs_method_8bbf29af(void* hs_self, const char* name_data, std::size_t name_size, std::int32_t criteria, const char* display_name_data, std::size_t display_name_size) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Scoreboard*>(hs_self)->addObjective(std::basic_string<char>(name_data, name_size), static_cast<endstone::Criteria::Type>(criteria), std::basic_string<char>(display_name_data, display_name_size));
     return static_cast<void*>(hs_result.release());
 }
@@ -30534,6 +32459,7 @@ catch (...)
 
 static void* hs_method_52814e73(void* hs_self, const char* name_data, std::size_t name_size, std::int32_t criteria, const char* display_name_data, std::size_t display_name_size, std::uint8_t render_type) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Scoreboard*>(hs_self)->addObjective(std::basic_string<char>(name_data, name_size), static_cast<endstone::Criteria::Type>(criteria), std::basic_string<char>(display_name_data, display_name_size), static_cast<endstone::RenderType>(render_type));
     return static_cast<void*>(hs_result.release());
 }
@@ -30550,6 +32476,7 @@ catch (...)
 
 static void hs_method_ded41b17(void* hs_self, std::int32_t slot) try
 {
+    clearLastError();
     static_cast<endstone::Scoreboard*>(hs_self)->clearSlot(static_cast<endstone::DisplaySlot>(slot));
 }
 catch (std::exception const& hs_error)
@@ -30565,6 +32492,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_5e069352(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getEntries();
     hs_arrayResult.clear();
@@ -30585,6 +32513,7 @@ catch (...)
 
 static void* hs_method_4fb62c4b(void* hs_self, std::int32_t slot) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjective(static_cast<endstone::DisplaySlot>(slot));
     return static_cast<void*>(hs_result.release());
 }
@@ -30601,6 +32530,7 @@ catch (...)
 
 static void* hs_method_4f807a3e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjective(std::basic_string<char>(name_data, name_size));
     return static_cast<void*>(hs_result.release());
 }
@@ -30617,6 +32547,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_afd39739(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjectives();
     hs_arrayResult.clear();
@@ -30637,6 +32568,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_127d144b(void* hs_self, std::int32_t criteria) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getObjectivesByCriteria(static_cast<endstone::Criteria::Type>(criteria));
     hs_arrayResult.clear();
@@ -30657,6 +32589,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_c84052b6(void* hs_self, void* entry) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Scoreboard const*>(hs_self)->getScores(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
     hs_arrayResult.clear();
@@ -30677,6 +32610,7 @@ catch (...)
 
 static void hs_method_11736ed0(void* hs_self, void* entry) try
 {
+    clearLastError();
     static_cast<endstone::Scoreboard*>(hs_self)->resetScores(*static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(entry));
 }
 catch (std::exception const& hs_error)
@@ -30692,6 +32626,7 @@ catch (...)
 
 static void hs_destroy_696fcc7e(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ScriptMessageEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -30707,6 +32642,7 @@ catch (...)
 
 static void* hs_cast_8b6fb927(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::ScriptMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -30722,6 +32658,7 @@ catch (...)
 
 static void* hs_cast_659826ed(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ScriptMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -30737,6 +32674,7 @@ catch (...)
 
 static void* hs_cast_7ad8b581(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ScriptMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -30752,6 +32690,7 @@ catch (...)
 
 static void* hs_cast_6d576dae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::ScriptMessageEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -30767,6 +32706,7 @@ catch (...)
 
 static void* hs_get_02d83831() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ScriptMessageEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -30782,6 +32722,7 @@ catch (...)
 
 static void* hs_create_e7aac8a5(const char* message_id_data, std::size_t message_id_size, const char* message_data, std::size_t message_size, void* sender) try
 {
+    clearLastError();
     return new endstone::ScriptMessageEvent(std::basic_string<char>(message_id_data, message_id_size), std::basic_string<char>(message_data, message_size), *static_cast<const endstone::CommandSender*>(sender));
 }
 catch (std::exception const& hs_error)
@@ -30797,6 +32738,7 @@ catch (...)
 
 static HosihikariStringView hs_method_f0cee3f8(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -30814,6 +32756,7 @@ catch (...)
 
 static HosihikariStringView hs_method_842a4797(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getMessage();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -30831,6 +32774,7 @@ catch (...)
 
 static HosihikariStringView hs_method_8d42d6fd(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getMessageId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -30848,6 +32792,7 @@ catch (...)
 
 static void* hs_method_4f5f3310(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ScriptMessageEvent const*>(hs_self)->getSender()));
 }
 catch (std::exception const& hs_error)
@@ -30863,6 +32808,7 @@ catch (...)
 
 static HosihikariStringView hs_get_63a27d87() try
 {
+    clearLastError();
     auto const& value = endstone::Server::BroadcastChannelAdmin;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -30879,6 +32825,7 @@ catch (...)
 
 static HosihikariStringView hs_get_7cb217c7() try
 {
+    clearLastError();
     auto const& value = endstone::Server::BroadcastChannelUser;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -30895,6 +32842,7 @@ catch (...)
 
 static void* hs_method_094184dd(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->_getRegistry(std::basic_string<char>(type_data, type_size))));
 }
 catch (std::exception const& hs_error)
@@ -30910,6 +32858,7 @@ catch (...)
 
 static void hs_method_ebcb26df(void* hs_self, void* message, const char* permission_data, std::size_t permission_size) try
 {
+    clearLastError();
     static_cast<endstone::Server const*>(hs_self)->broadcast(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message), std::basic_string<char>(permission_data, permission_size));
 }
 catch (std::exception const& hs_error)
@@ -30925,6 +32874,7 @@ catch (...)
 
 static void hs_method_a1189c3a(void* hs_self, void* message) try
 {
+    clearLastError();
     static_cast<endstone::Server const*>(hs_self)->broadcastMessage(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(message));
 }
 catch (std::exception const& hs_error)
@@ -30940,6 +32890,7 @@ catch (...)
 
 static void* hs_method_c5b87e08(void* hs_self, const char* type_data, std::size_t type_size) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBlockData(std::basic_string<char>(type_data, type_size));
     return static_cast<void*>(hs_result.release());
 }
@@ -30956,6 +32907,7 @@ catch (...)
 
 static void* hs_method_22dd6517(void* hs_self, const char* type_data, std::size_t type_size, HosihikariArrayView block_states_map) try
 {
+    clearLastError();
     std::unordered_map<std::basic_string<char>, std::variant<bool, std::basic_string<char>, int>> hs_map1;
     hs_map1.reserve(block_states_map.size);
     auto const* hs_map1Items = static_cast<HosihikariMapEntry const*>(block_states_map.data);
@@ -30982,6 +32934,7 @@ catch (...)
 
 static void* hs_method_44f12b17(void* hs_self, const char* title_data, std::size_t title_size, std::int32_t color, std::int32_t style) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style));
     return static_cast<void*>(hs_result.release());
 }
@@ -30998,6 +32951,7 @@ catch (...)
 
 static void* hs_method_1d4d7fac(void* hs_self, const char* title_data, std::size_t title_size, std::int32_t color, std::int32_t style, const std::int32_t* flags_data, std::size_t flags_count) try
 {
+    clearLastError();
     auto hs_result = static_cast<endstone::Server const*>(hs_self)->createBossBar(std::basic_string<char>(title_data, title_size), static_cast<endstone::BarColor>(color), static_cast<endstone::BarStyle>(style), hs_make_vector<endstone::BarFlag>(flags_data, flags_count));
     return static_cast<void*>(hs_result.release());
 }
@@ -31014,6 +32968,7 @@ catch (...)
 
 static void* hs_method_06cdedfd(void* hs_self, void* dimension) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->createMap(*static_cast<const endstone::Dimension*>(dimension))));
 }
 catch (std::exception const& hs_error)
@@ -31029,6 +32984,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_32fd51f6(void* hs_self) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::Server*>(hs_self)->createScoreboard());
 }
 catch (std::exception const& hs_error)
@@ -31044,6 +33000,7 @@ catch (...)
 
 static bool hs_method_1e44a472(void* hs_self, void* sender, const char* command_line_data, std::size_t command_line_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->dispatchCommand(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_line_data, command_line_size)));
 }
 catch (std::exception const& hs_error)
@@ -31059,6 +33016,7 @@ catch (...)
 
 static float hs_method_658b8eb6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getAverageMillisecondsPerTick());
 }
 catch (std::exception const& hs_error)
@@ -31074,6 +33032,7 @@ catch (...)
 
 static float hs_method_06a69a52(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getAverageTickUsage());
 }
 catch (std::exception const& hs_error)
@@ -31089,6 +33048,7 @@ catch (...)
 
 static float hs_method_00d9e149(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getAverageTicksPerSecond());
 }
 catch (std::exception const& hs_error)
@@ -31104,6 +33064,7 @@ catch (...)
 
 static void* hs_method_6da115ab(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getBanList()));
 }
 catch (std::exception const& hs_error)
@@ -31119,6 +33080,7 @@ catch (...)
 
 static void* hs_method_c290cc55(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getCommandSender()));
 }
 catch (std::exception const& hs_error)
@@ -31134,6 +33096,7 @@ catch (...)
 
 static float hs_method_bed6af18(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getCurrentMillisecondsPerTick());
 }
 catch (std::exception const& hs_error)
@@ -31149,6 +33112,7 @@ catch (...)
 
 static float hs_method_b55493ca(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getCurrentTickUsage());
 }
 catch (std::exception const& hs_error)
@@ -31164,6 +33128,7 @@ catch (...)
 
 static float hs_method_b3f2a3b5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Server*>(hs_self)->getCurrentTicksPerSecond());
 }
 catch (std::exception const& hs_error)
@@ -31179,6 +33144,7 @@ catch (...)
 
 static void* hs_method_836b6b13(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getIpBanList()));
 }
 catch (std::exception const& hs_error)
@@ -31194,6 +33160,7 @@ catch (...)
 
 static void* hs_method_a810e01b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getItemFactory()));
 }
 catch (std::exception const& hs_error)
@@ -31209,6 +33176,7 @@ catch (...)
 
 static void* hs_method_0e659757(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getLanguage()));
 }
 catch (std::exception const& hs_error)
@@ -31224,6 +33192,7 @@ catch (...)
 
 static void* hs_method_feed67ac(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -31239,6 +33208,7 @@ catch (...)
 
 static void* hs_method_a8442366(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getLogger()));
 }
 catch (std::exception const& hs_error)
@@ -31254,6 +33224,7 @@ catch (...)
 
 static void* hs_method_4866e309(void* hs_self, std::int64_t id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getMap(static_cast<std::int64_t>(id))));
 }
 catch (std::exception const& hs_error)
@@ -31269,6 +33240,7 @@ catch (...)
 
 static std::int32_t hs_method_caf4d8c3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getMaxPlayers());
 }
 catch (std::exception const& hs_error)
@@ -31284,6 +33256,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ea85d6df(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Server const*>(hs_self)->getMinecraftVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31301,6 +33274,7 @@ catch (...)
 
 static HosihikariStringView hs_method_28e611fe(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Server const*>(hs_self)->getName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31318,6 +33292,7 @@ catch (...)
 
 static bool hs_method_5d68ac20(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->getOnlineMode());
 }
 catch (std::exception const& hs_error)
@@ -31333,6 +33308,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_a312b59e(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<void*> hs_arrayResult;
     auto result = static_cast<endstone::Server const*>(hs_self)->getOnlinePlayers();
     hs_arrayResult.clear();
@@ -31353,6 +33329,7 @@ catch (...)
 
 static void* hs_method_a2419288(void* hs_self, void* id) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPlayer(*static_cast<const endstone::UUID*>(id))));
 }
 catch (std::exception const& hs_error)
@@ -31368,6 +33345,7 @@ catch (...)
 
 static void* hs_method_3ba2eecb(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPlayer(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -31383,6 +33361,7 @@ catch (...)
 
 static void* hs_method_bb9efb5e(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getPluginCommand(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -31398,6 +33377,7 @@ catch (...)
 
 static void* hs_method_891ed6ec(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getPluginManager()));
 }
 catch (std::exception const& hs_error)
@@ -31413,6 +33393,7 @@ catch (...)
 
 static std::int32_t hs_method_ab1700ed(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getPort());
 }
 catch (std::exception const& hs_error)
@@ -31428,6 +33409,7 @@ catch (...)
 
 static std::int32_t hs_method_469f86e3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getPortV6());
 }
 catch (std::exception const& hs_error)
@@ -31443,6 +33425,7 @@ catch (...)
 
 static std::int32_t hs_method_287288b8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Server const*>(hs_self)->getProtocolVersion());
 }
 catch (std::exception const& hs_error)
@@ -31458,6 +33441,7 @@ catch (...)
 
 static void* hs_method_a77fc0fd(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getScheduler()));
 }
 catch (std::exception const& hs_error)
@@ -31473,6 +33457,7 @@ catch (...)
 
 static void* hs_method_6bb45431(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Server const*>(hs_self)->getScoreboard()));
 }
 catch (std::exception const& hs_error)
@@ -31488,6 +33473,7 @@ catch (...)
 
 static void* hs_method_19d8ed59(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Server const*>(hs_self)->getServiceManager()));
 }
 catch (std::exception const& hs_error)
@@ -31503,6 +33489,7 @@ catch (...)
 
 static std::int64_t hs_method_c8a59532(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int64_t>(std::chrono::duration_cast<std::chrono::milliseconds>((static_cast<endstone::Server*>(hs_self)->getStartTime()).time_since_epoch()).count());
 }
 catch (std::exception const& hs_error)
@@ -31518,6 +33505,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e4199c93(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Server const*>(hs_self)->getVersion();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31535,6 +33523,7 @@ catch (...)
 
 static bool hs_method_7c897210(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Server const*>(hs_self)->isPrimaryThread());
 }
 catch (std::exception const& hs_error)
@@ -31550,6 +33539,7 @@ catch (...)
 
 static void hs_method_419189fb(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Server*>(hs_self)->reload();
 }
 catch (std::exception const& hs_error)
@@ -31565,6 +33555,7 @@ catch (...)
 
 static void hs_method_7468a387(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Server*>(hs_self)->reloadData();
 }
 catch (std::exception const& hs_error)
@@ -31580,6 +33571,7 @@ catch (...)
 
 static void hs_method_576b05f1(void* hs_self, std::int32_t max_players) try
 {
+    clearLastError();
     static_cast<endstone::Server*>(hs_self)->setMaxPlayers(static_cast<int>(max_players));
 }
 catch (std::exception const& hs_error)
@@ -31595,6 +33587,7 @@ catch (...)
 
 static void hs_method_a854e4bc(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Server*>(hs_self)->shutdown();
 }
 catch (std::exception const& hs_error)
@@ -31610,6 +33603,7 @@ catch (...)
 
 static void hs_destroy_717efcd4(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ServerCommandEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -31625,6 +33619,7 @@ catch (...)
 
 static void* hs_cast_f36b8fcc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::ServerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31640,6 +33635,7 @@ catch (...)
 
 static void* hs_cast_f3aaf546(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ServerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31655,6 +33651,7 @@ catch (...)
 
 static void* hs_cast_e197f6cd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ServerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31670,6 +33667,7 @@ catch (...)
 
 static void* hs_cast_918dde0e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::ServerCommandEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31685,6 +33683,7 @@ catch (...)
 
 static void* hs_get_53078c88() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ServerCommandEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -31700,6 +33699,7 @@ catch (...)
 
 static void* hs_create_484167a3(void* sender, const char* command_data, std::size_t command_size) try
 {
+    clearLastError();
     return new endstone::ServerCommandEvent(*static_cast<endstone::CommandSender*>(sender), std::basic_string<char>(command_data, command_size));
 }
 catch (std::exception const& hs_error)
@@ -31715,6 +33715,7 @@ catch (...)
 
 static HosihikariStringView hs_method_e19d14f5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerCommandEvent const*>(hs_self)->getCommand();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31732,6 +33733,7 @@ catch (...)
 
 static HosihikariStringView hs_method_3191129f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerCommandEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31749,6 +33751,7 @@ catch (...)
 
 static void* hs_method_94b85d8e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::ServerCommandEvent const*>(hs_self)->getSender()));
 }
 catch (std::exception const& hs_error)
@@ -31764,6 +33767,7 @@ catch (...)
 
 static void hs_method_b06dcb20(void* hs_self, const char* message_data, std::size_t message_size) try
 {
+    clearLastError();
     static_cast<endstone::ServerCommandEvent*>(hs_self)->setCommand(std::basic_string<char>(message_data, message_size));
 }
 catch (std::exception const& hs_error)
@@ -31779,6 +33783,7 @@ catch (...)
 
 static void* hs_cast_65b80766(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ServerEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31794,6 +33799,7 @@ catch (...)
 
 static void hs_destroy_14497b9a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ServerListPingEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -31809,6 +33815,7 @@ catch (...)
 
 static void* hs_cast_d76405a3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::ServerEvent>*>(static_cast<endstone::ServerListPingEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31824,6 +33831,7 @@ catch (...)
 
 static void* hs_cast_08eba17e(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ServerListPingEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31839,6 +33847,7 @@ catch (...)
 
 static void* hs_cast_fd5a311d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ServerListPingEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31854,6 +33863,7 @@ catch (...)
 
 static void* hs_cast_43d13f03(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::ServerListPingEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -31869,6 +33879,7 @@ catch (...)
 
 static void* hs_get_68525df2() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ServerListPingEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -31884,6 +33895,7 @@ catch (...)
 
 static void* hs_create_8a74906d(void* address, const char* motd_data, std::size_t motd_size, std::int32_t network_protocol_version, const char* minecraft_version_network_data, std::size_t minecraft_version_network_size, std::int32_t num_players, std::int32_t max_players, const char* server_guid_data, std::size_t server_guid_size, const char* level_name_data, std::size_t level_name_size, std::int32_t game_mode, std::int32_t local_port, std::int32_t local_port_v6) try
 {
+    clearLastError();
     return new endstone::ServerListPingEvent(*static_cast<const endstone::SocketAddress*>(address), std::basic_string<char>(motd_data, motd_size), static_cast<int>(network_protocol_version), std::basic_string<char>(minecraft_version_network_data, minecraft_version_network_size), static_cast<int>(num_players), static_cast<int>(max_players), std::basic_string<char>(server_guid_data, server_guid_size), std::basic_string<char>(level_name_data, level_name_size), static_cast<endstone::GameMode>(game_mode), static_cast<int>(local_port), static_cast<int>(local_port_v6));
 }
 catch (std::exception const& hs_error)
@@ -31899,6 +33911,7 @@ catch (...)
 
 static void* hs_method_fff45c6f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::SocketAddress(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getAddress()));
 }
 catch (std::exception const& hs_error)
@@ -31914,6 +33927,7 @@ catch (...)
 
 static HosihikariStringView hs_method_63935e73(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31931,6 +33945,7 @@ catch (...)
 
 static std::int32_t hs_method_64a34151(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getGameMode());
 }
 catch (std::exception const& hs_error)
@@ -31946,6 +33961,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7029d579(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLevelName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -31963,6 +33979,7 @@ catch (...)
 
 static std::int32_t hs_method_e72124b9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLocalPort());
 }
 catch (std::exception const& hs_error)
@@ -31978,6 +33995,7 @@ catch (...)
 
 static std::int32_t hs_method_870dfec1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getLocalPortV6());
 }
 catch (std::exception const& hs_error)
@@ -31993,6 +34011,7 @@ catch (...)
 
 static std::int32_t hs_method_7b19ec4f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMaxPlayers());
 }
 catch (std::exception const& hs_error)
@@ -32008,6 +34027,7 @@ catch (...)
 
 static HosihikariStringView hs_method_19b5f2ad(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMinecraftVersionNetwork();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32025,6 +34045,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5fa8bbd6(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getMotd();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32042,6 +34063,7 @@ catch (...)
 
 static std::int32_t hs_method_ab83fae1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getNetworkProtocolVersion());
 }
 catch (std::exception const& hs_error)
@@ -32057,6 +34079,7 @@ catch (...)
 
 static std::int32_t hs_method_45897812(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerListPingEvent const*>(hs_self)->getNumPlayers());
 }
 catch (std::exception const& hs_error)
@@ -32072,6 +34095,7 @@ catch (...)
 
 static HosihikariStringView hs_method_29ae1c45(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerListPingEvent const*>(hs_self)->getServerGuid();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32089,6 +34113,7 @@ catch (...)
 
 static void hs_method_c9b262c1(void* hs_self, std::int32_t game_mode) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setGameMode(static_cast<endstone::GameMode>(game_mode));
 }
 catch (std::exception const& hs_error)
@@ -32104,6 +34129,7 @@ catch (...)
 
 static void hs_method_6b596bb9(void* hs_self, const char* level_name_data, std::size_t level_name_size) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setLevelName(std::basic_string<char>(level_name_data, level_name_size));
 }
 catch (std::exception const& hs_error)
@@ -32119,6 +34145,7 @@ catch (...)
 
 static void hs_method_e98c8586(void* hs_self, std::int32_t port) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setLocalPort(static_cast<int>(port));
 }
 catch (std::exception const& hs_error)
@@ -32134,6 +34161,7 @@ catch (...)
 
 static void hs_method_419b1cf8(void* hs_self, std::int32_t port) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setLocalPortV6(static_cast<int>(port));
 }
 catch (std::exception const& hs_error)
@@ -32149,6 +34177,7 @@ catch (...)
 
 static void hs_method_6f01eb50(void* hs_self, std::int32_t max_players) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setMaxPlayers(static_cast<int>(max_players));
 }
 catch (std::exception const& hs_error)
@@ -32164,6 +34193,7 @@ catch (...)
 
 static void hs_method_34191d60(void* hs_self, const char* minecraft_version_network_data, std::size_t minecraft_version_network_size) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setMinecraftVersionNetwork(std::basic_string<char>(minecraft_version_network_data, minecraft_version_network_size));
 }
 catch (std::exception const& hs_error)
@@ -32179,6 +34209,7 @@ catch (...)
 
 static void hs_method_5d1b4853(void* hs_self, const char* motd_data, std::size_t motd_size) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setMotd(std::basic_string<char>(motd_data, motd_size));
 }
 catch (std::exception const& hs_error)
@@ -32194,6 +34225,7 @@ catch (...)
 
 static void hs_method_8b8714cc(void* hs_self, std::int32_t num_players) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setNumPlayers(static_cast<int>(num_players));
 }
 catch (std::exception const& hs_error)
@@ -32209,6 +34241,7 @@ catch (...)
 
 static void hs_method_b358f345(void* hs_self, const char* guid_data, std::size_t guid_size) try
 {
+    clearLastError();
     static_cast<endstone::ServerListPingEvent*>(hs_self)->setServerGuid(std::basic_string<char>(guid_data, guid_size));
 }
 catch (std::exception const& hs_error)
@@ -32224,6 +34257,7 @@ catch (...)
 
 static void hs_destroy_4b3d4474(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ServerLoadEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32239,6 +34273,7 @@ catch (...)
 
 static void* hs_cast_79401993(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ServerLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -32254,6 +34289,7 @@ catch (...)
 
 static void* hs_cast_71f4f11c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ServerEvent*>(static_cast<endstone::ServerLoadEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -32269,6 +34305,7 @@ catch (...)
 
 static void* hs_get_99eb7c30() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ServerLoadEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -32284,6 +34321,7 @@ catch (...)
 
 static void* hs_create_cc3cf295(std::int32_t type) try
 {
+    clearLastError();
     return new endstone::ServerLoadEvent(static_cast<endstone::ServerLoadEvent::LoadType>(type));
 }
 catch (std::exception const& hs_error)
@@ -32299,6 +34337,7 @@ catch (...)
 
 static HosihikariStringView hs_method_4f2e505c(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ServerLoadEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32316,6 +34355,7 @@ catch (...)
 
 static std::int32_t hs_method_d0f9781a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::ServerLoadEvent const*>(hs_self)->getType());
 }
 catch (std::exception const& hs_error)
@@ -32331,6 +34371,7 @@ catch (...)
 
 static void hs_destroy_22f51898(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Service*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32346,6 +34387,7 @@ catch (...)
 
 static HosihikariSharedHandle hs_method_5a82ad36(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return hs_make_shared_handle(static_cast<endstone::ServiceManager const*>(hs_self)->get(std::basic_string<char>(name_data, name_size)));
 }
 catch (std::exception const& hs_error)
@@ -32361,6 +34403,7 @@ catch (...)
 
 static void hs_method_5e0e663b(void* hs_self, const char* name_data, std::size_t name_size, HosihikariSharedHandle provider, void* plugin, std::int32_t priority) try
 {
+    clearLastError();
     static_cast<endstone::ServiceManager*>(hs_self)->registerService(std::basic_string<char>(name_data, name_size), hs_shared_from_handle<endstone::Service>(provider), *static_cast<const endstone::Plugin*>(plugin), static_cast<endstone::ServicePriority>(priority));
 }
 catch (std::exception const& hs_error)
@@ -32376,6 +34419,7 @@ catch (...)
 
 static void hs_method_17d8d0e8(void* hs_self, void* provider) try
 {
+    clearLastError();
     static_cast<endstone::ServiceManager*>(hs_self)->unregister(*static_cast<const endstone::Service*>(provider));
 }
 catch (std::exception const& hs_error)
@@ -32391,6 +34435,7 @@ catch (...)
 
 static void hs_method_d8e7f62a(void* hs_self, const char* name_data, std::size_t name_size, void* provider) try
 {
+    clearLastError();
     static_cast<endstone::ServiceManager*>(hs_self)->unregister(std::basic_string<char>(name_data, name_size), *static_cast<const endstone::Service*>(provider));
 }
 catch (std::exception const& hs_error)
@@ -32406,6 +34451,7 @@ catch (...)
 
 static void hs_method_700a22f6(void* hs_self, void* plugin) try
 {
+    clearLastError();
     static_cast<endstone::ServiceManager*>(hs_self)->unregisterAll(*static_cast<const endstone::Plugin*>(plugin));
 }
 catch (std::exception const& hs_error)
@@ -32421,6 +34467,7 @@ catch (...)
 
 static void hs_destroy_477bc033(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Skin*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32436,6 +34483,7 @@ catch (...)
 
 static void* hs_create_f80c3f5d(const char* id_data, std::size_t id_size, void* image, const char* cape_id_data, std::size_t cape_id_size, void* cape_image, bool cape_id_hasValue, bool cape_image_hasValue) try
 {
+    clearLastError();
     return new endstone::Skin(std::basic_string<char>(id_data, id_size), *static_cast<const endstone::Image*>(image), (cape_id_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(cape_id_data, cape_id_size)} : std::nullopt), (cape_image_hasValue ? std::optional<endstone::Image>{*static_cast<const endstone::Image*>(cape_image)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -32451,6 +34499,7 @@ catch (...)
 
 static void* hs_method_b76a1d2a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin const*>(hs_self)->getCapeId()));
 }
 catch (std::exception const& hs_error)
@@ -32466,6 +34515,7 @@ catch (...)
 
 static void* hs_method_e317c5af(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Skin const*>(hs_self)->getCapeImage()));
 }
 catch (std::exception const& hs_error)
@@ -32481,6 +34531,7 @@ catch (...)
 
 static HosihikariStringView hs_method_268c7ed5(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Skin const*>(hs_self)->getId();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32498,6 +34549,7 @@ catch (...)
 
 static void* hs_method_adc734db(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Skin const*>(hs_self)->getImage()));
 }
 catch (std::exception const& hs_error)
@@ -32513,6 +34565,7 @@ catch (...)
 
 static void hs_destroy_e2931de4(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Slider*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32528,6 +34581,7 @@ catch (...)
 
 static void* hs_create_2b743187() try
 {
+    clearLastError();
     return new endstone::Slider();
 }
 catch (std::exception const& hs_error)
@@ -32543,6 +34597,7 @@ catch (...)
 
 static void* hs_create_9345eac1(void* label, float min, float max, float step, float default_value, bool default_value_hasValue) try
 {
+    clearLastError();
     return new endstone::Slider(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label), static_cast<float>(min), static_cast<float>(max), static_cast<float>(step), (default_value_hasValue ? std::optional<float>{static_cast<float>(default_value)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -32558,6 +34613,7 @@ catch (...)
 
 static float hs_method_8e97707c(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Slider const*>(hs_self)->getDefaultValue();
     *hs_hasValue = result.has_value();
     return result ? static_cast<float>(*result) : float{};
@@ -32577,6 +34633,7 @@ catch (...)
 
 static void* hs_method_7f85a854(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Slider const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
@@ -32592,6 +34649,7 @@ catch (...)
 
 static float hs_method_22a14062(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getMax());
 }
 catch (std::exception const& hs_error)
@@ -32607,6 +34665,7 @@ catch (...)
 
 static float hs_method_b6202ef6(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getMin());
 }
 catch (std::exception const& hs_error)
@@ -32622,6 +34681,7 @@ catch (...)
 
 static float hs_method_b88065d8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Slider const*>(hs_self)->getStep());
 }
 catch (std::exception const& hs_error)
@@ -32637,6 +34697,7 @@ catch (...)
 
 static void* hs_method_72f50c10(void* hs_self, float default_value, bool default_value_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Slider*>(hs_self)->setDefaultValue((default_value_hasValue ? std::optional<float>{static_cast<float>(default_value)} : std::nullopt))));
 }
 catch (std::exception const& hs_error)
@@ -32652,6 +34713,7 @@ catch (...)
 
 static void* hs_method_8dc48b84(void* hs_self, void* label) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Slider*>(hs_self)->setLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label))));
 }
 catch (std::exception const& hs_error)
@@ -32667,6 +34729,7 @@ catch (...)
 
 static void* hs_method_99d38211(void* hs_self, float max) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Slider*>(hs_self)->setMax(static_cast<float>(max))));
 }
 catch (std::exception const& hs_error)
@@ -32682,6 +34745,7 @@ catch (...)
 
 static void* hs_method_f4e705dc(void* hs_self, float min) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Slider*>(hs_self)->setMin(static_cast<float>(min))));
 }
 catch (std::exception const& hs_error)
@@ -32697,6 +34761,7 @@ catch (...)
 
 static void* hs_method_8c062b7a(void* hs_self, float step) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Slider*>(hs_self)->setStep(static_cast<float>(step))));
 }
 catch (std::exception const& hs_error)
@@ -32712,6 +34777,7 @@ catch (...)
 
 static void hs_destroy_c93ed1b3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::SocketAddress*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32727,6 +34793,7 @@ catch (...)
 
 static void* hs_create_b91d5c10() try
 {
+    clearLastError();
     return new endstone::SocketAddress();
 }
 catch (std::exception const& hs_error)
@@ -32742,6 +34809,7 @@ catch (...)
 
 static void* hs_create_b2236921(const char* hostname_data, std::size_t hostname_size, std::uint32_t port) try
 {
+    clearLastError();
     return new endstone::SocketAddress(std::basic_string<char>(hostname_data, hostname_size), static_cast<unsigned int>(port));
 }
 catch (std::exception const& hs_error)
@@ -32757,6 +34825,7 @@ catch (...)
 
 static HosihikariStringView hs_method_7235e4c3(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::SocketAddress const*>(hs_self)->getHostname();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -32774,6 +34843,7 @@ catch (...)
 
 static std::uint32_t hs_method_49415507(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint32_t>(static_cast<endstone::SocketAddress const*>(hs_self)->getPort());
 }
 catch (std::exception const& hs_error)
@@ -32789,6 +34859,7 @@ catch (...)
 
 static bool hs_method_868949fd(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::SocketAddress const*>(hs_self)->operator==(*static_cast<const endstone::SocketAddress*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -32804,6 +34875,7 @@ catch (...)
 
 static void hs_destroy_9dcd438a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::StepSlider*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32819,6 +34891,7 @@ catch (...)
 
 static void* hs_cast_63e1aa6f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Dropdown*>(static_cast<endstone::StepSlider*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -32834,6 +34907,7 @@ catch (...)
 
 static void hs_method_34195476(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::Task*>(hs_self)->cancel();
 }
 catch (std::exception const& hs_error)
@@ -32849,6 +34923,7 @@ catch (...)
 
 static void* hs_method_53f1a0f6(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::Task const*>(hs_self)->getOwner()));
 }
 catch (std::exception const& hs_error)
@@ -32864,6 +34939,7 @@ catch (...)
 
 static std::uint32_t hs_method_cd52150c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint32_t>(static_cast<endstone::Task const*>(hs_self)->getTaskId());
 }
 catch (std::exception const& hs_error)
@@ -32879,6 +34955,7 @@ catch (...)
 
 static bool hs_method_1b04d263(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Task const*>(hs_self)->isCancelled());
 }
 catch (std::exception const& hs_error)
@@ -32894,6 +34971,7 @@ catch (...)
 
 static bool hs_method_3838f72f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Task const*>(hs_self)->isSync());
 }
 catch (std::exception const& hs_error)
@@ -32909,6 +34987,7 @@ catch (...)
 
 static void hs_destroy_ebed3b76(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::TextInput*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -32924,6 +35003,7 @@ catch (...)
 
 static void* hs_create_3e1ec5c3() try
 {
+    clearLastError();
     return new endstone::TextInput();
 }
 catch (std::exception const& hs_error)
@@ -32939,6 +35019,7 @@ catch (...)
 
 static void* hs_create_cef8ea66(void* label, void* placeholder, const char* default_text_data, std::size_t default_text_size, bool default_text_hasValue) try
 {
+    clearLastError();
     return new endstone::TextInput(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label), *static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(placeholder), (default_text_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(default_text_data, default_text_size)} : std::nullopt));
 }
 catch (std::exception const& hs_error)
@@ -32954,6 +35035,7 @@ catch (...)
 
 static HosihikariStringView hs_method_cf086930(void* hs_self, bool* hs_hasValue) try
 {
+    clearLastError();
     auto result = static_cast<endstone::TextInput const*>(hs_self)->getDefaultValue();
     *hs_hasValue = result.has_value();
     g_stringResult.assign(result ? result->data() : "", result ? result->size() : 0);
@@ -32974,6 +35056,7 @@ catch (...)
 
 static void* hs_method_1aaed7fb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
@@ -32989,6 +35072,7 @@ catch (...)
 
 static void* hs_method_59614a43(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::TextInput const*>(hs_self)->getPlaceholder()));
 }
 catch (std::exception const& hs_error)
@@ -33004,6 +35088,7 @@ catch (...)
 
 static void* hs_method_6724f75c(void* hs_self, const char* text_data, std::size_t text_size, bool text_hasValue) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::TextInput*>(hs_self)->setDefaultValue((text_hasValue ? std::optional<std::basic_string<char>>{std::basic_string<char>(text_data, text_size)} : std::nullopt))));
 }
 catch (std::exception const& hs_error)
@@ -33019,6 +35104,7 @@ catch (...)
 
 static void* hs_method_3b9571f3(void* hs_self, void* label) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::TextInput*>(hs_self)->setLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label))));
 }
 catch (std::exception const& hs_error)
@@ -33034,6 +35120,7 @@ catch (...)
 
 static void* hs_method_f393b4d4(void* hs_self, void* placeholder) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::TextInput*>(hs_self)->setPlaceholder(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(placeholder))));
 }
 catch (std::exception const& hs_error)
@@ -33049,6 +35136,7 @@ catch (...)
 
 static void hs_destroy_2ac6baed(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::ThunderChangeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -33064,6 +35152,7 @@ catch (...)
 
 static void* hs_cast_f5ab7016(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(static_cast<endstone::ThunderChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -33079,6 +35168,7 @@ catch (...)
 
 static void* hs_cast_d7ca3658(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::ThunderChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -33094,6 +35184,7 @@ catch (...)
 
 static void* hs_cast_c2da2447(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::ThunderChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -33109,6 +35200,7 @@ catch (...)
 
 static void* hs_cast_d4705e26(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::WeatherEvent*>(static_cast<endstone::ThunderChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -33124,6 +35216,7 @@ catch (...)
 
 static void* hs_get_5463cf9d() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::ThunderChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -33139,6 +35232,7 @@ catch (...)
 
 static void* hs_create_e18f835a(void* level, bool to) try
 {
+    clearLastError();
     return new endstone::ThunderChangeEvent(*static_cast<endstone::Level*>(level), static_cast<bool>(to));
 }
 catch (std::exception const& hs_error)
@@ -33154,6 +35248,7 @@ catch (...)
 
 static HosihikariStringView hs_method_86f9ba6f(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::ThunderChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -33171,6 +35266,7 @@ catch (...)
 
 static bool hs_method_00fa4571(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::ThunderChangeEvent const*>(hs_self)->toThunderState());
 }
 catch (std::exception const& hs_error)
@@ -33186,6 +35282,7 @@ catch (...)
 
 static void hs_destroy_89075963(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Toggle*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -33201,6 +35298,7 @@ catch (...)
 
 static void* hs_create_370c6b21() try
 {
+    clearLastError();
     return new endstone::Toggle();
 }
 catch (std::exception const& hs_error)
@@ -33216,6 +35314,7 @@ catch (...)
 
 static void* hs_create_b1da0fb9(void* label, bool default_value) try
 {
+    clearLastError();
     return new endstone::Toggle(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label), static_cast<bool>(default_value));
 }
 catch (std::exception const& hs_error)
@@ -33231,6 +35330,7 @@ catch (...)
 
 static bool hs_method_7807e4ae(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Toggle const*>(hs_self)->getDefaultValue());
 }
 catch (std::exception const& hs_error)
@@ -33246,6 +35346,7 @@ catch (...)
 
 static void* hs_method_eb915f8b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(static_cast<endstone::Toggle const*>(hs_self)->getLabel()));
 }
 catch (std::exception const& hs_error)
@@ -33261,6 +35362,7 @@ catch (...)
 
 static void* hs_method_99548109(void* hs_self, bool value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Toggle*>(hs_self)->setDefaultValue(static_cast<bool>(value))));
 }
 catch (std::exception const& hs_error)
@@ -33276,6 +35378,7 @@ catch (...)
 
 static void* hs_method_959dbcab(void* hs_self, void* label) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Toggle*>(hs_self)->setLabel(*static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(label))));
 }
 catch (std::exception const& hs_error)
@@ -33291,6 +35394,7 @@ catch (...)
 
 static void hs_destroy_417367bd(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Translatable*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -33306,6 +35410,7 @@ catch (...)
 
 static void* hs_create_6641a0a9(const char* text_data, std::size_t text_size, const HosihikariStringView* params_data, std::size_t params_count) try
 {
+    clearLastError();
     return new endstone::Translatable(std::basic_string<char>(text_data, text_size), hs_make_string_vector(params_data, params_count));
 }
 catch (std::exception const& hs_error)
@@ -33321,6 +35426,7 @@ catch (...)
 
 static bool hs_method_32afdbcb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Translatable const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -33336,6 +35442,7 @@ catch (...)
 
 static void* hs_method_ac3efcfe(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Translatable const*>(hs_self)->getParameters()));
 }
 catch (std::exception const& hs_error)
@@ -33351,6 +35458,7 @@ catch (...)
 
 static HosihikariStringView hs_method_ec0d4ffa(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::Translatable const*>(hs_self)->getText();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -33368,6 +35476,7 @@ catch (...)
 
 static void hs_destroy_3a14fdeb(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::UUID*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -33383,6 +35492,7 @@ catch (...)
 
 static void* hs_method_aec4c3c3(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID const*>(hs_self)->begin()));
 }
 catch (std::exception const& hs_error)
@@ -33398,6 +35508,7 @@ catch (...)
 
 static void* hs_method_cfcdc770(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID*>(hs_self)->begin()));
 }
 catch (std::exception const& hs_error)
@@ -33413,6 +35524,7 @@ catch (...)
 
 static void* hs_get_d70256cb(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::UUID*>(hs_self)->data));
 }
 catch (std::exception const& hs_error)
@@ -33428,6 +35540,7 @@ catch (...)
 
 static void* hs_method_358c4b97(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID const*>(hs_self)->end()));
 }
 catch (std::exception const& hs_error)
@@ -33443,6 +35556,7 @@ catch (...)
 
 static void* hs_method_bed6b0aa(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::UUID*>(hs_self)->end()));
 }
 catch (std::exception const& hs_error)
@@ -33458,6 +35572,7 @@ catch (...)
 
 static bool hs_method_06f303a1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::UUID const*>(hs_self)->isNil());
 }
 catch (std::exception const& hs_error)
@@ -33473,6 +35588,7 @@ catch (...)
 
 static std::uint64_t hs_method_ef13b403() try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(endstone::UUID::size());
 }
 catch (std::exception const& hs_error)
@@ -33488,6 +35604,7 @@ catch (...)
 
 static HosihikariStringView hs_method_99e57321(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::UUID const*>(hs_self)->str();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -33505,6 +35622,7 @@ catch (...)
 
 static void hs_method_ea0e8712(void* hs_self, void* rhs) try
 {
+    clearLastError();
     static_cast<endstone::UUID*>(hs_self)->swap(*static_cast<endstone::UUID*>(rhs));
 }
 catch (std::exception const& hs_error)
@@ -33520,6 +35638,7 @@ catch (...)
 
 static std::int32_t hs_method_15358322(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::UUID const*>(hs_self)->version());
 }
 catch (std::exception const& hs_error)
@@ -33535,6 +35654,7 @@ catch (...)
 
 static void hs_destroy_b2f4ff7c(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::Vector*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -33550,6 +35670,7 @@ catch (...)
 
 static void* hs_create_0558b5cb() try
 {
+    clearLastError();
     return new endstone::Vector();
 }
 catch (std::exception const& hs_error)
@@ -33565,6 +35686,7 @@ catch (...)
 
 static void* hs_create_59d8f0d9(void* other) try
 {
+    clearLastError();
     return new endstone::Vector(*static_cast<const endstone::Vector*>(other));
 }
 catch (std::exception const& hs_error)
@@ -33580,6 +35702,7 @@ catch (...)
 
 static void* hs_create_f7d5c0b3(void* other) try
 {
+    clearLastError();
     return new endstone::Vector(std::move(*static_cast<endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33595,6 +35718,7 @@ catch (...)
 
 static float hs_method_cd2cd7ce(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->angle(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33610,6 +35734,7 @@ catch (...)
 
 static void* hs_method_bedcfefa(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->crossProduct(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33625,6 +35750,7 @@ catch (...)
 
 static float hs_method_46992c8a(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->distance(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33640,6 +35766,7 @@ catch (...)
 
 static float hs_method_b8e92c28(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->distanceSquared(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33655,6 +35782,7 @@ catch (...)
 
 static float hs_method_1421a900(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->dot(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33670,6 +35798,7 @@ catch (...)
 
 static std::int32_t hs_method_31144a4c(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockX());
 }
 catch (std::exception const& hs_error)
@@ -33685,6 +35814,7 @@ catch (...)
 
 static std::int32_t hs_method_e44caa09(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockY());
 }
 catch (std::exception const& hs_error)
@@ -33700,6 +35830,7 @@ catch (...)
 
 static std::int32_t hs_method_c50effd3(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::Vector const*>(hs_self)->getBlockZ());
 }
 catch (std::exception const& hs_error)
@@ -33715,6 +35846,7 @@ catch (...)
 
 static void* hs_method_68e875ff(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->getCrossProduct(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33730,6 +35862,7 @@ catch (...)
 
 static void* hs_method_5a72ef4a(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->getMidpoint(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33745,6 +35878,7 @@ catch (...)
 
 static float hs_method_17139368(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getX());
 }
 catch (std::exception const& hs_error)
@@ -33760,6 +35894,7 @@ catch (...)
 
 static float hs_method_913f9b94(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getY());
 }
 catch (std::exception const& hs_error)
@@ -33775,6 +35910,7 @@ catch (...)
 
 static float hs_method_696cf6c9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->getZ());
 }
 catch (std::exception const& hs_error)
@@ -33790,6 +35926,7 @@ catch (...)
 
 static bool hs_method_753a5fd4(void* hs_self, void* min, void* max) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isInAABB(*static_cast<const endstone::Vector*>(min), *static_cast<const endstone::Vector*>(max)));
 }
 catch (std::exception const& hs_error)
@@ -33805,6 +35942,7 @@ catch (...)
 
 static bool hs_method_c56f5329(void* hs_self, void* origin, float radius) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isInSphere(*static_cast<const endstone::Vector*>(origin), static_cast<float>(radius)));
 }
 catch (std::exception const& hs_error)
@@ -33820,6 +35958,7 @@ catch (...)
 
 static bool hs_method_e341a456(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isNormalized());
 }
 catch (std::exception const& hs_error)
@@ -33835,6 +35974,7 @@ catch (...)
 
 static bool hs_method_42a47900(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->isZero());
 }
 catch (std::exception const& hs_error)
@@ -33850,6 +35990,7 @@ catch (...)
 
 static float hs_method_244017e4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->length());
 }
 catch (std::exception const& hs_error)
@@ -33865,6 +36006,7 @@ catch (...)
 
 static float hs_method_e5170cea(void* hs_self) try
 {
+    clearLastError();
     return static_cast<float>(static_cast<endstone::Vector const*>(hs_self)->lengthSquared());
 }
 catch (std::exception const& hs_error)
@@ -33880,6 +36022,7 @@ catch (...)
 
 static void* hs_method_217b6b87(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->midpoint(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33895,6 +36038,7 @@ catch (...)
 
 static void* hs_method_3dff0fe6(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->normalize()));
 }
 catch (std::exception const& hs_error)
@@ -33910,6 +36054,7 @@ catch (...)
 
 static void* hs_method_aef1cecd(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->normalizeZeros()));
 }
 catch (std::exception const& hs_error)
@@ -33925,6 +36070,7 @@ catch (...)
 
 static bool hs_method_26814558(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->operator!=(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -33940,6 +36086,7 @@ catch (...)
 
 static void* hs_method_87c6e96d(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator*(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33955,6 +36102,7 @@ catch (...)
 
 static void* hs_method_3f9215a2(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator*=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33970,6 +36118,7 @@ catch (...)
 
 static void* hs_method_ef1fc55b(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator+(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -33985,6 +36134,7 @@ catch (...)
 
 static void* hs_method_90119843(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator+=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34000,6 +36150,7 @@ catch (...)
 
 static void* hs_method_60fb74ad(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator-(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34015,6 +36166,7 @@ catch (...)
 
 static void* hs_method_0a40232b(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator-=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34030,6 +36182,7 @@ catch (...)
 
 static void* hs_method_5df75d45(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Vector(static_cast<endstone::Vector const*>(hs_self)->operator/(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34045,6 +36198,7 @@ catch (...)
 
 static void* hs_method_4a2dbdbe(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator/=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34060,6 +36214,7 @@ catch (...)
 
 static void* hs_method_682756f6(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator=(*static_cast<const endstone::Vector*>(other))));
 }
 catch (std::exception const& hs_error)
@@ -34075,6 +36230,7 @@ catch (...)
 
 static void* hs_method_17143b18(void* hs_self, void* other) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->operator=(std::move(*static_cast<endstone::Vector*>(other)))));
 }
 catch (std::exception const& hs_error)
@@ -34090,6 +36246,7 @@ catch (...)
 
 static bool hs_method_b217dcd5(void* hs_self, void* other) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::Vector const*>(hs_self)->operator==(*static_cast<const endstone::Vector*>(other)));
 }
 catch (std::exception const& hs_error)
@@ -34105,6 +36262,7 @@ catch (...)
 
 static void* hs_method_609d0268(void* hs_self, void* axis, float angle) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->rotateAroundAxis(*static_cast<const endstone::Vector*>(axis), static_cast<float>(angle))));
 }
 catch (std::exception const& hs_error)
@@ -34120,6 +36278,7 @@ catch (...)
 
 static void* hs_method_4d4b89ff(void* hs_self, void* axis, float angle) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->rotateAroundNonUnitAxis(*static_cast<const endstone::Vector*>(axis), static_cast<float>(angle))));
 }
 catch (std::exception const& hs_error)
@@ -34135,6 +36294,7 @@ catch (...)
 
 static void* hs_method_af683b71(void* hs_self, float angle) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->rotateAroundX(static_cast<float>(angle))));
 }
 catch (std::exception const& hs_error)
@@ -34150,6 +36310,7 @@ catch (...)
 
 static void* hs_method_5706bd37(void* hs_self, float angle) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->rotateAroundY(static_cast<float>(angle))));
 }
 catch (std::exception const& hs_error)
@@ -34165,6 +36326,7 @@ catch (...)
 
 static void* hs_method_a753bc9b(void* hs_self, float angle) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->rotateAroundZ(static_cast<float>(angle))));
 }
 catch (std::exception const& hs_error)
@@ -34180,6 +36342,7 @@ catch (...)
 
 static void* hs_method_67f7f16d(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::Vector*>(hs_self)->zero()));
 }
 catch (std::exception const& hs_error)
@@ -34195,6 +36358,7 @@ catch (...)
 
 static void hs_destroy_86046249(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::WeatherChangeEvent*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -34210,6 +36374,7 @@ catch (...)
 
 static void* hs_cast_f7e202bb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Cancellable<endstone::WeatherEvent>*>(static_cast<endstone::WeatherChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34225,6 +36390,7 @@ catch (...)
 
 static void* hs_cast_83bba1b7(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::WeatherChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34240,6 +36406,7 @@ catch (...)
 
 static void* hs_cast_90940b1a(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ICancellable*>(static_cast<endstone::WeatherChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34255,6 +36422,7 @@ catch (...)
 
 static void* hs_cast_e160d2e8(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::WeatherEvent*>(static_cast<endstone::WeatherChangeEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34270,6 +36438,7 @@ catch (...)
 
 static void* hs_get_145d2e9a() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(endstone::WeatherChangeEvent::NAME));
 }
 catch (std::exception const& hs_error)
@@ -34285,6 +36454,7 @@ catch (...)
 
 static void* hs_create_280f3195(void* level, bool to) try
 {
+    clearLastError();
     return new endstone::WeatherChangeEvent(*static_cast<endstone::Level*>(level), static_cast<const bool>(to));
 }
 catch (std::exception const& hs_error)
@@ -34300,6 +36470,7 @@ catch (...)
 
 static HosihikariStringView hs_method_58f0be28(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::WeatherChangeEvent const*>(hs_self)->getEventName();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -34317,6 +36488,7 @@ catch (...)
 
 static bool hs_method_0e26b9b9(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::WeatherChangeEvent const*>(hs_self)->toWeatherState());
 }
 catch (std::exception const& hs_error)
@@ -34332,6 +36504,7 @@ catch (...)
 
 static void* hs_cast_e692f3ea(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::Cancellable<endstone::WeatherEvent>*>(static_cast<endstone::WeatherEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34347,6 +36520,7 @@ catch (...)
 
 static void* hs_cast_24d176e1(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::ThunderChangeEvent*>(static_cast<endstone::WeatherEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34362,6 +36536,7 @@ catch (...)
 
 static void* hs_cast_10b8635d(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::WeatherChangeEvent*>(static_cast<endstone::WeatherEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34377,6 +36552,7 @@ catch (...)
 
 static void* hs_cast_7594a547(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::Event*>(static_cast<endstone::WeatherEvent*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34392,6 +36568,7 @@ catch (...)
 
 static void* hs_method_fa1f866e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::WeatherEvent const*>(hs_self)->getLevel()));
 }
 catch (std::exception const& hs_error)
@@ -34407,6 +36584,7 @@ catch (...)
 
 static void* hs_cast_ce5da043(void* hs_self) try
 {
+    clearLastError();
     return dynamic_cast<endstone::BookMeta*>(static_cast<endstone::WritableBookMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34422,6 +36600,7 @@ catch (...)
 
 static void* hs_cast_4d728731(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::ItemMeta*>(static_cast<endstone::WritableBookMeta*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -34437,6 +36616,7 @@ catch (...)
 
 static std::int32_t hs_get_9fc270c4() try
 {
+    clearLastError();
     return static_cast<std::int32_t>(endstone::WritableBookMeta::MetaType);
 }
 catch (std::exception const& hs_error)
@@ -34452,6 +36632,7 @@ catch (...)
 
 static void hs_method_cd2e8ba7(void* hs_self, const HosihikariStringView* pages_data, std::size_t pages_count) try
 {
+    clearLastError();
     static_cast<endstone::WritableBookMeta*>(hs_self)->addPage(hs_make_string_vector(pages_data, pages_count));
 }
 catch (std::exception const& hs_error)
@@ -34467,6 +36648,7 @@ catch (...)
 
 static HosihikariStringView hs_method_a4b82fb7(void* hs_self, std::int32_t page) try
 {
+    clearLastError();
     auto result = static_cast<endstone::WritableBookMeta const*>(hs_self)->getPage(static_cast<int>(page));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -34484,6 +36666,7 @@ catch (...)
 
 static std::int32_t hs_method_40fe9057(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::WritableBookMeta const*>(hs_self)->getPageCount());
 }
 catch (std::exception const& hs_error)
@@ -34499,6 +36682,7 @@ catch (...)
 
 static HosihikariArrayView hs_method_d2444a6f(void* hs_self) try
 {
+    clearLastError();
     thread_local std::vector<std::string> hs_arrayStrings;
     thread_local std::vector<HosihikariStringView> hs_arrayViews;
     auto result = static_cast<endstone::WritableBookMeta const*>(hs_self)->getPages();
@@ -34523,6 +36707,7 @@ catch (...)
 
 static bool hs_method_9a458a7f(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::WritableBookMeta const*>(hs_self)->hasPages());
 }
 catch (std::exception const& hs_error)
@@ -34538,6 +36723,7 @@ catch (...)
 
 static void hs_method_8c15c058(void* hs_self, std::int32_t page, const char* data_data, std::size_t data_size) try
 {
+    clearLastError();
     static_cast<endstone::WritableBookMeta*>(hs_self)->setPage(static_cast<int>(page), std::basic_string<char>(data_data, data_size));
 }
 catch (std::exception const& hs_error)
@@ -34553,6 +36739,7 @@ catch (...)
 
 static void hs_method_3c78895a(void* hs_self, const HosihikariStringView* pages_data, std::size_t pages_count) try
 {
+    clearLastError();
     static_cast<endstone::WritableBookMeta*>(hs_self)->setPages(hs_make_string_vector(pages_data, pages_count));
 }
 catch (std::exception const& hs_error)
@@ -34568,6 +36755,7 @@ catch (...)
 
 static void hs_destroy_1cdbd0d8(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::detail::CommandBuilder*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -34583,6 +36771,7 @@ catch (...)
 
 static void* hs_create_90ef1d59(const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return new endstone::detail::CommandBuilder(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -34598,6 +36787,7 @@ catch (...)
 
 static void* hs_method_c0a18bdd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Command(static_cast<endstone::detail::CommandBuilder const*>(hs_self)->build()));
 }
 catch (std::exception const& hs_error)
@@ -34613,6 +36803,7 @@ catch (...)
 
 static void* hs_method_9800ad34(void* hs_self, const char* description_data, std::size_t description_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::CommandBuilder*>(hs_self)->description(std::basic_string<char>(description_data, description_size))));
 }
 catch (std::exception const& hs_error)
@@ -34628,6 +36819,7 @@ catch (...)
 
 static void hs_destroy_ad8af38f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::detail::PermissionBuilder*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -34643,6 +36835,7 @@ catch (...)
 
 static void* hs_create_b4ef4553(const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return new endstone::detail::PermissionBuilder(std::basic_string<char>(name_data, name_size));
 }
 catch (std::exception const& hs_error)
@@ -34658,6 +36851,7 @@ catch (...)
 
 static void* hs_method_1197d8cc(void* hs_self) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::Permission(static_cast<endstone::detail::PermissionBuilder const*>(hs_self)->build()));
 }
 catch (std::exception const& hs_error)
@@ -34673,6 +36867,7 @@ catch (...)
 
 static void* hs_method_a61badb4(void* hs_self, const char* name_data, std::size_t name_size, bool value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PermissionBuilder*>(hs_self)->children(std::basic_string<char>(name_data, name_size), static_cast<bool>(value))));
 }
 catch (std::exception const& hs_error)
@@ -34688,6 +36883,7 @@ catch (...)
 
 static void* hs_method_b7b03a67(void* hs_self, std::int32_t default_value) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PermissionBuilder*>(hs_self)->default_(static_cast<endstone::PermissionDefault>(default_value))));
 }
 catch (std::exception const& hs_error)
@@ -34703,6 +36899,7 @@ catch (...)
 
 static void* hs_method_f5492b69(void* hs_self, const char* description_data, std::size_t description_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PermissionBuilder*>(hs_self)->description(std::basic_string<char>(description_data, description_size))));
 }
 catch (std::exception const& hs_error)
@@ -34718,6 +36915,7 @@ catch (...)
 
 static void hs_destroy_cd88f598(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -34733,6 +36931,7 @@ catch (...)
 
 static void* hs_get_e9584b36(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->authors));
 }
 catch (std::exception const& hs_error)
@@ -34748,6 +36947,7 @@ catch (...)
 
 static void* hs_method_8e229283(void* hs_self, const char* name_data, std::size_t name_size, const char* version_data, std::size_t version_size) try
 {
+    clearLastError();
     return static_cast<void*>(new endstone::PluginDescription(static_cast<endstone::detail::PluginDescriptionBuilder const*>(hs_self)->build(std::basic_string<char>(name_data, name_size), std::basic_string<char>(version_data, version_size))));
 }
 catch (std::exception const& hs_error)
@@ -34763,6 +36963,7 @@ catch (...)
 
 static void* hs_method_d253f495(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->command(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -34778,6 +36979,7 @@ catch (...)
 
 static void* hs_get_9c5b9ebe(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->commands));
 }
 catch (std::exception const& hs_error)
@@ -34793,6 +36995,7 @@ catch (...)
 
 static void* hs_get_b05d1a1e(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->contributors));
 }
 catch (std::exception const& hs_error)
@@ -34808,6 +37011,7 @@ catch (...)
 
 static std::int32_t hs_get_32498812(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->default_permission);
 }
 catch (std::exception const& hs_error)
@@ -34823,6 +37027,7 @@ catch (...)
 
 static void hs_set_32498812(void* hs_self, std::int32_t value) try
 {
+    clearLastError();
     static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->default_permission = static_cast<endstone::PermissionDefault>(static_cast<endstone::PermissionDefault>(value));
 }
 catch (std::exception const& hs_error)
@@ -34838,6 +37043,7 @@ catch (...)
 
 static void* hs_get_7cb8b078(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->depend));
 }
 catch (std::exception const& hs_error)
@@ -34853,6 +37059,7 @@ catch (...)
 
 static HosihikariStringView hs_get_a20be6a0(void* hs_self) try
 {
+    clearLastError();
     auto const& value = static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->description;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -34869,6 +37076,7 @@ catch (...)
 
 static std::int32_t hs_get_e75200bb(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->load);
 }
 catch (std::exception const& hs_error)
@@ -34884,6 +37092,7 @@ catch (...)
 
 static void hs_set_e75200bb(void* hs_self, std::int32_t value) try
 {
+    clearLastError();
     static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->load = static_cast<endstone::PluginLoadOrder>(static_cast<endstone::PluginLoadOrder>(value));
 }
 catch (std::exception const& hs_error)
@@ -34899,6 +37108,7 @@ catch (...)
 
 static void* hs_get_aa6fe5da(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->load_before));
 }
 catch (std::exception const& hs_error)
@@ -34914,6 +37124,7 @@ catch (...)
 
 static void* hs_method_af0e7391(void* hs_self, const char* name_data, std::size_t name_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->permission(std::basic_string<char>(name_data, name_size))));
 }
 catch (std::exception const& hs_error)
@@ -34929,6 +37140,7 @@ catch (...)
 
 static void* hs_get_2b0c65dd(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->permissions));
 }
 catch (std::exception const& hs_error)
@@ -34944,6 +37156,7 @@ catch (...)
 
 static HosihikariStringView hs_get_ce2e4097(void* hs_self) try
 {
+    clearLastError();
     auto const& value = static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->prefix;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -34960,6 +37173,7 @@ catch (...)
 
 static void* hs_get_61f17630(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->provides));
 }
 catch (std::exception const& hs_error)
@@ -34975,6 +37189,7 @@ catch (...)
 
 static void* hs_get_2c478d94(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->soft_depend));
 }
 catch (std::exception const& hs_error)
@@ -34990,6 +37205,7 @@ catch (...)
 
 static HosihikariStringView hs_get_891735e3(void* hs_self) try
 {
+    clearLastError();
     auto const& value = static_cast<endstone::detail::PluginDescriptionBuilder*>(hs_self)->website;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -35006,6 +37222,7 @@ catch (...)
 
 static void* hs_function_6bbc2cf3() try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&endstone::detail::getServer()));
 }
 catch (std::exception const& hs_error)
@@ -35021,6 +37238,7 @@ catch (...)
 
 static HosihikariStringView hs_function_697071cf(const char* value_data, std::size_t value_size) try
 {
+    clearLastError();
     auto result = endstone::detail::quoted(std::basic_string_view<char>(value_data, value_size));
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -35038,6 +37256,7 @@ catch (...)
 
 static std::uint64_t hs_function_f354b6c5(void* u) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(endstone::hash_value(*static_cast<const endstone::UUID*>(u)));
 }
 catch (std::exception const& hs_error)
@@ -35053,6 +37272,7 @@ catch (...)
 
 static void hs_destroy_0a74479a(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ArrayTag<int>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -35068,6 +37288,7 @@ catch (...)
 
 static void* hs_cast_ffee15db(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ArrayTag<int>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -35083,6 +37304,7 @@ catch (...)
 
 static void* hs_create_f9753a41() try
 {
+    clearLastError();
     return new endstone::nbt::ArrayTag<int>();
 }
 catch (std::exception const& hs_error)
@@ -35098,6 +37320,7 @@ catch (...)
 
 static void* hs_create_a2c84490(const std::int32_t* v_data, std::size_t v_count) try
 {
+    clearLastError();
     return new endstone::nbt::ArrayTag<int>(hs_make_vector<int>(v_data, v_count));
 }
 catch (std::exception const& hs_error)
@@ -35113,6 +37336,7 @@ catch (...)
 
 static void* hs_method_47e2aef5(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35128,6 +37352,7 @@ catch (...)
 
 static void* hs_method_351288e4(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35143,6 +37368,7 @@ catch (...)
 
 static void hs_method_e58a485e(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->clear();
 }
 catch (std::exception const& hs_error)
@@ -35158,6 +37384,7 @@ catch (...)
 
 static void* hs_method_4525430b(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
@@ -35173,6 +37400,7 @@ catch (...)
 
 static void* hs_method_bc70fe66(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
@@ -35188,6 +37416,7 @@ catch (...)
 
 static bool hs_method_5676c89d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -35203,6 +37432,7 @@ catch (...)
 
 static void* hs_method_ba0c8eb2(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35218,6 +37448,7 @@ catch (...)
 
 static void* hs_method_b98815f4(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35233,6 +37464,7 @@ catch (...)
 
 static void hs_method_e1bf83e1(void* hs_self, std::int32_t v) try
 {
+    clearLastError();
     static_cast<endstone::nbt::ArrayTag<int>*>(hs_self)->push_back(static_cast<int>(v));
 }
 catch (std::exception const& hs_error)
@@ -35248,6 +37480,7 @@ catch (...)
 
 static std::uint64_t hs_method_9510ddb5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<int> const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
@@ -35263,6 +37496,7 @@ catch (...)
 
 static void hs_destroy_b2367e0f(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -35278,6 +37512,7 @@ catch (...)
 
 static void* hs_cast_82fa295b(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -35293,6 +37528,7 @@ catch (...)
 
 static void* hs_create_bf551670() try
 {
+    clearLastError();
     return new endstone::nbt::ArrayTag<unsigned char>();
 }
 catch (std::exception const& hs_error)
@@ -35308,6 +37544,7 @@ catch (...)
 
 static void* hs_create_67bce2b5(const std::uint8_t* v_data, std::size_t v_count) try
 {
+    clearLastError();
     return new endstone::nbt::ArrayTag<unsigned char>(hs_make_vector<unsigned char>(v_data, v_count));
 }
 catch (std::exception const& hs_error)
@@ -35323,6 +37560,7 @@ catch (...)
 
 static void* hs_method_738d7d61(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35338,6 +37576,7 @@ catch (...)
 
 static void* hs_method_30c1f2a4(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->at(static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35353,6 +37592,7 @@ catch (...)
 
 static void hs_method_03943d7e(void* hs_self) try
 {
+    clearLastError();
     static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->clear();
 }
 catch (std::exception const& hs_error)
@@ -35368,6 +37608,7 @@ catch (...)
 
 static void* hs_method_79f539d8(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
@@ -35383,6 +37624,7 @@ catch (...)
 
 static void* hs_method_539e56bc(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->data()));
 }
 catch (std::exception const& hs_error)
@@ -35398,6 +37640,7 @@ catch (...)
 
 static bool hs_method_0f9715b4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -35413,6 +37656,7 @@ catch (...)
 
 static void* hs_method_d4881781(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35428,6 +37672,7 @@ catch (...)
 
 static void* hs_method_4f71a147(void* hs_self, std::uint64_t i) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->operator[](static_cast<std::uint64_t>(i))));
 }
 catch (std::exception const& hs_error)
@@ -35443,6 +37688,7 @@ catch (...)
 
 static void hs_method_db7aa3eb(void* hs_self, std::uint8_t v) try
 {
+    clearLastError();
     static_cast<endstone::nbt::ArrayTag<unsigned char>*>(hs_self)->push_back(static_cast<unsigned char>(v));
 }
 catch (std::exception const& hs_error)
@@ -35458,6 +37704,7 @@ catch (...)
 
 static std::uint64_t hs_method_b2640908(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::nbt::ArrayTag<unsigned char> const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
@@ -35473,6 +37720,7 @@ catch (...)
 
 static void hs_destroy_119cc274(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::Tag*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -35488,6 +37736,7 @@ catch (...)
 
 static void* hs_create_07367460() try
 {
+    clearLastError();
     return new endstone::nbt::Tag();
 }
 catch (std::exception const& hs_error)
@@ -35503,6 +37752,7 @@ catch (...)
 
 static void* hs_create_baf972b8(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::CompoundTag*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35518,6 +37768,7 @@ catch (...)
 
 static void* hs_create_819cb27e(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::ListTag*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35533,6 +37784,7 @@ catch (...)
 
 static void* hs_create_8211f649(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ArrayTag<int>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35548,6 +37800,7 @@ catch (...)
 
 static void* hs_create_1484bf0a(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35563,6 +37816,7 @@ catch (...)
 
 static void* hs_create_d6360907(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<double>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35578,6 +37832,7 @@ catch (...)
 
 static void* hs_create_457becef(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<float>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35593,6 +37848,7 @@ catch (...)
 
 static void* hs_create_09dba799(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<int>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35608,6 +37864,7 @@ catch (...)
 
 static void* hs_create_4770da7f(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<std::int64_t>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35623,6 +37880,7 @@ catch (...)
 
 static void* hs_create_e1ad6f1d(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<short>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35638,6 +37896,7 @@ catch (...)
 
 static void* hs_create_ae7af231(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35653,6 +37912,7 @@ catch (...)
 
 static void* hs_create_20f00e82(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(*static_cast<const endstone::nbt::ValueTag<unsigned char>*>(v));
 }
 catch (std::exception const& hs_error)
@@ -35668,6 +37928,7 @@ catch (...)
 
 static void* hs_create_0323cf45(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::CompoundTag*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35683,6 +37944,7 @@ catch (...)
 
 static void* hs_create_cf057e04(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::ListTag*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35698,6 +37960,7 @@ catch (...)
 
 static void* hs_create_d1ed5c87(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ArrayTag<int>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35713,6 +37976,7 @@ catch (...)
 
 static void* hs_create_9b18580d(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ArrayTag<unsigned char>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35728,6 +37992,7 @@ catch (...)
 
 static void* hs_create_3ff7d4ef(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<double>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35743,6 +38008,7 @@ catch (...)
 
 static void* hs_create_c968d7f8(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<float>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35758,6 +38024,7 @@ catch (...)
 
 static void* hs_create_5dbcd3d5(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<int>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35773,6 +38040,7 @@ catch (...)
 
 static void* hs_create_46f59296(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<std::int64_t>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35788,6 +38056,7 @@ catch (...)
 
 static void* hs_create_58ec9c16(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<short>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35803,6 +38072,7 @@ catch (...)
 
 static void* hs_create_465cf618(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<std::basic_string<char>>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35818,6 +38088,7 @@ catch (...)
 
 static void* hs_create_54fd6f8b(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::Tag(std::move(*static_cast<endstone::nbt::ValueTag<unsigned char>*>(v)));
 }
 catch (std::exception const& hs_error)
@@ -35833,6 +38104,7 @@ catch (...)
 
 static void* hs_method_6243cae4(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag const*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -35848,6 +38120,7 @@ catch (...)
 
 static void* hs_method_44225e41(void* hs_self, std::uint64_t index) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag const*>(hs_self)->at(static_cast<std::uint64_t>(index))));
 }
 catch (std::exception const& hs_error)
@@ -35863,6 +38136,7 @@ catch (...)
 
 static void* hs_method_c69bd34e(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->at(std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -35878,6 +38152,7 @@ catch (...)
 
 static void* hs_method_6379b79e(void* hs_self, std::uint64_t index) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->at(static_cast<std::uint64_t>(index))));
 }
 catch (std::exception const& hs_error)
@@ -35893,6 +38168,7 @@ catch (...)
 
 static bool hs_method_c9fa7570(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::nbt::Tag const*>(hs_self)->contains(std::basic_string<char>(key_data, key_size)));
 }
 catch (std::exception const& hs_error)
@@ -35908,6 +38184,7 @@ catch (...)
 
 static bool hs_method_c6fd8bde(void* hs_self) try
 {
+    clearLastError();
     return static_cast<bool>(static_cast<endstone::nbt::Tag const*>(hs_self)->empty());
 }
 catch (std::exception const& hs_error)
@@ -35923,6 +38200,7 @@ catch (...)
 
 static void* hs_method_2d42e86c(void* hs_self, const char* key_data, std::size_t key_size) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->operator[](std::basic_string<char>(key_data, key_size))));
 }
 catch (std::exception const& hs_error)
@@ -35938,6 +38216,7 @@ catch (...)
 
 static void* hs_method_17890e30(void* hs_self, std::uint64_t index) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::Tag*>(hs_self)->operator[](static_cast<std::uint64_t>(index))));
 }
 catch (std::exception const& hs_error)
@@ -35953,6 +38232,7 @@ catch (...)
 
 static std::uint64_t hs_method_c826eb97(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint64_t>(static_cast<endstone::nbt::Tag const*>(hs_self)->size());
 }
 catch (std::exception const& hs_error)
@@ -35968,6 +38248,7 @@ catch (...)
 
 static std::uint8_t hs_method_461b4621(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::uint8_t>(static_cast<endstone::nbt::Tag const*>(hs_self)->type());
 }
 catch (std::exception const& hs_error)
@@ -35983,6 +38264,7 @@ catch (...)
 
 static void hs_destroy_a75c33a7(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<double>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -35998,6 +38280,7 @@ catch (...)
 
 static void* hs_cast_feae8b85(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<double>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36013,6 +38296,7 @@ catch (...)
 
 static void* hs_create_b14a210f() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<double>();
 }
 catch (std::exception const& hs_error)
@@ -36028,6 +38312,7 @@ catch (...)
 
 static void* hs_create_bed9eb8b(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<double>(*static_cast<const double*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36043,6 +38328,7 @@ catch (...)
 
 static void* hs_method_bb9f85c5(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double> const*>(hs_self)->operator const double &()));
 }
 catch (std::exception const& hs_error)
@@ -36058,6 +38344,7 @@ catch (...)
 
 static void* hs_method_f5476fc0(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<double> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36073,6 +38360,7 @@ catch (...)
 
 static void hs_destroy_82391ea2(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<float>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36088,6 +38376,7 @@ catch (...)
 
 static void* hs_cast_8a54d44d(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<float>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36103,6 +38392,7 @@ catch (...)
 
 static void* hs_create_22fd21bf() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<float>();
 }
 catch (std::exception const& hs_error)
@@ -36118,6 +38408,7 @@ catch (...)
 
 static void* hs_create_df4d4aa0(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<float>(*static_cast<const float*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36133,6 +38424,7 @@ catch (...)
 
 static void* hs_method_ea190831(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float> const*>(hs_self)->operator const float &()));
 }
 catch (std::exception const& hs_error)
@@ -36148,6 +38440,7 @@ catch (...)
 
 static void* hs_method_29fe7e41(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<float> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36163,6 +38456,7 @@ catch (...)
 
 static void hs_destroy_e0bd18bc(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<int>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36178,6 +38472,7 @@ catch (...)
 
 static void* hs_cast_940ce3c5(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<int>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36193,6 +38488,7 @@ catch (...)
 
 static void* hs_create_e7a2c8d8() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<int>();
 }
 catch (std::exception const& hs_error)
@@ -36208,6 +38504,7 @@ catch (...)
 
 static void* hs_create_f46b9ede(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<int>(*static_cast<const int*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36223,6 +38520,7 @@ catch (...)
 
 static void* hs_method_739effb2(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int> const*>(hs_self)->operator const int &()));
 }
 catch (std::exception const& hs_error)
@@ -36238,6 +38536,7 @@ catch (...)
 
 static void* hs_method_1fa2443a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<int> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36253,6 +38552,7 @@ catch (...)
 
 static void hs_destroy_e7123db3(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<std::int64_t>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36268,6 +38568,7 @@ catch (...)
 
 static void* hs_cast_b845cbd1(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<std::int64_t>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36283,6 +38584,7 @@ catch (...)
 
 static void* hs_create_6bcd9d43() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<std::int64_t>();
 }
 catch (std::exception const& hs_error)
@@ -36298,6 +38600,7 @@ catch (...)
 
 static void* hs_create_880dd27c(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<std::int64_t>(*static_cast<const std::int64_t*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36313,6 +38616,7 @@ catch (...)
 
 static void* hs_method_2d2759c7(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t> const*>(hs_self)->operator const std::int64_t &()));
 }
 catch (std::exception const& hs_error)
@@ -36328,6 +38632,7 @@ catch (...)
 
 static void* hs_method_b7abc577(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<std::int64_t> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36343,6 +38648,7 @@ catch (...)
 
 static void hs_destroy_f4754488(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<short>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36358,6 +38664,7 @@ catch (...)
 
 static void* hs_cast_4ccfa3d4(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<short>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36373,6 +38680,7 @@ catch (...)
 
 static void* hs_create_05ea863b() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<short>();
 }
 catch (std::exception const& hs_error)
@@ -36388,6 +38696,7 @@ catch (...)
 
 static void* hs_create_97e78858(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<short>(*static_cast<const short*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36403,6 +38712,7 @@ catch (...)
 
 static void* hs_method_27666b40(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short> const*>(hs_self)->operator const short &()));
 }
 catch (std::exception const& hs_error)
@@ -36418,6 +38728,7 @@ catch (...)
 
 static void* hs_method_4e1beb8a(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<short> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36433,6 +38744,7 @@ catch (...)
 
 static void hs_destroy_dcd76654(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<std::basic_string<char>>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36448,6 +38760,7 @@ catch (...)
 
 static void* hs_cast_000601bd(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<std::basic_string<char>>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36463,6 +38776,7 @@ catch (...)
 
 static void* hs_create_c7f15440() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<std::basic_string<char>>();
 }
 catch (std::exception const& hs_error)
@@ -36478,6 +38792,7 @@ catch (...)
 
 static void* hs_create_9148a4df(const char* v_data, std::size_t v_size) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<std::basic_string<char>>(std::basic_string<char>(v_data, v_size));
 }
 catch (std::exception const& hs_error)
@@ -36493,6 +38808,7 @@ catch (...)
 
 static void* hs_create_041ea18a(const char* v_data, std::size_t v_size) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<std::basic_string<char>>(std::basic_string<char>(v_data, v_size));
 }
 catch (std::exception const& hs_error)
@@ -36508,6 +38824,7 @@ catch (...)
 
 static HosihikariStringView hs_method_087d950e(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>> const*>(hs_self)->operator const std::basic_string<char> &();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -36525,6 +38842,7 @@ catch (...)
 
 static HosihikariStringView hs_method_5bc99605(void* hs_self) try
 {
+    clearLastError();
     auto result = static_cast<endstone::nbt::ValueTag<std::basic_string<char>> const*>(hs_self)->value();
     g_stringResult.assign(result.data(), result.size());
     return HosihikariStringView{g_stringResult.data(), g_stringResult.size()};
@@ -36542,6 +38860,7 @@ catch (...)
 
 static void hs_destroy_c8e37bfa(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<endstone::nbt::ValueTag<unsigned char>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36557,6 +38876,7 @@ catch (...)
 
 static void* hs_cast_3298b734(void* hs_self) try
 {
+    clearLastError();
     return static_cast<endstone::nbt::TagBase*>(static_cast<endstone::nbt::ValueTag<unsigned char>*>(hs_self));
 }
 catch (std::exception const& hs_error)
@@ -36572,6 +38892,7 @@ catch (...)
 
 static void* hs_create_e3a13c3c() try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<unsigned char>();
 }
 catch (std::exception const& hs_error)
@@ -36587,6 +38908,7 @@ catch (...)
 
 static void* hs_create_eb472178(void* v) try
 {
+    clearLastError();
     return new endstone::nbt::ValueTag<unsigned char>(*static_cast<const unsigned char*>(v));
 }
 catch (std::exception const& hs_error)
@@ -36602,6 +38924,7 @@ catch (...)
 
 static void* hs_method_1bc059da(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char> const*>(hs_self)->operator const unsigned char &()));
 }
 catch (std::exception const& hs_error)
@@ -36617,6 +38940,7 @@ catch (...)
 
 static void* hs_method_bc424f4f(void* hs_self) try
 {
+    clearLastError();
     return const_cast<void*>(static_cast<void const*>(&static_cast<endstone::nbt::ValueTag<unsigned char> const*>(hs_self)->value()));
 }
 catch (std::exception const& hs_error)
@@ -36632,6 +38956,7 @@ catch (...)
 
 static void hs_destroy_6d952785(void* hs_self) try
 {
+    clearLastError();
     hs_destroy_borrowed_or_delete<endstone::nbt::escape_view>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -36647,6 +38972,7 @@ catch (...)
 
 static HosihikariStringView hs_get_ffe00fef(void* hs_self) try
 {
+    clearLastError();
     auto const& value = static_cast<endstone::nbt::escape_view*>(hs_self)->value;
     return HosihikariStringView{value.data(), value.size()};
 }
@@ -36663,6 +38989,7 @@ catch (...)
 
 static bool hs_function_e5cd320f(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const double*>(a), *static_cast<const endstone::nbt::ValueTag<double>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36678,6 +39005,7 @@ catch (...)
 
 static bool hs_function_5ad85de4(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ArrayTag<int>*>(a), *static_cast<const endstone::nbt::ArrayTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36693,6 +39021,7 @@ catch (...)
 
 static bool hs_function_d0459049(void* a, const std::int32_t* b_data, std::size_t b_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ArrayTag<int>*>(a), hs_make_vector<int>(b_data, b_count)));
 }
 catch (std::exception const& hs_error)
@@ -36708,6 +39037,7 @@ catch (...)
 
 static bool hs_function_2d8e5bf5(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(a), *static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36723,6 +39053,7 @@ catch (...)
 
 static bool hs_function_6a2dbd23(void* a, const std::uint8_t* b_data, std::size_t b_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(a), hs_make_vector<unsigned char>(b_data, b_count)));
 }
 catch (std::exception const& hs_error)
@@ -36738,6 +39069,7 @@ catch (...)
 
 static bool hs_function_12a24360(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::Tag*>(a), *static_cast<const endstone::nbt::Tag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36753,6 +39085,7 @@ catch (...)
 
 static bool hs_function_2a1c955f(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<double>*>(a), *static_cast<const double*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36768,6 +39101,7 @@ catch (...)
 
 static bool hs_function_2dea6385(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<double>*>(a), *static_cast<const endstone::nbt::ValueTag<double>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36783,6 +39117,7 @@ catch (...)
 
 static bool hs_function_a8dc47a2(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<float>*>(a), *static_cast<const endstone::nbt::ValueTag<float>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36798,6 +39133,7 @@ catch (...)
 
 static bool hs_function_ee09e6be(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<float>*>(a), *static_cast<const float*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36813,6 +39149,7 @@ catch (...)
 
 static bool hs_function_0c64b98d(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<int>*>(a), *static_cast<const endstone::nbt::ValueTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36828,6 +39165,7 @@ catch (...)
 
 static bool hs_function_0cee10d2(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<int>*>(a), *static_cast<const int*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36843,6 +39181,7 @@ catch (...)
 
 static bool hs_function_6cb1c385(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<std::int64_t>*>(a), *static_cast<const endstone::nbt::ValueTag<std::int64_t>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36858,6 +39197,7 @@ catch (...)
 
 static bool hs_function_5696c3f8(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<short>*>(a), *static_cast<const endstone::nbt::ValueTag<short>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36873,6 +39213,7 @@ catch (...)
 
 static bool hs_function_19ca1616(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<short>*>(a), *static_cast<const short*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36888,6 +39229,7 @@ catch (...)
 
 static bool hs_function_301a87d3(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(a), *static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36903,6 +39245,7 @@ catch (...)
 
 static bool hs_function_86f3fa2e(void* a, const char* b_data, std::size_t b_size) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(a), std::basic_string<char>(b_data, b_size)));
 }
 catch (std::exception const& hs_error)
@@ -36918,6 +39261,7 @@ catch (...)
 
 static bool hs_function_50ef22a6(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::nbt::ValueTag<unsigned char>*>(a), *static_cast<const endstone::nbt::ValueTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36933,6 +39277,7 @@ catch (...)
 
 static bool hs_function_f4ec86ec(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const float*>(a), *static_cast<const endstone::nbt::ValueTag<float>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36948,6 +39293,7 @@ catch (...)
 
 static bool hs_function_39e06c57(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const int*>(a), *static_cast<const endstone::nbt::ValueTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36963,6 +39309,7 @@ catch (...)
 
 static bool hs_function_c36074e6(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const short*>(a), *static_cast<const endstone::nbt::ValueTag<short>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36978,6 +39325,7 @@ catch (...)
 
 static bool hs_function_5fc08365(const char* a_data, std::size_t a_size, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(std::basic_string<char>(a_data, a_size), *static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -36993,6 +39341,7 @@ catch (...)
 
 static bool hs_function_2174baba(void* b, const std::int32_t* a_data, std::size_t a_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(hs_make_vector<int>(a_data, a_count), *static_cast<const endstone::nbt::ArrayTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37008,6 +39357,7 @@ catch (...)
 
 static bool hs_function_ee99bc6d(void* b, const std::uint8_t* a_data, std::size_t a_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(hs_make_vector<unsigned char>(a_data, a_count), *static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37023,6 +39373,7 @@ catch (...)
 
 static bool hs_function_6608bf55(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const double*>(a), *static_cast<const endstone::nbt::ValueTag<double>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37038,6 +39389,7 @@ catch (...)
 
 static bool hs_function_e796738c(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ArrayTag<int>*>(a), *static_cast<const endstone::nbt::ArrayTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37053,6 +39405,7 @@ catch (...)
 
 static bool hs_function_c9e15203(void* a, const std::int32_t* b_data, std::size_t b_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ArrayTag<int>*>(a), hs_make_vector<int>(b_data, b_count)));
 }
 catch (std::exception const& hs_error)
@@ -37068,6 +39421,7 @@ catch (...)
 
 static bool hs_function_85a4ea42(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(a), *static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37083,6 +39437,7 @@ catch (...)
 
 static bool hs_function_fd51a39a(void* a, const std::uint8_t* b_data, std::size_t b_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(a), hs_make_vector<unsigned char>(b_data, b_count)));
 }
 catch (std::exception const& hs_error)
@@ -37098,6 +39453,7 @@ catch (...)
 
 static bool hs_function_0b5b5495(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::Tag*>(a), *static_cast<const endstone::nbt::Tag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37113,6 +39469,7 @@ catch (...)
 
 static bool hs_function_22a3a272(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<double>*>(a), *static_cast<const double*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37128,6 +39485,7 @@ catch (...)
 
 static bool hs_function_1180a433(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<double>*>(a), *static_cast<const endstone::nbt::ValueTag<double>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37143,6 +39501,7 @@ catch (...)
 
 static bool hs_function_0cf24c37(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<float>*>(a), *static_cast<const endstone::nbt::ValueTag<float>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37158,6 +39517,7 @@ catch (...)
 
 static bool hs_function_836b248e(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<float>*>(a), *static_cast<const float*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37173,6 +39533,7 @@ catch (...)
 
 static bool hs_function_d4dd8e66(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<int>*>(a), *static_cast<const endstone::nbt::ValueTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37188,6 +39549,7 @@ catch (...)
 
 static bool hs_function_7f1905f1(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<int>*>(a), *static_cast<const int*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37203,6 +39565,7 @@ catch (...)
 
 static bool hs_function_ddaaaa56(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<std::int64_t>*>(a), *static_cast<const endstone::nbt::ValueTag<std::int64_t>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37218,6 +39581,7 @@ catch (...)
 
 static bool hs_function_a4742673(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<short>*>(a), *static_cast<const endstone::nbt::ValueTag<short>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37233,6 +39597,7 @@ catch (...)
 
 static bool hs_function_e52df3e6(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<short>*>(a), *static_cast<const short*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37248,6 +39613,7 @@ catch (...)
 
 static bool hs_function_4848542f(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(a), *static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37263,6 +39629,7 @@ catch (...)
 
 static bool hs_function_0e0fd0a7(void* a, const char* b_data, std::size_t b_size) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(a), std::basic_string<char>(b_data, b_size)));
 }
 catch (std::exception const& hs_error)
@@ -37278,6 +39645,7 @@ catch (...)
 
 static bool hs_function_11a6b0fe(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::nbt::ValueTag<unsigned char>*>(a), *static_cast<const endstone::nbt::ValueTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37293,6 +39661,7 @@ catch (...)
 
 static bool hs_function_ab76be15(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const float*>(a), *static_cast<const endstone::nbt::ValueTag<float>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37308,6 +39677,7 @@ catch (...)
 
 static bool hs_function_342074c1(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const int*>(a), *static_cast<const endstone::nbt::ValueTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37323,6 +39693,7 @@ catch (...)
 
 static bool hs_function_d461a940(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const short*>(a), *static_cast<const endstone::nbt::ValueTag<short>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37338,6 +39709,7 @@ catch (...)
 
 static bool hs_function_45dbbae5(const char* a_data, std::size_t a_size, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(std::basic_string<char>(a_data, a_size), *static_cast<const endstone::nbt::ValueTag<std::basic_string<char>>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37353,6 +39725,7 @@ catch (...)
 
 static bool hs_function_6c697d92(void* b, const std::int32_t* a_data, std::size_t a_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(hs_make_vector<int>(a_data, a_count), *static_cast<const endstone::nbt::ArrayTag<int>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37368,6 +39741,7 @@ catch (...)
 
 static bool hs_function_4beedfb1(void* b, const std::uint8_t* a_data, std::size_t a_count) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(hs_make_vector<unsigned char>(a_data, a_count), *static_cast<const endstone::nbt::ArrayTag<unsigned char>*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37383,6 +39757,7 @@ catch (...)
 
 static bool hs_function_1b823404(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::CompoundTag*>(a), *static_cast<const endstone::CompoundTag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37398,6 +39773,7 @@ catch (...)
 
 static bool hs_function_273dc666(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::ListTag*>(a), *static_cast<const endstone::ListTag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37413,6 +39789,7 @@ catch (...)
 
 static bool hs_function_d7c215a4(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator!=(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37428,6 +39805,7 @@ catch (...)
 
 static bool hs_function_67ff5e44(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator<(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37443,6 +39821,7 @@ catch (...)
 
 static bool hs_function_5415ddda(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator<=(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37458,6 +39837,7 @@ catch (...)
 
 static bool hs_function_fe75dcdf(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::CompoundTag*>(a), *static_cast<const endstone::CompoundTag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37473,6 +39853,7 @@ catch (...)
 
 static bool hs_function_8794162d(void* a, void* b) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::ListTag*>(a), *static_cast<const endstone::ListTag*>(b)));
 }
 catch (std::exception const& hs_error)
@@ -37488,6 +39869,7 @@ catch (...)
 
 static bool hs_function_ae183f48(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator==(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37503,6 +39885,7 @@ catch (...)
 
 static bool hs_function_c6b9965a(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator>(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37518,6 +39901,7 @@ catch (...)
 
 static bool hs_function_63c35153(void* lhs, void* rhs) try
 {
+    clearLastError();
     return static_cast<bool>(operator>=(*static_cast<const endstone::UUID*>(lhs), *static_cast<const endstone::UUID*>(rhs)));
 }
 catch (std::exception const& hs_error)
@@ -37533,6 +39917,7 @@ catch (...)
 
 static void hs_function_271bdbd6(void* lhs, void* rhs) try
 {
+    clearLastError();
     endstone::swap(*static_cast<endstone::UUID*>(lhs), *static_cast<endstone::UUID*>(rhs));
 }
 catch (std::exception const& hs_error)
@@ -37548,6 +39933,7 @@ catch (...)
 
 static void* hs_variant_7c287813_create_0(bool value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<bool, std::basic_string<char>, int>(std::in_place_index<0>, static_cast<bool>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37563,6 +39949,7 @@ catch (...)
 
 static void* hs_variant_7c287813_create_1(const char* value_data, std::size_t value_size) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<bool, std::basic_string<char>, int>(std::in_place_index<1>, std::string(value_data, value_size)));
 }
 catch (std::exception const& hs_error)
@@ -37578,6 +39965,7 @@ catch (...)
 
 static void* hs_variant_7c287813_create_2(std::int32_t value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<bool, std::basic_string<char>, int>(std::in_place_index<2>, static_cast<int>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37593,6 +39981,7 @@ catch (...)
 
 static void hs_variant_7c287813_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<bool, std::basic_string<char>, int>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -37608,6 +39997,7 @@ catch (...)
 
 static bool hs_variant_7c287813_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<bool, std::basic_string<char>, int>*>(hs_self);
     if (hs_value.index() != 0) { return false; }
     return static_cast<bool>(std::get<0>(hs_value));
@@ -37625,6 +40015,7 @@ catch (...)
 
 static HosihikariStringView hs_variant_7c287813_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<bool, std::basic_string<char>, int>*>(hs_self);
     thread_local std::string hs_variantString;
     if (hs_value.index() != 1) { return HosihikariStringView{nullptr, 0}; }
@@ -37645,6 +40036,7 @@ catch (...)
 
 static std::int32_t hs_variant_7c287813_get_2(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<bool, std::basic_string<char>, int>*>(hs_self);
     if (hs_value.index() != 2) { return 0; }
     return static_cast<std::int32_t>(std::get<2>(hs_value));
@@ -37662,6 +40054,7 @@ catch (...)
 
 static std::int32_t hs_variant_7c287813_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<bool, std::basic_string<char>, int>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)
@@ -37677,6 +40070,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_create_0(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>(std::in_place_index<0>, *static_cast<const endstone::Button*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37692,6 +40086,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_create_1(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>(std::in_place_index<1>, *static_cast<const endstone::Divider*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37707,6 +40102,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_create_2(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>(std::in_place_index<2>, *static_cast<const endstone::Header*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37722,6 +40118,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_create_3(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>(std::in_place_index<3>, *static_cast<const endstone::Label*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37737,6 +40134,7 @@ catch (...)
 
 static void hs_variant_5bd3e0f1_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -37752,6 +40150,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self);
     if (hs_value.index() != 0) { return nullptr; }
     return static_cast<void*>(new endstone::Button(std::get<0>(hs_value)));
@@ -37769,6 +40168,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self);
     if (hs_value.index() != 1) { return nullptr; }
     return static_cast<void*>(new endstone::Divider(std::get<1>(hs_value)));
@@ -37786,6 +40186,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_get_2(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self);
     if (hs_value.index() != 2) { return nullptr; }
     return static_cast<void*>(new endstone::Header(std::get<2>(hs_value)));
@@ -37803,6 +40204,7 @@ catch (...)
 
 static void* hs_variant_5bd3e0f1_get_3(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self);
     if (hs_value.index() != 3) { return nullptr; }
     return static_cast<void*>(new endstone::Label(std::get<3>(hs_value)));
@@ -37820,6 +40222,7 @@ catch (...)
 
 static std::int32_t hs_variant_5bd3e0f1_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<endstone::Button, endstone::Divider, endstone::Header, endstone::Label>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)
@@ -37835,6 +40238,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_0(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<0>, *static_cast<const endstone::Dropdown*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37850,6 +40254,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_1(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<1>, *static_cast<const endstone::Label*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37865,6 +40270,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_2(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<2>, *static_cast<const endstone::Slider*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37880,6 +40286,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_3(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<3>, *static_cast<const endstone::StepSlider*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37895,6 +40302,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_4(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<4>, *static_cast<const endstone::TextInput*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37910,6 +40318,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_5(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<5>, *static_cast<const endstone::Toggle*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37925,6 +40334,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_6(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<6>, *static_cast<const endstone::Divider*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37940,6 +40350,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_create_7(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>(std::in_place_index<7>, *static_cast<const endstone::Header*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -37955,6 +40366,7 @@ catch (...)
 
 static void hs_variant_27d5b872_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -37970,6 +40382,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 0) { return nullptr; }
     return static_cast<void*>(new endstone::Dropdown(std::get<0>(hs_value)));
@@ -37987,6 +40400,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 1) { return nullptr; }
     return static_cast<void*>(new endstone::Label(std::get<1>(hs_value)));
@@ -38004,6 +40418,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_2(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 2) { return nullptr; }
     return static_cast<void*>(new endstone::Slider(std::get<2>(hs_value)));
@@ -38021,6 +40436,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_3(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 3) { return nullptr; }
     return static_cast<void*>(new endstone::StepSlider(std::get<3>(hs_value)));
@@ -38038,6 +40454,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_4(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 4) { return nullptr; }
     return static_cast<void*>(new endstone::TextInput(std::get<4>(hs_value)));
@@ -38055,6 +40472,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_5(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 5) { return nullptr; }
     return static_cast<void*>(new endstone::Toggle(std::get<5>(hs_value)));
@@ -38072,6 +40490,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_6(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 6) { return nullptr; }
     return static_cast<void*>(new endstone::Divider(std::get<6>(hs_value)));
@@ -38089,6 +40508,7 @@ catch (...)
 
 static void* hs_variant_27d5b872_get_7(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self);
     if (hs_value.index() != 7) { return nullptr; }
     return static_cast<void*>(new endstone::Header(std::get<7>(hs_value)));
@@ -38106,6 +40526,7 @@ catch (...)
 
 static std::int32_t hs_variant_27d5b872_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<endstone::Dropdown, endstone::Label, endstone::Slider, endstone::StepSlider, endstone::TextInput, endstone::Toggle, endstone::Divider, endstone::Header>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)
@@ -38121,6 +40542,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_create_0(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>(std::in_place_index<0>, *static_cast<const endstone::MessageForm*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38136,6 +40558,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_create_1(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>(std::in_place_index<1>, *static_cast<const endstone::ActionForm*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38151,6 +40574,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_create_2(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>(std::in_place_index<2>, *static_cast<const endstone::ModalForm*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38166,6 +40590,7 @@ catch (...)
 
 static void hs_variant_e1e3d57e_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -38181,6 +40606,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(hs_self);
     if (hs_value.index() != 0) { return nullptr; }
     return static_cast<void*>(new endstone::MessageForm(std::get<0>(hs_value)));
@@ -38198,6 +40624,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(hs_self);
     if (hs_value.index() != 1) { return nullptr; }
     return static_cast<void*>(new endstone::ActionForm(std::get<1>(hs_value)));
@@ -38215,6 +40642,7 @@ catch (...)
 
 static void* hs_variant_e1e3d57e_get_2(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(hs_self);
     if (hs_value.index() != 2) { return nullptr; }
     return static_cast<void*>(new endstone::ModalForm(std::get<2>(hs_value)));
@@ -38232,6 +40660,7 @@ catch (...)
 
 static std::int32_t hs_variant_e1e3d57e_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<endstone::MessageForm, endstone::ActionForm, endstone::ModalForm>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)
@@ -38247,6 +40676,7 @@ catch (...)
 
 static void* hs_variant_ad84296b_create_0(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(std::in_place_index<0>, static_cast<endstone::Player *>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38262,6 +40692,7 @@ catch (...)
 
 static void* hs_variant_ad84296b_create_1(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(std::in_place_index<1>, static_cast<endstone::Actor *>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38277,6 +40708,7 @@ catch (...)
 
 static void* hs_variant_ad84296b_create_2(const char* value_data, std::size_t value_size) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>(std::in_place_index<2>, std::string(value_data, value_size)));
 }
 catch (std::exception const& hs_error)
@@ -38292,6 +40724,7 @@ catch (...)
 
 static void hs_variant_ad84296b_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -38307,6 +40740,7 @@ catch (...)
 
 static void* hs_variant_ad84296b_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(hs_self);
     if (hs_value.index() != 0) { return nullptr; }
     return const_cast<void*>(static_cast<void const*>(std::get<0>(hs_value)));
@@ -38324,6 +40758,7 @@ catch (...)
 
 static void* hs_variant_ad84296b_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(hs_self);
     if (hs_value.index() != 1) { return nullptr; }
     return const_cast<void*>(static_cast<void const*>(std::get<1>(hs_value)));
@@ -38341,6 +40776,7 @@ catch (...)
 
 static HosihikariStringView hs_variant_ad84296b_get_2(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(hs_self);
     thread_local std::string hs_variantString;
     if (hs_value.index() != 2) { return HosihikariStringView{nullptr, 0}; }
@@ -38361,6 +40797,7 @@ catch (...)
 
 static std::int32_t hs_variant_ad84296b_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<endstone::Player *, endstone::Actor *, std::basic_string<char>>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)
@@ -38376,6 +40813,7 @@ catch (...)
 
 static void* hs_variant_228e24a8_create_0(const char* value_data, std::size_t value_size) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::in_place_index<0>, std::string(value_data, value_size)));
 }
 catch (std::exception const& hs_error)
@@ -38391,6 +40829,7 @@ catch (...)
 
 static void* hs_variant_228e24a8_create_1(void* value) try
 {
+    clearLastError();
     return static_cast<void*>(new std::variant<std::basic_string<char>, endstone::Translatable>(std::in_place_index<1>, *static_cast<const endstone::Translatable*>(value)));
 }
 catch (std::exception const& hs_error)
@@ -38406,6 +40845,7 @@ catch (...)
 
 static void hs_variant_228e24a8_destroy(void* hs_self) try
 {
+    clearLastError();
     delete static_cast<std::variant<std::basic_string<char>, endstone::Translatable>*>(hs_self);
 }
 catch (std::exception const& hs_error)
@@ -38421,6 +40861,7 @@ catch (...)
 
 static HosihikariStringView hs_variant_228e24a8_get_0(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(hs_self);
     thread_local std::string hs_variantString;
     if (hs_value.index() != 0) { return HosihikariStringView{nullptr, 0}; }
@@ -38441,6 +40882,7 @@ catch (...)
 
 static void* hs_variant_228e24a8_get_1(void* hs_self) try
 {
+    clearLastError();
     auto const& hs_value = *static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(hs_self);
     if (hs_value.index() != 1) { return nullptr; }
     return static_cast<void*>(new endstone::Translatable(std::get<1>(hs_value)));
@@ -38458,6 +40900,7 @@ catch (...)
 
 static std::int32_t hs_variant_228e24a8_index(void* hs_self) try
 {
+    clearLastError();
     return static_cast<std::int32_t>(static_cast<const std::variant<std::basic_string<char>, endstone::Translatable>*>(hs_self)->index());
 }
 catch (std::exception const& hs_error)

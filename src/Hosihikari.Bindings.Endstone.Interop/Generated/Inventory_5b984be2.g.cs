@@ -218,7 +218,12 @@ public sealed unsafe partial class Inventory
     {
         var __hs_hasValue = false;
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_917b3412((void*)__hosihikari_shim_handle, index, &__hs_hasValue);
-        return __hs_hasValue && __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            if (!__hs_hasValue) { return null; }
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemStack((nint)__hs_handle);
     }
 
     public int getMaxStackSize()
@@ -312,6 +317,11 @@ public sealed unsafe partial class Inventory
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerInventory? TryAsPlayerInventory()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_e262ab35((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerInventory((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerInventory((nint)__hs_handle, false);
     }
 }

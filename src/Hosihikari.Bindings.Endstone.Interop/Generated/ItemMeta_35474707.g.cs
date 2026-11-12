@@ -53,7 +53,12 @@ public sealed unsafe partial class ItemMeta : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? clone()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_684deaf6((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle);
     }
 
     public int getDamage()
@@ -206,25 +211,45 @@ public sealed unsafe partial class ItemMeta : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta? TryAsBookMeta()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_52bece1f((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BookMeta((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.CrossbowMeta? TryAsCrossbowMeta()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_4081aac0((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.CrossbowMeta((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CrossbowMeta((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.MapMeta? TryAsMapMeta()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_4a0b3d94((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.MapMeta((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MapMeta((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta? TryAsWritableBookMeta()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_20389c4c((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta((nint)__hs_handle, false);
     }
 
     public void Dispose()

@@ -40,7 +40,7 @@ public sealed unsafe partial class MapCursor : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static MapCursor Create(sbyte x, sbyte y, sbyte direction, int type, bool visible, string caption)
+    public static MapCursor? Create(sbyte x, sbyte y, sbyte direction, int type, bool visible, string caption)
     {
         var __hs_stringByteCount5 = global::System.Text.Encoding.UTF8.GetByteCount(caption);
         scoped global::System.Span<byte> __hs_stringBytes5;
@@ -58,7 +58,8 @@ public sealed unsafe partial class MapCursor : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_b85a4cc2(x, y, direction, type, visible, __hs_stringData5, (nuint)__hs_stringByteCount5);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new MapCursor((nint)handle);

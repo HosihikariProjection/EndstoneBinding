@@ -50,9 +50,15 @@ public sealed unsafe partial class MapCanvas
         return NativeMethods.TablePtr->C0.hs_method_fcf827c1((void*)__hosihikari_shim_handle, x, y);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Color getBasePixelColor(int x, int y)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Color? getBasePixelColor(int x, int y)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Color((nint)NativeMethods.TablePtr->C0.hs_method_9a8bcddf((void*)__hosihikari_shim_handle, x, y));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_9a8bcddf((void*)__hosihikari_shim_handle, x, y);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Color((nint)__hs_handle);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.MapCursor[] getCursors()
@@ -67,9 +73,15 @@ public sealed unsafe partial class MapCanvas
         return __hs_result;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MapView getMapView()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MapView? getMapView()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MapView((nint)NativeMethods.TablePtr->C0.hs_method_e50e956b((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e50e956b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MapView((nint)__hs_handle, false);
     }
 
     public uint getPixel(int x, int y)
@@ -77,9 +89,15 @@ public sealed unsafe partial class MapCanvas
         return NativeMethods.TablePtr->C0.hs_method_dc4744ef((void*)__hosihikari_shim_handle, x, y);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Color getPixelColor(int x, int y)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Color? getPixelColor(int x, int y)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Color((nint)NativeMethods.TablePtr->C0.hs_method_1b0673af((void*)__hosihikari_shim_handle, x, y));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_1b0673af((void*)__hosihikari_shim_handle, x, y);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Color((nint)__hs_handle);
     }
 
     public void setCursors(global::Hosihikari.Bindings.Endstone.Interop.endstone.MapCursor[] cursors)

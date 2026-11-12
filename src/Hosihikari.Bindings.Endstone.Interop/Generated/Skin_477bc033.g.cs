@@ -40,7 +40,7 @@ public sealed unsafe partial class Skin : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Skin Create(string id, global::Hosihikari.Bindings.Endstone.Interop.endstone.Image image, string? cape_id, global::Hosihikari.Bindings.Endstone.Interop.endstone.Image? cape_image)
+    public static Skin? Create(string id, global::Hosihikari.Bindings.Endstone.Interop.endstone.Image image, string? cape_id, global::Hosihikari.Bindings.Endstone.Interop.endstone.Image? cape_image)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(id);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -71,7 +71,8 @@ public sealed unsafe partial class Skin : global::System.IDisposable
                 var handle = NativeMethods.TablePtr->C0.hs_create_f80c3f5d(__hs_stringData0, (nuint)__hs_stringByteCount0, (void*)image.Handle, __hs_stringData2, (nuint)__hs_stringByteCount2, (void*)(cape_image?.Handle ?? 0), cape_id is not null, cape_image is not null);
                 if (handle == null)
                 {
-                    throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                    NativeMethods.GetLastError();
+                    return null;
                 }
 
                 return new Skin((nint)handle);
@@ -87,7 +88,12 @@ public sealed unsafe partial class Skin : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Image? getCapeImage()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e317c5af((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Image((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Image((nint)__hs_handle, false);
     }
 
     public string getId()
@@ -96,9 +102,15 @@ public sealed unsafe partial class Skin : global::System.IDisposable
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Image getImage()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Image? getImage()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Image((nint)NativeMethods.TablePtr->C0.hs_method_adc734db((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_adc734db((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Image((nint)__hs_handle, false);
     }
 
     public void Dispose()

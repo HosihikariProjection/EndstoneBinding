@@ -122,13 +122,25 @@ public sealed unsafe partial class BookMeta
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta AsItemMeta()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? AsItemMeta()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)NativeMethods.TablePtr->C0.hs_cast_598461ef((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_598461ef((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta AsWritableBookMeta()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta? AsWritableBookMeta()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta((nint)NativeMethods.TablePtr->C0.hs_cast_bc4d3831((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_bc4d3831((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.WritableBookMeta((nint)__hs_handle, false);
     }
 }

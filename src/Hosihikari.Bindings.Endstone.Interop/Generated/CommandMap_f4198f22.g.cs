@@ -92,9 +92,15 @@ public sealed unsafe partial class CommandMap
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap operator_assign(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap arg0)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap? operator_assign(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap arg0)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap((nint)NativeMethods.TablePtr->C0.hs_method_d998e156((void*)__hosihikari_shim_handle, (void*)arg0.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_d998e156((void*)__hosihikari_shim_handle, (void*)arg0.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandMap((nint)__hs_handle, false);
     }
 
     public bool registerCommand(global::Hosihikari.Bindings.Abi.SharedHandle? command)

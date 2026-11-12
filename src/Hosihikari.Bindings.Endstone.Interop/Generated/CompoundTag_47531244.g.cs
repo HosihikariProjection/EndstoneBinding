@@ -40,12 +40,13 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static CompoundTag Create()
+    public static CompoundTag? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_8acc024d();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new CompoundTag((nint)handle);
@@ -55,7 +56,7 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
     public static CompoundTag Create(nint init) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value record parameter 'std::initializer_list<std::pair<std::basic_string<char>, endstone::nbt::Tag>>' is not a known bindable declaration.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_8c20061d(string key)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? at_8c20061d(string key)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -70,11 +71,17 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_8c20061d((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8c20061d((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag at_7dcad8a1(string key)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? at_7dcad8a1(string key)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -89,7 +96,13 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_7dcad8a1((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_7dcad8a1((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
         }
     }
 
@@ -183,7 +196,7 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         NativeMethods.TablePtr->C0.hs_method_1459df00((void*)__hosihikari_shim_handle, (void*)source.Handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag operator_index(string key)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag? operator_index(string key)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -198,7 +211,13 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)NativeMethods.TablePtr->C0.hs_method_1a717656((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_1a717656((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.Tag((nint)__hs_handle, false);
         }
     }
 
@@ -212,9 +231,15 @@ public sealed unsafe partial class CompoundTag : global::System.IDisposable
         NativeMethods.TablePtr->C0.hs_method_d9d14a48((void*)__hosihikari_shim_handle, (void*)other.Handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_f751d138((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_f751d138((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

@@ -40,19 +40,37 @@ public sealed unsafe partial class Score : global::System.IDisposable
         return __hs_handle;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Variant_ad84296b getEntry()
+    public global::Hosihikari.Bindings.Endstone.Interop.Variant_ad84296b? getEntry()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_ad84296b((nint)NativeMethods.TablePtr->C0.hs_method_8475b818((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8475b818((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_ad84296b((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Objective getObjective()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Objective? getObjective()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Objective((nint)NativeMethods.TablePtr->C0.hs_method_56a25a01((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_56a25a01((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Objective((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard getScoreboard()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard? getScoreboard()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard((nint)NativeMethods.TablePtr->C0.hs_method_53fb01c6((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_53fb01c6((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard((nint)__hs_handle, false);
     }
 
     public int getValue()

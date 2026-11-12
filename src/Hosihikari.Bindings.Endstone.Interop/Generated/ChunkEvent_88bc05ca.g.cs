@@ -44,23 +44,47 @@ public sealed unsafe partial class ChunkEvent
     public static ChunkEvent Create(nint chunk) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: the class is abstract.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Chunk getChunk()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Chunk? getChunk()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Chunk((nint)NativeMethods.TablePtr->C0.hs_method_c7604b5b((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c7604b5b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Chunk((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.DimensionEvent AsDimensionEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.DimensionEvent? AsDimensionEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.DimensionEvent((nint)NativeMethods.TablePtr->C0.hs_cast_16f5e6ae((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_16f5e6ae((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.DimensionEvent((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event AsEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Event? AsEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)NativeMethods.TablePtr->C0.hs_cast_d0b8de83((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_d0b8de83((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Event((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.LevelEvent AsLevelEvent()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.LevelEvent? AsLevelEvent()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.LevelEvent((nint)NativeMethods.TablePtr->C0.hs_cast_e8e61c02((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_e8e61c02((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.LevelEvent((nint)__hs_handle, false);
     }
 }

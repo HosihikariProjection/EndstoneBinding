@@ -40,23 +40,25 @@ public sealed unsafe partial class Toggle : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Toggle Create()
+    public static Toggle? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_370c6b21();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Toggle((nint)handle);
     }
 
-    public static Toggle Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label, bool default_value)
+    public static Toggle? Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label, bool default_value)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_b1da0fb9((void*)label.Handle, default_value);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Toggle((nint)handle);
@@ -67,19 +69,37 @@ public sealed unsafe partial class Toggle : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_7807e4ae((void*)__hosihikari_shim_handle) != 0;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 getLabel()
+    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? getLabel()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)NativeMethods.TablePtr->C0.hs_method_eb915f8b((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_eb915f8b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle setDefaultValue(bool value)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle? setDefaultValue(bool value)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle((nint)NativeMethods.TablePtr->C0.hs_method_99548109((void*)__hosihikari_shim_handle, value), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_99548109((void*)__hosihikari_shim_handle, value);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle setLabel(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle? setLabel(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 label)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle((nint)NativeMethods.TablePtr->C0.hs_method_959dbcab((void*)__hosihikari_shim_handle, (void*)label.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_959dbcab((void*)__hosihikari_shim_handle, (void*)label.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Toggle((nint)__hs_handle, false);
     }
 
     public void Dispose()

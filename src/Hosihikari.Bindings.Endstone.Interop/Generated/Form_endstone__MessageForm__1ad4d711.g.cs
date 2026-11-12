@@ -40,35 +40,60 @@ public sealed unsafe partial class Form_endstone__MessageForm_ : global::System.
         return __hs_handle;
     }
 
-    public static Form_endstone__MessageForm_ Create()
+    public static Form_endstone__MessageForm_? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_26427ab1();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Form_endstone__MessageForm_((nint)handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7 getOnClose()
+    public global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7? getOnClose()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7((nint)NativeMethods.TablePtr->C0.hs_method_c1218e7f((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c1218e7f((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 getTitle()
+    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? getTitle()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)NativeMethods.TablePtr->C0.hs_method_200d5e7a((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_200d5e7a((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm setOnClose(nint on_closeInvoke, nint on_closeUserData, nint on_closeRelease)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm? setOnClose(nint on_closeInvoke, nint on_closeUserData, nint on_closeRelease)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm((nint)NativeMethods.TablePtr->C0.hs_method_dab04cb1((void*)__hosihikari_shim_handle, (void*)on_closeInvoke, (void*)on_closeUserData, (void*)on_closeRelease), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_dab04cb1((void*)__hosihikari_shim_handle, (void*)on_closeInvoke, (void*)on_closeUserData, (void*)on_closeRelease);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm setTitle(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 title)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm? setTitle(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 title)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm((nint)NativeMethods.TablePtr->C0.hs_method_3aab670c((void*)__hosihikari_shim_handle, (void*)title.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_3aab670c((void*)__hosihikari_shim_handle, (void*)title.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.MessageForm((nint)__hs_handle, false);
     }
 
     public void Dispose()

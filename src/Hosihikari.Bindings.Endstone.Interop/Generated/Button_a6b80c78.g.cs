@@ -40,18 +40,19 @@ public sealed unsafe partial class Button : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Button Create()
+    public static Button? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_a4f12f29();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Button((nint)handle);
     }
 
-    public static Button Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 text, string? icon, nint on_clickInvoke, nint on_clickUserData, nint on_clickRelease)
+    public static Button? Create(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 text, string? icon, nint on_clickInvoke, nint on_clickUserData, nint on_clickRelease)
     {
         var __hs_stringByteCount1 = global::System.Text.Encoding.UTF8.GetByteCount(icon ?? string.Empty);
         scoped global::System.Span<byte> __hs_stringBytes1;
@@ -69,7 +70,8 @@ public sealed unsafe partial class Button : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_ed5746f6((void*)text.Handle, __hs_stringData1, (nuint)__hs_stringByteCount1, (void*)on_clickInvoke, (void*)on_clickUserData, (void*)on_clickRelease, icon is not null);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new Button((nint)handle);
@@ -83,17 +85,29 @@ public sealed unsafe partial class Button : global::System.IDisposable
         return __hs_hasValue ? global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size)) : null;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7 getOnClick()
+    public global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7? getOnClick()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7((nint)NativeMethods.TablePtr->C0.hs_method_b6343190((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b6343190((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Function_a442e6f7((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 getText()
+    public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? getText()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)NativeMethods.TablePtr->C0.hs_method_b2627229((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b2627229((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button setIcon(string icon)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button? setIcon(string icon)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(icon);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -108,18 +122,36 @@ public sealed unsafe partial class Button : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(icon, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)NativeMethods.TablePtr->C0.hs_method_ebda1615((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ebda1615((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)__hs_handle, false);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button setOnClick(nint on_clickInvoke, nint on_clickUserData, nint on_clickRelease)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button? setOnClick(nint on_clickInvoke, nint on_clickUserData, nint on_clickRelease)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)NativeMethods.TablePtr->C0.hs_method_7466e41b((void*)__hosihikari_shim_handle, (void*)on_clickInvoke, (void*)on_clickUserData, (void*)on_clickRelease), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_7466e41b((void*)__hosihikari_shim_handle, (void*)on_clickInvoke, (void*)on_clickUserData, (void*)on_clickRelease);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button setText(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 text)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Button? setText(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8 text)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)NativeMethods.TablePtr->C0.hs_method_0ae373e7((void*)__hosihikari_shim_handle, (void*)text.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_0ae373e7((void*)__hosihikari_shim_handle, (void*)text.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Button((nint)__hs_handle, false);
     }
 
     public void Dispose()

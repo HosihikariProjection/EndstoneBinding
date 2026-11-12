@@ -40,7 +40,7 @@ public sealed unsafe partial class IpBanEntry : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static IpBanEntry Create(string address)
+    public static IpBanEntry? Create(string address)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(address);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,7 +58,8 @@ public sealed unsafe partial class IpBanEntry : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_0c659ed5(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new IpBanEntry((nint)handle);
@@ -71,9 +72,15 @@ public sealed unsafe partial class IpBanEntry : global::System.IDisposable
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry AsBanEntry()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry? AsBanEntry()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry((nint)NativeMethods.TablePtr->C0.hs_cast_d1caf0c7((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_d1caf0c7((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BanEntry((nint)__hs_handle, false);
     }
 
     public void Dispose()

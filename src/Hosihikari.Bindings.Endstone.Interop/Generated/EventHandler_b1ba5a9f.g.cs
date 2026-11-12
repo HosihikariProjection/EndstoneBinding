@@ -40,7 +40,7 @@ public sealed unsafe partial class EventHandler : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static EventHandler Create(string @event, nint executorInvoke, nint executorUserData, nint executorRelease, int priority, global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin, bool ignore_cancelled)
+    public static EventHandler? Create(string @event, nint executorInvoke, nint executorUserData, nint executorRelease, int priority, global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin, bool ignore_cancelled)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(@event);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -58,7 +58,8 @@ public sealed unsafe partial class EventHandler : global::System.IDisposable
             var handle = NativeMethods.TablePtr->C0.hs_create_821d4cdc(__hs_stringData0, (nuint)__hs_stringByteCount0, (void*)executorInvoke, (void*)executorUserData, (void*)executorRelease, priority, (void*)plugin.Handle, ignore_cancelled);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new EventHandler((nint)handle);
@@ -76,9 +77,15 @@ public sealed unsafe partial class EventHandler : global::System.IDisposable
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin getPlugin()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin? getPlugin()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)NativeMethods.TablePtr->C0.hs_method_856d4bae((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_856d4bae((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false);
     }
 
     public int getPriority()

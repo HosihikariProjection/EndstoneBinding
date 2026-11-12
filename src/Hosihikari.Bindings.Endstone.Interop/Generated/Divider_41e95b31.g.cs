@@ -40,12 +40,13 @@ public sealed unsafe partial class Divider : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static Divider Create()
+    public static Divider? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_461c2f46();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new Divider((nint)handle);

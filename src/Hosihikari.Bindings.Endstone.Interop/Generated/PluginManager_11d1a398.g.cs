@@ -44,9 +44,15 @@ public sealed unsafe partial class PluginManager
     public static PluginManager Create() =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: the class has no accessible destructor.");
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission addPermission(global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission perm)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission? addPermission(global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission perm)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)NativeMethods.TablePtr->C0.hs_method_1dd41d86((void*)__hosihikari_shim_handle, (void*)perm.ReleaseHandle()), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_1dd41d86((void*)__hosihikari_shim_handle, (void*)perm.ReleaseHandle());
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle, false);
     }
 
     public void callEvent(global::Hosihikari.Bindings.Endstone.Interop.endstone.Event @event)
@@ -117,7 +123,12 @@ public sealed unsafe partial class PluginManager
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
             var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c1d09d9c((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
-            return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle, false) : null;
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle, false);
         }
     }
 
@@ -173,7 +184,12 @@ public sealed unsafe partial class PluginManager
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
             var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b567008b((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
-            return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false) : null;
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false);
         }
     }
 
@@ -228,7 +244,12 @@ public sealed unsafe partial class PluginManager
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
             var __hs_handle = NativeMethods.TablePtr->C0.hs_method_59f4b461((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
-            return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false) : null;
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false);
         }
     }
 

@@ -45,7 +45,7 @@ public sealed unsafe partial class Permission : global::System.IDisposable
         get => NativeMethods.TablePtr->C0.hs_get_1de75832();
     }
 
-    public static Permission Create(string name, string description, int default_value, global::System.Collections.Generic.Dictionary<string, bool>? children)
+    public static Permission? Create(string name, string description, int default_value, global::System.Collections.Generic.Dictionary<string, bool>? children)
     {
         var __hs_map3Items = children;
         var __hs_map3Count = __hs_map3Items?.Count ?? 0;
@@ -111,7 +111,8 @@ public sealed unsafe partial class Permission : global::System.IDisposable
                     var handle = NativeMethods.TablePtr->C0.hs_create_2e599a1a(__hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1, default_value, __hs_map3View);
                     if (handle == null)
                     {
-                        throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                        NativeMethods.GetLastError();
+                        return null;
                     }
 
                     return new Permission((nint)handle);
@@ -136,7 +137,12 @@ public sealed unsafe partial class Permission : global::System.IDisposable
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
             var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b77c7c2d((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, value);
-            return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle, false) : null;
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission((nint)__hs_handle, false);
         }
     }
 

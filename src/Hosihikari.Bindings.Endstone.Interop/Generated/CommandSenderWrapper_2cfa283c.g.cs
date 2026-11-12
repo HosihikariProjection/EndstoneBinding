@@ -40,12 +40,13 @@ public sealed unsafe partial class CommandSenderWrapper : global::System.IDispos
         return __hs_handle;
     }
 
-    public static CommandSenderWrapper Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender sender, nint on_messageInvoke, nint on_messageUserData, nint on_messageRelease, nint on_errorInvoke, nint on_errorUserData, nint on_errorRelease)
+    public static CommandSenderWrapper? Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender sender, nint on_messageInvoke, nint on_messageUserData, nint on_messageRelease, nint on_errorInvoke, nint on_errorUserData, nint on_errorRelease)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_09b33530((void*)sender.Handle, (void*)on_messageInvoke, (void*)on_messageUserData, (void*)on_messageRelease, (void*)on_errorInvoke, (void*)on_errorUserData, (void*)on_errorRelease);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new CommandSenderWrapper((nint)handle);
@@ -54,7 +55,12 @@ public sealed unsafe partial class CommandSenderWrapper : global::System.IDispos
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment? addAttachment(global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_fb24c542((void*)__hosihikari_shim_handle, (void*)plugin.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment? addAttachment(global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin plugin, string name, bool value)
@@ -73,32 +79,57 @@ public sealed unsafe partial class CommandSenderWrapper : global::System.IDispos
         fixed (byte* __hs_stringData1 = __hs_stringBytes1)
         {
             var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e222aaee((void*)__hosihikari_shim_handle, (void*)plugin.Handle, __hs_stringData1, (nuint)__hs_stringByteCount1, value);
-            return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false) : null;
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PermissionAttachment((nint)__hs_handle, false);
         }
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Actor? asActor()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_3ae68602((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Actor((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Actor((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockCommandSender? asBlock()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_04ff5a20((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockCommandSender((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.BlockCommandSender((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.ConsoleCommandSender? asConsole()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_9ab0c102((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.ConsoleCommandSender((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ConsoleCommandSender((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Player? asPlayer()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_943bfeca((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Player((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Player((nint)__hs_handle, false);
     }
 
     public nint[] getEffectivePermissions()
@@ -123,9 +154,15 @@ public sealed unsafe partial class CommandSenderWrapper : global::System.IDispos
         return NativeMethods.TablePtr->C0.hs_method_66bba67b((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Server getServer()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Server? getServer()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Server((nint)NativeMethods.TablePtr->C0.hs_method_b32b1bb7((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b32b1bb7((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Server((nint)__hs_handle, false);
     }
 
     public bool hasPermission(global::Hosihikari.Bindings.Endstone.Interop.endstone.Permission perm)
@@ -196,14 +233,26 @@ public sealed unsafe partial class CommandSenderWrapper : global::System.IDispos
         NativeMethods.TablePtr->C0.hs_method_11f99321((void*)__hosihikari_shim_handle, (void*)message.Handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender AsCommandSender()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender? AsCommandSender()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender((nint)NativeMethods.TablePtr->C0.hs_cast_16573b99((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_16573b99((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible AsPermissible()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible? AsPermissible()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)NativeMethods.TablePtr->C0.hs_cast_c9674ee4((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_c9674ee4((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Permissible((nint)__hs_handle, false);
     }
 
     public void Dispose()

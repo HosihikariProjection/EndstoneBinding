@@ -44,7 +44,7 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
     public static Identifier_endstone__Attribute_ Create(nint s) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: the class stores borrowed strings but the constructor has no string parameter.");
 
-    public static Identifier_endstone__Attribute_ Create_89e4c122(string s)
+    public static Identifier_endstone__Attribute_? Create_89e4c122(string s)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(s);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -62,14 +62,15 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
             var handle = NativeMethods.TablePtr->C0.hs_create_89e4c122(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new Identifier_endstone__Attribute_((nint)handle);
         }
     }
 
-    public static Identifier_endstone__Attribute_ Create_f0c72e68(string identifier)
+    public static Identifier_endstone__Attribute_? Create_f0c72e68(string identifier)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(identifier);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -87,14 +88,15 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
             var handle = NativeMethods.TablePtr->C0.hs_create_f0c72e68(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new Identifier_endstone__Attribute_((nint)handle);
         }
     }
 
-    public static Identifier_endstone__Attribute_ Create(string namespace_, string key)
+    public static Identifier_endstone__Attribute_? Create(string namespace_, string key)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(namespace_);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -125,7 +127,8 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
                 var handle = NativeMethods.TablePtr->C0.hs_create_d8db6b11(__hs_stringData0, (nuint)__hs_stringByteCount0, __hs_stringData1, (nuint)__hs_stringByteCount1);
                 if (handle == null)
                 {
-                    throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                    NativeMethods.GetLastError();
+                    return null;
                 }
 
                 return new Identifier_endstone__Attribute_((nint)handle);
@@ -154,7 +157,7 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public static global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_ minecraft(string key)
+    public static global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_? minecraft(string key)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(key);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -169,7 +172,13 @@ public sealed unsafe partial class Identifier_endstone__Attribute_ : global::Sys
         global::System.Text.Encoding.UTF8.GetBytes(key, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_((nint)NativeMethods.TablePtr->C0.hs_method_dc58d608(__hs_stringData0, (nuint)__hs_stringByteCount0));
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_dc58d608(__hs_stringData0, (nuint)__hs_stringByteCount0);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_((nint)__hs_handle);
         }
     }
 

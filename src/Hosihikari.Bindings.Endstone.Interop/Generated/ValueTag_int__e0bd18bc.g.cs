@@ -40,23 +40,25 @@ public sealed unsafe partial class ValueTag_int_ : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static ValueTag_int_ Create()
+    public static ValueTag_int_? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_e7a2c8d8();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ValueTag_int_((nint)handle);
     }
 
-    public static ValueTag_int_ Create_f46b9ede(nint v)
+    public static ValueTag_int_? Create_f46b9ede(nint v)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_f46b9ede((void*)v);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ValueTag_int_((nint)handle);
@@ -76,9 +78,15 @@ public sealed unsafe partial class ValueTag_int_ : global::System.IDisposable
         return (nint)NativeMethods.TablePtr->C0.hs_method_1fa2443a((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_940ce3c5((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_940ce3c5((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

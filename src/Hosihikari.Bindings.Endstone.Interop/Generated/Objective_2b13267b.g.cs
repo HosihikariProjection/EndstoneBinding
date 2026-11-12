@@ -40,9 +40,15 @@ public sealed unsafe partial class Objective : global::System.IDisposable
         return __hs_handle;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Criteria getCriteria()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Criteria? getCriteria()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Criteria((nint)NativeMethods.TablePtr->C0.hs_method_84b58b4c((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_84b58b4c((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Criteria((nint)__hs_handle, false);
     }
 
     public string getDisplayName()
@@ -72,12 +78,23 @@ public sealed unsafe partial class Objective : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.Score? getScore(global::Hosihikari.Bindings.Endstone.Interop.Variant_ad84296b entry)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_6d50e0da((void*)__hosihikari_shim_handle, (void*)entry.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.Score((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Score((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard getScoreboard()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard? getScoreboard()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard((nint)NativeMethods.TablePtr->C0.hs_method_f4a5b3b4((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_f4a5b3b4((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Scoreboard((nint)__hs_handle, false);
     }
 
     public int? getSortOrder()

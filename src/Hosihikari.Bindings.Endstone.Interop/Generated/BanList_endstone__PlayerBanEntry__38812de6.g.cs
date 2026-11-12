@@ -213,6 +213,11 @@ public sealed unsafe partial class BanList_endstone__PlayerBanEntry_
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerBanList? TryAsPlayerBanList()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_77d60797((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerBanList((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PlayerBanList((nint)__hs_handle, false);
     }
 }

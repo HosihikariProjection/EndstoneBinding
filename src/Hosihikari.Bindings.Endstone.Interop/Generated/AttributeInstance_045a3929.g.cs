@@ -62,9 +62,15 @@ public sealed unsafe partial class AttributeInstance
         return __hs_result;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_ getType()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_? getType()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_((nint)NativeMethods.TablePtr->C0.hs_method_755320b4((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_755320b4((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__Attribute_((nint)__hs_handle);
     }
 
     public float getValue()

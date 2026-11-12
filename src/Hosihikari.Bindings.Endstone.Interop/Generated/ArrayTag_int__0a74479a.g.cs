@@ -40,12 +40,13 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static ArrayTag_int_ Create()
+    public static ArrayTag_int_? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_f9753a41();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ArrayTag_int_((nint)handle);
@@ -55,14 +56,15 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
     public static ArrayTag_int_ Create(nint init) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value record parameter 'std::initializer_list<int>' is not a known bindable declaration.");
 
-    public static ArrayTag_int_ Create(int[] v)
+    public static ArrayTag_int_? Create(int[] v)
     {
         fixed (int* __hs_vectorData0 = v)
         {
             var handle = NativeMethods.TablePtr->C0.hs_create_a2c84490(__hs_vectorData0, (nuint)(v?.Length ?? 0));
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new ArrayTag_int_((nint)handle);
@@ -151,9 +153,15 @@ public sealed unsafe partial class ArrayTag_int_ : global::System.IDisposable
         return NativeMethods.TablePtr->C0.hs_method_9510ddb5((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_ffee15db((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_ffee15db((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

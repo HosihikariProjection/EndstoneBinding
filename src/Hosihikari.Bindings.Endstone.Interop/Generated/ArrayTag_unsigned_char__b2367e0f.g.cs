@@ -40,12 +40,13 @@ public sealed unsafe partial class ArrayTag_unsigned_char_ : global::System.IDis
         return __hs_handle;
     }
 
-    public static ArrayTag_unsigned_char_ Create()
+    public static ArrayTag_unsigned_char_? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_bf551670();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ArrayTag_unsigned_char_((nint)handle);
@@ -55,14 +56,15 @@ public sealed unsafe partial class ArrayTag_unsigned_char_ : global::System.IDis
     public static ArrayTag_unsigned_char_ Create(nint init) =>
         throw new global::System.NotSupportedException("BindingShim cannot project this member: by-value record parameter 'std::initializer_list<unsigned char>' is not a known bindable declaration.");
 
-    public static ArrayTag_unsigned_char_ Create(byte[] v)
+    public static ArrayTag_unsigned_char_? Create(byte[] v)
     {
         fixed (byte* __hs_vectorData0 = v)
         {
             var handle = NativeMethods.TablePtr->C0.hs_create_67bce2b5(__hs_vectorData0, (nuint)(v?.Length ?? 0));
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new ArrayTag_unsigned_char_((nint)handle);
@@ -151,9 +153,15 @@ public sealed unsafe partial class ArrayTag_unsigned_char_ : global::System.IDis
         return NativeMethods.TablePtr->C0.hs_method_b2640908((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_82fa295b((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_82fa295b((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

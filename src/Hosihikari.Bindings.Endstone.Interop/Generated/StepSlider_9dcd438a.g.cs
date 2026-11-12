@@ -40,9 +40,15 @@ public sealed unsafe partial class StepSlider : global::System.IDisposable
         return __hs_handle;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Dropdown AsDropdown()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Dropdown? AsDropdown()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Dropdown((nint)NativeMethods.TablePtr->C0.hs_cast_63e1aa6f((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_63e1aa6f((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Dropdown((nint)__hs_handle, false);
     }
 
     public void Dispose()

@@ -43,7 +43,12 @@ public sealed unsafe partial class ItemFactory
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? asMetaFor(global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? meta, global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__ItemType_ type)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_d6415600((void*)__hosihikari_shim_handle, (void*)(meta?.Handle ?? 0), (void*)type.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle);
     }
 
     public bool equals(global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? meta1, global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? meta2)
@@ -54,7 +59,12 @@ public sealed unsafe partial class ItemFactory
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? getItemMeta(global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__ItemType_ type)
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_c3966973((void*)__hosihikari_shim_handle, (void*)type.Handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta((nint)__hs_handle);
     }
 
     public bool isApplicable(global::Hosihikari.Bindings.Endstone.Interop.endstone.ItemMeta? meta, global::Hosihikari.Bindings.Endstone.Interop.endstone.Identifier_endstone__ItemType_ type)

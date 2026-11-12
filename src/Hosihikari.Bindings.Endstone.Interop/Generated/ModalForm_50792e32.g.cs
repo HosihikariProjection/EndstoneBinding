@@ -40,9 +40,15 @@ public sealed unsafe partial class ModalForm : global::System.IDisposable
         return __hs_handle;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm addControl(global::Hosihikari.Bindings.Endstone.Interop.Variant_27d5b872 control)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm? addControl(global::Hosihikari.Bindings.Endstone.Interop.Variant_27d5b872 control)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)NativeMethods.TablePtr->C0.hs_method_d6ba0b11((void*)__hosihikari_shim_handle, (void*)control.Handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_d6ba0b11((void*)__hosihikari_shim_handle, (void*)control.Handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.Variant_27d5b872[] getControls()
@@ -64,19 +70,30 @@ public sealed unsafe partial class ModalForm : global::System.IDisposable
         return __hs_hasValue ? global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size)) : null;
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.Function_08258ebd getOnSubmit()
+    public global::Hosihikari.Bindings.Endstone.Interop.Function_08258ebd? getOnSubmit()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.Function_08258ebd((nint)NativeMethods.TablePtr->C0.hs_method_738959a6((void*)__hosihikari_shim_handle));
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_738959a6((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Function_08258ebd((nint)__hs_handle);
     }
 
     public global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? getSubmitButton()
     {
         var __hs_hasValue = false;
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_87da21ad((void*)__hosihikari_shim_handle, &__hs_hasValue);
-        return __hs_hasValue && __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            if (!__hs_hasValue) { return null; }
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm setControls(global::Hosihikari.Bindings.Endstone.Interop.Variant_27d5b872[] controls)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm? setControls(global::Hosihikari.Bindings.Endstone.Interop.Variant_27d5b872[] controls)
     {
         var __hs_vectorItems0 = controls;
         var __hs_vectorHandles0 = new nint[__hs_vectorItems0?.Length ?? 0];
@@ -87,11 +104,17 @@ public sealed unsafe partial class ModalForm : global::System.IDisposable
         fixed (nint* __hs_vectorHandleData0 = __hs_vectorHandles0)
         {
             var __hs_vectorData0 = (void**)__hs_vectorHandleData0;
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)NativeMethods.TablePtr->C0.hs_method_e8d9d3b9((void*)__hosihikari_shim_handle, __hs_vectorData0, (nuint)(controls?.Length ?? 0)), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e8d9d3b9((void*)__hosihikari_shim_handle, __hs_vectorData0, (nuint)(controls?.Length ?? 0));
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm setIcon(string? icon)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm? setIcon(string? icon)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(icon ?? string.Empty);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -106,23 +129,47 @@ public sealed unsafe partial class ModalForm : global::System.IDisposable
         global::System.Text.Encoding.UTF8.GetBytes(icon ?? string.Empty, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)NativeMethods.TablePtr->C0.hs_method_2fd6a4b6((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, icon is not null), false);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_2fd6a4b6((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, icon is not null);
+            if (__hs_handle == null)
+            {
+                NativeMethods.GetLastError();
+                return null;
+            }
+            return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm setOnSubmit(nint on_submitInvoke, nint on_submitUserData, nint on_submitRelease)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm? setOnSubmit(nint on_submitInvoke, nint on_submitUserData, nint on_submitRelease)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)NativeMethods.TablePtr->C0.hs_method_7a28fda0((void*)__hosihikari_shim_handle, (void*)on_submitInvoke, (void*)on_submitUserData, (void*)on_submitRelease), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_7a28fda0((void*)__hosihikari_shim_handle, (void*)on_submitInvoke, (void*)on_submitUserData, (void*)on_submitRelease);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm setSubmitButton(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? text)
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm? setSubmitButton(global::Hosihikari.Bindings.Endstone.Interop.Variant_228e24a8? text)
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)NativeMethods.TablePtr->C0.hs_method_b175a990((void*)__hosihikari_shim_handle, (void*)(text?.Handle ?? 0), text is not null), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_b175a990((void*)__hosihikari_shim_handle, (void*)(text?.Handle ?? 0), text is not null);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Form_endstone__ModalForm_ AsForm_endstone__ModalForm_()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Form_endstone__ModalForm_? AsForm_endstone__ModalForm_()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Form_endstone__ModalForm_((nint)NativeMethods.TablePtr->C0.hs_cast_a966c2c9((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_a966c2c9((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Form_endstone__ModalForm_((nint)__hs_handle, false);
     }
 
     public void Dispose()

@@ -40,18 +40,19 @@ public sealed unsafe partial class ValueTag_std__basic_string_char__ : global::S
         return __hs_handle;
     }
 
-    public static ValueTag_std__basic_string_char__ Create()
+    public static ValueTag_std__basic_string_char__? Create()
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_c7f15440();
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new ValueTag_std__basic_string_char__((nint)handle);
     }
 
-    public static ValueTag_std__basic_string_char__ Create_9148a4df(string v)
+    public static ValueTag_std__basic_string_char__? Create_9148a4df(string v)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(v);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -69,14 +70,15 @@ public sealed unsafe partial class ValueTag_std__basic_string_char__ : global::S
             var handle = NativeMethods.TablePtr->C0.hs_create_9148a4df(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new ValueTag_std__basic_string_char__((nint)handle);
         }
     }
 
-    public static ValueTag_std__basic_string_char__ Create_041ea18a(string v)
+    public static ValueTag_std__basic_string_char__? Create_041ea18a(string v)
     {
         var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(v);
         scoped global::System.Span<byte> __hs_stringBytes0;
@@ -94,7 +96,8 @@ public sealed unsafe partial class ValueTag_std__basic_string_char__ : global::S
             var handle = NativeMethods.TablePtr->C0.hs_create_041ea18a(__hs_stringData0, (nuint)__hs_stringByteCount0);
             if (handle == null)
             {
-                throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+                NativeMethods.GetLastError();
+                return null;
             }
 
             return new ValueTag_std__basic_string_char__((nint)handle);
@@ -113,9 +116,15 @@ public sealed unsafe partial class ValueTag_std__basic_string_char__ : global::S
         return global::System.Text.Encoding.UTF8.GetString(__hs_view.Data, checked((int)__hs_view.Size));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase AsTagBase()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase? AsTagBase()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)NativeMethods.TablePtr->C0.hs_cast_000601bd((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_000601bd((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.nbt.TagBase((nint)__hs_handle, false);
     }
 
     public void Dispose()

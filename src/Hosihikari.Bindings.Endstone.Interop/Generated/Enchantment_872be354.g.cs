@@ -275,8 +275,14 @@ public sealed unsafe partial class Enchantment
         return NativeMethods.TablePtr->C0.hs_method_51220b54((void*)__hosihikari_shim_handle);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Registry_endstone__Enchantment__Nested.Type AsType()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Registry_endstone__Enchantment__Nested.Type? AsType()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Registry_endstone__Enchantment__Nested.Type((nint)NativeMethods.TablePtr->C0.hs_cast_f921ca39((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_f921ca39((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Registry_endstone__Enchantment__Nested.Type((nint)__hs_handle, false);
     }
 }

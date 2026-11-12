@@ -40,12 +40,13 @@ public sealed unsafe partial class PluginCommand : global::System.IDisposable
         return __hs_handle;
     }
 
-    public static PluginCommand Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Command command, global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin owner)
+    public static PluginCommand? Create(global::Hosihikari.Bindings.Endstone.Interop.endstone.Command command, global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin owner)
     {
         var handle = NativeMethods.TablePtr->C0.hs_create_8af6fd61((void*)command.Handle, (void*)owner.Handle);
         if (handle == null)
         {
-            throw new global::System.InvalidOperationException(NativeMethods.GetLastError() ?? "BindingShim create call failed.");
+            NativeMethods.GetLastError();
+            return null;
         }
 
         return new PluginCommand((nint)handle);
@@ -54,7 +55,12 @@ public sealed unsafe partial class PluginCommand : global::System.IDisposable
     public global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand? asPluginCommand()
     {
         var __hs_handle = NativeMethods.TablePtr->C0.hs_method_99b629bb((void*)__hosihikari_shim_handle);
-        return __hs_handle != null ? new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false) : null;
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.PluginCommand((nint)__hs_handle, false);
     }
 
     public bool execute(global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandSender sender, string[] args)
@@ -83,14 +89,26 @@ public sealed unsafe partial class PluginCommand : global::System.IDisposable
         }
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandExecutor getExecutor()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandExecutor? getExecutor()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandExecutor((nint)NativeMethods.TablePtr->C0.hs_method_8b4c19e2((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_8b4c19e2((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.CommandExecutor((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin getPlugin()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin? getPlugin()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)NativeMethods.TablePtr->C0.hs_method_2476b603((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_2476b603((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Plugin((nint)__hs_handle, false);
     }
 
     public void setExecutor(global::Hosihikari.Bindings.Abi.SharedHandle? executor)
@@ -98,9 +116,15 @@ public sealed unsafe partial class PluginCommand : global::System.IDisposable
         NativeMethods.TablePtr->C0.hs_method_3aac26f3((void*)__hosihikari_shim_handle, executor?.ToNative() ?? default(global::Hosihikari.Bindings.Abi.SharedHandleData));
     }
 
-    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Command AsCommand()
+    public global::Hosihikari.Bindings.Endstone.Interop.endstone.Command? AsCommand()
     {
-        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Command((nint)NativeMethods.TablePtr->C0.hs_cast_aac01ba5((void*)__hosihikari_shim_handle), false);
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_cast_aac01ba5((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
+        {
+            NativeMethods.GetLastError();
+            return null;
+        }
+        return new global::Hosihikari.Bindings.Endstone.Interop.endstone.Command((nint)__hs_handle, false);
     }
 
     public void Dispose()
