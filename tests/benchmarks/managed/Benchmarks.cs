@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using Hosihikari.Bindings.Endstone.Interop;
-using Hosihikari.Bindings.Endstone.Interop.endstone;
-using Hosihikari.Bindings.Endstone.Interop.endstone.nbt;
+using Hosihikari.Binding.Endstone.Interop;
+using Hosihikari.Binding.Endstone.Interop.endstone;
+using Hosihikari.Binding.Endstone.Interop.endstone.nbt;
 
-namespace Hosihikari.Bindings.Endstone.Benchmarks;
+namespace Hosihikari.Binding.Endstone.Benchmarks;
 
 internal static class Benchmarks
 {

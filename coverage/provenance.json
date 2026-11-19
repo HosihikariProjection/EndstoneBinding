@@ -1,12 +1,12 @@
 {
-    "generator":  "Hosihikari.Bindings.Generator 0.3.0 (IR 1.7.0)",
-    "irVersion":  "1.7.0",
-    "irManifestSha256":  "sha256:a0027a2533e719de3c78d64f7e77a288714d00cfa5cd54172ff4b90a7f719ddb",
-    "carrierCommit":  "b4aaa87d2c5305e7d340168f824ac2e2ea722e44",
-    "surface":  "endstone",
-    "configuration":  "win-x64-server",
-    "mode":  "virtual-dispatch",
-    "tableVersion":  1,
-    "functions":  2442,
-    "coverageManifestSha256":  "sha256:c5fd2e4ee13eafa76d1d04f13195a4339acb2f04ba615bcd6736c829fff62a52"
+  "generator": "Hosihikari.Binding.Generator 0.3.0 (IR 1.7.0)",
+  "irVersion": "1.7.0",
+  "irManifestSha256": "sha256:16c0c26074341ffd6dfcb77b948ff9eefb332c56b63cde404202eb6a9b69707d",
+  "carrierCommit": "b4aaa87d2c5305e7d340168f824ac2e2ea722e44",
+  "surface": "endstone",
+  "configuration": "win-x64-server",
+  "mode": "virtual-dispatch",
+  "tableVersion": 1,
+  "functions": 2440,
+  "coverageManifestSha256": "sha256:b9ab3d278b3b93b9f44f35a2a284daea57d95ddaeb0efbd86fe0a64936ba8bb4"
 }

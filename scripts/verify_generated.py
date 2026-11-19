@@ -11,7 +11,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 COVERAGE = ROOT / "coverage"
 SHIM = ROOT / "native" / "BindingShim" / "generated" / "win-x64-server" / "endstone"
-INTEROP = ROOT / "src" / "Hosihikari.Bindings.Endstone.Interop" / "Generated"
+INTEROP = ROOT / "src" / "Hosihikari.Binding.Endstone.Interop" / "Generated"
 
 
 def load(name: str) -> dict:

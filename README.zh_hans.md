@@ -1,4 +1,4 @@
-# Hosihikari.Bindings.Endstone
+# Hosihikari.Binding.Endstone
 
 [English](README.md) | [简体中文](README.zh_hans.md)
 
@@ -6,14 +6,14 @@
 
 ## 边界
 
-- `Hosihikari.Bindings.Endstone.Interop` 由 `HosihikariProjection/BindingGenerator` 从版本化 IR 生成，逐声明镜像 Endstone：一层指针与引用返回投影为类型化借用包装，`optional_ref<T>` 结果复用同一包装，其余不透明句柄保留 `nint`。ABI 值类型与 shim 加载器来自 `HosihikariProjection/BindingAbi`。
+- `Hosihikari.Binding.Endstone.Interop` 由 `HosihikariProjection/BindingGenerator` 从版本化 IR 生成，逐声明镜像 Endstone：一层指针与引用返回投影为类型化借用包装，`optional_ref<T>` 结果复用同一包装，其余不透明句柄保留 `nint`。ABI 值类型与 shim 加载器来自 `HosihikariProjection/BindingAbi`。
 - `native/BindingShim/` 是 C ABI 投影。Endstone 插件通过 `endstone::detail::getServer()` 获取服务器；shim 使用同一引导方式并直接调用虚接口，因此不需要 Endstone 导入库。
 - shim 在 Windows x64 上用 clang-cl 构建。Linux x64 上，CI 构建 libTooling 前端，从 Endstone 头文件生成 `linux-x64-server` IR，用同一 IR 发射相同的 Interop 面，并通过 `native/BindingShim/build.sh` 用 g++ 编译 shim。
 - 手写 Idiomatic 层后置；当前公开面是生成的 Interop。
 
 ## 当前状态
 
-- Interop：`src/Hosihikari.Bindings.Endstone.Interop/Generated/` 下 245 个生成 C# 文件。
+- Interop：`src/Hosihikari.Binding.Endstone.Interop/Generated/` 下 245 个生成 C# 文件。
 - 绑定垫片：`native/BindingShim/generated/win-x64-server/endstone/` 中 2,422 个函数。
 - 覆盖：307 条声明、1,968 条成员已绑定。
 
@@ -33,7 +33,7 @@ powershell -File scripts/regenerate.ps1 -IrDirectory ..\Binding.Generator\artifa
 ## 构建
 
 ```shell
-dotnet build Hosihikari.Bindings.Endstone.slnx -c Release
+dotnet build Hosihikari.Binding.Endstone.slnx -c Release
 powershell -File native/BindingShim/build.ps1
 ```
 

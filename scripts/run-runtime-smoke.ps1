@@ -19,7 +19,7 @@ if ([string]::IsNullOrWhiteSpace($GeneratorRoot)) {
     $GeneratorRoot = (Resolve-Path $GeneratorRoot).Path
 }
 
-dotnet build (Join-Path $RepoRoot "Hosihikari.Bindings.Endstone.slnx") -c Release --nologo -v:q
+dotnet build (Join-Path $RepoRoot "Hosihikari.Binding.Endstone.slnx") -c Release --nologo -v:q
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE."
 }
@@ -35,11 +35,11 @@ if ($LASTEXITCODE -ne 0) {
     throw "the smoke plugin build failed with exit code $LASTEXITCODE."
 }
 
-$ShimDll = Join-Path $RepoRoot "artifacts\native\Hosihikari.Bindings.Endstone.Shim.dll"
+$ShimDll = Join-Path $RepoRoot "artifacts\native\Hosihikari.Binding.Endstone.Shim.dll"
 $PluginsTarget = Join-Path $ServerRoot "plugins"
 New-Item -ItemType Directory -Force -Path $PluginsTarget | Out-Null
 Copy-Item $PluginDll (Join-Path $PluginsTarget "shim_smoke.dll") -Force
-Copy-Item $ShimDll (Join-Path $PluginsTarget "Hosihikari.Bindings.Endstone.Shim.dll") -Force
+Copy-Item $ShimDll (Join-Path $PluginsTarget "Hosihikari.Binding.Endstone.Shim.dll") -Force
 
 $LocalPlugins = Join-Path $PluginsTarget ".local"
 if (Test-Path $LocalPlugins) {

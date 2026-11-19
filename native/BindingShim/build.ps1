@@ -27,6 +27,6 @@ if (-not (Test-Path (Join-Path $ShimDirectory "binding_table.cpp"))) {
 
 & (Join-Path $GeneratorRoot "frontend\build-endstone-shim.ps1") `
     -ShimDirectory $ShimDirectory `
-    -OutputDll (Join-Path $Output "Hosihikari.Bindings.Endstone.Shim.dll") `
+    -OutputDll (Join-Path $Output "Hosihikari.Binding.Endstone.Shim.dll") `
     -LlvmRoot $LlvmRoot `
     -EndstoneRoot $EndstoneRoot

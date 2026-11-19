@@ -17,7 +17,7 @@ $PluginDirectory = Split-Path $OutputDll -Parent
 $PayloadDirectory = Join-Path $PluginDirectory "hosihikari-benchmarks"
 New-Item -ItemType Directory -Force -Path $PluginDirectory, $PayloadDirectory | Out-Null
 
-$ManagedProject = Join-Path $PSScriptRoot "managed\Hosihikari.Bindings.Endstone.Benchmarks.csproj"
+$ManagedProject = Join-Path $PSScriptRoot "managed\Hosihikari.Binding.Endstone.Benchmarks.csproj"
 $ManagedProperties = @()
 if (-not [string]::IsNullOrWhiteSpace($AbiProjectPath)) {
     $ManagedProperties += "-p:AbiProjectPath=$((Resolve-Path $AbiProjectPath).Path)"

@@ -35,13 +35,13 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Build
-        run: dotnet build Hosihikari.Bindings.Endstone.slnx -c Release -p:AbiProjectPath=${{ github.workspace }}/Binding.Abi/src/Hosihikari.Bindings.Abi/Hosihikari.Bindings.Abi.csproj
+        run: dotnet build Hosihikari.Binding.Endstone.slnx -c Release -p:AbiProjectPath=${{ github.workspace }}/Binding.Abi/src/Hosihikari.Binding.Abi/Hosihikari.Binding.Abi.csproj
 
       - name: Verify generated sources
         run: python3 scripts/verify_generated.py
 
       - name: Validate coverage contract
-        run: dotnet run --project Binding.Generator/src/Hosihikari.Bindings.Generator/Hosihikari.Bindings.Generator.csproj -c Release -- validate-coverage coverage/summary.json coverage/manifest.jsonl
+        run: dotnet run --project Binding.Generator/src/Hosihikari.Binding.Generator/Hosihikari.Binding.Generator.csproj -c Release -- validate-coverage coverage/summary.json coverage/manifest.jsonl
 
   linux-shim:
     runs-on: ubuntu-latest
@@ -138,7 +138,7 @@ jobs:
       - name: Emit from Linux IR
         working-directory: Binding.Generator
         run: |
-          dotnet run --project src/Hosihikari.Bindings.Generator/Hosihikari.Bindings.Generator.csproj -c Release -- \
+          dotnet run --project src/Hosihikari.Binding.Generator/Hosihikari.Binding.Generator.csproj -c Release -- \
             emit artifacts/endstone-linux-ir/ir-manifest.json \
             artifacts/endstone-linux-ir \
             artifacts/emitted-linux \
@@ -148,7 +148,7 @@ jobs:
 
       - name: Compare generated Interop
         working-directory: Binding.Generator
-        run: diff -ru ../src/Hosihikari.Bindings.Endstone.Interop/Generated artifacts/emitted-linux/interop/endstone
+        run: diff -ru ../src/Hosihikari.Binding.Endstone.Interop/Generated artifacts/emitted-linux/interop/endstone
 
       - name: Build Linux shim
         run: |
@@ -158,4 +158,4 @@ jobs:
             --nlohmann-include nlohmann-json/include \
             --generated-include Binding.Generator/artifacts/endstone-generated/include \
             --shim-source Binding.Generator/artifacts/emitted-linux/shim/linux-x64-server/endstone/binding_table.cpp \
-            --output artifacts/native/libHosihikari.Bindings.Endstone.Shim.so
+            --output artifacts/native/libHosihikari.Binding.Endstone.Shim.so

@@ -26,7 +26,7 @@ if ([string]::IsNullOrWhiteSpace($AbiRoot)) {
     $AbiRoot = (Resolve-Path $AbiRoot).Path
 }
 
-dotnet build (Join-Path $RepoRoot "Hosihikari.Bindings.Endstone.slnx") -c Release --nologo -v:q
+dotnet build (Join-Path $RepoRoot "Hosihikari.Binding.Endstone.slnx") -c Release --nologo -v:q
 & (Join-Path $RepoRoot "native\BindingShim\build.ps1") -EndstoneRoot $EndstoneRoot -GeneratorRoot $GeneratorRoot
 
 $BenchmarkDirectory = Join-Path $RepoRoot "artifacts\benchmarks"
@@ -35,7 +35,7 @@ $PluginDll = Join-Path $BenchmarkDirectory "shim_benchmarks.dll"
     -EndstoneRoot $EndstoneRoot `
     -OutputDll $PluginDll `
     -LlvmRoot $LlvmRoot `
-    -AbiProjectPath (Join-Path $AbiRoot "src\Hosihikari.Bindings.Abi\Hosihikari.Bindings.Abi.csproj")
+    -AbiProjectPath (Join-Path $AbiRoot "src\Hosihikari.Binding.Abi\Hosihikari.Binding.Abi.csproj")
 
 $PluginsTarget = Join-Path $ServerRoot "plugins"
 $PayloadTarget = Join-Path $PluginsTarget "hosihikari-benchmarks"
@@ -54,8 +54,8 @@ if (Test-Path $LocalPlugins) {
 }
 Remove-Item (Join-Path $PluginsTarget "shim_smoke.dll") -Force -ErrorAction SilentlyContinue
 
-$ShimDll = Join-Path $RepoRoot "artifacts\native\Hosihikari.Bindings.Endstone.Shim.dll"
-$PayloadShim = Join-Path $PayloadTarget "Hosihikari.Bindings.Endstone.Shim.dll"
+$ShimDll = Join-Path $RepoRoot "artifacts\native\Hosihikari.Binding.Endstone.Shim.dll"
+$PayloadShim = Join-Path $PayloadTarget "Hosihikari.Binding.Endstone.Shim.dll"
 Copy-Item $ShimDll $PayloadShim -Force
 
 $ResultDirectory = Join-Path $ServerRoot "data\hosihikari\shim-benchmarks"

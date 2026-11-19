@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Hosihikari.Bindings.Endstone.Benchmarks;
+namespace Hosihikari.Binding.Endstone.Benchmarks;
 
 /// <summary>Entry point resolved through <c>hostfxr</c> by the native benchmark plugin.</summary>
 public static class NativeEntryPoint

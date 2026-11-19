@@ -45,7 +45,7 @@ $Msvc = Get-ChildItem (Join-Path $VsRoot "VC\Tools\MSVC") | Sort-Object Name | S
 $SdkRoot = "C:\Program Files (x86)\Windows Kits\10\Include"
 $Sdk = Get-ChildItem $SdkRoot | Sort-Object Name | Select-Object -Last 1
 
-$GeneratedDirectory = Join-Path $RepoRoot "src\Hosihikari.Bindings.Endstone.Interop\Generated"
+$GeneratedDirectory = Join-Path $RepoRoot "src\Hosihikari.Binding.Endstone.Interop\Generated"
 $NativeMethodsFile = Get-ChildItem $GeneratedDirectory -Filter "NativeMethods.g.cs" | Select-Object -First 1
 if (-not $NativeMethodsFile) { throw "NativeMethods.g.cs was not found." }
 $NativeMethodsText = Get-Content $NativeMethodsFile.FullName -Raw
@@ -63,7 +63,7 @@ function Resolve-TableField {
     return [string]$TableFieldIndex[$Name]
 }
 
-$ServerFile = Get-ChildItem (Join-Path $RepoRoot "src\Hosihikari.Bindings.Endstone.Interop\Generated") -Filter "Server_*.g.cs" |
+$ServerFile = Get-ChildItem (Join-Path $RepoRoot "src\Hosihikari.Binding.Endstone.Interop\Generated") -Filter "Server_*.g.cs" |
     Select-Object -First 1
 if (-not $ServerFile) { throw "Generated Server interop was not found." }
 $ServerText = Get-Content $ServerFile.FullName -Raw
