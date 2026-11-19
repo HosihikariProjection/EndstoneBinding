@@ -1,6 +1,6 @@
 # Endstone BindingShim
 
-The native side of the Endstone binding: it includes the Endstone public headers and projects eligible declarations into the C ABI described in ADR-0015.
+The native side of the Endstone binding: it includes the Endstone public headers and projects eligible declarations into the C ABI described in PJ-0015.
 
 ## Target
 
