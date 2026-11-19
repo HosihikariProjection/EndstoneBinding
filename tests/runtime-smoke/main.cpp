@@ -295,16 +295,16 @@ public:
                 directory.resize(separator + 1);
             }
 
-            std::string shimPath = directory + "Hosihikari.Bindings.Endstone.Shim.dll";
+            std::string shimPath = directory + "Hosihikari.Binding.Endstone.Shim.dll";
             auto shim = LoadLibraryA(shimPath.c_str());
             if (!shim) {
-                shimPath = directory + "..\\Hosihikari.Bindings.Endstone.Shim.dll";
+                shimPath = directory + "..\\Hosihikari.Binding.Endstone.Shim.dll";
                 shim = LoadLibraryA(shimPath.c_str());
             }
             if (!shim) {
                 WIN32_FIND_DATAA data{};
                 const auto search = FindFirstFileA(
-                    (directory + "Hosihikari.Bindings.Endstone.Shim-*.dll").c_str(),
+                    (directory + "Hosihikari.Binding.Endstone.Shim-*.dll").c_str(),
                     &data
                 );
                 if (search != INVALID_HANDLE_VALUE) {

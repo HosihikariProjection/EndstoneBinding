@@ -41,8 +41,8 @@ bool host_and_run(const std::filesystem::path& moduleDirectory, std::string& err
     if (!std::filesystem::exists(payload)) {
         payload = moduleDirectory.parent_path() / "hosihikari-benchmarks";
     }
-    const auto managedDll = payload / "Hosihikari.Bindings.Endstone.Benchmarks.dll";
-    const auto runtimeConfig = payload / "Hosihikari.Bindings.Endstone.Benchmarks.runtimeconfig.json";
+    const auto managedDll = payload / "Hosihikari.Binding.Endstone.Benchmarks.dll";
+    const auto runtimeConfig = payload / "Hosihikari.Binding.Endstone.Benchmarks.runtimeconfig.json";
     const auto nethostPath = payload / "nethost.dll";
 
     if (!std::filesystem::exists(managedDll) || !std::filesystem::exists(runtimeConfig)) {
@@ -109,7 +109,7 @@ bool host_and_run(const std::filesystem::path& moduleDirectory, std::string& err
 
     run_managed_fn run = nullptr;
     const char_t* typeName =
-        L"Hosihikari.Bindings.Endstone.Benchmarks.NativeEntryPoint, Hosihikari.Bindings.Endstone.Benchmarks";
+        L"Hosihikari.Binding.Endstone.Benchmarks.NativeEntryPoint, Hosihikari.Binding.Endstone.Benchmarks";
     if (loadAssembly(managedDll.c_str(), typeName, L"Run", UNMANAGEDCALLERSONLY_METHOD, nullptr,
                      reinterpret_cast<void**>(&run))
             != 0
@@ -144,7 +144,7 @@ public:
         const DWORD shimPathLength =
             GetEnvironmentVariableW(L"HS_BENCH_SHIM", shimPathBuffer, static_cast<DWORD>(std::size(shimPathBuffer)));
         if (shimPathLength == 0) {
-            const auto shimPath = moduleDirectory / "Hosihikari.Bindings.Endstone.Shim.dll";
+            const auto shimPath = moduleDirectory / "Hosihikari.Binding.Endstone.Shim.dll";
             SetEnvironmentVariableW(L"HS_BENCH_SHIM", shimPath.c_str());
         }
 

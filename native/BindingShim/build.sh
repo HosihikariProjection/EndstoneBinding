@@ -10,7 +10,7 @@ Options:
   --expected-lite-include <dir>   Directory containing nonstd/expected.hpp (required).
   --nlohmann-include <dir>        Directory containing nlohmann/json.hpp (required).
   --output <file>                 Output shared library.
-                                  Default: artifacts/native/libHosihikari.Bindings.Endstone.Shim.so
+                                  Default: artifacts/native/libHosihikari.Binding.Endstone.Shim.so
   --shim-source <file>            Generated binding_table.cpp to compile.
                                   Default: generated/win-x64-server/endstone/binding_table.cpp
   --generated-include <dir>       Directory holding the generated endstone/version.h.
@@ -24,7 +24,7 @@ repo_root="$(cd "$script_root/../.." && pwd)"
 endstone_root=""
 expected_lite_include=""
 nlohmann_include=""
-output="$repo_root/artifacts/native/libHosihikari.Bindings.Endstone.Shim.so"
+output="$repo_root/artifacts/native/libHosihikari.Binding.Endstone.Shim.so"
 shim_source=""
 generated_include=""
 cxx="${CXX:-g++}"
