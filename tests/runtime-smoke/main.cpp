@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <variant>
+#include <vector>
 
 #include <windows.h>
 
@@ -360,22 +361,29 @@ public:
             out.flush();
 
             const auto nameFunction = reinterpret_cast<HosihikariStringView (*)(void *)>(slots[HS_NAME_INDEX]);
-            const auto nameView = nameFunction(handle);
+            HosihikariStringView nameView{};
+            nameView = nameFunction(handle);
             const std::string actualName(nameView.data, nameView.size);
             const auto versionFunction = reinterpret_cast<HosihikariStringView (*)(void *)>(slots[HS_VERSION_INDEX]);
-            const auto versionView = versionFunction(handle);
+            HosihikariStringView versionView{};
+            versionView = versionFunction(handle);
             const std::string actualVersion(versionView.data, versionView.size);
 
             out << "expected_name=" << server.getName() << "\n";
+            out.flush();
             out << "expected_version=" << server.getVersion() << "\n";
+            out.flush();
             out << "name=" << actualName << "\n";
+            out.flush();
             out << "version=" << actualVersion << "\n";
+            out.flush();
 
             using HashValueFn = std::uint64_t (*)(const void *);
             const endstone::UUID uuid{};
             const auto shimHash = reinterpret_cast<HashValueFn>(slots[HS_FUNCTION_HASH_VALUE_INDEX])(&uuid);
             const auto nativeHash = endstone::hash_value(uuid);
             out << "function.hash=" << (shimHash == nativeHash ? "ok" : "FAIL") << "\n";
+            out.flush();
 
             bool vectorsOk = true;
 
@@ -412,6 +420,7 @@ public:
             if (arrayTag) {
                 const bool ok = reinterpret_cast<SizeMethodFn>(slots[HS_ARRAYTAG_INT_SIZE_INDEX])(arrayTag) == 3;
                 out << "arraytag.int_vector=" << (ok ? "ok" : "FAIL") << "\n";
+                out.flush();
                 vectorsOk = vectorsOk && ok;
                 reinterpret_cast<DestroyFn>(slots[HS_ARRAYTAG_INT_DESTROY_INDEX])(arrayTag);
             }
@@ -440,6 +449,7 @@ public:
 
             out << "nbt.compound=" << (compoundOk ? "ok" : "FAIL") << "\n";
 
+            out << "sec.plugin_manager\n"; out.flush();
             using GetPluginManagerFn = void *(*)(void *);
             using GetPluginsFn = HosihikariArrayView (*)(void *);
             auto pluginManager = reinterpret_cast<GetPluginManagerFn>(slots[HS_SERVER_PLUGIN_MANAGER_INDEX])(handle);
@@ -455,6 +465,7 @@ public:
 
             out << "plugin_manager.plugin_vector=" << (pluginsOk ? "ok" : "FAIL") << "\n";
 
+            out << "sec.scoreboard\n"; out.flush();
             using CreateScoreboardFn = HosihikariSharedHandle (*)(void *);
             using ClearSlotFn = void (*)(void *, std::int32_t);
             using GetObjectivesFn = HosihikariArrayView (*)(void *);
@@ -471,8 +482,10 @@ public:
             out << "scoreboard.shared_handle=" << (sharedOk ? "ok" : "FAIL") << "\n";
             out << "scoreboard.owned_array=" << (objectivesOk ? "ok" : "FAIL") << "\n";
 
+            out << "sec.ban_list\n"; out.flush();
             using GetBanListFn = void *(*)(void *);
             using GetBanEntriesFn = HosihikariArrayView (*)(void *);
+            out << "sec.ban_entry\n"; out.flush();
             using GetBanEntryFn = HosihikariSharedHandle (*)(void *, const char *, std::size_t);
             using AddBanFn = HosihikariSharedHandle (*)(
                 void *, const char *, std::size_t, const char *, std::size_t, std::int64_t, const char *, std::size_t, bool, bool);
@@ -535,6 +548,7 @@ public:
 
             out << "ban_list.shared_array=" << (containersOk ? "ok" : "FAIL") << "\n";
             out << "ban_list.add_remove=" << (banRoundTripOk ? "ok" : "FAIL") << "\n";
+            out << "sec.item_meta\n"; out.flush();
 
             using GetItemFactoryFn = void *(*)(void *);
             using GetItemMetaFn = void *(*)(void *, void *);
@@ -572,27 +586,34 @@ public:
                 if (control) {
                     auto *added = reinterpret_cast<ModalAddControlFn>(slots[HS_MODAL_FORM_ADD_CONTROL_INDEX])(
                         &modal, control);
-                    const auto controls = reinterpret_cast<ModalGetControlsFn>(
-                        slots[HS_MODAL_FORM_GET_CONTROLS_INDEX])(&modal);
-                    auto *const *items = static_cast<void *const *>(controls.data);
-                    modalControlOk = added != nullptr && controls.size == 1 && items[0] != nullptr
+                    // getControls() returns a vector; the shim hands back its address, so the
+                    // slot is a pointer-returning function, not an ArrayView.
+                    using GetControlsPtrFn = const void *(*)(void *);
+                    const auto *controls = reinterpret_cast<const std::vector<endstone::ModalForm::Control> *>(
+                        reinterpret_cast<GetControlsPtrFn>(slots[HS_MODAL_FORM_GET_CONTROLS_INDEX])(&modal));
+                    // Elements are Control (a std::variant) stored inline, so the slot needs the
+                    // element address; reading the vector's first word is not the element itself.
+                    const void *item0 = controls != nullptr && controls->size() == 1 ? &(*controls)[0] : nullptr;
+                    modalControlOk = added != nullptr && item0 != nullptr
                         && reinterpret_cast<VariantReadIndexFn>(
-                            slots[HS_CONTROL_VARIANT_INDEX_INDEX])(items[0]) == 0;
-                    if (controls.size == 1 && items[0] != nullptr) {
+                            slots[HS_CONTROL_VARIANT_INDEX_INDEX])(const_cast<void *>(item0)) == 0;
+                    if (controls != nullptr && controls->size() == 1 && item0 != nullptr) {
                         auto *copy = reinterpret_cast<VariantAsDropdownFn>(
-                            slots[HS_CONTROL_VARIANT_AS_DROPDOWN_INDEX])(items[0]);
+                            slots[HS_CONTROL_VARIANT_AS_DROPDOWN_INDEX])(const_cast<void *>(item0));
                         modalControlOk = modalControlOk && copy != nullptr;
                         if (copy) {
                             reinterpret_cast<DestroyFn>(slots[HS_DROPDOWN_DESTROY_INDEX])(copy);
                         }
                     }
-                    for (std::size_t index = 0; index < controls.size; ++index) {
-                        reinterpret_cast<DestroyFn>(slots[HS_CONTROL_VARIANT_DESTROY_INDEX])(items[index]);
+                    if (controls != nullptr) {
+                        // Elements are stored inline in the form's own vector, not heap nodes,
+                        // so the variant destroy slot (which deletes) must not be applied to them.
                     }
                     reinterpret_cast<DestroyFn>(slots[HS_CONTROL_VARIANT_DESTROY_INDEX])(control);
                 }
             }
 
+            out << "sec.modal_form\n"; out.flush();
             out << "modal_form.controls=" << (modalControlOk ? "ok" : "FAIL") << "\n";
 
             using PermissionCreateFn = void *(*)(const char *, std::size_t, const char *, std::size_t, std::int32_t, HosihikariArrayView);
@@ -620,6 +641,7 @@ public:
                 }
             }
 
+            out << "sec.permission\n"; out.flush();
             out << "permission.map=" << (permissionMapOk ? "ok" : "FAIL") << "\n";
 
             using AddPermissionFn = void *(*)(void *, void *);
@@ -639,6 +661,7 @@ public:
                 }
             }
 
+            out << "sec.unique_ptr\n"; out.flush();
             out << "unique_ptr.param=" << (uniquePtrParamOk ? "ok" : "FAIL") << "\n";
 
             using CommandCreateFn = void *(*)(
@@ -674,6 +697,7 @@ public:
                 }
             }
 
+            out << "sec.multi_vector\n"; out.flush();
             out << "multi_vector.ctor=" << (multiVectorOk ? "ok" : "FAIL") << "\n";
 
             using IdentifierCreateFn = void *(*)(const char *, std::size_t);
@@ -700,6 +724,7 @@ public:
                 }
             }
 
+            out << "sec.borrowed_string\n"; out.flush();
             out << "borrowed_string.ctor=" << (borrowedStringOk ? "ok" : "FAIL") << "\n";
 
             using ItemStackCreateFn = void *(*)(void *, int, int);
@@ -734,8 +759,10 @@ public:
                 }
             }
 
+            out << "sec.assignment\n"; out.flush();
             out << "assignment.operator=" << (itemStackAssignOk ? "ok" : "FAIL") << "\n";
 
+            out << "sec.block_data\n"; out.flush();
             using CreateBlockDataFn = void *(*)(void *, const char *, std::size_t, HosihikariArrayView);
             using GetBlockStatesFn = HosihikariArrayView (*)(void *);
             using VariantAsBoolFn = bool (*)(void *);
@@ -831,6 +858,7 @@ public:
                 }
             }
 
+            out << "sec.mutable_ref\n"; out.flush();
             out << "mutable_reference.ctor=" << (mutableReferenceCtorOk ? "ok" : "FAIL") << "\n";
             out << "inheritance.cast=" << (inheritanceCastOk ? "ok" : "FAIL") << "\n";
             out << "inheritance.transitive=" << (transitiveCastOk ? "ok" : "FAIL") << "\n";
@@ -888,9 +916,11 @@ public:
             }
 
             callableOk = callableOk && g_submitReleases == 1;
+            out << "sec.action_form\n"; out.flush();
             out << "action_form.string_variant=" << (variantOk ? "ok" : "FAIL") << "\n";
             out << "callable.round_trip=" << (callableOk ? "ok" : "FAIL") << "\n";
 
+            out << "sec.end\n"; out.flush();
             out << "result="
                 << (actualName == server.getName() && actualVersion == server.getVersion() && vectorsOk
                             && compoundOk && pluginsOk && sharedOk && objectivesOk && containersOk
