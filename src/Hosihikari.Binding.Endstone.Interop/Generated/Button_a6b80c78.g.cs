@@ -107,9 +107,9 @@ public sealed unsafe partial class Button : global::System.IDisposable
         return new global::Hosihikari.Binding.Endstone.Interop.Variant_228e24a8((nint)__hs_handle);
     }
 
-    public global::Hosihikari.Binding.Endstone.Interop.endstone.Button? setIcon(string icon)
+    public global::Hosihikari.Binding.Endstone.Interop.endstone.Button? setIcon(string? icon)
     {
-        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(icon);
+        var __hs_stringByteCount0 = global::System.Text.Encoding.UTF8.GetByteCount(icon ?? string.Empty);
         scoped global::System.Span<byte> __hs_stringBytes0;
         if (__hs_stringByteCount0 <= 256)
         {
@@ -119,10 +119,10 @@ public sealed unsafe partial class Button : global::System.IDisposable
         {
             __hs_stringBytes0 = new byte[__hs_stringByteCount0];
         }
-        global::System.Text.Encoding.UTF8.GetBytes(icon, __hs_stringBytes0);
+        global::System.Text.Encoding.UTF8.GetBytes(icon ?? string.Empty, __hs_stringBytes0);
         fixed (byte* __hs_stringData0 = __hs_stringBytes0)
         {
-            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ebda1615((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0);
+            var __hs_handle = NativeMethods.TablePtr->C0.hs_method_e979c5ac((void*)__hosihikari_shim_handle, __hs_stringData0, (nuint)__hs_stringByteCount0, icon is not null);
             if (__hs_handle == null)
             {
                 NativeMethods.GetLastError();

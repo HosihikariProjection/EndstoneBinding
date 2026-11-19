@@ -338,13 +338,27 @@ public:
                 return;
             }
 
+            out << "exports=ok\n";
+            out.flush();
             const auto *table = getTable();
+            out << "table=" << (table != nullptr) << "\n";
+            out.flush();
             auto *handle = getServer();
+            out << "handle=" << (handle != nullptr) << "\n";
+            out.flush();
             out << "server.match=" << (handle == &server ? "true" : "false") << "\n";
+            out.flush();
+            // A direct virtual call first: if this crashes, the vtable the plugin sees is not
+            // the one the runtime built, and the shim's slots are not to blame.
+            out << "direct.name=" << server.getName() << "\n";
+            out.flush();
 
             const auto *slots = reinterpret_cast<void *const *>(
                 reinterpret_cast<const char *>(table) + 2 * sizeof(std::uint32_t)
             );
+            out << "idx=" << HS_NAME_INDEX << " slot=" << slots[HS_NAME_INDEX] << "\n";
+            out.flush();
+
             const auto nameFunction = reinterpret_cast<HosihikariStringView (*)(void *)>(slots[HS_NAME_INDEX]);
             const auto nameView = nameFunction(handle);
             const std::string actualName(nameView.data, nameView.size);

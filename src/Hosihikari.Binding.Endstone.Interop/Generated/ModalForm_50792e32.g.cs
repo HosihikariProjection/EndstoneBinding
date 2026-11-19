@@ -51,16 +51,15 @@ public sealed unsafe partial class ModalForm : global::System.IDisposable
         return new global::Hosihikari.Binding.Endstone.Interop.endstone.ModalForm((nint)__hs_handle, false);
     }
 
-    public global::Hosihikari.Binding.Endstone.Interop.Variant_27d5b872[] getControls()
+    public nint? getControls()
     {
-        var __hs_view = NativeMethods.TablePtr->C0.hs_method_e6901603((void*)__hosihikari_shim_handle);
-        var __hs_items = (void**)__hs_view.Data;
-        var __hs_result = __hs_view.Size == 0 ? global::System.Array.Empty<global::Hosihikari.Binding.Endstone.Interop.Variant_27d5b872>() : new global::Hosihikari.Binding.Endstone.Interop.Variant_27d5b872[checked((int)__hs_view.Size)];
-        for (var __hs_i = 0; __hs_i < __hs_result.Length; __hs_i++)
+        var __hs_handle = NativeMethods.TablePtr->C0.hs_method_ab42448c((void*)__hosihikari_shim_handle);
+        if (__hs_handle == null)
         {
-            __hs_result[__hs_i] = new global::Hosihikari.Binding.Endstone.Interop.Variant_27d5b872((nint)__hs_items[__hs_i]);
+            NativeMethods.GetLastError();
+            return null;
         }
-        return __hs_result;
+        return (nint)__hs_handle;
     }
 
     public string? getIcon()
