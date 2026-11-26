@@ -5,6 +5,7 @@
 // header is force-included for the Linux shim translation unit only.
 #include <cmath>
 
-namespace std {
+namespace std
+{
 using ::floorf;
 }

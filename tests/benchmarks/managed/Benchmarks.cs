@@ -18,7 +18,8 @@ internal static class Benchmarks
         string name,
         int iterations,
         int warmup,
-        Action action)
+        Action action
+    )
     {
         for (var index = 0; index < warmup; index++)
         {
@@ -36,7 +37,8 @@ internal static class Benchmarks
         var allocated = GC.GetAllocatedBytesForCurrentThread() - allocatedBefore;
         var nanoseconds = (double)elapsed / Stopwatch.Frequency * 1_000_000_000 / iterations;
         var bytes = (double)allocated / iterations;
-        output.Append(name)
+        output
+            .Append(name)
             .Append('=')
             .Append(nanoseconds.ToString("F2", CultureInfo.InvariantCulture))
             .Append(" ns/op, ")
@@ -62,44 +64,85 @@ internal static class Benchmarks
             log.AppendLine("load=ok");
 
             var server = Server.Borrow(NativeMethods.GetServer());
-            RunBenchmark(log, "method.server.get_port", 200_000, 10_000, () => _intSink = server.getPort());
-            RunBenchmark(log, "string.server.get_name", 200_000, 10_000, () => _stringSink = server.getName());
+            RunBenchmark(
+                log,
+                "method.server.get_port",
+                200_000,
+                10_000,
+                () => _intSink = server.getPort()
+            );
+            RunBenchmark(
+                log,
+                "string.server.get_name",
+                200_000,
+                10_000,
+                () => _stringSink = server.getName()
+            );
 
             var translatableParameters = new[] { "one", "two" };
-            RunBenchmark(log, "vector.string.translatable", 50_000, 5_000, () =>
-            {
-                using var value = Translatable.Create("hosihikari-benchmark", translatableParameters);
-                _sink ^= (ulong)value.Handle;
-            });
+            RunBenchmark(
+                log,
+                "vector.string.translatable",
+                50_000,
+                5_000,
+                () =>
+                {
+                    using var value = Translatable.Create(
+                        "hosihikari-benchmark",
+                        translatableParameters
+                    );
+                    _sink ^= (ulong)value.Handle;
+                }
+            );
 
             var numbers = new[] { 1, 2, 3, 4 };
-            RunBenchmark(log, "vector.int.arraytag", 100_000, 5_000, () =>
-            {
-                using var value = ArrayTag_int_.Create(numbers);
-                _sink ^= (ulong)value.Handle;
-            });
+            RunBenchmark(
+                log,
+                "vector.int.arraytag",
+                100_000,
+                5_000,
+                () =>
+                {
+                    using var value = ArrayTag_int_.Create(numbers);
+                    _sink ^= (ulong)value.Handle;
+                }
+            );
 
             var children = new Dictionary<string, bool> { ["child"] = true };
-            RunBenchmark(log, "map.permission.create", 50_000, 5_000, () =>
-            {
-                using var value = Permission.Create(
-                    "hosihikari.benchmark.permission",
-                    "benchmark",
-                    1,
-                    children);
-                _sink ^= (ulong)value.Handle;
-            });
+            RunBenchmark(
+                log,
+                "map.permission.create",
+                50_000,
+                5_000,
+                () =>
+                {
+                    using var value = Permission.Create(
+                        "hosihikari.benchmark.permission",
+                        "benchmark",
+                        1,
+                        children
+                    );
+                    _sink ^= (ulong)value.Handle;
+                }
+            );
 
             using var permission = Permission.Create(
                 "hosihikari.benchmark.children",
                 "benchmark",
                 1,
-                children);
-            RunBenchmark(log, "map.permission.children", 100_000, 5_000, () =>
-            {
-                var result = permission.getChildren();
-                _sink ^= (ulong)result.Count;
-            });
+                children
+            );
+            RunBenchmark(
+                log,
+                "map.permission.children",
+                100_000,
+                5_000,
+                () =>
+                {
+                    var result = permission.getChildren();
+                    _sink ^= (ulong)result.Count;
+                }
+            );
 
             var children8 = new Dictionary<string, bool>();
             for (var index = 0; index < 8; index++)
@@ -111,25 +154,44 @@ internal static class Benchmarks
                 "hosihikari.benchmark.children8",
                 "benchmark",
                 1,
-                children8);
-            RunBenchmark(log, "map.permission.children_8", 50_000, 5_000, () =>
-            {
-                var result = permission8.getChildren();
-                _sink ^= (ulong)result.Count;
-            });
+                children8
+            );
+            RunBenchmark(
+                log,
+                "map.permission.children_8",
+                50_000,
+                5_000,
+                () =>
+                {
+                    var result = permission8.getChildren();
+                    _sink ^= (ulong)result.Count;
+                }
+            );
 
             var itemFactory = server.getItemFactory();
-            using var itemType = Identifier_endstone__ItemType_.Create("minecraft", "diamond_sword");
+            using var itemType = Identifier_endstone__ItemType_.Create(
+                "minecraft",
+                "diamond_sword"
+            );
             using var itemMeta = itemFactory.getItemMeta(itemType);
             if (itemMeta is not null)
             {
-                using var enchantment = Identifier_endstone__Enchantment_.Create("minecraft", "sharpness");
+                using var enchantment = Identifier_endstone__Enchantment_.Create(
+                    "minecraft",
+                    "sharpness"
+                );
                 itemMeta.addEnchant(enchantment, 5, true);
-                RunBenchmark(log, "map.item_meta.enchants", 100_000, 5_000, () =>
-                {
-                    var result = itemMeta.getEnchants();
-                    _sink ^= (ulong)result.Count;
-                });
+                RunBenchmark(
+                    log,
+                    "map.item_meta.enchants",
+                    100_000,
+                    5_000,
+                    () =>
+                    {
+                        var result = itemMeta.getEnchants();
+                        _sink ^= (ulong)result.Count;
+                    }
+                );
             }
 
             using var blockState = Variant_7c287813.CreateBool(true);
@@ -137,17 +199,29 @@ internal static class Benchmarks
             {
                 ["persistent_bit"] = blockState,
             };
-            RunBenchmark(log, "map.block_data.create", 20_000, 2_000, () =>
-            {
-                using var value = server.createBlockData("minecraft:oak_leaves", blockStates);
-                _sink ^= (ulong)(value?.Handle ?? 0);
-            });
+            RunBenchmark(
+                log,
+                "map.block_data.create",
+                20_000,
+                2_000,
+                () =>
+                {
+                    using var value = server.createBlockData("minecraft:oak_leaves", blockStates);
+                    _sink ^= (ulong)(value?.Handle ?? 0);
+                }
+            );
 
-            RunBenchmark(log, "shared.scoreboard", 200_000, 10_000, () =>
-            {
-                using var value = server.createScoreboard();
-                _sink ^= (ulong)(value?.Target ?? 0);
-            });
+            RunBenchmark(
+                log,
+                "shared.scoreboard",
+                200_000,
+                10_000,
+                () =>
+                {
+                    using var value = server.createScoreboard();
+                    _sink ^= (ulong)(value?.Target ?? 0);
+                }
+            );
 
             var banList = server.getBanList();
             const string banName = "hosihikari-benchmark-ban";
@@ -157,35 +231,59 @@ internal static class Benchmarks
                 _sink ^= (ulong)(added?.Target ?? 0);
             }
 
-            RunBenchmark(log, "shared.ban_entry", 200_000, 10_000, () =>
-            {
-                using var entry = banList.getBanEntry(banName);
-                _sink ^= (ulong)(entry?.Target ?? 0);
-            });
-
-            RunBenchmark(log, "shared.array.ban_entries", 100_000, 5_000, () =>
-            {
-                var entries = banList.getEntries();
-                foreach (var entry in entries)
+            RunBenchmark(
+                log,
+                "shared.ban_entry",
+                200_000,
+                10_000,
+                () =>
                 {
-                    entry.Dispose();
+                    using var entry = banList.getBanEntry(banName);
+                    _sink ^= (ulong)(entry?.Target ?? 0);
                 }
+            );
 
-                _sink ^= (ulong)entries.Length;
-            });
+            RunBenchmark(
+                log,
+                "shared.array.ban_entries",
+                100_000,
+                5_000,
+                () =>
+                {
+                    var entries = banList.getEntries();
+                    foreach (var entry in entries)
+                    {
+                        entry.Dispose();
+                    }
+
+                    _sink ^= (ulong)entries.Length;
+                }
+            );
             banList.removeBan(banName);
 
             var pluginManager = server.getPluginManager();
-            RunBenchmark(log, "vector.result.plugins", 100_000, 5_000, () =>
-            {
-                var plugins = pluginManager.getPlugins();
-                _sink ^= (ulong)plugins.Length;
-            });
-            RunBenchmark(log, "vector.result.online_players", 200_000, 10_000, () =>
-            {
-                var players = server.getOnlinePlayers();
-                _sink ^= (ulong)players.Length;
-            });
+            RunBenchmark(
+                log,
+                "vector.result.plugins",
+                100_000,
+                5_000,
+                () =>
+                {
+                    var plugins = pluginManager.getPlugins();
+                    _sink ^= (ulong)plugins.Length;
+                }
+            );
+            RunBenchmark(
+                log,
+                "vector.result.online_players",
+                200_000,
+                10_000,
+                () =>
+                {
+                    var players = server.getOnlinePlayers();
+                    _sink ^= (ulong)players.Length;
+                }
+            );
 
             log.AppendLine("result=OK");
         }

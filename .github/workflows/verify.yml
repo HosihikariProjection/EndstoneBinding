@@ -32,10 +32,18 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: "10.0.x"
 
       - name: Build
         run: dotnet build Hosihikari.Binding.Endstone.slnx -c Release -p:AbiProjectPath=${{ github.workspace }}/Binding.Abi/src/Hosihikari.Binding.Abi/Hosihikari.Binding.Abi.csproj
+
+      - name: Formatting
+        run: |
+          dotnet format Hosihikari.Binding.Endstone.slnx --verify-no-changes
+          pip install --quiet clang-format==19.1.7
+          clang-format --Werror --dry-run --style=file \
+            native/BindingShim/linux-compat.h \
+            tests/benchmarks/main.cpp tests/runtime-smoke/main.cpp
 
       - name: Verify generated sources
         run: python3 scripts/verify_generated.py
@@ -93,7 +101,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: "10.0.x"
 
       - name: Cache LLVM
         id: llvm-cache

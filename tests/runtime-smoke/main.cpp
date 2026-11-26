@@ -263,75 +263,87 @@
 #error "HS_VARIANT_DESTROY_INDEX must be defined by build.ps1"
 #endif
 
-namespace {
-void pluginAnchor() {}
+namespace
+{
+void pluginAnchor()
+{
+}
 
-int g_submitCalls = 0;
+int g_submitCalls    = 0;
 int g_submitReleases = 0;
 
-void smokeSubmit(void *, void *, int) { ++g_submitCalls; }
-void smokeSubmitRelease(void *) { ++g_submitReleases; }
-void smokeNoopMessage(void *, void *) {}
-}  // namespace
+void smokeSubmit(void*, void*, int)
+{
+    ++g_submitCalls;
+}
+void smokeSubmitRelease(void*)
+{
+    ++g_submitReleases;
+}
+void smokeNoopMessage(void*, void*)
+{
+}
+} // namespace
 
-class ShimSmokePlugin : public endstone::Plugin {
+class ShimSmokePlugin : public endstone::Plugin
+{
 public:
     void onEnable() override
     {
         std::ofstream out("shim-smoke-result.txt");
-        auto &server = getServer();
+        auto&         server = getServer();
 
-        try {
+        try
+        {
             HMODULE self = nullptr;
-            GetModuleHandleExA(
-                GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-                reinterpret_cast<LPCSTR>(&pluginAnchor),
-                &self
-            );
+            GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                               reinterpret_cast<LPCSTR>(&pluginAnchor), &self);
             char path[MAX_PATH]{};
             GetModuleFileNameA(self, path, MAX_PATH);
             std::string directory(path);
-            const auto separator = directory.find_last_of("\\/");
-            if (separator != std::string::npos) {
+            const auto  separator = directory.find_last_of("\\/");
+            if (separator != std::string::npos)
+            {
                 directory.resize(separator + 1);
             }
 
             std::string shimPath = directory + "Hosihikari.Binding.Endstone.Shim.dll";
-            auto shim = LoadLibraryA(shimPath.c_str());
-            if (!shim) {
+            auto        shim     = LoadLibraryA(shimPath.c_str());
+            if (!shim)
+            {
                 shimPath = directory + "..\\Hosihikari.Binding.Endstone.Shim.dll";
-                shim = LoadLibraryA(shimPath.c_str());
+                shim     = LoadLibraryA(shimPath.c_str());
             }
-            if (!shim) {
+            if (!shim)
+            {
                 WIN32_FIND_DATAA data{};
-                const auto search = FindFirstFileA(
-                    (directory + "Hosihikari.Binding.Endstone.Shim-*.dll").c_str(),
-                    &data
-                );
-                if (search != INVALID_HANDLE_VALUE) {
+                const auto       search =
+                    FindFirstFileA((directory + "Hosihikari.Binding.Endstone.Shim-*.dll").c_str(), &data);
+                if (search != INVALID_HANDLE_VALUE)
+                {
                     shimPath = directory + data.cFileName;
-                    shim = LoadLibraryA(shimPath.c_str());
+                    shim     = LoadLibraryA(shimPath.c_str());
                     FindClose(search);
                 }
             }
             out << "path=" << shimPath << "\n";
             out << "load=" << (shim ? "ok" : "failed") << "\n";
-            if (!shim) {
+            if (!shim)
+            {
                 out << "winerror=" << GetLastError() << "\n";
             }
-            if (!shim) {
+            if (!shim)
+            {
                 out << "result=FAIL\n";
                 server.shutdown();
                 return;
             }
 
-            auto getTable = reinterpret_cast<const HosihikariBindingTableV1 *(*)()>(
-                GetProcAddress(shim, "hosihikari_get_binding_table_v1")
-            );
-            auto getServer = reinterpret_cast<void *(*)()>(
-                GetProcAddress(shim, "hosihikari_endstone_get_server")
-            );
-            if (!getTable || !getServer) {
+            auto getTable = reinterpret_cast<const HosihikariBindingTableV1* (*)()>(
+                GetProcAddress(shim, "hosihikari_get_binding_table_v1"));
+            auto getServer = reinterpret_cast<void* (*)()>(GetProcAddress(shim, "hosihikari_endstone_get_server"));
+            if (!getTable || !getServer)
+            {
                 out << "exports=failed\n";
                 out << "result=FAIL\n";
                 FreeLibrary(shim);
@@ -341,10 +353,10 @@ public:
 
             out << "exports=ok\n";
             out.flush();
-            const auto *table = getTable();
+            const auto* table = getTable();
             out << "table=" << (table != nullptr) << "\n";
             out.flush();
-            auto *handle = getServer();
+            auto* handle = getServer();
             out << "handle=" << (handle != nullptr) << "\n";
             out.flush();
             out << "server.match=" << (handle == &server ? "true" : "false") << "\n";
@@ -354,17 +366,16 @@ public:
             out << "direct.name=" << server.getName() << "\n";
             out.flush();
 
-            const auto *slots = reinterpret_cast<void *const *>(
-                reinterpret_cast<const char *>(table) + 2 * sizeof(std::uint32_t)
-            );
+            const auto* slots =
+                reinterpret_cast<void* const*>(reinterpret_cast<const char*>(table) + 2 * sizeof(std::uint32_t));
             out << "idx=" << HS_NAME_INDEX << " slot=" << slots[HS_NAME_INDEX] << "\n";
             out.flush();
 
-            const auto nameFunction = reinterpret_cast<HosihikariStringView (*)(void *)>(slots[HS_NAME_INDEX]);
+            const auto           nameFunction = reinterpret_cast<HosihikariStringView (*)(void*)>(slots[HS_NAME_INDEX]);
             HosihikariStringView nameView{};
             nameView = nameFunction(handle);
             const std::string actualName(nameView.data, nameView.size);
-            const auto versionFunction = reinterpret_cast<HosihikariStringView (*)(void *)>(slots[HS_VERSION_INDEX]);
+            const auto versionFunction = reinterpret_cast<HosihikariStringView (*)(void*)>(slots[HS_VERSION_INDEX]);
             HosihikariStringView versionView{};
             versionView = versionFunction(handle);
             const std::string actualVersion(versionView.data, versionView.size);
@@ -378,103 +389,113 @@ public:
             out << "version=" << actualVersion << "\n";
             out.flush();
 
-            using HashValueFn = std::uint64_t (*)(const void *);
+            using HashValueFn = std::uint64_t (*)(const void*);
             const endstone::UUID uuid{};
-            const auto shimHash = reinterpret_cast<HashValueFn>(slots[HS_FUNCTION_HASH_VALUE_INDEX])(&uuid);
-            const auto nativeHash = endstone::hash_value(uuid);
+            const auto           shimHash   = reinterpret_cast<HashValueFn>(slots[HS_FUNCTION_HASH_VALUE_INDEX])(&uuid);
+            const auto           nativeHash = endstone::hash_value(uuid);
             out << "function.hash=" << (shimHash == nativeHash ? "ok" : "FAIL") << "\n";
             out.flush();
 
             bool vectorsOk = true;
 
-            using CreateTranslatableFn = void *(*)(const char *, std::size_t, const HosihikariStringView *, std::size_t);
-            using CreateArrayTagFn = void *(*)(const int *, std::size_t);
-            using BoolMethodFn = bool (*)(void *);
-            using TextMethodFn = HosihikariStringView (*)(void *);
-            using SizeMethodFn = std::size_t (*)(void *);
-            using DestroyFn = void (*)(void *);
+            using CreateTranslatableFn = void* (*)(const char*, std::size_t, const HosihikariStringView*, std::size_t);
+            using CreateArrayTagFn     = void* (*)(const int*, std::size_t);
+            using BoolMethodFn         = bool (*)(void*);
+            using TextMethodFn         = HosihikariStringView (*)(void*);
+            using SizeMethodFn         = std::size_t (*)(void*);
+            using DestroyFn            = void (*)(void*);
 
-            const char *paramText[] = {"alpha", "", "gamma"};
+            const char*          paramText[] = {"alpha", "", "gamma"};
             HosihikariStringView paramViews[3]{};
-            for (std::size_t index = 0; index < 3; ++index) {
+            for (std::size_t index = 0; index < 3; ++index)
+            {
                 paramViews[index] = {paramText[index], std::strlen(paramText[index])};
             }
 
-            auto translatable = reinterpret_cast<CreateTranslatableFn>(slots[HS_TRANSLATABLE_CREATE_INDEX])(
-                "vector", 6, paramViews, 3);
-            if (translatable) {
-                const auto isEmpty = reinterpret_cast<BoolMethodFn>(slots[HS_TRANSLATABLE_EMPTY_INDEX])(translatable);
+            auto translatable =
+                reinterpret_cast<CreateTranslatableFn>(slots[HS_TRANSLATABLE_CREATE_INDEX])("vector", 6, paramViews, 3);
+            if (translatable)
+            {
+                const auto isEmpty  = reinterpret_cast<BoolMethodFn>(slots[HS_TRANSLATABLE_EMPTY_INDEX])(translatable);
                 const auto textView = reinterpret_cast<TextMethodFn>(slots[HS_TRANSLATABLE_TEXT_INDEX])(translatable);
-                const bool ok = !isEmpty && std::string(textView.data, textView.size) == "vector";
+                const bool ok       = !isEmpty && std::string(textView.data, textView.size) == "vector";
                 out << "translatable.string_vector=" << (ok ? "ok" : "FAIL") << "\n";
                 vectorsOk = vectorsOk && ok;
                 reinterpret_cast<DestroyFn>(slots[HS_TRANSLATABLE_DESTROY_INDEX])(translatable);
             }
-            else {
+            else
+            {
                 out << "translatable.string_vector=failed\n";
                 vectorsOk = false;
             }
 
             const int values[] = {4, 5, 6};
-            auto arrayTag = reinterpret_cast<CreateArrayTagFn>(slots[HS_ARRAYTAG_INT_CREATE_INDEX])(values, 3);
-            if (arrayTag) {
+            auto      arrayTag = reinterpret_cast<CreateArrayTagFn>(slots[HS_ARRAYTAG_INT_CREATE_INDEX])(values, 3);
+            if (arrayTag)
+            {
                 const bool ok = reinterpret_cast<SizeMethodFn>(slots[HS_ARRAYTAG_INT_SIZE_INDEX])(arrayTag) == 3;
                 out << "arraytag.int_vector=" << (ok ? "ok" : "FAIL") << "\n";
                 out.flush();
                 vectorsOk = vectorsOk && ok;
                 reinterpret_cast<DestroyFn>(slots[HS_ARRAYTAG_INT_DESTROY_INDEX])(arrayTag);
             }
-            else {
+            else
+            {
                 out << "arraytag.int_vector=failed\n";
                 vectorsOk = false;
             }
 
             // CompoundTag methods are declared in one header and defined inline in another;
             // this exercises the members the shim now calls through those inline bodies.
-            using CompoundCreateFn = void *(*)();
-            using CompoundContainsFn = bool (*)(void *, const char *, std::size_t);
-            bool compoundOk = false;
-            if (auto *compound = reinterpret_cast<CompoundCreateFn>(slots[HS_COMPOUND_CREATE_INDEX])()) {
+            using CompoundCreateFn   = void* (*)();
+            using CompoundContainsFn = bool (*)(void*, const char*, std::size_t);
+            bool compoundOk          = false;
+            if (auto* compound = reinterpret_cast<CompoundCreateFn>(slots[HS_COMPOUND_CREATE_INDEX])())
+            {
                 const auto emptyBefore = reinterpret_cast<BoolMethodFn>(slots[HS_COMPOUND_EMPTY_INDEX])(compound);
-                const auto hasKey = reinterpret_cast<CompoundContainsFn>(slots[HS_COMPOUND_CONTAINS_INDEX])(
-                    compound,
-                    "hosihikari",
-                    10
-                );
-                reinterpret_cast<void (*)(void *)>(slots[HS_COMPOUND_CLEAR_INDEX])(compound);
+                const auto hasKey =
+                    reinterpret_cast<CompoundContainsFn>(slots[HS_COMPOUND_CONTAINS_INDEX])(compound, "hosihikari", 10);
+                reinterpret_cast<void (*)(void*)>(slots[HS_COMPOUND_CLEAR_INDEX])(compound);
                 const auto emptyAfter = reinterpret_cast<BoolMethodFn>(slots[HS_COMPOUND_EMPTY_INDEX])(compound);
-                compoundOk = emptyBefore && !hasKey && emptyAfter;
+                compoundOk            = emptyBefore && !hasKey && emptyAfter;
                 reinterpret_cast<DestroyFn>(slots[HS_COMPOUND_DESTROY_INDEX])(compound);
             }
 
             out << "nbt.compound=" << (compoundOk ? "ok" : "FAIL") << "\n";
 
-            out << "sec.plugin_manager\n"; out.flush();
-            using GetPluginManagerFn = void *(*)(void *);
-            using GetPluginsFn = HosihikariArrayView (*)(void *);
+            out << "sec.plugin_manager\n";
+            out.flush();
+            using GetPluginManagerFn = void* (*)(void*);
+            using GetPluginsFn       = HosihikariArrayView (*)(void*);
             auto pluginManager = reinterpret_cast<GetPluginManagerFn>(slots[HS_SERVER_PLUGIN_MANAGER_INDEX])(handle);
-            bool pluginsOk = false;
-            if (pluginManager) {
-                const auto plugins = reinterpret_cast<GetPluginsFn>(slots[HS_PLUGIN_MANAGER_PLUGINS_INDEX])(pluginManager);
-                const auto items = static_cast<void *const *>(const_cast<void *>(plugins.data));
-                pluginsOk = plugins.size >= 1;
-                for (std::size_t index = 0; index < plugins.size; ++index) {
+            bool pluginsOk     = false;
+            if (pluginManager)
+            {
+                const auto plugins =
+                    reinterpret_cast<GetPluginsFn>(slots[HS_PLUGIN_MANAGER_PLUGINS_INDEX])(pluginManager);
+                const auto items = static_cast<void* const*>(const_cast<void*>(plugins.data));
+                pluginsOk        = plugins.size >= 1;
+                for (std::size_t index = 0; index < plugins.size; ++index)
+                {
                     pluginsOk = pluginsOk && items[index] != nullptr;
                 }
             }
 
             out << "plugin_manager.plugin_vector=" << (pluginsOk ? "ok" : "FAIL") << "\n";
 
-            out << "sec.scoreboard\n"; out.flush();
-            using CreateScoreboardFn = HosihikariSharedHandle (*)(void *);
-            using ClearSlotFn = void (*)(void *, std::int32_t);
-            using GetObjectivesFn = HosihikariArrayView (*)(void *);
-            auto shared = reinterpret_cast<CreateScoreboardFn>(slots[HS_SERVER_CREATE_SCOREBOARD_INDEX])(handle);
-            bool sharedOk = shared.holder != nullptr && shared.target != nullptr && shared.release != nullptr;
+            out << "sec.scoreboard\n";
+            out.flush();
+            using CreateScoreboardFn = HosihikariSharedHandle (*)(void*);
+            using ClearSlotFn        = void (*)(void*, std::int32_t);
+            using GetObjectivesFn    = HosihikariArrayView (*)(void*);
+            auto shared       = reinterpret_cast<CreateScoreboardFn>(slots[HS_SERVER_CREATE_SCOREBOARD_INDEX])(handle);
+            bool sharedOk     = shared.holder != nullptr && shared.target != nullptr && shared.release != nullptr;
             bool objectivesOk = false;
-            if (sharedOk) {
+            if (sharedOk)
+            {
                 reinterpret_cast<ClearSlotFn>(slots[HS_SCOREBOARD_CLEAR_SLOT_INDEX])(shared.target, 0);
-                const auto objectives = reinterpret_cast<GetObjectivesFn>(slots[HS_SCOREBOARD_OBJECTIVES_INDEX])(shared.target);
+                const auto objectives =
+                    reinterpret_cast<GetObjectivesFn>(slots[HS_SCOREBOARD_OBJECTIVES_INDEX])(shared.target);
                 objectivesOk = objectives.size == 0;
                 shared.release(shared.holder);
             }
@@ -482,23 +503,28 @@ public:
             out << "scoreboard.shared_handle=" << (sharedOk ? "ok" : "FAIL") << "\n";
             out << "scoreboard.owned_array=" << (objectivesOk ? "ok" : "FAIL") << "\n";
 
-            out << "sec.ban_list\n"; out.flush();
-            using GetBanListFn = void *(*)(void *);
-            using GetBanEntriesFn = HosihikariArrayView (*)(void *);
-            out << "sec.ban_entry\n"; out.flush();
-            using GetBanEntryFn = HosihikariSharedHandle (*)(void *, const char *, std::size_t);
-            using AddBanFn = HosihikariSharedHandle (*)(
-                void *, const char *, std::size_t, const char *, std::size_t, std::int64_t, const char *, std::size_t, bool, bool);
-            using RemoveBanFn = void (*)(void *, const char *, std::size_t);
-            using IsBannedFn = bool (*)(void *, const char *, std::size_t);
-            bool containersOk = false;
+            out << "sec.ban_list\n";
+            out.flush();
+            using GetBanListFn    = void* (*)(void*);
+            using GetBanEntriesFn = HosihikariArrayView (*)(void*);
+            out << "sec.ban_entry\n";
+            out.flush();
+            using GetBanEntryFn = HosihikariSharedHandle (*)(void*, const char*, std::size_t);
+            using AddBanFn      = HosihikariSharedHandle (*)(void*, const char*, std::size_t, const char*, std::size_t,
+                                                             std::int64_t, const char*, std::size_t, bool, bool);
+            using RemoveBanFn   = void (*)(void*, const char*, std::size_t);
+            using IsBannedFn    = bool (*)(void*, const char*, std::size_t);
+            bool containersOk   = false;
             bool banRoundTripOk = false;
-            if (auto *banList = reinterpret_cast<GetBanListFn>(slots[HS_SERVER_BAN_LIST_INDEX])(handle)) {
-                const auto entries = reinterpret_cast<GetBanEntriesFn>(slots[HS_PLAYER_BAN_ENTRIES_INDEX])(banList);
-                containersOk = true;
-                const auto sharedItems = static_cast<HosihikariSharedHandle const *>(entries.data);
-                for (std::size_t index = 0; index < entries.size; ++index) {
-                    if (sharedItems[index].release == nullptr) {
+            if (auto* banList = reinterpret_cast<GetBanListFn>(slots[HS_SERVER_BAN_LIST_INDEX])(handle))
+            {
+                const auto entries     = reinterpret_cast<GetBanEntriesFn>(slots[HS_PLAYER_BAN_ENTRIES_INDEX])(banList);
+                containersOk           = true;
+                const auto sharedItems = static_cast<HosihikariSharedHandle const*>(entries.data);
+                for (std::size_t index = 0; index < entries.size; ++index)
+                {
+                    if (sharedItems[index].release == nullptr)
+                    {
                         containersOk = false;
                         continue;
                     }
@@ -506,38 +532,33 @@ public:
                     sharedItems[index].release(sharedItems[index].holder);
                 }
 
-                auto missing = reinterpret_cast<GetBanEntryFn>(slots[HS_PLAYER_BAN_ENTRY_INDEX])(
-                    banList, "hosihikari-missing", 18);
+                auto missing = reinterpret_cast<GetBanEntryFn>(
+                    slots[HS_PLAYER_BAN_ENTRY_INDEX])(banList, "hosihikari-missing", 18);
                 containersOk = containersOk && missing.holder == nullptr && missing.release == nullptr;
-                if (missing.release) {
+                if (missing.release)
+                {
                     missing.release(missing.holder);
                 }
 
-                const char *banName = "hosihikari-smoke-ban";
+                const char*       banName     = "hosihikari-smoke-ban";
                 const std::size_t banNameSize = std::strlen(banName);
-                const auto removeBan = reinterpret_cast<RemoveBanFn>(slots[HS_PLAYER_BAN_REMOVE_INDEX]);
-                const auto isBanned = reinterpret_cast<IsBannedFn>(slots[HS_PLAYER_BANNED_INDEX]);
+                const auto        removeBan   = reinterpret_cast<RemoveBanFn>(slots[HS_PLAYER_BAN_REMOVE_INDEX]);
+                const auto        isBanned    = reinterpret_cast<IsBannedFn>(slots[HS_PLAYER_BANNED_INDEX]);
                 removeBan(banList, banName, banNameSize);
-                auto added = reinterpret_cast<AddBanFn>(slots[HS_PLAYER_BAN_ADD_INDEX])(
-                    banList,
-                    banName,
-                    banNameSize,
-                    "smoke",
-                    5,
-                    60,
-                    "hosihikari",
-                    10,
-                    true,
-                    true);
+                auto added =
+                    reinterpret_cast<AddBanFn>(slots[HS_PLAYER_BAN_ADD_INDEX])(banList, banName, banNameSize, "smoke",
+                                                                               5, 60, "hosihikari", 10, true, true);
                 banRoundTripOk = added.holder != nullptr && added.target != nullptr;
-                if (added.release) {
+                if (added.release)
+                {
                     added.release(added.holder);
                 }
 
-                auto fetched = reinterpret_cast<GetBanEntryFn>(slots[HS_PLAYER_BAN_ENTRY_INDEX])(
-                    banList, banName, banNameSize);
+                auto fetched =
+                    reinterpret_cast<GetBanEntryFn>(slots[HS_PLAYER_BAN_ENTRY_INDEX])(banList, banName, banNameSize);
                 banRoundTripOk = banRoundTripOk && fetched.holder != nullptr;
-                if (fetched.release) {
+                if (fetched.release)
+                {
                     fetched.release(fetched.holder);
                 }
 
@@ -548,64 +569,71 @@ public:
 
             out << "ban_list.shared_array=" << (containersOk ? "ok" : "FAIL") << "\n";
             out << "ban_list.add_remove=" << (banRoundTripOk ? "ok" : "FAIL") << "\n";
-            out << "sec.item_meta\n"; out.flush();
+            out << "sec.item_meta\n";
+            out.flush();
 
-            using GetItemFactoryFn = void *(*)(void *);
-            using GetItemMetaFn = void *(*)(void *, void *);
-            using AddEnchantFn = bool (*)(void *, void *, std::int32_t, bool);
-            using GetEnchantsFn = HosihikariArrayView (*)(void *);
-            bool itemMetaMapOk = false;
-            if (auto *factory = reinterpret_cast<GetItemFactoryFn>(slots[HS_SERVER_ITEM_FACTORY_INDEX])(handle)) {
+            using GetItemFactoryFn = void* (*)(void*);
+            using GetItemMetaFn    = void* (*)(void*, void*);
+            using AddEnchantFn     = bool (*)(void*, void*, std::int32_t, bool);
+            using GetEnchantsFn    = HosihikariArrayView (*)(void*);
+            bool itemMetaMapOk     = false;
+            if (auto* factory = reinterpret_cast<GetItemFactoryFn>(slots[HS_SERVER_ITEM_FACTORY_INDEX])(handle))
+            {
                 endstone::ItemTypeId itemType("minecraft:diamond_sword");
-                auto *meta = reinterpret_cast<GetItemMetaFn>(slots[HS_ITEM_FACTORY_GET_META_INDEX])(factory, &itemType);
-                if (meta) {
+                auto* meta = reinterpret_cast<GetItemMetaFn>(slots[HS_ITEM_FACTORY_GET_META_INDEX])(factory, &itemType);
+                if (meta)
+                {
                     endstone::EnchantmentId enchantment("minecraft:sharpness");
-                    const bool added = reinterpret_cast<AddEnchantFn>(slots[HS_ITEM_META_ADD_ENCHANT_INDEX])(
-                        meta, &enchantment, 5, true);
+                    const bool              added = reinterpret_cast<AddEnchantFn>(
+                        slots[HS_ITEM_META_ADD_ENCHANT_INDEX])(meta, &enchantment, 5, true);
                     const auto enchants = reinterpret_cast<GetEnchantsFn>(slots[HS_ITEM_META_GET_ENCHANTS_INDEX])(meta);
-                    const auto *entries = static_cast<HosihikariMapEntry const *>(enchants.data);
-                    itemMetaMapOk = added && enchants.size == 1 && entries[0].key != 0
-                        && static_cast<int>(entries[0].value) == 5;
+                    const auto* entries = static_cast<HosihikariMapEntry const*>(enchants.data);
+                    itemMetaMapOk =
+                        added && enchants.size == 1 && entries[0].key != 0 && static_cast<int>(entries[0].value) == 5;
                     reinterpret_cast<DestroyFn>(slots[HS_ITEM_META_DESTROY_INDEX])(meta);
                 }
             }
 
             out << "item_meta.map=" << (itemMetaMapOk ? "ok" : "FAIL") << "\n";
 
-            using ModalAddControlFn = void *(*)(void *, void *);
-            using ModalGetControlsFn = HosihikariArrayView (*)(void *);
-            using VariantCreateDropdownFn = void *(*)(void *);
-            using VariantReadIndexFn = std::int32_t (*)(void *);
-            using VariantAsDropdownFn = void *(*)(void *);
-            bool modalControlOk = false;
+            using ModalAddControlFn       = void* (*)(void*, void*);
+            using ModalGetControlsFn      = HosihikariArrayView (*)(void*);
+            using VariantCreateDropdownFn = void* (*)(void*);
+            using VariantReadIndexFn      = std::int32_t (*)(void*);
+            using VariantAsDropdownFn     = void* (*)(void*);
+            bool modalControlOk           = false;
             {
                 endstone::ModalForm modal;
-                endstone::Dropdown dropdown;
-                auto *control = reinterpret_cast<VariantCreateDropdownFn>(
+                endstone::Dropdown  dropdown;
+                auto*               control = reinterpret_cast<VariantCreateDropdownFn>(
                     slots[HS_CONTROL_VARIANT_CREATE_DROPDOWN_INDEX])(&dropdown);
-                if (control) {
-                    auto *added = reinterpret_cast<ModalAddControlFn>(slots[HS_MODAL_FORM_ADD_CONTROL_INDEX])(
-                        &modal, control);
+                if (control)
+                {
+                    auto* added =
+                        reinterpret_cast<ModalAddControlFn>(slots[HS_MODAL_FORM_ADD_CONTROL_INDEX])(&modal, control);
                     // getControls() returns a vector; the shim hands back its address, so the
                     // slot is a pointer-returning function, not an ArrayView.
-                    using GetControlsPtrFn = const void *(*)(void *);
-                    const auto *controls = reinterpret_cast<const std::vector<endstone::ModalForm::Control> *>(
+                    using GetControlsPtrFn = const void* (*)(void*);
+                    const auto* controls   = reinterpret_cast<const std::vector<endstone::ModalForm::Control>*>(
                         reinterpret_cast<GetControlsPtrFn>(slots[HS_MODAL_FORM_GET_CONTROLS_INDEX])(&modal));
                     // Elements are Control (a std::variant) stored inline, so the slot needs the
                     // element address; reading the vector's first word is not the element itself.
-                    const void *item0 = controls != nullptr && controls->size() == 1 ? &(*controls)[0] : nullptr;
-                    modalControlOk = added != nullptr && item0 != nullptr
-                        && reinterpret_cast<VariantReadIndexFn>(
-                            slots[HS_CONTROL_VARIANT_INDEX_INDEX])(const_cast<void *>(item0)) == 0;
-                    if (controls != nullptr && controls->size() == 1 && item0 != nullptr) {
-                        auto *copy = reinterpret_cast<VariantAsDropdownFn>(
-                            slots[HS_CONTROL_VARIANT_AS_DROPDOWN_INDEX])(const_cast<void *>(item0));
+                    const void* item0 = controls != nullptr && controls->size() == 1 ? &(*controls)[0] : nullptr;
+                    modalControlOk    = added != nullptr && item0 != nullptr &&
+                                        reinterpret_cast<VariantReadIndexFn>(slots[HS_CONTROL_VARIANT_INDEX_INDEX])(
+                                            const_cast<void*>(item0)) == 0;
+                    if (controls != nullptr && controls->size() == 1 && item0 != nullptr)
+                    {
+                        auto* copy = reinterpret_cast<VariantAsDropdownFn>(slots[HS_CONTROL_VARIANT_AS_DROPDOWN_INDEX])(
+                            const_cast<void*>(item0));
                         modalControlOk = modalControlOk && copy != nullptr;
-                        if (copy) {
+                        if (copy)
+                        {
                             reinterpret_cast<DestroyFn>(slots[HS_DROPDOWN_DESTROY_INDEX])(copy);
                         }
                     }
-                    if (controls != nullptr) {
+                    if (controls != nullptr)
+                    {
                         // Elements are stored inline in the form's own vector, not heap nodes,
                         // so the variant destroy slot (which deletes) must not be applied to them.
                     }
@@ -613,110 +641,121 @@ public:
                 }
             }
 
-            out << "sec.modal_form\n"; out.flush();
+            out << "sec.modal_form\n";
+            out.flush();
             out << "modal_form.controls=" << (modalControlOk ? "ok" : "FAIL") << "\n";
 
-            using PermissionCreateFn = void *(*)(const char *, std::size_t, const char *, std::size_t, std::int32_t, HosihikariArrayView);
-            using GetChildrenFn = HosihikariArrayView (*)(void *);
+            using PermissionCreateFn =
+                void* (*)(const char*, std::size_t, const char*, std::size_t, std::int32_t, HosihikariArrayView);
+            using GetChildrenFn  = HosihikariArrayView (*)(void*);
             bool permissionMapOk = false;
             {
-                const std::string permissionName = "hosihikari.smoke.permission";
-                const std::string description = "smoke";
-                const char *childName = "child";
+                const std::string  permissionName = "hosihikari.smoke.permission";
+                const std::string  description    = "smoke";
+                const char*        childName      = "child";
                 HosihikariMapEntry children[1]{};
-                children[0].key = reinterpret_cast<std::uint64_t>(childName);
+                children[0].key     = reinterpret_cast<std::uint64_t>(childName);
                 children[0].keySize = std::strlen(childName);
-                children[0].value = 1;
-                auto *permission = reinterpret_cast<PermissionCreateFn>(slots[HS_PERMISSION_CREATE_INDEX])(
-                    permissionName.data(), permissionName.size(), description.data(), description.size(), 1,
-                    HosihikariArrayView{children, 1});
-                if (permission) {
-                    const auto result = reinterpret_cast<GetChildrenFn>(
-                        slots[HS_PERMISSION_GET_CHILDREN_INDEX])(permission);
-                    const auto *entries = static_cast<HosihikariMapEntry const *>(result.data);
-                    permissionMapOk = result.size == 1 && entries[0].keySize == std::strlen(childName)
-                        && std::string(reinterpret_cast<const char *>(entries[0].key), entries[0].keySize) == childName
-                        && entries[0].value != 0;
+                children[0].value   = 1;
+                auto* permission    = reinterpret_cast<PermissionCreateFn>(
+                    slots[HS_PERMISSION_CREATE_INDEX])(permissionName.data(), permissionName.size(), description.data(),
+                                                          description.size(), 1, HosihikariArrayView{children, 1});
+                if (permission)
+                {
+                    const auto result =
+                        reinterpret_cast<GetChildrenFn>(slots[HS_PERMISSION_GET_CHILDREN_INDEX])(permission);
+                    const auto* entries = static_cast<HosihikariMapEntry const*>(result.data);
+                    permissionMapOk =
+                        result.size == 1 && entries[0].keySize == std::strlen(childName) &&
+                        std::string(reinterpret_cast<const char*>(entries[0].key), entries[0].keySize) == childName &&
+                        entries[0].value != 0;
                     reinterpret_cast<DestroyFn>(slots[HS_PERMISSION_DESTROY_INDEX])(permission);
                 }
             }
 
-            out << "sec.permission\n"; out.flush();
+            out << "sec.permission\n";
+            out.flush();
             out << "permission.map=" << (permissionMapOk ? "ok" : "FAIL") << "\n";
 
-            using AddPermissionFn = void *(*)(void *, void *);
-            using PermissionNameFn = HosihikariStringView (*)(void *);
-            bool uniquePtrParamOk = false;
-            if (pluginManager) {
-                const std::string addedName = "hosihikari.smoke.unique_ptr";
-                auto *addedPermission = reinterpret_cast<PermissionCreateFn>(slots[HS_PERMISSION_CREATE_INDEX])(
-                    addedName.data(), addedName.size(), "", 0, 1, HosihikariArrayView{nullptr, 0});
-                if (addedPermission) {
-                    auto *registered = reinterpret_cast<AddPermissionFn>(
+            using AddPermissionFn  = void* (*)(void*, void*);
+            using PermissionNameFn = HosihikariStringView (*)(void*);
+            bool uniquePtrParamOk  = false;
+            if (pluginManager)
+            {
+                const std::string addedName       = "hosihikari.smoke.unique_ptr";
+                auto*             addedPermission = reinterpret_cast<PermissionCreateFn>(
+                    slots[HS_PERMISSION_CREATE_INDEX])(addedName.data(), addedName.size(), "", 0, 1,
+                                                                   HosihikariArrayView{nullptr, 0});
+                if (addedPermission)
+                {
+                    auto* registered = reinterpret_cast<AddPermissionFn>(
                         slots[HS_PLUGIN_MANAGER_ADD_PERMISSION_INDEX])(pluginManager, addedPermission);
-                    if (registered) {
-                        const auto view = reinterpret_cast<PermissionNameFn>(slots[HS_PERMISSION_NAME_INDEX])(registered);
+                    if (registered)
+                    {
+                        const auto view =
+                            reinterpret_cast<PermissionNameFn>(slots[HS_PERMISSION_NAME_INDEX])(registered);
                         uniquePtrParamOk = std::string(view.data, view.size) == addedName;
                     }
                 }
             }
 
-            out << "sec.unique_ptr\n"; out.flush();
+            out << "sec.unique_ptr\n";
+            out.flush();
             out << "unique_ptr.param=" << (uniquePtrParamOk ? "ok" : "FAIL") << "\n";
 
-            using CommandCreateFn = void *(*)(
-                const char *, std::size_t, const char *, std::size_t,
-                const HosihikariStringView *, std::size_t,
-                const HosihikariStringView *, std::size_t,
-                const HosihikariStringView *, std::size_t);
-            using CommandAliasesFn = HosihikariArrayView (*)(void *);
-            bool multiVectorOk = false;
+            using CommandCreateFn =
+                void* (*)(const char*, std::size_t, const char*, std::size_t, const HosihikariStringView*, std::size_t,
+                          const HosihikariStringView*, std::size_t, const HosihikariStringView*, std::size_t);
+            using CommandAliasesFn = HosihikariArrayView (*)(void*);
+            bool multiVectorOk     = false;
             {
-                const std::string commandName = "hosihikari-smoke";
-                const std::string commandDescription = "multi vector";
-                const char *usageText[] = {"/hosihikari-smoke"};
-                const char *aliasText[] = {"smoke-a", "smoke-b"};
-                const char *permissionText[] = {"hosihikari.smoke"};
-                HosihikariStringView usages[1] = {{usageText[0], std::strlen(usageText[0])}};
-                HosihikariStringView aliases[2] = {
+                const std::string    commandName        = "hosihikari-smoke";
+                const std::string    commandDescription = "multi vector";
+                const char*          usageText[]        = {"/hosihikari-smoke"};
+                const char*          aliasText[]        = {"smoke-a", "smoke-b"};
+                const char*          permissionText[]   = {"hosihikari.smoke"};
+                HosihikariStringView usages[1]          = {{usageText[0], std::strlen(usageText[0])}};
+                HosihikariStringView aliases[2]         = {
                     {aliasText[0], std::strlen(aliasText[0])},
                     {aliasText[1], std::strlen(aliasText[1])},
                 };
                 HosihikariStringView permissions[1] = {{permissionText[0], std::strlen(permissionText[0])}};
-                auto *command = reinterpret_cast<CommandCreateFn>(slots[HS_COMMAND_CREATE_INDEX])(
-                    commandName.data(), commandName.size(), commandDescription.data(), commandDescription.size(),
-                    usages, 1, aliases, 2, permissions, 1);
-                if (command) {
-                    const auto result = reinterpret_cast<CommandAliasesFn>(
-                        slots[HS_COMMAND_GET_ALIASES_INDEX])(command);
-                    const auto *items = static_cast<HosihikariStringView const *>(result.data);
-                    multiVectorOk = result.size == 2
-                        && std::string(items[0].data, items[0].size) == "smoke-a"
-                        && std::string(items[1].data, items[1].size) == "smoke-b";
+                auto*                command        = reinterpret_cast<CommandCreateFn>(
+                    slots[HS_COMMAND_CREATE_INDEX])(commandName.data(), commandName.size(), commandDescription.data(),
+                                                                          commandDescription.size(), usages, 1, aliases, 2, permissions, 1);
+                if (command)
+                {
+                    const auto result =
+                        reinterpret_cast<CommandAliasesFn>(slots[HS_COMMAND_GET_ALIASES_INDEX])(command);
+                    const auto* items = static_cast<HosihikariStringView const*>(result.data);
+                    multiVectorOk     = result.size == 2 && std::string(items[0].data, items[0].size) == "smoke-a" &&
+                                        std::string(items[1].data, items[1].size) == "smoke-b";
                     reinterpret_cast<DestroyFn>(slots[HS_COMMAND_DESTROY_INDEX])(command);
                 }
             }
 
-            out << "sec.multi_vector\n"; out.flush();
+            out << "sec.multi_vector\n";
+            out.flush();
             out << "multi_vector.ctor=" << (multiVectorOk ? "ok" : "FAIL") << "\n";
 
-            using IdentifierCreateFn = void *(*)(const char *, std::size_t);
-            using IdentifierStringFn = HosihikariStringView (*)(void *);
-            bool borrowedStringOk = false;
+            using IdentifierCreateFn = void* (*)(const char*, std::size_t);
+            using IdentifierStringFn = HosihikariStringView (*)(void*);
+            bool borrowedStringOk    = false;
             {
                 const std::string itemTypeName = "minecraft:diamond_sword";
-                auto *itemType = reinterpret_cast<IdentifierCreateFn>(slots[HS_ITEM_TYPE_ID_CREATE_INDEX])(
-                    itemTypeName.data(), itemTypeName.size());
-                if (itemType) {
-                    const auto key = reinterpret_cast<IdentifierStringFn>(
-                        slots[HS_ITEM_TYPE_ID_KEY_INDEX])(itemType);
+                auto*             itemType     = reinterpret_cast<IdentifierCreateFn>(
+                    slots[HS_ITEM_TYPE_ID_CREATE_INDEX])(itemTypeName.data(), itemTypeName.size());
+                if (itemType)
+                {
+                    const auto key   = reinterpret_cast<IdentifierStringFn>(slots[HS_ITEM_TYPE_ID_KEY_INDEX])(itemType);
                     borrowedStringOk = std::string(key.data, key.size) == "diamond_sword";
-                    if (auto *factory = reinterpret_cast<GetItemFactoryFn>(
-                            slots[HS_SERVER_ITEM_FACTORY_INDEX])(handle)) {
-                        auto *meta = reinterpret_cast<GetItemMetaFn>(
-                            slots[HS_ITEM_FACTORY_GET_META_INDEX])(factory, itemType);
+                    if (auto* factory = reinterpret_cast<GetItemFactoryFn>(slots[HS_SERVER_ITEM_FACTORY_INDEX])(handle))
+                    {
+                        auto* meta =
+                            reinterpret_cast<GetItemMetaFn>(slots[HS_ITEM_FACTORY_GET_META_INDEX])(factory, itemType);
                         borrowedStringOk = borrowedStringOk && meta != nullptr;
-                        if (meta) {
+                        if (meta)
+                        {
                             reinterpret_cast<DestroyFn>(slots[HS_ITEM_META_DESTROY_INDEX])(meta);
                         }
                     }
@@ -724,74 +763,83 @@ public:
                 }
             }
 
-            out << "sec.borrowed_string\n"; out.flush();
+            out << "sec.borrowed_string\n";
+            out.flush();
             out << "borrowed_string.ctor=" << (borrowedStringOk ? "ok" : "FAIL") << "\n";
 
-            using ItemStackCreateFn = void *(*)(void *, int, int);
-            using ItemStackIntFn = int (*)(void *);
-            using ItemStackAssignFn = void *(*)(void *, void *);
-            bool itemStackAssignOk = false;
+            using ItemStackCreateFn = void* (*)(void*, int, int);
+            using ItemStackIntFn    = int (*)(void*);
+            using ItemStackAssignFn = void* (*)(void*, void*);
+            bool itemStackAssignOk  = false;
             {
                 const std::string itemTypeName = "minecraft:diamond_sword";
-                auto *itemType = reinterpret_cast<IdentifierCreateFn>(slots[HS_ITEM_TYPE_ID_CREATE_INDEX])(
-                    itemTypeName.data(), itemTypeName.size());
-                if (itemType) {
-                    auto *target = reinterpret_cast<ItemStackCreateFn>(
-                        slots[HS_ITEM_STACK_CREATE_INDEX])(itemType, 1, 0);
-                    auto *source = reinterpret_cast<ItemStackCreateFn>(
-                        slots[HS_ITEM_STACK_CREATE_INDEX])(itemType, 7, 3);
-                    if (target && source) {
+                auto*             itemType     = reinterpret_cast<IdentifierCreateFn>(
+                    slots[HS_ITEM_TYPE_ID_CREATE_INDEX])(itemTypeName.data(), itemTypeName.size());
+                if (itemType)
+                {
+                    auto* target =
+                        reinterpret_cast<ItemStackCreateFn>(slots[HS_ITEM_STACK_CREATE_INDEX])(itemType, 1, 0);
+                    auto* source =
+                        reinterpret_cast<ItemStackCreateFn>(slots[HS_ITEM_STACK_CREATE_INDEX])(itemType, 7, 3);
+                    if (target && source)
+                    {
                         reinterpret_cast<ItemStackAssignFn>(slots[HS_ITEM_STACK_ASSIGN_INDEX])(target, source);
-                        itemStackAssignOk = reinterpret_cast<ItemStackIntFn>(
-                                                slots[HS_ITEM_STACK_GET_AMOUNT_INDEX])(target)
-                                == 7
-                            && reinterpret_cast<ItemStackIntFn>(
-                                   slots[HS_ITEM_STACK_GET_DATA_INDEX])(target)
-                                == 3;
+                        itemStackAssignOk =
+                            reinterpret_cast<ItemStackIntFn>(slots[HS_ITEM_STACK_GET_AMOUNT_INDEX])(target) == 7 &&
+                            reinterpret_cast<ItemStackIntFn>(slots[HS_ITEM_STACK_GET_DATA_INDEX])(target) == 3;
                     }
-                    if (source) {
+                    if (source)
+                    {
                         reinterpret_cast<DestroyFn>(slots[HS_ITEM_STACK_DESTROY_INDEX])(source);
                     }
-                    if (target) {
+                    if (target)
+                    {
                         reinterpret_cast<DestroyFn>(slots[HS_ITEM_STACK_DESTROY_INDEX])(target);
                     }
                     reinterpret_cast<DestroyFn>(slots[HS_ITEM_TYPE_ID_DESTROY_INDEX])(itemType);
                 }
             }
 
-            out << "sec.assignment\n"; out.flush();
+            out << "sec.assignment\n";
+            out.flush();
             out << "assignment.operator=" << (itemStackAssignOk ? "ok" : "FAIL") << "\n";
 
-            out << "sec.block_data\n"; out.flush();
-            using CreateBlockDataFn = void *(*)(void *, const char *, std::size_t, HosihikariArrayView);
-            using GetBlockStatesFn = HosihikariArrayView (*)(void *);
-            using VariantAsBoolFn = bool (*)(void *);
-            bool blockStateMapOk = false;
+            out << "sec.block_data\n";
+            out.flush();
+            using CreateBlockDataFn = void* (*)(void*, const char*, std::size_t, HosihikariArrayView);
+            using GetBlockStatesFn  = HosihikariArrayView (*)(void*);
+            using VariantAsBoolFn   = bool (*)(void*);
+            bool blockStateMapOk    = false;
             {
-                const std::string blockType = "minecraft:oak_leaves";
-                const std::string stateKey = "persistent_bit";
+                const std::string                    blockType  = "minecraft:oak_leaves";
+                const std::string                    stateKey   = "persistent_bit";
                 std::variant<bool, std::string, int> stateValue = true;
-                HosihikariMapEntry states[1]{};
-                states[0].key = reinterpret_cast<std::uint64_t>(stateKey.data());
+                HosihikariMapEntry                   states[1]{};
+                states[0].key     = reinterpret_cast<std::uint64_t>(stateKey.data());
                 states[0].keySize = stateKey.size();
-                states[0].value = reinterpret_cast<std::uint64_t>(&stateValue);
-                auto *blockData = reinterpret_cast<CreateBlockDataFn>(slots[HS_SERVER_CREATE_BLOCK_DATA_INDEX])(
-                    handle, blockType.data(), blockType.size(), HosihikariArrayView{states, 1});
-                if (blockData) {
-                    const auto result = reinterpret_cast<GetBlockStatesFn>(
-                        slots[HS_BLOCK_DATA_GET_BLOCK_STATES_INDEX])(blockData);
-                    const auto *entries = static_cast<HosihikariMapEntry const *>(result.data);
-                    for (std::size_t index = 0; index < result.size; ++index) {
-                        auto *state = reinterpret_cast<void *>(entries[index].value);
-                        if (entries[index].keySize == stateKey.size()
-                            && std::string(reinterpret_cast<const char *>(entries[index].key), entries[index].keySize) == stateKey) {
-                            blockStateMapOk = state != nullptr
-                                && reinterpret_cast<VariantReadIndexFn>(
-                                    slots[HS_BOOL_VARIANT_INDEX_INDEX])(state) == 0
-                                && reinterpret_cast<VariantAsBoolFn>(
-                                    slots[HS_BOOL_VARIANT_AS_BOOL_INDEX])(state);
+                states[0].value   = reinterpret_cast<std::uint64_t>(&stateValue);
+                auto* blockData   = reinterpret_cast<CreateBlockDataFn>(
+                    slots[HS_SERVER_CREATE_BLOCK_DATA_INDEX])(handle, blockType.data(), blockType.size(),
+                                                                HosihikariArrayView{states, 1});
+                if (blockData)
+                {
+                    const auto result =
+                        reinterpret_cast<GetBlockStatesFn>(slots[HS_BLOCK_DATA_GET_BLOCK_STATES_INDEX])(blockData);
+                    const auto* entries = static_cast<HosihikariMapEntry const*>(result.data);
+                    for (std::size_t index = 0; index < result.size; ++index)
+                    {
+                        auto* state = reinterpret_cast<void*>(entries[index].value);
+                        if (entries[index].keySize == stateKey.size() &&
+                            std::string(reinterpret_cast<const char*>(entries[index].key), entries[index].keySize) ==
+                                stateKey)
+                        {
+                            blockStateMapOk =
+                                state != nullptr &&
+                                reinterpret_cast<VariantReadIndexFn>(slots[HS_BOOL_VARIANT_INDEX_INDEX])(state) == 0 &&
+                                reinterpret_cast<VariantAsBoolFn>(slots[HS_BOOL_VARIANT_AS_BOOL_INDEX])(state);
                         }
-                        if (state) {
+                        if (state)
+                        {
                             reinterpret_cast<DestroyFn>(slots[HS_BOOL_VARIANT_DESTROY_INDEX])(state);
                         }
                     }
@@ -801,137 +849,140 @@ public:
 
             out << "block_data.map=" << (blockStateMapOk ? "ok" : "FAIL") << "\n";
 
-            using GetCommandSenderFn = void *(*)(void *);
-            using WrapperCreateFn = void *(*)(void *, void *, void *, void *, void *, void *, void *);
-            using IntMethodFn = std::int32_t (*)(void *);
-            using GetNameFn = HosihikariStringView (*)(void *);
-            using CastFn = void *(*)(void *);
+            using GetCommandSenderFn    = void* (*)(void*);
+            using WrapperCreateFn       = void* (*)(void*, void*, void*, void*, void*, void*, void*);
+            using IntMethodFn           = std::int32_t (*)(void*);
+            using GetNameFn             = HosihikariStringView (*)(void*);
+            using CastFn                = void* (*)(void*);
             bool mutableReferenceCtorOk = false;
-            bool inheritanceCastOk = false;
-            bool transitiveCastOk = false;
-            if (auto *sender = reinterpret_cast<GetCommandSenderFn>(slots[HS_SERVER_COMMAND_SENDER_INDEX])(handle)) {
-                auto *wrapper = reinterpret_cast<WrapperCreateFn>(slots[HS_COMMAND_SENDER_WRAPPER_CREATE_INDEX])(
-                    sender,
-                    reinterpret_cast<void *>(&smokeNoopMessage),
-                    nullptr,
-                    nullptr,
-                    reinterpret_cast<void *>(&smokeNoopMessage),
-                    nullptr,
-                    nullptr);
-                if (wrapper) {
-                    const auto senderLevel = reinterpret_cast<IntMethodFn>(
-                        slots[HS_PERMISSIBLE_PERMISSION_LEVEL_INDEX])(sender);
-                    const auto wrapperLevel = reinterpret_cast<IntMethodFn>(
-                        slots[HS_COMMAND_SENDER_WRAPPER_PERMISSION_LEVEL_INDEX])(wrapper);
+            bool inheritanceCastOk      = false;
+            bool transitiveCastOk       = false;
+            if (auto* sender = reinterpret_cast<GetCommandSenderFn>(slots[HS_SERVER_COMMAND_SENDER_INDEX])(handle))
+            {
+                auto* wrapper = reinterpret_cast<WrapperCreateFn>(
+                    slots[HS_COMMAND_SENDER_WRAPPER_CREATE_INDEX])(sender, reinterpret_cast<void*>(&smokeNoopMessage),
+                                                                   nullptr, nullptr,
+                                                                   reinterpret_cast<void*>(&smokeNoopMessage), nullptr,
+                                                                   nullptr);
+                if (wrapper)
+                {
+                    const auto senderLevel =
+                        reinterpret_cast<IntMethodFn>(slots[HS_PERMISSIBLE_PERMISSION_LEVEL_INDEX])(sender);
+                    const auto wrapperLevel =
+                        reinterpret_cast<IntMethodFn>(slots[HS_COMMAND_SENDER_WRAPPER_PERMISSION_LEVEL_INDEX])(wrapper);
                     const auto senderName = reinterpret_cast<GetNameFn>(slots[HS_COMMAND_SENDER_NAME_INDEX])(sender);
-                    const auto wrapperName = reinterpret_cast<GetNameFn>(
-                        slots[HS_COMMAND_SENDER_WRAPPER_NAME_INDEX])(wrapper);
-                    mutableReferenceCtorOk = senderLevel == wrapperLevel
-                        && std::string(senderName.data, senderName.size)
-                            == std::string(wrapperName.data, wrapperName.size);
+                    const auto wrapperName =
+                        reinterpret_cast<GetNameFn>(slots[HS_COMMAND_SENDER_WRAPPER_NAME_INDEX])(wrapper);
+                    mutableReferenceCtorOk =
+                        senderLevel == wrapperLevel && std::string(senderName.data, senderName.size) ==
+                                                           std::string(wrapperName.data, wrapperName.size);
 
-                    auto *upcast = reinterpret_cast<CastFn>(
-                        slots[HS_COMMAND_SENDER_WRAPPER_AS_COMMAND_SENDER_INDEX])(wrapper);
-                    auto *roundtrip = reinterpret_cast<CastFn>(
-                        slots[HS_COMMAND_SENDER_TRY_AS_WRAPPER_INDEX])(upcast);
-                    auto *notActor = reinterpret_cast<CastFn>(
-                        slots[HS_COMMAND_SENDER_TRY_AS_ACTOR_INDEX])(sender);
-                    const auto upcastName = upcast
-                        ? reinterpret_cast<GetNameFn>(slots[HS_COMMAND_SENDER_NAME_INDEX])(upcast)
-                        : HosihikariStringView{};
-                    inheritanceCastOk = upcast != nullptr
-                        && roundtrip == wrapper
-                        && notActor == nullptr
-                        && std::string(upcastName.data, upcastName.size)
-                            == std::string(senderName.data, senderName.size);
+                    auto* upcast =
+                        reinterpret_cast<CastFn>(slots[HS_COMMAND_SENDER_WRAPPER_AS_COMMAND_SENDER_INDEX])(wrapper);
+                    auto* roundtrip = reinterpret_cast<CastFn>(slots[HS_COMMAND_SENDER_TRY_AS_WRAPPER_INDEX])(upcast);
+                    auto* notActor  = reinterpret_cast<CastFn>(slots[HS_COMMAND_SENDER_TRY_AS_ACTOR_INDEX])(sender);
+                    const auto upcastName =
+                        upcast ? reinterpret_cast<GetNameFn>(slots[HS_COMMAND_SENDER_NAME_INDEX])(upcast)
+                               : HosihikariStringView{};
+                    inheritanceCastOk =
+                        upcast != nullptr && roundtrip == wrapper && notActor == nullptr &&
+                        std::string(upcastName.data, upcastName.size) == std::string(senderName.data, senderName.size);
 
-                    auto *permissible = reinterpret_cast<CastFn>(
-                        slots[HS_WRAPPER_AS_PERMISSIBLE_INDEX])(wrapper);
-                    auto *permissibleRoundtrip = reinterpret_cast<CastFn>(
-                        slots[HS_PERMISSIBLE_TRY_AS_WRAPPER_INDEX])(permissible);
-                    auto *nativePermissible = static_cast<endstone::Permissible *>(
-                        static_cast<endstone::CommandSenderWrapper *>(wrapper));
-                    transitiveCastOk = permissible != nullptr
-                        && permissible == nativePermissible
-                        && permissibleRoundtrip == wrapper;
+                    auto* permissible = reinterpret_cast<CastFn>(slots[HS_WRAPPER_AS_PERMISSIBLE_INDEX])(wrapper);
+                    auto* permissibleRoundtrip =
+                        reinterpret_cast<CastFn>(slots[HS_PERMISSIBLE_TRY_AS_WRAPPER_INDEX])(permissible);
+                    auto* nativePermissible =
+                        static_cast<endstone::Permissible*>(static_cast<endstone::CommandSenderWrapper*>(wrapper));
+                    transitiveCastOk =
+                        permissible != nullptr && permissible == nativePermissible && permissibleRoundtrip == wrapper;
                     reinterpret_cast<DestroyFn>(slots[HS_COMMAND_SENDER_WRAPPER_DESTROY_INDEX])(wrapper);
                 }
             }
 
-            out << "sec.mutable_ref\n"; out.flush();
+            out << "sec.mutable_ref\n";
+            out.flush();
             out << "mutable_reference.ctor=" << (mutableReferenceCtorOk ? "ok" : "FAIL") << "\n";
             out << "inheritance.cast=" << (inheritanceCastOk ? "ok" : "FAIL") << "\n";
             out << "inheritance.transitive=" << (transitiveCastOk ? "ok" : "FAIL") << "\n";
 
-            using CreateActionFormFn = void *(*)();
-            using SetContentFn = void *(*)(void *, void *);
-            using GetContentFn = void *(*)(void *);
-            using VariantCreateStringFn = void *(*)(const char *, std::size_t);
-            using VariantIndexFn = std::int32_t (*)(void *);
-            using VariantGetStringFn = HosihikariStringView (*)(void *);
-            using DestroyFn = void (*)(void *);
+            using CreateActionFormFn    = void* (*)();
+            using SetContentFn          = void* (*)(void*, void*);
+            using GetContentFn          = void* (*)(void*);
+            using VariantCreateStringFn = void* (*)(const char*, std::size_t);
+            using VariantIndexFn        = std::int32_t (*)(void*);
+            using VariantGetStringFn    = HosihikariStringView (*)(void*);
+            using DestroyFn             = void (*)(void*);
 
-            auto *actionForm = reinterpret_cast<CreateActionFormFn>(slots[HS_ACTION_FORM_CREATE_INDEX])();
-            auto *content = reinterpret_cast<VariantCreateStringFn>(slots[HS_VARIANT_CREATE_STRING_INDEX])("hello", 5);
-            bool variantOk = actionForm != nullptr && content != nullptr;
-            if (variantOk) {
+            auto* actionForm = reinterpret_cast<CreateActionFormFn>(slots[HS_ACTION_FORM_CREATE_INDEX])();
+            auto* content = reinterpret_cast<VariantCreateStringFn>(slots[HS_VARIANT_CREATE_STRING_INDEX])("hello", 5);
+            bool  variantOk = actionForm != nullptr && content != nullptr;
+            if (variantOk)
+            {
                 reinterpret_cast<SetContentFn>(slots[HS_ACTION_FORM_SET_CONTENT_INDEX])(actionForm, content);
-                auto *returned = reinterpret_cast<GetContentFn>(slots[HS_ACTION_FORM_GET_CONTENT_INDEX])(actionForm);
-                variantOk = returned != nullptr
-                    && reinterpret_cast<VariantIndexFn>(slots[HS_VARIANT_INDEX_INDEX])(returned) == 0;
-                if (variantOk) {
-                    const auto text = reinterpret_cast<VariantGetStringFn>(slots[HS_VARIANT_GET_STRING_INDEX])(returned);
+                auto* returned = reinterpret_cast<GetContentFn>(slots[HS_ACTION_FORM_GET_CONTENT_INDEX])(actionForm);
+                variantOk      = returned != nullptr &&
+                                 reinterpret_cast<VariantIndexFn>(slots[HS_VARIANT_INDEX_INDEX])(returned) == 0;
+                if (variantOk)
+                {
+                    const auto text =
+                        reinterpret_cast<VariantGetStringFn>(slots[HS_VARIANT_GET_STRING_INDEX])(returned);
                     variantOk = std::string(text.data, text.size) == "hello";
                 }
 
-                if (returned) {
+                if (returned)
+                {
                     reinterpret_cast<DestroyFn>(slots[HS_VARIANT_DESTROY_INDEX])(returned);
                 }
             }
 
-            using SetOnSubmitFn = void *(*)(void *, void *, void *, void *);
-            using GetOnSubmitFn = void *(*)(void *);
-            using InvokeSubmitFn = void (*)(void *, void *, std::int32_t);
-            bool callableOk = false;
-            if (actionForm) {
-                reinterpret_cast<SetOnSubmitFn>(slots[HS_ACTION_FORM_SET_ON_SUBMIT_INDEX])(
-                    actionForm,
-                    reinterpret_cast<void *>(&smokeSubmit),
-                    nullptr,
-                    reinterpret_cast<void *>(&smokeSubmitRelease));
-                auto *submit = reinterpret_cast<GetOnSubmitFn>(slots[HS_ACTION_FORM_GET_ON_SUBMIT_INDEX])(actionForm);
-                if (submit) {
+            using SetOnSubmitFn  = void* (*)(void*, void*, void*, void*);
+            using GetOnSubmitFn  = void* (*)(void*);
+            using InvokeSubmitFn = void (*)(void*, void*, std::int32_t);
+            bool callableOk      = false;
+            if (actionForm)
+            {
+                reinterpret_cast<SetOnSubmitFn>(
+                    slots[HS_ACTION_FORM_SET_ON_SUBMIT_INDEX])(actionForm, reinterpret_cast<void*>(&smokeSubmit),
+                                                               nullptr, reinterpret_cast<void*>(&smokeSubmitRelease));
+                auto* submit = reinterpret_cast<GetOnSubmitFn>(slots[HS_ACTION_FORM_GET_ON_SUBMIT_INDEX])(actionForm);
+                if (submit)
+                {
                     reinterpret_cast<InvokeSubmitFn>(slots[HS_CALLABLE_INVOKE_INDEX])(submit, nullptr, 0);
                     callableOk = g_submitCalls == 1;
                     reinterpret_cast<DestroyFn>(slots[HS_CALLABLE_DESTROY_INDEX])(submit);
                 }
             }
 
-            if (content) {
+            if (content)
+            {
                 reinterpret_cast<DestroyFn>(slots[HS_VARIANT_DESTROY_INDEX])(content);
             }
 
-            if (actionForm) {
+            if (actionForm)
+            {
                 reinterpret_cast<DestroyFn>(slots[HS_ACTION_FORM_DESTROY_INDEX])(actionForm);
             }
 
             callableOk = callableOk && g_submitReleases == 1;
-            out << "sec.action_form\n"; out.flush();
+            out << "sec.action_form\n";
+            out.flush();
             out << "action_form.string_variant=" << (variantOk ? "ok" : "FAIL") << "\n";
             out << "callable.round_trip=" << (callableOk ? "ok" : "FAIL") << "\n";
 
-            out << "sec.end\n"; out.flush();
+            out << "sec.end\n";
+            out.flush();
             out << "result="
-                << (actualName == server.getName() && actualVersion == server.getVersion() && vectorsOk
-                            && compoundOk && pluginsOk && sharedOk && objectivesOk && containersOk
-                            && banRoundTripOk && variantOk && callableOk
+                << (actualName == server.getName() && actualVersion == server.getVersion() && vectorsOk && compoundOk &&
+                            pluginsOk && sharedOk && objectivesOk && containersOk && banRoundTripOk && variantOk &&
+                            callableOk
                         ? "OK"
                         : "FAIL")
                 << "\n";
 
             FreeLibrary(shim);
         }
-        catch (std::exception const &exception) {
+        catch (std::exception const& exception)
+        {
             out << "exception=" << exception.what() << "\n";
             out << "result=FAIL\n";
         }

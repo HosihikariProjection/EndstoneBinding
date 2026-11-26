@@ -19,11 +19,12 @@ public static class NativeEntryPoint
             {
                 try
                 {
-                    File.WriteAllText(resultPath, "load=failed\nresult=FAIL\n" + exception + Environment.NewLine);
+                    File.WriteAllText(
+                        resultPath,
+                        "load=failed\nresult=FAIL\n" + exception + Environment.NewLine
+                    );
                 }
-                catch (IOException)
-                {
-                }
+                catch (IOException) { }
             }
 
             return 1;
