@@ -39,7 +39,7 @@ jobs:
 
       - name: Formatting
         run: |
-          dotnet format Hosihikari.Binding.Endstone.slnx --verify-no-changes
+          dotnet format Hosihikari.Binding.Endstone.slnx --verify-no-changes --include src tests
           pip install --quiet clang-format==19.1.7
           clang-format --Werror --dry-run --style=file \
             native/BindingShim/linux-compat.h \
